@@ -35,6 +35,15 @@ const featuredProjects = [
     featured: true,
   },
   {
+    id: 3,
+    title: "AI Quiz Application",
+    description: "Intelligent quiz application with automatic submission",
+    technologies: ["React", "Node.js", "MongoDB", "AI"],
+    liveUrl: "#",
+    githubUrl: "#",
+    featured: true,
+  },
+  {
     id: 4,
     title: "AgroSmart AI",
     description: "AI-powered crop recommendation system using MERN stack",
