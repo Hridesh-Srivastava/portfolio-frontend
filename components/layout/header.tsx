@@ -43,15 +43,15 @@ const featuredProjects = [
     githubUrl: "#",
     featured: true,
   },
-  {
-    id: 4,
-    title: "AgroSmart AI",
-    description: "AI-powered crop recommendation system using MERN stack",
-    technologies: ["MERN", "Three.js", "Python", "Flask", "AI/ML"],
-    liveUrl: "#",
-    githubUrl: "#",
-    featured: true,
-  },
+  // {
+  //   id: 4,
+  //   title: "AgroSmart AI",
+  //   description: "AI-powered crop recommendation system using MERN stack",
+  //   technologies: ["MERN", "Three.js", "Python", "Flask", "AI/ML"],
+  //   liveUrl: "#",
+  //   githubUrl: "#",
+  //   featured: true,
+  // },
 ]
 
 export function Header() {
