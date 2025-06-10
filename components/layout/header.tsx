@@ -390,6 +390,93 @@ export function Header() {
                       </Link>
                     </motion.div>
                   ))}
+                  <motion.div
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3, delay: navItems.length * 0.08 }}
+                  >
+                    <button
+                      onClick={() => {
+                        setIsProjectsDropdownOpen(!isProjectsDropdownOpen)
+                      }}
+                      className="flex items-center w-full space-x-3 px-4 py-3 rounded-lg transition-all duration-300 relative text-[#cccccc] hover:text-white hover:bg-[#1a1a1a]"
+                    >
+                      <Info className="w-5 h-5" />
+                      <span className="font-medium">Featured Projects</span>
+                    </button>
+
+                    {/* Mobile Projects Dropdown */}
+                    <AnimatePresence>
+                      {isProjectsDropdownOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="pl-12 pr-4 py-2 space-y-3">
+                            {featuredProjects.map((project, projectIndex) => (
+                              <motion.div
+                                key={project.id}
+                                initial={{ opacity: 0, x: -10 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ duration: 0.3, delay: projectIndex * 0.1 }}
+                                className="group py-2 border-b border-[#222222] last:border-b-0"
+                              >
+                                <div className="flex items-start justify-between mb-1">
+                                  <h4 className="text-sm font-medium text-white group-hover:text-[#00ffcc] transition-colors">
+                                    {project.title}
+                                  </h4>
+                                </div>
+                                <p className="text-xs text-[#999999] mb-2 line-clamp-2">{project.description}</p>
+                                <div className="flex flex-wrap gap-1 mb-1">
+                                  {project.technologies.slice(0, 2).map((tech, techIndex) => (
+                                    <span
+                                      key={techIndex}
+                                      className="text-xs px-2 py-1 bg-[#00ffcc]/10 text-[#00ffcc] rounded-full border border-[#00ffcc]/20"
+                                    >
+                                      {tech}
+                                    </span>
+                                  ))}
+                                  {project.technologies.length > 2 && (
+                                    <span className="text-xs px-2 py-1 bg-[#00ffcc]/10 text-[#00ffcc] rounded-full border border-[#00ffcc]/20">
+                                      +{project.technologies.length - 2}
+                                    </span>
+                                  )}
+                                </div>
+                                <div className="flex gap-2 mt-2">
+                                  <Link
+                                    href={project.liveUrl}
+                                    target="_blank"
+                                    className="text-xs flex items-center gap-1 text-[#999999] hover:text-[#00ffcc] transition-colors"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                  >
+                                    <ExternalLink className="w-3 h-3" /> View
+                                  </Link>
+                                  <Link
+                                    href={project.githubUrl}
+                                    target="_blank"
+                                    className="text-xs flex items-center gap-1 text-[#999999] hover:text-[#00ffcc] transition-colors"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                  >
+                                    <Github className="w-3 h-3" /> Code
+                                  </Link>
+                                </div>
+                              </motion.div>
+                            ))}
+                            <Link
+                              href="/projects"
+                              className="block text-center text-xs text-[#00ffcc] hover:text-white transition-colors font-medium pt-2"
+                              onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                              View All Projects →
+                            </Link>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
                 </nav>
               </div>
             </motion.div>
