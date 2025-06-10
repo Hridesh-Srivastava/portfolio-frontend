@@ -14,7 +14,6 @@ const navItems = [
   { href: "/contact", label: "Contact", icon: Mail },
 ]
 
-// Featured projects data - this would normally come from your API or database
 const featuredProjects = [
   {
     id: 1,
@@ -34,24 +33,24 @@ const featuredProjects = [
     githubUrl: "#",
     featured: true,
   },
-  {
-    id: 3,
-    title: "AI Quiz Application",
-    description: "Intelligent quiz application with automatic submission",
-    technologies: ["React", "Node.js", "MongoDB", "AI"],
-    liveUrl: "#",
-    githubUrl: "#",
-    featured: true,
-  },
   // {
-  //   id: 4,
-  //   title: "AgroSmart AI",
-  //   description: "AI-powered crop recommendation system using MERN stack",
-  //   technologies: ["MERN", "Three.js", "Python", "Flask", "AI/ML"],
+  //   id: 3,
+  //   title: "AI Quiz Application",
+  //   description: "Intelligent quiz application with automatic submission",
+  //   technologies: ["React", "Node.js", "MongoDB", "AI"],
   //   liveUrl: "#",
   //   githubUrl: "#",
   //   featured: true,
   // },
+  {
+    id: 4,
+    title: "AgroSmart AI",
+    description: "AI-powered crop recommendation system using MERN stack",
+    technologies: ["MERN", "Three.js", "Python", "Flask", "AI/ML"],
+    liveUrl: "#",
+    githubUrl: "#",
+    featured: true,
+  },
 ]
 
 export function Header() {
