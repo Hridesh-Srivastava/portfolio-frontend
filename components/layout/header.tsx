@@ -415,7 +415,7 @@ export function Header() {
         )}
       </AnimatePresence>
 
-      {/* Mobile Projects Full-Screen Modal */}
+      {/* Mobile Projects Full-Screen Modal - Compact Version */}
       <AnimatePresence>
         {isMobileProjectsModalOpen && (
           <motion.div
@@ -430,10 +430,10 @@ export function Header() {
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="absolute inset-0 bg-[#111111] overflow-hidden"
+              className="absolute inset-0 bg-[#111111] flex flex-col"
             >
-              {/* Modal Header */}
-              <div className="flex items-center justify-between p-4 border-b border-[#222222] bg-[#111111] sticky top-0 z-10">
+              {/* Modal Header - Fixed height */}
+              <div className="flex items-center justify-between p-3 border-b border-[#222222] bg-[#111111] flex-shrink-0">
                 <div className="flex items-center gap-3">
                   <button
                     onClick={() => setIsMobileProjectsModalOpen(false)}
@@ -454,75 +454,84 @@ export function Header() {
                 </button>
               </div>
 
-              {/* Modal Content - Scrollable */}
-              <div className="flex-1 overflow-y-auto p-4 space-y-4">
-                {featuredProjects.map((project, projectIndex) => (
+              {/* Modal Content - Scrollable with compact cards */}
+              <div className="flex-1 overflow-y-auto">
+                <div className="p-3 space-y-3">
+                  {featuredProjects.map((project, projectIndex) => (
+                    <motion.div
+                      key={project.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3, delay: projectIndex * 0.1 }}
+                      className="group p-3 rounded-lg bg-[#1a1a1a] border border-[#222222] hover:border-[#00ffcc]/30 transition-all duration-300"
+                    >
+                      {/* Compact header with title and buttons */}
+                      <div className="flex items-center justify-between mb-2">
+                        <h3 className="text-base font-semibold text-white group-hover:text-[#00ffcc] transition-colors flex-1 pr-2">
+                          {project.title}
+                        </h3>
+                        <div className="flex gap-1 flex-shrink-0">
+                          <Link
+                            href={project.liveUrl}
+                            target="_blank"
+                            className="p-1.5 text-[#999999] hover:text-[#00ffcc] transition-colors bg-[#222222] rounded-md hover:bg-[#333333]"
+                            onClick={() => setIsMobileProjectsModalOpen(false)}
+                          >
+                            <ExternalLink className="w-3.5 h-3.5" />
+                          </Link>
+                          <Link
+                            href={project.githubUrl}
+                            target="_blank"
+                            className="p-1.5 text-[#999999] hover:text-[#00ffcc] transition-colors bg-[#222222] rounded-md hover:bg-[#333333]"
+                            onClick={() => setIsMobileProjectsModalOpen(false)}
+                          >
+                            <Github className="w-3.5 h-3.5" />
+                          </Link>
+                        </div>
+                      </div>
+
+                      {/* Compact description */}
+                      <p className="text-sm text-[#cccccc] mb-3 leading-relaxed line-clamp-2">{project.description}</p>
+
+                      {/* Compact technology tags */}
+                      <div className="flex flex-wrap gap-1.5">
+                        {project.technologies.slice(0, 4).map((tech, techIndex) => (
+                          <span
+                            key={techIndex}
+                            className="text-xs px-2 py-1 bg-[#00ffcc]/10 text-[#00ffcc] rounded-md border border-[#00ffcc]/20"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                        {project.technologies.length > 4 && (
+                          <span className="text-xs px-2 py-1 bg-[#00ffcc]/10 text-[#00ffcc] rounded-md border border-[#00ffcc]/20">
+                            +{project.technologies.length - 4}
+                          </span>
+                        )}
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* View All Projects Button - Fixed at bottom with proper spacing */}
+                <div className="p-3 bg-[#111111] border-t border-[#222222] mt-2">
                   <motion.div
-                    key={project.id}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: projectIndex * 0.1 }}
-                    className="group p-4 rounded-xl bg-[#1a1a1a] border border-[#222222] hover:border-[#00ffcc]/30 transition-all duration-300"
+                    transition={{ duration: 0.3, delay: featuredProjects.length * 0.1 }}
                   >
-                    <div className="flex items-start justify-between mb-3">
-                      <h3 className="text-lg font-semibold text-white group-hover:text-[#00ffcc] transition-colors">
-                        {project.title}
-                      </h3>
-                      <div className="flex gap-2">
-                        <Link
-                          href={project.liveUrl}
-                          target="_blank"
-                          className="p-2 text-[#999999] hover:text-[#00ffcc] transition-colors bg-[#222222] rounded-lg hover:bg-[#333333]"
-                          onClick={() => setIsMobileProjectsModalOpen(false)}
-                        >
-                          <ExternalLink className="w-4 h-4" />
-                        </Link>
-                        <Link
-                          href={project.githubUrl}
-                          target="_blank"
-                          className="p-2 text-[#999999] hover:text-[#00ffcc] transition-colors bg-[#222222] rounded-lg hover:bg-[#333333]"
-                          onClick={() => setIsMobileProjectsModalOpen(false)}
-                        >
-                          <Github className="w-4 h-4" />
-                        </Link>
-                      </div>
-                    </div>
-
-                    <p className="text-sm text-[#cccccc] mb-4 leading-relaxed">{project.description}</p>
-
-                    <div className="flex flex-wrap gap-2">
-                      {project.technologies.map((tech, techIndex) => (
-                        <span
-                          key={techIndex}
-                          className="text-sm px-3 py-1 bg-[#00ffcc]/10 text-[#00ffcc] rounded-full border border-[#00ffcc]/20"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
+                    <Link
+                      href="/projects"
+                      onClick={() => {
+                        setIsMobileProjectsModalOpen(false)
+                        setIsMobileMenuOpen(false)
+                      }}
+                      className="block w-full text-center py-3 px-6 bg-[#00ffcc] hover:bg-[#00e6b8] text-[#0a0a0a] font-semibold rounded-lg transition-colors shadow-lg shadow-[#00ffcc]/25"
+                    >
+                      View All Projects →
+                    </Link>
                   </motion.div>
-                ))}
-
-                {/* View All Projects Button */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: featuredProjects.length * 0.1 }}
-                  className="pt-4"
-                >
-                  <Link
-                    href="/projects"
-                    onClick={() => {
-                      setIsMobileProjectsModalOpen(false)
-                      setIsMobileMenuOpen(false)
-                    }}
-                    className="block w-full text-center py-4 px-6 bg-[#00ffcc] hover:bg-[#00e6b8] text-[#0a0a0a] font-semibold rounded-xl transition-colors shadow-lg shadow-[#00ffcc]/25"
-                  >
-                    View All Projects →
-                  </Link>
-                </motion.div>
-
-                <div className="h-8" />
+                </div>
               </div>
             </motion.div>
           </motion.div>
