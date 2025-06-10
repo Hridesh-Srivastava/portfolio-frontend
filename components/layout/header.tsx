@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Home, User, Briefcase, FolderOpen, Mail, Menu, X } from "lucide-react"
+import { Home, User, Briefcase, FolderOpen, Mail, Menu, X, Info, ExternalLink, Github } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
@@ -14,9 +14,41 @@ const navItems = [
   { href: "/contact", label: "Contact", icon: Mail },
 ]
 
+// Featured projects data - this would normally come from your API or database
+const featuredProjects = [
+  {
+    id: 1,
+    title: "Alumni Data System",
+    description: "Comprehensive alumni management system built with Next.js",
+    technologies: ["Next.js", "MongoDB", "RESTful APIs"],
+    liveUrl: "#",
+    githubUrl: "#",
+    featured: true,
+  },
+  {
+    id: 2,
+    title: "AI Quiz Application",
+    description: "Intelligent quiz application with automatic submission",
+    technologies: ["React", "Node.js", "MongoDB", "AI"],
+    liveUrl: "#",
+    githubUrl: "#",
+    featured: true,
+  },
+  {
+    id: 4,
+    title: "AgroSmart AI",
+    description: "AI-powered crop recommendation system using MERN stack",
+    technologies: ["MERN", "Three.js", "Python", "Flask", "AI/ML"],
+    liveUrl: "#",
+    githubUrl: "#",
+    featured: true,
+  },
+]
+
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isProjectsDropdownOpen, setIsProjectsDropdownOpen] = useState(false)
   const pathname = usePathname()
 
   useEffect(() => {
@@ -51,7 +83,7 @@ export function Header() {
             : "bg-[#0a0a0a]/85 backdrop-blur-md border-b border-[#222222]/60"
         }`}
       >
-        {/* Optimized background effects - reduced quantity */}
+        {/* Optimized background effects */}
         <div className="absolute inset-0 overflow-hidden">
           {/* Reduced star field */}
           {[...Array(8)].map((_, i) => (
@@ -156,7 +188,7 @@ export function Header() {
                       transition={{ duration: 0.2 }}
                     />
 
-                    {/* Active indicator - Enhanced */}
+                    {/* Active indicator */}
                     {isActive(item.href) && (
                       <motion.div
                         layoutId="activeTab"
@@ -176,9 +208,107 @@ export function Header() {
                   </Link>
                 </motion.div>
               ))}
+
+              {/* Projects Info Button */}
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.5 }}
+                className="relative"
+                onMouseEnter={() => setIsProjectsDropdownOpen(true)}
+                onMouseLeave={() => setIsProjectsDropdownOpen(false)}
+              >
+                <button className="relative p-2 text-[#cccccc] hover:text-white transition-all duration-300 group rounded-lg">
+                  <Info className="w-5 h-5 relative z-10" />
+
+                  {/* Hover effect */}
+                  <motion.div
+                    className="absolute inset-0 bg-[#111111] rounded-lg opacity-0 group-hover:opacity-100"
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.2 }}
+                  />
+                </button>
+
+                {/* Projects Dropdown */}
+                <AnimatePresence>
+                  {isProjectsDropdownOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute top-full right-0 mt-2 w-80 bg-[#111111] border border-[#222222] rounded-xl shadow-2xl backdrop-blur-xl overflow-hidden"
+                    >
+                      <div className="p-4">
+                        <h3 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
+                          <FolderOpen className="w-4 h-4 text-[#00ffcc]" />
+                          Featured Projects
+                        </h3>
+                        <div className="space-y-3">
+                          {featuredProjects.map((project, projectIndex) => (
+                            <motion.div
+                              key={project.id}
+                              initial={{ opacity: 0, x: -10 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ duration: 0.3, delay: projectIndex * 0.1 }}
+                              className="group p-3 rounded-lg hover:bg-[#1a1a1a] transition-colors border border-transparent hover:border-[#00ffcc]/20"
+                            >
+                              <div className="flex items-start justify-between mb-2">
+                                <h4 className="text-sm font-medium text-white group-hover:text-[#00ffcc] transition-colors">
+                                  {project.title}
+                                </h4>
+                                <div className="flex gap-1">
+                                  <Link
+                                    href={project.liveUrl}
+                                    target="_blank"
+                                    className="p-1 text-[#999999] hover:text-[#00ffcc] transition-colors"
+                                  >
+                                    <ExternalLink className="w-3 h-3" />
+                                  </Link>
+                                  <Link
+                                    href={project.githubUrl}
+                                    target="_blank"
+                                    className="p-1 text-[#999999] hover:text-[#00ffcc] transition-colors"
+                                  >
+                                    <Github className="w-3 h-3" />
+                                  </Link>
+                                </div>
+                              </div>
+                              <p className="text-xs text-[#999999] mb-2 line-clamp-2">{project.description}</p>
+                              <div className="flex flex-wrap gap-1">
+                                {project.technologies.slice(0, 3).map((tech, techIndex) => (
+                                  <span
+                                    key={techIndex}
+                                    className="text-xs px-2 py-1 bg-[#00ffcc]/10 text-[#00ffcc] rounded-full border border-[#00ffcc]/20"
+                                  >
+                                    {tech}
+                                  </span>
+                                ))}
+                                {project.technologies.length > 3 && (
+                                  <span className="text-xs px-2 py-1 bg-[#00ffcc]/10 text-[#00ffcc] rounded-full border border-[#00ffcc]/20">
+                                    +{project.technologies.length - 3}
+                                  </span>
+                                )}
+                              </div>
+                            </motion.div>
+                          ))}
+                        </div>
+                        <div className="mt-4 pt-3 border-t border-[#222222]">
+                          <Link
+                            href="/projects"
+                            className="block text-center text-sm text-[#00ffcc] hover:text-white transition-colors font-medium"
+                          >
+                            View All Projects →
+                          </Link>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
             </nav>
 
-            {/* Mobile menu button only */}
+            {/* Mobile menu button */}
             <div className="flex items-center">
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}

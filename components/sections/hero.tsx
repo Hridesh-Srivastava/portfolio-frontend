@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Github, Linkedin, ExternalLink, Download, Code2, Database, Globe, Zap } from "lucide-react"
+import { ArrowRight, Github, Linkedin, ExternalLink, ArrowUpRightFromSquare, Code2, Database, Globe, Zap } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import { useRef } from "react"
@@ -18,11 +18,14 @@ export function HeroSection() {
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.8])
 
   return (
-    <section ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0a0a0a]">
+    <section
+      ref={ref}
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0a0a0a] pt-20 pb-16"
+    >
       {/* Enhanced Flowing Lines Background */}
       <motion.div style={{ y, opacity }} className="absolute inset-0">
         {/* Enhanced Star field */}
-        {[...Array(400)].map((_, i) => (
+        {[...Array(300)].map((_, i) => (
           <motion.div
             key={i}
             animate={{
@@ -255,7 +258,7 @@ export function HeroSection() {
             transition={{ duration: 3.5, delay: 3.5, ease: "easeInOut" }}
           />
 
-          {/* Circuit Nodes/Junctions with Pulsing - Increased quantity and faster animations */}
+          {/* Circuit Nodes/Junctions with Pulsing */}
           <motion.circle
             cx="300"
             cy="200"
@@ -332,84 +335,7 @@ export function HeroSection() {
             <animate attributeName="r" values="5.5;7.5;5.5" dur="3.2s" repeatCount="indefinite" />
           </motion.circle>
 
-          {/* Additional Circuit Nodes */}
-          <motion.circle
-            cx="450"
-            cy="300"
-            r="5.8"
-            fill="#00ffcc"
-            filter="url(#strongGlow)"
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 1.8 }}
-          >
-            <animate
-              attributeName="fill"
-              values="#00ffcc;#00e6ff;#0099ff;#00ccff;#00ffcc"
-              dur="2.2s"
-              repeatCount="indefinite"
-            />
-            <animate attributeName="r" values="5.8;7.8;5.8" dur="2.8s" repeatCount="indefinite" />
-          </motion.circle>
-
-          <motion.circle
-            cx="900"
-            cy="500"
-            r="6.2"
-            fill="#00ccff"
-            filter="url(#strongGlow)"
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 2 }}
-          >
-            <animate
-              attributeName="fill"
-              values="#00ccff;#0099ff;#00ffcc;#00e6ff;#00ccff"
-              dur="2.3s"
-              repeatCount="indefinite"
-            />
-            <animate attributeName="r" values="6.2;8.2;6.2" dur="3s" repeatCount="indefinite" />
-          </motion.circle>
-
-          <motion.circle
-            cx="750"
-            cy="250"
-            r="5.3"
-            fill="#0099ff"
-            filter="url(#strongGlow)"
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 2.2 }}
-          >
-            <animate
-              attributeName="fill"
-              values="#0099ff;#00ffcc;#00e6ff;#00ccff;#0099ff"
-              dur="2.7s"
-              repeatCount="indefinite"
-            />
-            <animate attributeName="r" values="5.3;7.3;5.3" dur="3.3s" repeatCount="indefinite" />
-          </motion.circle>
-
-          <motion.circle
-            cx="1350"
-            cy="450"
-            r="6.8"
-            fill="#00e6ff"
-            filter="url(#strongGlow)"
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 2.4 }}
-          >
-            <animate
-              attributeName="fill"
-              values="#00e6ff;#00ccff;#0099ff;#00ffcc;#00e6ff"
-              dur="2.6s"
-              repeatCount="indefinite"
-            />
-            <animate attributeName="r" values="6.8;8.8;6.8" dur="3.1s" repeatCount="indefinite" />
-          </motion.circle>
-
-          {/* Enhanced Flowing Data Particles - Faster animations and more particles */}
+          {/* Enhanced Flowing Data Particles */}
           <motion.circle
             r="4"
             fill="#00ffcc"
@@ -457,80 +383,7 @@ export function HeroSection() {
             <animate attributeName="r" values="3.5;5.5;3.5" dur="1.2s" repeatCount="indefinite" />
           </motion.circle>
 
-          <motion.circle
-            r="5"
-            fill="#0099ff"
-            filter="url(#strongGlow)"
-            animate={{
-              cx: [300, 300, 600, 600, 1200, 1200, 1500, 1500],
-              cy: [0, 200, 200, 400, 400, 600, 600, 800],
-            }}
-            transition={{
-              duration: 7,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "linear",
-              delay: 1,
-            }}
-          >
-            <animate
-              attributeName="fill"
-              values="#0099ff;#00ffcc;#00e6ff;#00ccff;#0099ff"
-              dur="3s"
-              repeatCount="indefinite"
-            />
-            <animate attributeName="r" values="5;7;5" dur="1.5s" repeatCount="indefinite" />
-          </motion.circle>
-
-          {/* Additional Flowing Data Particles */}
-          <motion.circle
-            r="4.2"
-            fill="#00e6ff"
-            filter="url(#strongGlow)"
-            animate={{
-              cx: [0, 450, 900, 1350, 1920],
-              cy: [300, 300, 500, 450, 450],
-            }}
-            transition={{
-              duration: 5.5,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "linear",
-              delay: 0.2,
-            }}
-          >
-            <animate
-              attributeName="fill"
-              values="#00e6ff;#00ccff;#0099ff;#00ffcc;#00e6ff"
-              dur="2.2s"
-              repeatCount="indefinite"
-            />
-            <animate attributeName="r" values="4.2;6.2;4.2" dur="1.3s" repeatCount="indefinite" />
-          </motion.circle>
-
-          <motion.circle
-            r="3.8"
-            fill="#00ffcc"
-            filter="url(#strongGlow)"
-            animate={{
-              cx: [1920, 1350, 900, 450, 750, 0],
-              cy: [250, 250, 500, 300, 250, 250],
-            }}
-            transition={{
-              duration: 6.5,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "linear",
-              delay: 0.7,
-            }}
-          >
-            <animate
-              attributeName="fill"
-              values="#00ffcc;#00e6ff;#0099ff;#00ccff;#00ffcc"
-              dur="2.7s"
-              repeatCount="indefinite"
-            />
-            <animate attributeName="r" values="3.8;5.8;3.8" dur="1.4s" repeatCount="indefinite" />
-          </motion.circle>
-
-          {/* Circuit Patterns with Flow - Increased quantity and reduced delays */}
+          {/* Circuit Patterns with Flow */}
           <motion.rect
             x="280"
             y="180"
@@ -572,199 +425,6 @@ export function HeroSection() {
               repeatCount="indefinite"
             />
           </motion.rect>
-
-          <motion.rect
-            x="1180"
-            y="580"
-            width="40"
-            height="40"
-            fill="none"
-            stroke="#0099ff"
-            strokeWidth="2"
-            filter="url(#flowGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 1, delay: 1.9 }}
-          >
-            <animate
-              attributeName="stroke"
-              values="#0099ff;#00ffcc;#00e6ff;#00ccff;#0099ff"
-              dur="4s"
-              repeatCount="indefinite"
-            />
-          </motion.rect>
-
-          <motion.rect
-            x="1480"
-            y="780"
-            width="40"
-            height="40"
-            fill="none"
-            stroke="#00e6ff"
-            strokeWidth="2"
-            filter="url(#flowGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 1, delay: 2.1 }}
-          >
-            <animate
-              attributeName="stroke"
-              values="#00e6ff;#00ccff;#0099ff;#00ffcc;#00e6ff"
-              dur="2.8s"
-              repeatCount="indefinite"
-            />
-          </motion.rect>
-
-          {/* Additional Circuit Patterns */}
-          <motion.rect
-            x="430"
-            y="280"
-            width="35"
-            height="35"
-            fill="none"
-            stroke="#00ffcc"
-            strokeWidth="2"
-            filter="url(#flowGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 1, delay: 2.3 }}
-          >
-            <animate
-              attributeName="stroke"
-              values="#00ffcc;#00e6ff;#0099ff;#00ccff;#00ffcc"
-              dur="2.2s"
-              repeatCount="indefinite"
-            />
-          </motion.rect>
-
-          <motion.rect
-            x="880"
-            y="480"
-            width="45"
-            height="45"
-            fill="none"
-            stroke="#00ccff"
-            strokeWidth="2"
-            filter="url(#flowGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 1, delay: 2.5 }}
-          >
-            <animate
-              attributeName="stroke"
-              values="#00ccff;#0099ff;#00ffcc;#00e6ff;#00ccff"
-              dur="2.3s"
-              repeatCount="indefinite"
-            />
-          </motion.rect>
-
-          <motion.rect
-            x="730"
-            y="230"
-            width="38"
-            height="38"
-            fill="none"
-            stroke="#0099ff"
-            strokeWidth="2"
-            filter="url(#flowGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 1, delay: 2.7 }}
-          >
-            <animate
-              attributeName="stroke"
-              values="#0099ff;#00ffcc;#00e6ff;#00ccff;#0099ff"
-              dur="2.7s"
-              repeatCount="indefinite"
-            />
-          </motion.rect>
-
-          <motion.rect
-            x="1330"
-            y="430"
-            width="42"
-            height="42"
-            fill="none"
-            stroke="#00e6ff"
-            strokeWidth="2"
-            filter="url(#flowGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 1, delay: 2.9 }}
-          >
-            <animate
-              attributeName="stroke"
-              values="#00e6ff;#00ccff;#0099ff;#00ffcc;#00e6ff"
-              dur="2.6s"
-              repeatCount="indefinite"
-            />
-          </motion.rect>
-
-          {/* Additional Flowing Connection Lines */}
-          <motion.line
-            x1="320"
-            y1="200"
-            x2="580"
-            y2="400"
-            stroke="url(#flowingGradient1)"
-            strokeWidth="1.5"
-            filter="url(#flowGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 2, delay: 6 }}
-          />
-
-          <motion.line
-            x1="620"
-            y1="400"
-            x2="1180"
-            y2="600"
-            stroke="url(#flowingGradient2)"
-            strokeWidth="1.5"
-            filter="url(#flowGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 2, delay: 6.5 }}
-          />
-
-          <motion.line
-            x1="1220"
-            y1="600"
-            x2="1480"
-            y2="800"
-            stroke="url(#flowingGradient1)"
-            strokeWidth="1.5"
-            filter="url(#flowGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 2, delay: 7 }}
-          />
-
-          <motion.line
-            x1="450"
-            y1="300"
-            x2="730"
-            y2="250"
-            stroke="url(#flowingGradient2)"
-            strokeWidth="1.5"
-            filter="url(#flowGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 2, delay: 7.5 }}
-          />
-
-          <motion.line
-            x1="770"
-            y1="250"
-            x2="1330"
-            y2="450"
-            stroke="url(#flowingGradient1)"
-            strokeWidth="1.5"
-            filter="url(#flowGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 2, delay: 8 }}
-          />
         </svg>
 
         {/* Enhanced Nebula Effects */}
@@ -800,15 +460,15 @@ export function HeroSection() {
       </motion.div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, ease: [0.6, -0.05, 0.01, 0.99] }}
-            className="space-y-8 order-2 lg:order-1"
+            className="space-y-6 lg:space-y-8 order-2 lg:order-1"
           >
-            <div className="space-y-6">
+            <div className="space-y-4 lg:space-y-6">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -827,13 +487,14 @@ export function HeroSection() {
                   transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
                   className="w-3 h-3 bg-[#00ffcc] rounded-full shadow-lg shadow-[#00ffcc]/50"
                 />
+                 <span className="text-lg font-medium text-[#cccccc]">Available for new projects</span>
               </motion.div>
 
               <motion.h1
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.3 }}
-                className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight"
+                className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold leading-tight"
               >
                 <span className="text-white">Building the</span>
                 <br />
@@ -856,7 +517,7 @@ export function HeroSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
-                className="text-lg sm:text-xl text-[#cccccc] leading-relaxed max-w-2xl"
+                className="text-base sm:text-lg lg:text-xl text-[#cccccc] leading-relaxed max-w-2xl"
               >
                 Full-stack developer passionate about creating exceptional digital experiences. Specializing in modern
                 web technologies and scalable solutions that make a real impact.
@@ -866,7 +527,7 @@ export function HeroSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.7 }}
-                className="flex flex-wrap gap-3"
+                className="flex flex-wrap gap-2 sm:gap-3"
               >
                 {[
                   { icon: Code2, text: "React & Next.js" },
@@ -884,9 +545,9 @@ export function HeroSection() {
                       y: -2,
                       boxShadow: "0 10px 25px rgba(0, 255, 204, 0.2)",
                     }}
-                    className="flex items-center space-x-2 px-3 sm:px-4 py-2 bg-[#111111] rounded-full border border-[#222222] relative overflow-hidden backdrop-blur-sm"
+                    className="flex items-center space-x-2 px-3 py-2 bg-[#111111] rounded-full border border-[#222222] relative overflow-hidden backdrop-blur-sm"
                   >
-                    <item.icon className="w-4 h-4 text-[#00ffcc]" />
+                    <item.icon className="w-3 h-3 sm:w-4 sm:h-4 text-[#00ffcc]" />
                     <span className="text-xs sm:text-sm font-medium text-[#cccccc]">{item.text}</span>
                     <div className="absolute inset-0 bg-gradient-to-r from-[#00ffcc]/5 via-transparent to-[#00ccff]/5 opacity-0 hover:opacity-100 transition-opacity duration-300" />
                   </motion.div>
@@ -898,7 +559,7 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1 }}
-              className="flex flex-col sm:flex-row gap-4"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4"
             >
               <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                 <Button
@@ -941,7 +602,7 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1.2 }}
-              className="flex items-center space-x-6"
+              className="flex items-center space-x-4 sm:space-x-6"
             >
               {[
                 { href: "https://github.com/Hridesh-Srivastava", icon: Github, label: "GitHub" },
@@ -959,47 +620,66 @@ export function HeroSection() {
                       className="absolute inset-0 bg-[#111111] rounded-lg opacity-0 group-hover:opacity-100 border border-[#222222] group-hover:border-[#00ffcc]/30"
                       whileHover={{ scale: 1.1 }}
                     />
-                    <social.icon className="h-6 w-6 relative z-10" />
+                    <social.icon className="h-5 w-5 sm:h-6 sm:w-6 relative z-10" />
                   </Link>
                 </motion.div>
               ))}
             </motion.div>
           </motion.div>
 
-          {/* Profile section */}
+          {/* Profile section - Fixed responsive design and positioning */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.4 }}
-            className="flex flex-col items-center space-y-8 order-1 lg:order-2"
+            className="flex flex-col items-center space-y-6 lg:space-y-8 order-1 lg:order-2 px-4 sm:px-8 lg:px-0"
           >
-            {/* Profile Picture */}
+            {/* Profile Picture Container - Fixed sizing and spacing */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.6 }}
-              className="relative"
+              className="relative flex items-center justify-center w-full max-w-sm lg:max-w-md xl:max-w-lg"
             >
-              {/* Enhanced orbital rings */}
+              {/* Enhanced orbital rings - Fixed responsive positioning */}
               <motion.div
                 animate={{ rotate: [0, 360] }}
                 transition={{ duration: 15, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-                className="absolute -inset-8 border border-[#00ffcc]/30 rounded-full"
+                className="absolute inset-0 w-full h-full border border-[#00ffcc]/30 rounded-full"
+                style={{
+                  width: "calc(100% + 32px)",
+                  height: "calc(100% + 32px)",
+                  left: "-16px",
+                  top: "-16px",
+                }}
               />
               <motion.div
                 animate={{ rotate: [360, 0] }}
                 transition={{ duration: 12, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-                className="absolute -inset-12 border border-[#00ccff]/25 rounded-full"
+                className="absolute inset-0 w-full h-full border border-[#00ccff]/25 rounded-full"
+                style={{
+                  width: "calc(100% + 48px)",
+                  height: "calc(100% + 48px)",
+                  left: "-24px",
+                  top: "-24px",
+                }}
               />
               <motion.div
                 animate={{ rotate: [0, 360] }}
                 transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-                className="absolute -inset-16 border border-[#0099ff]/20 rounded-full"
+                className="absolute inset-0 w-full h-full border border-[#0099ff]/20 rounded-full"
+                style={{
+                  width: "calc(100% + 64px)",
+                  height: "calc(100% + 64px)",
+                  left: "-32px",
+                  top: "-32px",
+                }}
               />
 
-              <div className="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden bg-gradient-to-br from-[#111111] to-[#1a1a1a] shadow-2xl border-2 border-[#00ffcc]/40 relative">
+              {/* Profile picture - Fixed responsive sizing */}
+              <div className="w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 xl:w-96 xl:h-96 rounded-full overflow-hidden bg-gradient-to-br from-[#111111] to-[#1a1a1a] shadow-2xl border-2 border-[#00ffcc]/40 relative z-10">
                 <Image
-                  src="/pfp-my.jpeg?height=400&width=400"
+                  src="/pfp-my.jpeg"
                   alt="Hridayesh Srivastava - Full Stack Developer"
                   width={400}
                   height={400}
@@ -1011,29 +691,46 @@ export function HeroSection() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/50 via-transparent to-transparent" />
               </div>
 
-              {/* Enhanced satellite elements */}
+              {/* Enhanced satellite elements - Fixed responsive positioning */}
               <motion.div
                 animate={{ rotate: [0, 360] }}
                 transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-                className="absolute -top-4 -right-4 w-4 h-4 bg-[#00ffcc] rounded-full shadow-lg shadow-[#00ffcc]/60"
+                className="absolute w-4 h-4 bg-[#00ffcc] rounded-full shadow-lg shadow-[#00ffcc]/60"
+                style={{
+                  top: "8px",
+                  right: "8px",
+                }}
               />
               <motion.div
                 animate={{ rotate: [360, 0] }}
                 transition={{ duration: 6, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-                className="absolute -bottom-4 -left-4 w-3 h-3 bg-[#00ccff] rounded-full shadow-lg shadow-[#00ccff]/60"
+                className="absolute w-3 h-3 bg-[#00ccff] rounded-full shadow-lg shadow-[#00ccff]/60"
+                style={{
+                  bottom: "8px",
+                  left: "8px",
+                }}
               />
               <motion.div
                 animate={{ rotate: [0, 360] }}
                 transition={{ duration: 10, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-                className="absolute top-0 right-8 w-2 h-2 bg-[#0099ff] rounded-full shadow-lg shadow-[#0099ff]/60"
+                className="absolute w-2 h-2 bg-[#0099ff] rounded-full shadow-lg shadow-[#0099ff]/60"
+                style={{
+                  top: "16px",
+                  right: "32px",
+                }}
               />
 
-              {/* Status badge */}
+              {/* Status badge - Fixed positioning to prevent cutoff */}
               <motion.div
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 1 }}
-                className="absolute -bottom-4 -right-4 bg-[#111111] border-2 border-[#00ffcc]/50 px-4 py-2 rounded-full shadow-xl flex items-center space-x-2 backdrop-blur-sm"
+                className="absolute bg-[#111111] border-2 border-[#00ffcc]/50 px-3 py-2 sm:px-4 sm:py-2 rounded-full shadow-xl flex items-center space-x-2 backdrop-blur-sm"
+                style={{
+                  bottom: "-12px",
+                  right: "16px",
+                  transform: "translateX(0)",
+                }}
               >
                 <motion.div
                   animate={{
@@ -1047,16 +744,16 @@ export function HeroSection() {
                   transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
                   className="w-2 h-2 bg-[#00ffcc] rounded-full"
                 />
-                <span className="text-sm font-medium text-[#cccccc]">Available</span>
+                <span className="text-xs sm:text-sm font-medium text-[#cccccc] whitespace-nowrap">Available</span>
               </motion.div>
             </motion.div>
 
-            {/* Stats */}
+            {/* Stats - Fixed responsive grid */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.8 }}
-              className="grid grid-cols-3 gap-4 sm:gap-8 text-center w-full max-w-md"
+              className="grid grid-cols-3 gap-3 sm:gap-4 lg:gap-6 text-center w-full max-w-sm lg:max-w-md"
             >
               {[
                 { value: "4+", label: "Projects" },
@@ -1073,16 +770,15 @@ export function HeroSection() {
                     y: -2,
                     boxShadow: "0 10px 25px rgba(0, 255, 204, 0.15)",
                   }}
-                  className="space-y-2 p-3 sm:p-4 bg-[#111111] rounded-xl border border-[#222222] relative overflow-hidden backdrop-blur-sm"
+                  className="space-y-1 sm:space-y-2 p-3 sm:p-4 bg-[#111111] rounded-xl border border-[#222222] relative overflow-hidden backdrop-blur-sm"
                 >
-                  <div className="text-2xl sm:text-3xl font-bold text-[#00ffcc]">{stat.value}</div>
+                  <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#00ffcc]">{stat.value}</div>
                   <div className="text-xs sm:text-sm text-[#999999] font-medium">{stat.label}</div>
                   <div className="absolute inset-0 bg-gradient-to-br from-[#00ffcc]/5 via-transparent to-[#00ccff]/5 opacity-0 hover:opacity-100 transition-opacity duration-300" />
                 </motion.div>
               ))}
             </motion.div>
 
-            {/* Resume download */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -1095,9 +791,9 @@ export function HeroSection() {
                 variant="outline"
                 className="border-[#333333] text-[#cccccc] hover:text-white hover:border-[#00ffcc] bg-[#111111] hover:shadow-lg hover:shadow-[#00ffcc]/20"
               >
-                <Link href="/resume.pdf" target="_blank" rel="noopener noreferrer">
-                  <Download className="h-4 w-4 mr-2" />
-                  Download Resume
+                <Link href="/hridayesh-srivastava.pdf" target="_blank" rel="noopener noreferrer">
+                  <ArrowUpRightFromSquare className="h-4 w-4 mr-2" />
+                  View Resume
                 </Link>
               </Button>
             </motion.div>
