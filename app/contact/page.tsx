@@ -95,42 +95,30 @@ export default function ContactPage() {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
+  // Get API URL from environment or use default
+  const apiUrl =
+    process.env.NEXT_PUBLIC_API_URL ||
+    (typeof window !== "undefined" && window.location.hostname === "localhost"
+      ? "http://localhost:8080/api"
+      : "https://portfolio-backend-plum-nine.vercel.app/api")
+
   // Check backend connection
   const checkConnection = async () => {
     try {
       console.log("🔍 Checking backend connection...")
+      console.log("Using API URL:", apiUrl)
 
-      // Try multiple ports
-      const ports = [5000, 5001, 5002, 5003]
-      let connected = false
+      const response = await fetch(`${apiUrl}/health`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      })
 
-      for (const port of ports) {
-        try {
-          const response = await fetch(`http://localhost:${port}/api/health`, {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-          })
-
-          if (response.ok) {
-            const data = await response.json()
-            console.log(`✅ Connected to backend on port ${port}:`, data)
-
-            // Update environment variable for this session
-            if (typeof window !== "undefined") {
-              ;(window as any).BACKEND_PORT = port
-            }
-
-            setConnectionStatus("connected")
-            connected = true
-            break
-          }
-        } catch (error) {
-          console.log(`❌ Port ${port} failed:`, error.message)
-        }
-      }
-
-      if (!connected) {
-        console.error("❌ No backend found on any port")
+      if (response.ok) {
+        const data = await response.json()
+        console.log(`✅ Connected to backend:`, data)
+        setConnectionStatus("connected")
+      } else {
+        console.error(`❌ Backend connection failed with status: ${response.status}`)
         setConnectionStatus("disconnected")
       }
     } catch (error) {
@@ -166,9 +154,7 @@ export default function ContactPage() {
     setSubmitStatus({ type: null, message: "" })
 
     try {
-      // Get the working port
-      const port = (typeof window !== "undefined" && (window as any).BACKEND_PORT) || 5000
-      const endpoint = `http://localhost:${port}/api/contact`
+      const endpoint = `${apiUrl}/contact`
 
       console.log("🚀 Submitting to:", endpoint)
       console.log("📋 Form data:", formData)

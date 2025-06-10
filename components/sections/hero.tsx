@@ -827,7 +827,6 @@ export function HeroSection() {
                   transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
                   className="w-3 h-3 bg-[#00ffcc] rounded-full shadow-lg shadow-[#00ffcc]/50"
                 />
-                <span className="text-lg font-medium text-[#cccccc]">Available for new projects</span>
               </motion.div>
 
               <motion.h1
@@ -1000,7 +999,7 @@ export function HeroSection() {
 
               <div className="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden bg-gradient-to-br from-[#111111] to-[#1a1a1a] shadow-2xl border-2 border-[#00ffcc]/40 relative">
                 <Image
-                  src="/placeholder.svg?height=400&width=400"
+                  src="/pfp-my.jpeg?height=400&width=400"
                   alt="Hridayesh Srivastava - Full Stack Developer"
                   width={400}
                   height={400}
