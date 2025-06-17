@@ -912,7 +912,7 @@ export default function ContactPage() {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#111111_1px,transparent_1px),linear-gradient(to_bottom,#111111_1px,transparent_1px)] bg-[size:100px_100px] opacity-10"></div>
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 relative z-10 max-w-7xl">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-20 relative z-10 max-w-7xl">
         <motion.div
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
@@ -927,14 +927,15 @@ export default function ContactPage() {
             className="text-center space-y-4 sm:space-y-6 px-4"
           >
             <motion.h1
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight"
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 1, delay: 0.2 }}
+              style={{ lineHeight: "1.1" }}
             >
               <span className="text-white">Get In </span>
               <motion.span
-                className="text-[#00ffcc]"
+                className="text-[#00ffcc] block sm:inline"
                 animate={{
                   textShadow: [
                     "0 0 10px rgba(0, 255, 204, 0.5)",
@@ -948,7 +949,7 @@ export default function ContactPage() {
               </motion.span>
             </motion.h1>
             <motion.p
-              className="text-base sm:text-lg md:text-xl text-[#cccccc] max-w-4xl mx-auto leading-relaxed px-4"
+              className="text-base sm:text-lg md:text-xl text-[#cccccc] max-w-4xl mx-auto leading-relaxed px-4 mt-6"
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.4 }}
@@ -962,7 +963,7 @@ export default function ContactPage() {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="flex items-center justify-center gap-2 text-sm flex-wrap"
+              className="flex items-center justify-center gap-2 text-sm flex-wrap mt-4"
             >
               {connectionStatus === "checking" && (
                 <>
