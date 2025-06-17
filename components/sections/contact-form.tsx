@@ -116,205 +116,213 @@ export function ContactForm() {
   }
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      className="w-full max-w-2xl mx-auto"
-    >
-      <Card className="glass-effect border-0 shadow-2xl">
-        <CardHeader className="text-center">
-          <CardTitle className="text-2xl flex items-center justify-center gap-3">
-            <Send className="h-6 w-6 text-primary" />
-            Send Me a Message
-          </CardTitle>
-          <p className="text-muted-foreground">
-            I'd love to hear from you. Send me a message and I'll respond as soon as possible.
-          </p>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Name and Email Row */}
-            <div className="grid md:grid-cols-2 gap-4">
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="space-y-2"
-              >
-                <Label htmlFor="name" className="flex items-center gap-2">
-                  <User className="h-4 w-4 text-primary" />
-                  Name *
-                </Label>
-                <Input
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  placeholder="Your full name"
-                  required
-                  disabled={isSubmitting}
-                  className="transition-all duration-200 focus:ring-2 focus:ring-primary/20 hover:border-primary/50"
-                />
-              </motion.div>
+    <div className="w-full max-w-2xl mx-auto px-4 sm:px-6">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="w-full"
+      >
+        <Card className="glass-effect border-0 shadow-2xl w-full">
+          <CardHeader className="text-center px-4 sm:px-6">
+            <CardTitle className="text-xl sm:text-2xl flex items-center justify-center gap-2 sm:gap-3 flex-wrap">
+              <Send className="h-5 w-5 sm:h-6 sm:w-6 text-primary flex-shrink-0" />
+              <span>Send Me a Message</span>
+            </CardTitle>
+            <p className="text-muted-foreground text-sm sm:text-base">
+              I'd love to hear from you. Send me a message and I'll respond as soon as possible.
+            </p>
+          </CardHeader>
+          <CardContent className="px-4 sm:px-6">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+              {/* Name and Email Row */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                  className="space-y-2 w-full"
+                >
+                  <Label htmlFor="name" className="flex items-center gap-2 text-sm">
+                    <User className="h-4 w-4 text-primary flex-shrink-0" />
+                    <span>Name *</span>
+                  </Label>
+                  <Input
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    placeholder="Your full name"
+                    required
+                    disabled={isSubmitting}
+                    className="transition-all duration-200 focus:ring-2 focus:ring-primary/20 hover:border-primary/50 w-full"
+                  />
+                </motion.div>
 
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="space-y-2"
-              >
-                <Label htmlFor="email" className="flex items-center gap-2">
-                  <Mail className="h-4 w-4 text-primary" />
-                  Email *
-                </Label>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  placeholder="your.email@example.com"
-                  required
-                  disabled={isSubmitting}
-                  className="transition-all duration-200 focus:ring-2 focus:ring-primary/20 hover:border-primary/50"
-                />
-              </motion.div>
-            </div>
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="space-y-2 w-full"
+                >
+                  <Label htmlFor="email" className="flex items-center gap-2 text-sm">
+                    <Mail className="h-4 w-4 text-primary flex-shrink-0" />
+                    <span>Email *</span>
+                  </Label>
+                  <Input
+                    id="email"
+                    name="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    placeholder="your.email@example.com"
+                    required
+                    disabled={isSubmitting}
+                    className="transition-all duration-200 focus:ring-2 focus:ring-primary/20 hover:border-primary/50 w-full"
+                  />
+                </motion.div>
+              </div>
 
-            {/* Phone and LinkedIn Row */}
-            <div className="grid md:grid-cols-2 gap-4">
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="space-y-2"
-              >
-                <Label htmlFor="phone" className="flex items-center gap-2">
-                  <Phone className="h-4 w-4 text-primary" />
-                  Phone (Optional)
-                </Label>
-                <Input
-                  id="phone"
-                  name="phone"
-                  type="tel"
-                  value={formData.phone}
-                  onChange={handleInputChange}
-                  placeholder="+91 9876543210"
-                  disabled={isSubmitting}
-                  className="transition-all duration-200 focus:ring-2 focus:ring-primary/20 hover:border-primary/50"
-                />
-              </motion.div>
+              {/* Phone and LinkedIn Row */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                  className="space-y-2 w-full"
+                >
+                  <Label htmlFor="phone" className="flex items-center gap-2 text-sm">
+                    <Phone className="h-4 w-4 text-primary flex-shrink-0" />
+                    <span>Phone (Optional)</span>
+                  </Label>
+                  <Input
+                    id="phone"
+                    name="phone"
+                    type="tel"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    placeholder="+91 9876543210"
+                    disabled={isSubmitting}
+                    className="transition-all duration-200 focus:ring-2 focus:ring-primary/20 hover:border-primary/50 w-full"
+                  />
+                </motion.div>
 
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="space-y-2"
-              >
-                <Label htmlFor="linkedinProfile" className="flex items-center gap-2">
-                  <Linkedin className="h-4 w-4 text-primary" />
-                  LinkedIn/Naukri Profile
-                </Label>
-                <Input
-                  id="linkedinProfile"
-                  name="linkedinProfile"
-                  type="url"
-                  value={formData.linkedinProfile}
-                  onChange={handleInputChange}
-                  placeholder="https://linkedin.com/in/yourprofile"
-                  disabled={isSubmitting}
-                  className="transition-all duration-200 focus:ring-2 focus:ring-primary/20 hover:border-primary/50"
-                />
-              </motion.div>
-            </div>
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                  className="space-y-2 w-full"
+                >
+                  <Label htmlFor="linkedinProfile" className="flex items-center gap-2 text-sm">
+                    <Linkedin className="h-4 w-4 text-primary flex-shrink-0" />
+                    <span className="truncate">LinkedIn/Naukri Profile</span>
+                  </Label>
+                  <Input
+                    id="linkedinProfile"
+                    name="linkedinProfile"
+                    type="url"
+                    value={formData.linkedinProfile}
+                    onChange={handleInputChange}
+                    placeholder="https://linkedin.com/in/yourprofile"
+                    disabled={isSubmitting}
+                    className="transition-all duration-200 focus:ring-2 focus:ring-primary/20 hover:border-primary/50 w-full"
+                  />
+                </motion.div>
+              </div>
 
-            {/* Message */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="space-y-2"
-            >
-              <Label htmlFor="message" className="flex items-center gap-2">
-                <MessageSquare className="h-4 w-4 text-primary" />
-                Message *
-              </Label>
-              <Textarea
-                id="message"
-                name="message"
-                value={formData.message}
-                onChange={handleInputChange}
-                placeholder="Tell me about your project requirements, ideas, or just say hello..."
-                rows={6}
-                required
-                disabled={isSubmitting}
-                className="transition-all duration-200 focus:ring-2 focus:ring-primary/20 hover:border-primary/50 resize-none"
-              />
-              <p className="text-xs text-muted-foreground">{formData.message.length}/1000 characters</p>
-            </motion.div>
-
-            {/* Submit Status */}
-            {submitStatus.type && (
+              {/* Message */}
               <motion.div
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className={`p-4 rounded-lg flex items-center gap-3 ${
-                  submitStatus.type === "success"
-                    ? "bg-green-50 text-green-700 border border-green-200 dark:bg-green-900/20 dark:text-green-400 dark:border-green-800"
-                    : "bg-red-50 text-red-700 border border-red-200 dark:bg-red-900/20 dark:text-red-400 dark:border-red-800"
-                }`}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="space-y-2 w-full"
               >
-                {submitStatus.type === "success" ? (
-                  <CheckCircle className="h-5 w-5 flex-shrink-0" />
-                ) : (
-                  <AlertCircle className="h-5 w-5 flex-shrink-0" />
-                )}
-                <p className="text-sm">{submitStatus.message}</p>
+                <Label htmlFor="message" className="flex items-center gap-2 text-sm">
+                  <MessageSquare className="h-4 w-4 text-primary flex-shrink-0" />
+                  <span>Message *</span>
+                </Label>
+                <Textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  placeholder="Tell me about your project requirements, ideas, or just say hello..."
+                  rows={6}
+                  required
+                  disabled={isSubmitting}
+                  className="transition-all duration-200 focus:ring-2 focus:ring-primary/20 hover:border-primary/50 resize-none w-full"
+                />
+                <p className="text-xs text-muted-foreground">{formData.message.length}/1000 characters</p>
               </motion.div>
-            )}
 
-            {/* Submit Button */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-            >
-              <Button type="submit" className="w-full group relative overflow-hidden" size="lg" disabled={isSubmitting}>
-                <div className="absolute inset-0 bg-gradient-to-r from-primary to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="relative flex items-center justify-center">
-                  {isSubmitting ? (
-                    <>
-                      <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                      Sending...
-                    </>
+              {/* Submit Status */}
+              {submitStatus.type && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className={`p-3 sm:p-4 rounded-lg flex items-start gap-3 ${
+                    submitStatus.type === "success"
+                      ? "bg-green-50 text-green-700 border border-green-200 dark:bg-green-900/20 dark:text-green-400 dark:border-green-800"
+                      : "bg-red-50 text-red-700 border border-red-200 dark:bg-red-900/20 dark:text-red-400 dark:border-red-800"
+                  }`}
+                >
+                  {submitStatus.type === "success" ? (
+                    <CheckCircle className="h-5 w-5 flex-shrink-0 mt-0.5" />
                   ) : (
-                    <>
-                      Send Message
-                      <Send className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-200" />
-                    </>
+                    <AlertCircle className="h-5 w-5 flex-shrink-0 mt-0.5" />
                   )}
-                </div>
-              </Button>
-            </motion.div>
+                  <p className="text-sm leading-relaxed">{submitStatus.message}</p>
+                </motion.div>
+              )}
 
-            {/* Additional Info */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.7 }}
-              className="text-center text-sm text-muted-foreground"
-            >
-              <p>
-                I typically respond within 24-48 hours. You can also reach me directly at{" "}
-                <a href="mailto:hrideshsrivastava@outlook.com" className="text-primary hover:underline">
-                  hrideshsrivastava@outlook.com
-                </a>
-              </p>
-            </motion.div>
-          </form>
-        </CardContent>
-      </Card>
-    </motion.div>
+              {/* Submit Button */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                className="w-full"
+              >
+                <Button
+                  type="submit"
+                  className="w-full group relative overflow-hidden"
+                  size="lg"
+                  disabled={isSubmitting}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="relative flex items-center justify-center">
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                        <span>Sending...</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Send Message</span>
+                        <Send className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-200" />
+                      </>
+                    )}
+                  </div>
+                </Button>
+              </motion.div>
+
+              {/* Additional Info */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.7 }}
+                className="text-center text-sm text-muted-foreground px-2"
+              >
+                <p className="leading-relaxed">
+                  I typically respond within 24-48 hours. You can also reach me directly at{" "}
+                  <a href="mailto:hrideshsrivastava@outlook.com" className="text-primary hover:underline break-all">
+                    hrideshsrivastava@outlook.com
+                  </a>
+                </p>
+              </motion.div>
+            </form>
+          </CardContent>
+        </Card>
+      </motion.div>
+    </div>
   )
 }

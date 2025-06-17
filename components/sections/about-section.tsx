@@ -22,7 +22,7 @@ const skills = [
   {
     icon: Code,
     name: "Programming Languages",
-    techs: ["JavaScript", "Python", "HTML/CSS"],
+    techs: ["JavaScript", "HTML/CSS"],
   },
   {
     icon: Smartphone,

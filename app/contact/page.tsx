@@ -912,22 +912,22 @@ export default function ContactPage() {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#111111_1px,transparent_1px),linear-gradient(to_bottom,#111111_1px,transparent_1px)] bg-[size:100px_100px] opacity-10"></div>
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 relative z-10 max-w-7xl">
         <motion.div
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.8 }}
-          className="space-y-16"
+          className="space-y-12 sm:space-y-16"
         >
           {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
-            className="text-center space-y-6"
+            className="text-center space-y-4 sm:space-y-6 px-4"
           >
             <motion.h1
-              className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold"
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 1, delay: 0.2 }}
@@ -948,7 +948,7 @@ export default function ContactPage() {
               </motion.span>
             </motion.h1>
             <motion.p
-              className="text-lg sm:text-xl text-[#cccccc] max-w-4xl mx-auto leading-relaxed"
+              className="text-base sm:text-lg md:text-xl text-[#cccccc] max-w-4xl mx-auto leading-relaxed px-4"
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.4 }}
@@ -962,7 +962,7 @@ export default function ContactPage() {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="flex items-center justify-center gap-2 text-sm"
+              className="flex items-center justify-center gap-2 text-sm flex-wrap"
             >
               {connectionStatus === "checking" && (
                 <>
@@ -1008,7 +1008,7 @@ export default function ContactPage() {
             </motion.div>
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
             {/* Contact Form */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -1018,29 +1018,30 @@ export default function ContactPage() {
                 scale: 1.02,
                 boxShadow: "0 25px 50px rgba(0, 255, 204, 0.1)",
               }}
+              className="w-full"
             >
-              <Card className="bg-[#111111] border border-[#222222] shadow-2xl overflow-hidden relative backdrop-blur-sm hover:border-[#00ffcc]/30 transition-all duration-500">
+              <Card className="bg-[#111111] border border-[#222222] shadow-2xl overflow-hidden relative backdrop-blur-sm hover:border-[#00ffcc]/30 transition-all duration-500 w-full">
                 <div className="absolute inset-0 bg-gradient-to-br from-[#00ffcc]/5 via-transparent to-[#00ccff]/5 opacity-0 hover:opacity-100 transition-opacity duration-500" />
 
-                <CardHeader className="relative z-10">
-                  <CardTitle className="text-2xl flex items-center gap-3 text-white">
+                <CardHeader className="relative z-10 px-4 sm:px-6">
+                  <CardTitle className="text-xl sm:text-2xl flex items-center gap-2 sm:gap-3 text-white flex-wrap">
                     <motion.div
-                      className="p-2 rounded-xl bg-[#00ffcc]/20 border border-[#00ffcc]/30"
+                      className="p-2 rounded-xl bg-[#00ffcc]/20 border border-[#00ffcc]/30 flex-shrink-0"
                       whileHover={{ rotate: 5, scale: 1.05 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <Send className="h-6 w-6 text-[#00ffcc]" />
+                      <Send className="h-5 w-5 sm:h-6 sm:w-6 text-[#00ffcc]" />
                     </motion.div>
-                    Send Message
+                    <span>Send Message</span>
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="relative z-10">
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid md:grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="name" className="flex items-center gap-2 text-white">
-                          <User className="h-4 w-4 text-[#00ffcc]" />
-                          Name *
+                <CardContent className="relative z-10 px-4 sm:px-6">
+                  <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="space-y-2 w-full">
+                        <Label htmlFor="name" className="flex items-center gap-2 text-white text-sm">
+                          <User className="h-4 w-4 text-[#00ffcc] flex-shrink-0" />
+                          <span>Name *</span>
                         </Label>
                         <Input
                           id="name"
@@ -1050,13 +1051,13 @@ export default function ContactPage() {
                           placeholder="Your full name"
                           required
                           disabled={isSubmitting}
-                          className="bg-[#1a1a1a] border-[#333333] text-white placeholder:text-[#666666] focus:border-[#00ffcc] focus:ring-[#00ffcc]/20 transition-all duration-300"
+                          className="bg-[#1a1a1a] border-[#333333] text-white placeholder:text-[#666666] focus:border-[#00ffcc] focus:ring-[#00ffcc]/20 transition-all duration-300 w-full"
                         />
                       </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="email" className="flex items-center gap-2 text-white">
-                          <Mail className="h-4 w-4 text-[#00ffcc]" />
-                          Email *
+                      <div className="space-y-2 w-full">
+                        <Label htmlFor="email" className="flex items-center gap-2 text-white text-sm">
+                          <Mail className="h-4 w-4 text-[#00ffcc] flex-shrink-0" />
+                          <span>Email *</span>
                         </Label>
                         <Input
                           id="email"
@@ -1067,16 +1068,16 @@ export default function ContactPage() {
                           placeholder="your.email@example.com"
                           required
                           disabled={isSubmitting}
-                          className="bg-[#1a1a1a] border-[#333333] text-white placeholder:text-[#666666] focus:border-[#00ffcc] focus:ring-[#00ffcc]/20 transition-all duration-300"
+                          className="bg-[#1a1a1a] border-[#333333] text-white placeholder:text-[#666666] focus:border-[#00ffcc] focus:ring-[#00ffcc]/20 transition-all duration-300 w-full"
                         />
                       </div>
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="phone" className="flex items-center gap-2 text-white">
-                          <Phone className="h-4 w-4 text-[#00ffcc]" />
-                          Phone (Optional)
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="space-y-2 w-full">
+                        <Label htmlFor="phone" className="flex items-center gap-2 text-white text-sm">
+                          <Phone className="h-4 w-4 text-[#00ffcc] flex-shrink-0" />
+                          <span>Phone (Optional)</span>
                         </Label>
                         <Input
                           id="phone"
@@ -1086,13 +1087,13 @@ export default function ContactPage() {
                           onChange={handleInputChange}
                           placeholder="+91 9876543210"
                           disabled={isSubmitting}
-                          className="bg-[#1a1a1a] border-[#333333] text-white placeholder:text-[#666666] focus:border-[#00ffcc] focus:ring-[#00ffcc]/20 transition-all duration-300"
+                          className="bg-[#1a1a1a] border-[#333333] text-white placeholder:text-[#666666] focus:border-[#00ffcc] focus:ring-[#00ffcc]/20 transition-all duration-300 w-full"
                         />
                       </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="linkedinProfile" className="flex items-center gap-2 text-white">
-                          <Linkedin className="h-4 w-4 text-[#00ffcc]" />
-                          LinkedIn Profile
+                      <div className="space-y-2 w-full">
+                        <Label htmlFor="linkedinProfile" className="flex items-center gap-2 text-white text-sm">
+                          <Linkedin className="h-4 w-4 text-[#00ffcc] flex-shrink-0" />
+                          <span className="truncate">LinkedIn Profile</span>
                         </Label>
                         <Input
                           id="linkedinProfile"
@@ -1102,15 +1103,15 @@ export default function ContactPage() {
                           onChange={handleInputChange}
                           placeholder="https://linkedin.com/in/yourprofile"
                           disabled={isSubmitting}
-                          className="bg-[#1a1a1a] border-[#333333] text-white placeholder:text-[#666666] focus:border-[#00ffcc] focus:ring-[#00ffcc]/20 transition-all duration-300"
+                          className="bg-[#1a1a1a] border-[#333333] text-white placeholder:text-[#666666] focus:border-[#00ffcc] focus:ring-[#00ffcc]/20 transition-all duration-300 w-full"
                         />
                       </div>
                     </div>
 
-                    <div className="space-y-2">
-                      <Label htmlFor="message" className="flex items-center gap-2 text-white">
-                        <MessageSquare className="h-4 w-4 text-[#00ffcc]" />
-                        Message *
+                    <div className="space-y-2 w-full">
+                      <Label htmlFor="message" className="flex items-center gap-2 text-white text-sm">
+                        <MessageSquare className="h-4 w-4 text-[#00ffcc] flex-shrink-0" />
+                        <span>Message *</span>
                       </Label>
                       <Textarea
                         id="message"
@@ -1121,7 +1122,7 @@ export default function ContactPage() {
                         rows={6}
                         required
                         disabled={isSubmitting}
-                        className="resize-none bg-[#1a1a1a] border-[#333333] text-white placeholder:text-[#666666] focus:border-[#00ffcc] focus:ring-[#00ffcc]/20 transition-all duration-300"
+                        className="resize-none bg-[#1a1a1a] border-[#333333] text-white placeholder:text-[#666666] focus:border-[#00ffcc] focus:ring-[#00ffcc]/20 transition-all duration-300 w-full"
                       />
                       <p className="text-xs text-[#999999]">{formData.message.length}/1000 characters</p>
                     </div>
@@ -1131,22 +1132,22 @@ export default function ContactPage() {
                       <motion.div
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className={`p-4 rounded-lg flex items-center gap-3 ${
+                        className={`p-3 sm:p-4 rounded-lg flex items-start gap-3 ${
                           submitStatus.type === "success"
                             ? "bg-[#00ffcc]/10 text-[#00ffcc] border border-[#00ffcc]/30"
                             : "bg-red-500/10 text-red-400 border border-red-500/30"
                         }`}
                       >
                         {submitStatus.type === "success" ? (
-                          <CheckCircle className="h-5 w-5 flex-shrink-0" />
+                          <CheckCircle className="h-5 w-5 flex-shrink-0 mt-0.5" />
                         ) : (
-                          <AlertCircle className="h-5 w-5 flex-shrink-0" />
+                          <AlertCircle className="h-5 w-5 flex-shrink-0 mt-0.5" />
                         )}
-                        <p className="text-sm">{submitStatus.message}</p>
+                        <p className="text-sm leading-relaxed">{submitStatus.message}</p>
                       </motion.div>
                     )}
 
-                    <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                    <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="w-full">
                       <Button
                         type="submit"
                         className="w-full bg-[#00ffcc] hover:bg-[#00e6b8] text-[#0a0a0a] font-medium shadow-lg shadow-[#00ffcc]/25 relative overflow-hidden"
@@ -1161,7 +1162,7 @@ export default function ContactPage() {
                             >
                               <Loader2 className="h-4 w-4 mr-2" />
                             </motion.div>
-                            Sending...
+                            <span>Sending...</span>
                           </>
                         ) : (
                           <>
@@ -1189,7 +1190,7 @@ export default function ContactPage() {
             </motion.div>
 
             {/* Contact Information */}
-            <div className="space-y-8">
+            <div className="space-y-6 sm:space-y-8 w-full">
               {/* Contact Details */}
               <motion.div
                 initial={{ opacity: 0, x: 50 }}
@@ -1199,23 +1200,24 @@ export default function ContactPage() {
                   scale: 1.02,
                   boxShadow: "0 20px 40px rgba(0, 204, 255, 0.1)",
                 }}
+                className="w-full"
               >
-                <Card className="bg-[#111111] border border-[#222222] shadow-xl overflow-hidden relative backdrop-blur-sm hover:border-[#00ccff]/30 transition-all duration-500">
+                <Card className="bg-[#111111] border border-[#222222] shadow-xl overflow-hidden relative backdrop-blur-sm hover:border-[#00ccff]/30 transition-all duration-500 w-full">
                   <div className="absolute inset-0 bg-gradient-to-br from-[#00ccff]/5 via-transparent to-[#0099ff]/5 opacity-0 hover:opacity-100 transition-opacity duration-500" />
 
-                  <CardHeader className="relative z-10">
-                    <CardTitle className="text-2xl text-white flex items-center gap-3">
+                  <CardHeader className="relative z-10 px-4 sm:px-6">
+                    <CardTitle className="text-xl sm:text-2xl text-white flex items-center gap-2 sm:gap-3 flex-wrap">
                       <motion.div
-                        className="p-2 rounded-xl bg-[#00ccff]/20 border border-[#00ccff]/30"
+                        className="p-2 rounded-xl bg-[#00ccff]/20 border border-[#00ccff]/30 flex-shrink-0"
                         whileHover={{ rotate: 5, scale: 1.05 }}
                         transition={{ duration: 0.3 }}
                       >
-                        <Globe className="h-6 w-6 text-[#00ccff]" />
+                        <Globe className="h-5 w-5 sm:h-6 sm:w-6 text-[#00ccff]" />
                       </motion.div>
-                      Contact Information
+                      <span>Contact Information</span>
                     </CardTitle>
                   </CardHeader>
-                  <CardContent className="space-y-6 relative z-10">
+                  <CardContent className="space-y-4 sm:space-y-6 relative z-10 px-4 sm:px-6">
                     {contactInfo.map((info, index) => (
                       <motion.div
                         key={index}
@@ -1226,10 +1228,10 @@ export default function ContactPage() {
                           x: 5,
                           boxShadow: `0 10px 25px ${info.color}15`,
                         }}
-                        className="flex items-center gap-4 p-4 rounded-lg hover:bg-[#1a1a1a] transition-all duration-300 group"
+                        className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-lg hover:bg-[#1a1a1a] transition-all duration-300 group"
                       >
                         <motion.div
-                          className="p-3 rounded-xl border"
+                          className="p-2 sm:p-3 rounded-xl border flex-shrink-0"
                           style={{
                             backgroundColor: `${info.color}20`,
                             borderColor: `${info.color}30`,
@@ -1237,18 +1239,21 @@ export default function ContactPage() {
                           whileHover={{ rotate: 5, scale: 1.05 }}
                           transition={{ duration: 0.3 }}
                         >
-                          <info.icon className="h-5 w-5" style={{ color: info.color }} />
+                          <info.icon className="h-4 w-4 sm:h-5 sm:w-5" style={{ color: info.color }} />
                         </motion.div>
-                        <div>
-                          <p className="font-medium text-white group-hover:text-[#00ffcc] transition-colors">
+                        <div className="min-w-0 flex-1">
+                          <p className="font-medium text-white group-hover:text-[#00ffcc] transition-colors text-sm sm:text-base">
                             {info.title}
                           </p>
                           {info.href !== "#" ? (
-                            <Link href={info.href} className="text-[#cccccc] hover:text-[#00ffcc] transition-colors">
+                            <Link
+                              href={info.href}
+                              className="text-[#cccccc] hover:text-[#00ffcc] transition-colors text-sm break-all"
+                            >
                               {info.value}
                             </Link>
                           ) : (
-                            <p className="text-[#cccccc]">{info.value}</p>
+                            <p className="text-[#cccccc] text-sm">{info.value}</p>
                           )}
                         </div>
                       </motion.div>
@@ -1266,23 +1271,24 @@ export default function ContactPage() {
                   scale: 1.02,
                   boxShadow: "0 20px 40px rgba(0, 153, 255, 0.1)",
                 }}
+                className="w-full"
               >
-                <Card className="bg-[#111111] border border-[#222222] shadow-xl overflow-hidden relative backdrop-blur-sm hover:border-[#0099ff]/30 transition-all duration-500">
+                <Card className="bg-[#111111] border border-[#222222] shadow-xl overflow-hidden relative backdrop-blur-sm hover:border-[#0099ff]/30 transition-all duration-500 w-full">
                   <div className="absolute inset-0 bg-gradient-to-br from-[#0099ff]/5 via-transparent to-[#00e6ff]/5 opacity-0 hover:opacity-100 transition-opacity duration-500" />
 
-                  <CardHeader className="relative z-10">
-                    <CardTitle className="text-2xl text-white flex items-center gap-3">
+                  <CardHeader className="relative z-10 px-4 sm:px-6">
+                    <CardTitle className="text-xl sm:text-2xl text-white flex items-center gap-2 sm:gap-3 flex-wrap">
                       <motion.div
-                        className="p-2 rounded-xl bg-[#0099ff]/20 border border-[#0099ff]/30"
+                        className="p-2 rounded-xl bg-[#0099ff]/20 border border-[#0099ff]/30 flex-shrink-0"
                         whileHover={{ rotate: 5, scale: 1.05 }}
                         transition={{ duration: 0.3 }}
                       >
-                        <Zap className="h-6 w-6 text-[#0099ff]" />
+                        <Zap className="h-5 w-5 sm:h-6 sm:w-6 text-[#0099ff]" />
                       </motion.div>
-                      Connect With Me
+                      <span>Connect With Me</span>
                     </CardTitle>
                   </CardHeader>
-                  <CardContent className="space-y-4 relative z-10">
+                  <CardContent className="space-y-3 sm:space-y-4 relative z-10 px-4 sm:px-6">
                     {socialLinks.map((social, index) => (
                       <motion.div
                         key={index}
@@ -1293,15 +1299,16 @@ export default function ContactPage() {
                           x: 5,
                           boxShadow: `0 10px 25px ${social.color}15`,
                         }}
+                        className="w-full"
                       >
                         <Link
                           href={social.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center gap-4 p-4 rounded-lg hover:bg-[#1a1a1a] transition-all duration-300 group"
+                          className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-lg hover:bg-[#1a1a1a] transition-all duration-300 group w-full"
                         >
                           <motion.div
-                            className="p-3 rounded-xl border group-hover:scale-105 transition-transform"
+                            className="p-2 sm:p-3 rounded-xl border group-hover:scale-105 transition-transform flex-shrink-0"
                             style={{
                               backgroundColor: `${social.color}20`,
                               borderColor: `${social.color}30`,
@@ -1309,15 +1316,15 @@ export default function ContactPage() {
                             whileHover={{ rotate: 5, scale: 1.1 }}
                             transition={{ duration: 0.3 }}
                           >
-                            <social.icon className="h-5 w-5" style={{ color: social.color }} />
+                            <social.icon className="h-4 w-4 sm:h-5 sm:w-5" style={{ color: social.color }} />
                           </motion.div>
-                          <div className="flex-1">
-                            <p className="font-medium text-white group-hover:text-[#00ffcc] transition-colors">
+                          <div className="flex-1 min-w-0">
+                            <p className="font-medium text-white group-hover:text-[#00ffcc] transition-colors text-sm sm:text-base">
                               {social.title}
                             </p>
-                            <p className="text-[#999999] text-sm">{social.username}</p>
+                            <p className="text-[#999999] text-xs sm:text-sm truncate">{social.username}</p>
                           </div>
-                          <ExternalLink className="h-4 w-4 text-[#999999] group-hover:text-[#00ffcc] transition-colors ml-auto" />
+                          <ExternalLink className="h-4 w-4 text-[#999999] group-hover:text-[#00ffcc] transition-colors flex-shrink-0" />
                         </Link>
                       </motion.div>
                     ))}
@@ -1336,21 +1343,22 @@ export default function ContactPage() {
               scale: 1.02,
               boxShadow: "0 25px 50px rgba(0, 255, 204, 0.1)",
             }}
+            className="w-full"
           >
-            <Card className="bg-[#111111] border border-[#222222] shadow-2xl overflow-hidden relative backdrop-blur-sm hover:border-[#00ffcc]/30 transition-all duration-500">
+            <Card className="bg-[#111111] border border-[#222222] shadow-2xl overflow-hidden relative backdrop-blur-sm hover:border-[#00ffcc]/30 transition-all duration-500 w-full">
               <div className="absolute inset-0 bg-gradient-to-br from-[#00ffcc]/5 via-transparent to-[#00ccff]/5 opacity-0 hover:opacity-100 transition-opacity duration-500" />
 
-              <CardContent className="p-8 sm:p-12 relative z-10 text-center space-y-6">
+              <CardContent className="p-6 sm:p-8 md:p-12 relative z-10 text-center space-y-4 sm:space-y-6">
                 <motion.div
-                  className="p-4 rounded-xl bg-[#00ffcc]/10 border border-[#00ffcc]/30 w-fit mx-auto"
+                  className="p-3 sm:p-4 rounded-xl bg-[#00ffcc]/10 border border-[#00ffcc]/30 w-fit mx-auto"
                   whileHover={{ rotate: 5, scale: 1.05 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <Zap className="h-10 w-10 text-[#00ffcc]" />
+                  <Zap className="h-8 w-8 sm:h-10 sm:w-10 text-[#00ffcc]" />
                 </motion.div>
 
-                <h2 className="text-3xl font-bold text-white">Ready to Start Your Project?</h2>
-                <p className="text-xl text-[#cccccc] max-w-3xl mx-auto">
+                <h2 className="text-2xl sm:text-3xl font-bold text-white">Ready to Start Your Project?</h2>
+                <p className="text-lg sm:text-xl text-[#cccccc] max-w-3xl mx-auto leading-relaxed">
                   Whether you need a full-stack application, a stunning website, or technical consultation, I'm here to
                   help bring your vision to life with cutting-edge technology and innovative solutions.
                 </p>
@@ -1359,7 +1367,7 @@ export default function ContactPage() {
                     <Button
                       asChild
                       size="lg"
-                      className="bg-[#00ffcc] hover:bg-[#00e6b8] text-[#0a0a0a] font-medium shadow-lg shadow-[#00ffcc]/25 group"
+                      className="bg-[#00ffcc] hover:bg-[#00e6b8] text-[#0a0a0a] font-medium shadow-lg shadow-[#00ffcc]/25 group w-full sm:w-auto"
                     >
                       <Link href="mailto:hrideshsrivastava@outlook.com">
                         Email Me Directly
@@ -1372,7 +1380,7 @@ export default function ContactPage() {
                       asChild
                       variant="outline"
                       size="lg"
-                      className="border-[#333333] text-[#cccccc] hover:text-white hover:border-[#00ffcc] bg-[#111111] hover:shadow-lg hover:shadow-[#00ffcc]/20"
+                      className="border-[#333333] text-[#cccccc] hover:text-white hover:border-[#00ffcc] bg-[#111111] hover:shadow-lg hover:shadow-[#00ffcc]/20 w-full sm:w-auto"
                     >
                       <Link href="/projects">View My Work</Link>
                     </Button>

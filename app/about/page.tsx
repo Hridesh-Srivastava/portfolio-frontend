@@ -25,7 +25,7 @@ import Link from "next/link"
 import { useRef } from "react"
 
 const skills = {
-  languages: ["JavaScript ES6+", "HTML5", "CSS3", "TypeScript", "Python"],
+  languages: ["JavaScript ES6+", "HTML5", "CSS3", "TypeScript"],
   frameworks: ["React", "Next.js", "TailwindCSS", "Express.js", "EJS"],
   tools: ["Git", "GitHub", "VS Code", "Node.js", "MongoDB", "PostgreSQL", "Postman", "Rest APIs", "Vercel"],
   soft: ["Attention to Detail", "Teamwork", "Analytical Thinking", "Problem Solving", "Communication"],
