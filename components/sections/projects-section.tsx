@@ -13,11 +13,11 @@ const featuredProjects = [
     title: "Alumni Data System",
     description:
       "Comprehensive alumni management system built with Next.js and RESTful APIs for efficient data management and networking.",
-    image: "/placeholder.svg?height=200&width=300",
+    image: "/alumni-data.png?height=200&width=300",
     technologies: ["Next.js", "MongoDB", "RESTful APIs"],
     icon: Users,
-    liveUrl: "#",
-    githubUrl: "#",
+    liveUrl: "https://hsst-alumni-frontend.vercel.app/",
+    githubUrl: "https://github.com/Hridesh-Srivastava/Alumni-data-frontend",
   },
   {
     title: "AI Quiz Application",
@@ -628,7 +628,7 @@ export function ProjectsSection() {
                   </div>
 
                   <CardHeader className="pb-4">
-                    <CardTitle className="group-hover:text-[#00ffcc] transition-colors text-xl font-bold">
+                    <CardTitle className="group-hover:text-[#00ffcc] transition-colors text-xl font-bold text-white">
                       {project.title}
                     </CardTitle>
                   </CardHeader>

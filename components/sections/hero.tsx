@@ -2,10 +2,10 @@
 
 import { motion, useScroll, useTransform } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Github, Linkedin, ExternalLink, ArrowUpRightFromSquare, Code2, Database, Globe, Zap } from "lucide-react"
+import { ArrowRight, ArrowUpRightFromSquare, Code2, Database, Globe, Zap } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
-import { useRef } from "react"
+import { useRef, useCallback, useMemo } from "react"
 
 export function HeroSection() {
   const ref = useRef<HTMLDivElement>(null)
@@ -17,6 +17,65 @@ export function HeroSection() {
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"])
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.8])
 
+  const starField = useMemo(() => {
+    return [...Array(300)].map((_, i) => (
+      <motion.div
+        key={i}
+        animate={{
+          opacity: [0.1, 0.8, 0.1],
+          scale: [1, 1.3, 1],
+        }}
+        transition={{
+          duration: Math.random() * 4 + 2,
+          repeat: Number.POSITIVE_INFINITY,
+          delay: Math.random() * 3,
+        }}
+        className="absolute bg-white rounded-full"
+        style={{
+          left: `${Math.random() * 100}%`,
+          top: `${Math.random() * 100}%`,
+          width: `${Math.random() * 2 + 0.5}px`,
+          height: `${Math.random() * 2 + 0.5}px`,
+        }}
+      />
+    ))
+  }, [])
+
+  const techStackItems = useMemo(
+    () => [
+      { icon: Code2, text: "React & Next.js" },
+      { icon: Database, text: "Node.js & MongoDB" },
+      { icon: Globe, text: "Full-Stack" },
+      { icon: Zap, text: "Performance" },
+    ],
+    [],
+  )
+
+  const statsItems = useMemo(
+    () => [
+      { value: "4+", label: "Projects" },
+      { value: "2+", label: "Years" },
+      { value: "8+", label: "Technologies" },
+    ],
+    [],
+  )
+
+  const scrollAnimation = useCallback(
+    () => ({
+      y: [0, 8, 0],
+      transition: { duration: 2, repeat: Number.POSITIVE_INFINITY },
+    }),
+    [],
+  )
+
+  const scrollDotAnimation = useCallback(
+    () => ({
+      y: [0, 12, 0],
+      transition: { duration: 2, repeat: Number.POSITIVE_INFINITY },
+    }),
+    [],
+  )
+
   return (
     <section
       ref={ref}
@@ -25,27 +84,7 @@ export function HeroSection() {
       {/* Enhanced Flowing Lines Background */}
       <motion.div style={{ y, opacity }} className="absolute inset-0">
         {/* Enhanced Star field */}
-        {[...Array(300)].map((_, i) => (
-          <motion.div
-            key={i}
-            animate={{
-              opacity: [0.1, 0.8, 0.1],
-              scale: [1, 1.3, 1],
-            }}
-            transition={{
-              duration: Math.random() * 4 + 2,
-              repeat: Number.POSITIVE_INFINITY,
-              delay: Math.random() * 3,
-            }}
-            className="absolute bg-white rounded-full"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              width: `${Math.random() * 2 + 0.5}px`,
-              height: `${Math.random() * 2 + 0.5}px`,
-            }}
-          />
-        ))}
+        {starField}
 
         {/* Flowing Lines System */}
         <svg className="absolute inset-0 w-full h-full opacity-70">
@@ -487,7 +526,7 @@ export function HeroSection() {
                   transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
                   className="w-3 h-3 bg-[#00ffcc] rounded-full shadow-lg shadow-[#00ffcc]/50"
                 />
-                 <span className="text-lg font-medium text-[#cccccc]">Available for new projects</span>
+                <span className="text-lg font-medium text-[#cccccc]">Available for new projects</span>
               </motion.div>
 
               <motion.h1
@@ -529,12 +568,7 @@ export function HeroSection() {
                 transition={{ duration: 0.6, delay: 0.7 }}
                 className="flex flex-wrap gap-2 sm:gap-3"
               >
-                {[
-                  { icon: Code2, text: "React & Next.js" },
-                  { icon: Database, text: "Node.js & MongoDB" },
-                  { icon: Globe, text: "Full-Stack" },
-                  { icon: Zap, text: "Performance" },
-                ].map((item, index) => (
+                {techStackItems.map((item, index) => (
                   <motion.div
                     key={item.text}
                     initial={{ opacity: 0, scale: 0.8 }}
@@ -597,34 +631,6 @@ export function HeroSection() {
                 </Button>
               </motion.div>
             </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1.2 }}
-              className="flex items-center space-x-4 sm:space-x-6"
-            >
-              {[
-                { href: "https://github.com/Hridesh-Srivastava", icon: Github, label: "GitHub" },
-                { href: "https://linkedin.com/in/HridayeshSrivastava", icon: Linkedin, label: "LinkedIn" },
-                { href: "https://vercel.com/hridesh-srivastava", icon: ExternalLink, label: "Vercel" },
-              ].map((social) => (
-                <motion.div key={social.href} whileHover={{ scale: 1.1, y: -2 }}>
-                  <Link
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-3 text-[#999999] hover:text-white transition-all duration-300 relative group"
-                  >
-                    <motion.div
-                      className="absolute inset-0 bg-[#111111] rounded-lg opacity-0 group-hover:opacity-100 border border-[#222222] group-hover:border-[#00ffcc]/30"
-                      whileHover={{ scale: 1.1 }}
-                    />
-                    <social.icon className="h-5 w-5 sm:h-6 sm:w-6 relative z-10" />
-                  </Link>
-                </motion.div>
-              ))}
-            </motion.div>
           </motion.div>
 
           {/* Profile section - Fixed responsive design and positioning */}
@@ -685,6 +691,8 @@ export function HeroSection() {
                   height={400}
                   className="w-full h-full object-cover"
                   priority
+                  loading="eager"
+                  sizes="(max-width: 640px) 224px, (max-width: 768px) 256px, (max-width: 1024px) 288px, (max-width: 1280px) 320px, 384px"
                 />
 
                 {/* Overlay */}
@@ -755,11 +763,7 @@ export function HeroSection() {
               transition={{ duration: 0.6, delay: 0.8 }}
               className="grid grid-cols-3 gap-3 sm:gap-4 lg:gap-6 text-center w-full max-w-sm lg:max-w-md"
             >
-              {[
-                { value: "4+", label: "Projects" },
-                { value: "2+", label: "Years" },
-                { value: "8+", label: "Technologies" },
-              ].map((stat, index) => (
+              {statsItems.map((stat, index) => (
                 <motion.div
                   key={stat.label}
                   initial={{ opacity: 0, y: 20 }}
@@ -810,13 +814,11 @@ export function HeroSection() {
           <div className="flex flex-col items-center space-y-2">
             <span className="text-xs text-[#999999] font-medium">Scroll to explore</span>
             <motion.div
-              animate={{ y: [0, 8, 0] }}
-              transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
+              animate={scrollAnimation}
               className="w-6 h-10 border-2 border-[#333333] rounded-full flex justify-center relative"
             >
               <motion.div
-                animate={{ y: [0, 12, 0] }}
-                transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
+                animate={scrollDotAnimation}
                 className="w-1 h-3 bg-[#00ffcc] rounded-full mt-2 shadow-sm shadow-[#00ffcc]/50"
               />
             </motion.div>

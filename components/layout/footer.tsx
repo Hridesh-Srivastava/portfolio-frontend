@@ -1,31 +1,102 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Github, Linkedin, Mail, ExternalLink, ArrowUp, MapPin, Phone, MailPlus } from "lucide-react"
-import Link from "next/link"
+import { motion } from "framer-motion";
+import { Mail, ArrowUp, MapPin, Phone, MailPlus } from "lucide-react";
+import Link from "next/link";
+import { memo, useCallback, useMemo } from "react";
+import Image from "next/image";
+
+const VercelIcon = memo(({ className }: { className?: string }) => (
+  <svg
+    data-testid="geist-icon"
+    height="16"
+    width="16"
+    viewBox="0 0 16 16"
+    style={{ color: "currentColor" }}
+    className={className}
+    strokeLinejoin="round"
+  >
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M8 1L16 15H0L8 1Z"
+      fill="currentColor"
+    />
+  </svg>
+));
+const NpmIcon = memo(({ className }: { className?: string }) => (
+  <Image
+    src="/icons/npm.svg"
+    alt="npm"
+    width={20}
+    height={20}
+    className={className}
+  />
+));
+
+const XIcon = memo(({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" className={className} fill="currentColor">
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+  </svg>
+));
+
+const GitHubIcon = memo(({ className }: { className?: string }) => (
+  <Image
+    src="/icons/github.svg"
+    alt="GitHub"
+    width={22}
+    height={22}
+    className={className}
+  />
+));
+
+const LinkedInIcon = memo(({ className }: { className?: string }) => (
+  <Image
+    src="/icons/linkedin.svg"
+    alt="LinkedIn"
+    width={20}
+    height={20}
+    className={className}
+  />
+));
 
 const socialLinks = [
   {
     href: "https://github.com/Hridesh-Srivastava",
-    icon: Github,
+    icon: GitHubIcon,
     label: "GitHub",
+    hoverColor: "hover:text-gray-400",
+    bgHover: "hover:bg-gray-900/20",
   },
   {
-    href: "https://linkedin.com/in/HridayeshSrivastava",
-    icon: Linkedin,
+    href: "https://www.linkedin.com/in/hridayesh-srivastava-9575901bb/",
+    icon: LinkedInIcon,
     label: "LinkedIn",
+    hoverColor: "hover:text-blue-500",
+    bgHover: "hover:bg-blue-500/10",
   },
   {
-    href: "mailto:hrideshsrivastava@outlook.com",
-    icon: Mail,
-    label: "Email",
-  },
-  {
-    href: "https://vercel.com/hridesh-srivastava",
-    icon: ExternalLink,
+    href: "https://vercel.com/hridesh-srivastavas-projects",
+    icon: VercelIcon,
     label: "Vercel",
+    hoverColor: "hover:text-gray-300",
+    bgHover: "hover:bg-gray-800/20",
   },
-]
+  {
+    href: "https://www.npmjs.com/~hrideshhhh",
+    icon: NpmIcon,
+    label: "npm",
+    hoverColor: "hover:text-red-600",
+    bgHover: "hover:bg-red-600/10",
+  },
+  {
+    href: "https://x.com/Hrideshhhh",
+    icon: XIcon,
+    label: "X",
+    hoverColor: "hover:text-gray-400",
+    bgHover: "hover:bg-gray-900/20",
+  },
+];
 
 const quickLinks = [
   { href: "/", label: "Home" },
@@ -33,43 +104,44 @@ const quickLinks = [
   { href: "/projects", label: "Projects" },
   { href: "/services", label: "Services" },
   { href: "/contact", label: "Contact" },
-]
-
-const scrollToTop = () => {
-  window.scrollTo({ top: 0, behavior: "smooth" })
-}
+];
 
 export function Footer() {
-   const currentYear = () => new Date().getFullYear();
+  const currentYear = useCallback(() => new Date().getFullYear(), []);
+
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
+  const starField = useMemo(() => {
+    return [...Array(200)].map((_, i) => (
+      <motion.div
+        key={`star-${i}`}
+        animate={{
+          opacity: [0.1, 0.7, 0.1],
+          scale: [1, 1.2, 1],
+        }}
+        transition={{
+          duration: Math.random() * 3 + 2,
+          repeat: Number.POSITIVE_INFINITY,
+          delay: Math.random() * 2,
+        }}
+        className="absolute bg-white rounded-full will-change-transform"
+        style={{
+          left: `${Math.random() * 100}%`,
+          top: `${Math.random() * 100}%`,
+          width: `${Math.random() * 1.5 + 0.5}px`,
+          height: `${Math.random() * 1.5 + 0.5}px`,
+        }}
+      />
+    ));
+  }, []);
 
   return (
     <footer className="relative bg-[#0f0f0f] border-t border-[#222222] overflow-hidden">
-      {/* Enhanced Flowing Lines Background for Footer */}
       <div className="absolute inset-0">
-        {/* Enhanced Star field */}
-        {[...Array(200)].map((_, i) => (
-          <motion.div
-            key={i}
-            animate={{
-              opacity: [0.1, 0.7, 0.1],
-              scale: [1, 1.2, 1],
-            }}
-            transition={{
-              duration: Math.random() * 3 + 2,
-              repeat: Number.POSITIVE_INFINITY,
-              delay: Math.random() * 2,
-            }}
-            className="absolute bg-white rounded-full"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              width: `${Math.random() * 1.5 + 0.5}px`,
-              height: `${Math.random() * 1.5 + 0.5}px`,
-            }}
-          />
-        ))}
+        {starField}
 
-        {/* Footer Flowing Lines System */}
         <svg className="absolute inset-0 w-full h-full opacity-60">
           <defs>
             <linearGradient id="footerFlow1" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -186,7 +258,11 @@ export function Footer() {
               y1: [80, 100, 80],
               y2: [80, 100, 80],
             }}
-            transition={{ duration: 6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+            transition={{
+              duration: 6,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+            }}
           />
 
           <motion.line
@@ -201,7 +277,12 @@ export function Footer() {
               y1: [200, 220, 200],
               y2: [200, 220, 200],
             }}
-            transition={{ duration: 7, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 1 }}
+            transition={{
+              duration: 7,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 1,
+            }}
           />
 
           <motion.line
@@ -216,7 +297,12 @@ export function Footer() {
               y1: [320, 340, 320],
               y2: [320, 340, 320],
             }}
-            transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 2 }}
+            transition={{
+              duration: 8,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 2,
+            }}
           />
 
           {/* Vertical Flowing Lines */}
@@ -232,7 +318,12 @@ export function Footer() {
               x1: [250, 270, 250],
               x2: [250, 270, 250],
             }}
-            transition={{ duration: 6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 0.5 }}
+            transition={{
+              duration: 6,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 0.5,
+            }}
           />
 
           <motion.line
@@ -247,7 +338,12 @@ export function Footer() {
               x1: [600, 620, 600],
               x2: [600, 620, 600],
             }}
-            transition={{ duration: 7, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 1.5 }}
+            transition={{
+              duration: 7,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 1.5,
+            }}
           />
 
           <motion.line
@@ -262,7 +358,12 @@ export function Footer() {
               x1: [1000, 1020, 1000],
               x2: [1000, 1020, 1000],
             }}
-            transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 2.5 }}
+            transition={{
+              duration: 8,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 2.5,
+            }}
           />
 
           <motion.line
@@ -277,7 +378,12 @@ export function Footer() {
               x1: [1400, 1420, 1400],
               x2: [1400, 1420, 1400],
             }}
-            transition={{ duration: 9, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 3.5 }}
+            transition={{
+              duration: 9,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 3.5,
+            }}
           />
 
           {/* Enhanced Circuit Nodes - Increased quantity and faster animations */}
@@ -292,7 +398,11 @@ export function Footer() {
               cx: [250, 270, 250],
               cy: [80, 100, 80],
             }}
-            transition={{ duration: 6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+            transition={{
+              duration: 6,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+            }}
           >
             <animate
               attributeName="fill"
@@ -313,7 +423,12 @@ export function Footer() {
               cx: [600, 620, 600],
               cy: [200, 220, 200],
             }}
-            transition={{ duration: 7, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 1 }}
+            transition={{
+              duration: 7,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 1,
+            }}
           >
             <animate
               attributeName="fill"
@@ -334,7 +449,12 @@ export function Footer() {
               cx: [1000, 1020, 1000],
               cy: [320, 340, 320],
             }}
-            transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 2 }}
+            transition={{
+              duration: 8,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 2,
+            }}
           >
             <animate
               attributeName="fill"
@@ -355,7 +475,12 @@ export function Footer() {
               cx: [1400, 1420, 1400],
               cy: [280, 300, 280],
             }}
-            transition={{ duration: 9, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 3 }}
+            transition={{
+              duration: 9,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 3,
+            }}
           >
             <animate
               attributeName="fill"
@@ -377,7 +502,12 @@ export function Footer() {
               cx: [450, 470, 450],
               cy: [150, 170, 150],
             }}
-            transition={{ duration: 6.5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 0.8 }}
+            transition={{
+              duration: 6.5,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 0.8,
+            }}
           >
             <animate
               attributeName="fill"
@@ -398,7 +528,12 @@ export function Footer() {
               cx: [800, 820, 800],
               cy: [120, 140, 120],
             }}
-            transition={{ duration: 7.5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 1.8 }}
+            transition={{
+              duration: 7.5,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 1.8,
+            }}
           >
             <animate
               attributeName="fill"
@@ -419,7 +554,12 @@ export function Footer() {
               cx: [1200, 1220, 1200],
               cy: [180, 200, 180],
             }}
-            transition={{ duration: 8.5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 2.8 }}
+            transition={{
+              duration: 8.5,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 2.8,
+            }}
           >
             <animate
               attributeName="fill"
@@ -440,7 +580,12 @@ export function Footer() {
               cx: [350, 370, 350],
               cy: [280, 300, 280],
             }}
-            transition={{ duration: 6.8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 3.8 }}
+            transition={{
+              duration: 6.8,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 3.8,
+            }}
           >
             <animate
               attributeName="fill"
@@ -471,7 +616,12 @@ export function Footer() {
               dur="2.5s"
               repeatCount="indefinite"
             />
-            <animate attributeName="r" values="4.5;6.5;4.5" dur="1.2s" repeatCount="indefinite" />
+            <animate
+              attributeName="r"
+              values="4.5;6.5;4.5"
+              dur="1.2s"
+              repeatCount="indefinite"
+            />
           </motion.circle>
 
           <motion.circle
@@ -495,7 +645,12 @@ export function Footer() {
               dur="3s"
               repeatCount="indefinite"
             />
-            <animate attributeName="r" values="4;6;4" dur="1.4s" repeatCount="indefinite" />
+            <animate
+              attributeName="r"
+              values="4;6;4"
+              dur="1.4s"
+              repeatCount="indefinite"
+            />
           </motion.circle>
 
           <motion.circle
@@ -519,7 +674,12 @@ export function Footer() {
               dur="3.2s"
               repeatCount="indefinite"
             />
-            <animate attributeName="r" values="3.8;5.8;3.8" dur="1.3s" repeatCount="indefinite" />
+            <animate
+              attributeName="r"
+              values="3.8;5.8;3.8"
+              dur="1.3s"
+              repeatCount="indefinite"
+            />
           </motion.circle>
 
           <motion.circle
@@ -543,7 +703,12 @@ export function Footer() {
               dur="2.7s"
               repeatCount="indefinite"
             />
-            <animate attributeName="r" values="4.2;6.2;4.2" dur="1.5s" repeatCount="indefinite" />
+            <animate
+              attributeName="r"
+              values="4.2;6.2;4.2"
+              dur="1.5s"
+              repeatCount="indefinite"
+            />
           </motion.circle>
 
           {/* Circuit Patterns with Enhanced Flow - More patterns and faster animations */}
@@ -560,7 +725,11 @@ export function Footer() {
               x: [230, 250, 230],
               y: [60, 80, 60],
             }}
-            transition={{ duration: 6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+            transition={{
+              duration: 6,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+            }}
           >
             <animate
               attributeName="stroke"
@@ -583,7 +752,12 @@ export function Footer() {
               x: [580, 600, 580],
               y: [180, 200, 180],
             }}
-            transition={{ duration: 7, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 1 }}
+            transition={{
+              duration: 7,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 1,
+            }}
           >
             <animate
               attributeName="stroke"
@@ -606,7 +780,12 @@ export function Footer() {
               x: [980, 1000, 980],
               y: [300, 320, 300],
             }}
-            transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 2 }}
+            transition={{
+              duration: 8,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 2,
+            }}
           >
             <animate
               attributeName="stroke"
@@ -629,7 +808,12 @@ export function Footer() {
               x: [1380, 1400, 1380],
               y: [260, 280, 260],
             }}
-            transition={{ duration: 9, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 3 }}
+            transition={{
+              duration: 9,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 3,
+            }}
           >
             <animate
               attributeName="stroke"
@@ -653,7 +837,12 @@ export function Footer() {
               x: [430, 450, 430],
               y: [130, 150, 130],
             }}
-            transition={{ duration: 6.5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 0.8 }}
+            transition={{
+              duration: 6.5,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 0.8,
+            }}
           >
             <animate
               attributeName="stroke"
@@ -676,7 +865,12 @@ export function Footer() {
               x: [780, 800, 780],
               y: [100, 120, 100],
             }}
-            transition={{ duration: 7.5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 1.8 }}
+            transition={{
+              duration: 7.5,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 1.8,
+            }}
           >
             <animate
               attributeName="stroke"
@@ -699,7 +893,12 @@ export function Footer() {
               x: [1180, 1200, 1180],
               y: [160, 180, 160],
             }}
-            transition={{ duration: 8.5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 2.8 }}
+            transition={{
+              duration: 8.5,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 2.8,
+            }}
           >
             <animate
               attributeName="stroke"
@@ -722,7 +921,12 @@ export function Footer() {
               x: [330, 350, 330],
               y: [260, 280, 260],
             }}
-            transition={{ duration: 6.8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 3.8 }}
+            transition={{
+              duration: 6.8,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 3.8,
+            }}
           >
             <animate
               attributeName="stroke"
@@ -747,7 +951,11 @@ export function Footer() {
               x2: [580, 600, 580],
               y2: [200, 220, 200],
             }}
-            transition={{ duration: 6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+            transition={{
+              duration: 6,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+            }}
           />
 
           <motion.line
@@ -764,7 +972,12 @@ export function Footer() {
               x2: [980, 1000, 980],
               y2: [320, 340, 320],
             }}
-            transition={{ duration: 7, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 1 }}
+            transition={{
+              duration: 7,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 1,
+            }}
           />
 
           <motion.line
@@ -781,7 +994,12 @@ export function Footer() {
               x2: [1380, 1400, 1380],
               y2: [280, 300, 280],
             }}
-            transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 2 }}
+            transition={{
+              duration: 8,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 2,
+            }}
           />
 
           <motion.line
@@ -798,7 +1016,12 @@ export function Footer() {
               x2: [780, 800, 780],
               y2: [120, 140, 120],
             }}
-            transition={{ duration: 6.5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 0.8 }}
+            transition={{
+              duration: 6.5,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 0.8,
+            }}
           />
 
           <motion.line
@@ -815,7 +1038,12 @@ export function Footer() {
               x2: [1180, 1200, 1180],
               y2: [180, 200, 180],
             }}
-            transition={{ duration: 7.5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 1.8 }}
+            transition={{
+              duration: 7.5,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 1.8,
+            }}
           />
         </svg>
 
@@ -830,7 +1058,7 @@ export function Footer() {
             repeat: Number.POSITIVE_INFINITY,
             ease: "easeInOut",
           }}
-          className="absolute top-10 left-10 w-80 h-80 bg-[#00ffcc]/8 rounded-full blur-3xl"
+          className="absolute top-10 left-10 w-80 h-80 bg-[#00ffcc]/8 rounded-full blur-3xl will-change-transform"
         />
 
         <motion.div
@@ -844,7 +1072,7 @@ export function Footer() {
             ease: "easeInOut",
             delay: 3,
           }}
-          className="absolute bottom-10 right-10 w-72 h-72 bg-[#00ccff]/8 rounded-full blur-3xl"
+          className="absolute bottom-10 right-10 w-72 h-72 bg-[#00ccff]/8 rounded-full blur-3xl will-change-transform"
         />
 
         {/* Background gradient */}
@@ -871,12 +1099,18 @@ export function Footer() {
                   whileHover={{ rotate: 360, scale: 1.05 }}
                   transition={{ duration: 0.8 }}
                 >
-                  <span className="text-white font-bold text-lg relative z-10">H</span>
+                  <span className="text-white font-bold text-lg relative z-10">
+                    H
+                  </span>
 
                   {/* Orbital ring */}
                   <motion.div
                     animate={{ rotate: [0, 360] }}
-                    transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+                    transition={{
+                      duration: 8,
+                      repeat: Number.POSITIVE_INFINITY,
+                      ease: "linear",
+                    }}
                     className="absolute inset-0 border border-[#00ffcc]/30 rounded-full"
                   />
 
@@ -886,19 +1120,27 @@ export function Footer() {
                       scale: [1, 1.2, 1],
                       opacity: [0.2, 0, 0.2],
                     }}
-                    transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
+                    transition={{
+                      duration: 2,
+                      repeat: Number.POSITIVE_INFINITY,
+                    }}
                     className="absolute inset-0 bg-[#00ffcc]/10 rounded-full"
                   />
                 </motion.div>
                 <div>
-                  <h3 className="text-xl font-bold text-white">Hridayesh Srivastava</h3>
-                  <p className="text-sm text-[#999999]">Full-Stack Web Developer</p>
+                  <h3 className="text-xl font-bold text-white">
+                    Hridayesh Srivastava
+                  </h3>
+                  <p className="text-sm text-[#999999]">
+                    Full-Stack Web Developer
+                  </p>
                 </div>
               </div>
 
               <p className="text-[#cccccc] leading-relaxed max-w-md">
-                Passionate about creating innovative digital solutions that make a difference. Let's build something
-                extraordinary together and transform ideas into reality.
+                Passionate about creating innovative digital solutions that make
+                a difference. Let's build something extraordinary together and
+                transform ideas into reality.
               </p>
 
               <div className="flex items-center space-x-4">
@@ -915,7 +1157,7 @@ export function Footer() {
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-3 bg-[#1a1a1a] rounded-xl hover:bg-[#222222] transition-all duration-300 text-[#999999] hover:text-white group relative overflow-hidden border border-[#333333] hover:border-[#00ffcc]/30"
+                      className={`p-3 bg-[#1a1a1a] rounded-xl transition-all duration-300 text-[#999999] hover:text-white group relative overflow-hidden border border-[#333333] hover:border-[#00ffcc]/30 ${social.hoverColor} ${social.bgHover}`}
                       aria-label={social.label}
                     >
                       <social.icon className="h-5 w-5 relative z-10" />
@@ -970,22 +1212,35 @@ export function Footer() {
             >
               <h4 className="text-lg font-semibold text-white">Get In Touch</h4>
               <div className="space-y-4">
-                <motion.div className="flex items-center space-x-3 text-[#999999]" whileHover={{ x: 5 }}>
+                <motion.div
+                  className="flex items-center space-x-3 text-[#999999]"
+                  whileHover={{ x: 5 }}
+                >
                   <MapPin className="w-5 h-5 text-[#00ffcc]" />
                   <span>Dehradun, India</span>
                 </motion.div>
-                <motion.div className="flex items-center space-x-3 text-[#999999]" whileHover={{ x: 5 }}>
+                <motion.div
+                  className="flex items-center space-x-3 text-[#999999]"
+                  whileHover={{ x: 5 }}
+                >
                   <Phone className="w-5 h-5 text-[#00ccff]" />
                   <a href="tel:+919634883306">+919634883306</a>
                 </motion.div>
-                <motion.div className="flex items-center space-x-3 text-[#999999]" whileHover={{ x: 5 }}>
-                  <MailPlus className="w-5 h-5 text-[#0099ff]" />
-                  <a href="mailto:hrideshsrivastavaa@outlook.com">hrideshsrivastavaa@outlook.com</a>
+                <motion.div
+                  className="flex items-center space-x-3 text-[#999999]"
+                  whileHover={{ x: 5 }}
+                >
+                  <MailPlus className="w-6 h-6 text-[#0099ff] flex-shrink-0" />
+                  <a href="mailto:hrideshsrivastavaa@outlook.com">
+                    hrideshsrivastavaa@outlook.com
+                  </a>
                 </motion.div>
               </div>
 
-              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-              </motion.div>
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              ></motion.div>
             </motion.div>
           </div>
         </div>
@@ -1000,7 +1255,9 @@ export function Footer() {
         >
           <div className="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
             <div className="flex items-center space-x-2 text-sm text-[#999999]">
-             <span>© {currentYear()} Hridayesh Srivastava. All Rights Reserved.</span>
+              <span>
+                © {currentYear()} Hridayesh Srivastava. All Rights Reserved.
+              </span>
             </div>
 
             <motion.button
@@ -1017,5 +1274,5 @@ export function Footer() {
         </motion.div>
       </div>
     </footer>
-  )
+  );
 }

@@ -28,13 +28,20 @@ import {
   Globe,
 } from "lucide-react"
 import Link from "next/link"
+import { memo } from "react";
+
+const XIcon = memo(({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" className={className} fill="#d1d5db">
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+  </svg>
+));
 
 const contactInfo = [
   {
     icon: Mail,
     title: "Email",
-    value: "hrideshsrivastava@outlook.com",
-    href: "mailto:hrideshsrivastava@outlook.com",
+    value: "hrideshsrivastavaa@outlook.com",
+    href: "mailto:hrideshsrivastavaa@outlook.com",
     color: "#00ffcc",
   },
   {
@@ -64,15 +71,15 @@ const socialLinks = [
   {
     icon: Linkedin,
     title: "LinkedIn",
-    href: "https://linkedin.com/in/HridayeshSrivastava",
-    username: "HridayeshSrivastava",
+    href: "https://www.linkedin.com/in/hridayesh-srivastava-9575901bb/",
+    username: "hridayesh-srivastava",
     color: "#00ccff",
   },
   {
-    icon: ExternalLink,
-    title: "Vercel",
-    href: "https://vercel.com/hridesh-srivastava",
-    username: "hridesh-srivastava",
+    icon: XIcon,
+    title: "X",
+    href: "https://x.com/Hrideshhhh",
+    username: "Hrideshhhh",
     color: "#0099ff",
   },
 ]
@@ -1094,7 +1101,7 @@ export default function ContactPage() {
                       <div className="space-y-2 w-full">
                         <Label htmlFor="linkedinProfile" className="flex items-center gap-2 text-white text-sm">
                           <Linkedin className="h-4 w-4 text-[#00ffcc] flex-shrink-0" />
-                          <span className="truncate">LinkedIn Profile</span>
+                          <span className="truncate">LinkedIn/Professional Profile</span>
                         </Label>
                         <Input
                           id="linkedinProfile"
@@ -1370,7 +1377,7 @@ export default function ContactPage() {
                       size="lg"
                       className="bg-[#00ffcc] hover:bg-[#00e6b8] text-[#0a0a0a] font-medium shadow-lg shadow-[#00ffcc]/25 group w-full sm:w-auto"
                     >
-                      <Link href="mailto:hrideshsrivastava@outlook.com">
+                      <Link href="mailto:hrideshsrivastavaa@outlook.com">
                         Email Me Directly
                         <Mail className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                       </Link>
