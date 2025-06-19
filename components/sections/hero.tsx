@@ -795,7 +795,7 @@ export function HeroSection() {
                 variant="outline"
                 className="border-[#333333] text-[#cccccc] hover:text-white hover:border-[#00ffcc] bg-[#111111] hover:shadow-lg hover:shadow-[#00ffcc]/20"
               >
-                <Link href="/hridayesh-srivastava.pdf" target="_blank" rel="noopener noreferrer">
+                <Link href="/Hridayesh-Srivastava.pdf" target="_blank" rel="noopener noreferrer">
                   <ArrowUpRightFromSquare className="h-4 w-4 mr-2" />
                   View Resume
                 </Link>
