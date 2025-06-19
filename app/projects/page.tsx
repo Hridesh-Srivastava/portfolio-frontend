@@ -1487,6 +1487,15 @@ export default function ProjectsPage() {
                       wound monitoring. Tracks key parameters (temperature, pH, oxygen, bacteria) and delivers
                       medication autonomously. Enables remote monitoring and timely interventions via a mobile app.
                     </p>
+                    <a
+  href="https://www.linkedin.com/posts/hridayesh-srivastava-9575901bb_smart-bandage-patent-activity-7302186969986482176-AfFi?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAADMqSlMBfQ0Njd3-07q7Vlv7XlAvxroEJ_g"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-flex items-center gap-2 mt-5 px-4 py-2 rounded-lg bg-[#00ffcc]/10 border border-[#00ffcc]/30 text-[#00ffcc] font-semibold hover:bg-[#00ffcc]/20 transition"
+>
+  Check here
+  <ExternalLink className="w-5 h-5" />
+</a>
                   </div>
                 </div>
               </CardContent>
