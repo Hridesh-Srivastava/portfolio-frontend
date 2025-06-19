@@ -1,7 +1,7 @@
 "use client"
 
-import { useState, useRef } from "react"
-import { motion, AnimatePresence, useInView } from "framer-motion"
+import { useState, useRef, useMemo, memo, useCallback, useEffect } from "react"
+import { motion, AnimatePresence, useInView, useReducedMotion } from "framer-motion"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -125,1013 +125,701 @@ const projects = [
 
 const categories = ["All", "Full-Stack", "Frontend", "AI/ML", "Package"]
 
-export default function ProjectsPage() {
-  const [selectedCategory, setSelectedCategory] = useState("All")
-  const [filteredProjects, setFilteredProjects] = useState(projects)
-  const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+// Ultra Enhanced Star Component for Projects (Much More Rich)
+const ProjectStar = memo(({ star }: { star: any }) => (
+  <div
+    className="absolute bg-white rounded-full pointer-events-none animate-pulse"
+    style={{
+      left: `${star.left}%`,
+      top: `${star.top}%`,
+      width: `${star.size}px`,
+      height: `${star.size}px`,
+      animationDuration: `${star.duration}s`,
+      animationDelay: `${star.delay}s`,
+      transform: "translate3d(0, 0, 0)",
+      willChange: "opacity",
+      opacity: star.opacity,
+    }}
+  />
+))
 
-  const handleCategoryChange = (category: string) => {
-    setSelectedCategory(category)
-    if (category === "All") {
-      setFilteredProjects(projects)
-    } else {
-      setFilteredProjects(projects.filter((project) => project.category === category))
-    }
+ProjectStar.displayName = "ProjectStar"
+
+// Ultra Enhanced Floating Orb for Projects
+const ProjectOrb = memo(({ orb }: { orb: any }) => (
+  <div
+    className="absolute rounded-full pointer-events-none opacity-42"
+    style={{
+      left: `${orb.left}%`,
+      top: `${orb.top}%`,
+      width: `${orb.size}px`,
+      height: `${orb.size}px`,
+      background: `radial-gradient(circle, ${orb.color}58 0%, ${orb.color}28 38%, transparent 78%)`,
+      animation: `projectFloat ${orb.duration}s ease-in-out infinite`,
+      animationDelay: `${orb.delay}s`,
+      transform: "translate3d(0, 0, 0)",
+      willChange: "transform",
+      filter: "blur(1px)",
+    }}
+  />
+))
+
+ProjectOrb.displayName = "ProjectOrb"
+
+// Enhanced Data Particle Component
+const DataParticle = memo(({ particle }: { particle: any }) => (
+  <div
+    className="absolute rounded-full pointer-events-none"
+    style={{
+      width: `${particle.size}px`,
+      height: `${particle.size}px`,
+      background: particle.color,
+      boxShadow: `0 0 ${particle.size * 2.5}px ${particle.color}`,
+      animation: `dataFlow ${particle.duration}s linear infinite`,
+      animationDelay: `${particle.delay}s`,
+      transform: "translate3d(0, 0, 0)",
+      willChange: "transform",
+    }}
+  />
+))
+
+DataParticle.displayName = "DataParticle"
+
+// Project Code Particle Component for Projects theme
+const ProjectCodeParticle = memo(({ particle }: { particle: any }) => (
+  <div
+    className="absolute pointer-events-none"
+    style={{
+      width: `${particle.size}px`,
+      height: `${particle.size}px`,
+      background: particle.color,
+      borderRadius: particle.type === "square" ? "2px" : "50%",
+      boxShadow: `0 0 ${particle.size * 2}px ${particle.color}`,
+      animation: `projectCodeFlow ${particle.duration}s linear infinite`,
+      animationDelay: `${particle.delay}s`,
+      transform: "translate3d(0, 0, 0)",
+      willChange: "transform",
+    }}
+  />
+))
+
+ProjectCodeParticle.displayName = "ProjectCodeParticle"
+
+// Project Gear Component for mechanical feel
+const ProjectGear = memo(({ gear }: { gear: any }) => (
+  <div
+    className="absolute pointer-events-none border-2 rounded-full"
+    style={{
+      left: `${gear.left}%`,
+      top: `${gear.top}%`,
+      width: `${gear.size}px`,
+      height: `${gear.size}px`,
+      borderColor: gear.color,
+      animation: `projectGearRotate ${gear.duration}s linear infinite`,
+      animationDelay: `${gear.delay}s`,
+      transform: "translate3d(0, 0, 0)",
+      willChange: "transform",
+      opacity: 0.6,
+    }}
+  >
+    <div className="absolute inset-2 border rounded-full" style={{ borderColor: gear.color }} />
+    <div
+      className="absolute top-1/2 left-1/2 w-1 h-1 rounded-full transform -translate-x-1/2 -translate-y-1/2"
+      style={{ backgroundColor: gear.color }}
+    />
+  </div>
+))
+
+ProjectGear.displayName = "ProjectGear"
+
+// Super optimized background with MUCH MORE elements for Projects
+const UltraOptimizedProjectsBackground = memo(() => {
+  const shouldReduceMotion = useReducedMotion()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  // MUCH MORE stars for projects page (significantly increased)
+  const stars = useMemo(
+    () =>
+      [...Array(160)].map((_, i) => ({
+        id: i,
+        left: Math.random() * 100,
+        top: Math.random() * 100,
+        size: Math.random() * 2 + 0.5,
+        duration: Math.random() * 3 + 2,
+        delay: Math.random() * 2,
+        opacity: Math.random() * 0.9 + 0.3,
+      })),
+    [],
+  )
+
+  // MORE orbs for much richer look
+  const orbs = useMemo(
+    () =>
+      [...Array(9)].map((_, i) => ({
+        id: i,
+        left: Math.random() * 100,
+        top: Math.random() * 100,
+        size: Math.random() * 90 + 55,
+        duration: Math.random() * 20 + 14,
+        delay: Math.random() * 4,
+        color: ["#00ffcc", "#00ccff", "#0099ff", "#00e6ff", "#00b3ff", "#00d9ff", "#00f0ff", "#00c7ff", "#00a3ff"][i],
+      })),
+    [],
+  )
+
+  // MORE data particles for tech feel
+  const dataParticles = useMemo(
+    () =>
+      [...Array(12)].map((_, i) => ({
+        id: i,
+        size: Math.random() * 4.5 + 2,
+        duration: Math.random() * 14 + 10,
+        delay: Math.random() * 4,
+        color: ["#00ffcc", "#00ccff", "#0099ff", "#00e6ff", "#00b3ff", "#00d9ff"][Math.floor(Math.random() * 6)],
+      })),
+    [],
+  )
+
+  // Project code particles for coding theme
+  const projectCodeParticles = useMemo(
+    () =>
+      [...Array(6)].map((_, i) => ({
+        id: i,
+        size: Math.random() * 3 + 1.5,
+        duration: Math.random() * 16 + 12,
+        delay: Math.random() * 5,
+        type: Math.random() > 0.5 ? "circle" : "square",
+        color: ["#00ffcc", "#00ccff", "#0099ff"][Math.floor(Math.random() * 3)],
+      })),
+    [],
+  )
+
+  // Project gears for mechanical/building theme
+  const projectGears = useMemo(
+    () =>
+      [...Array(5)].map((_, i) => ({
+        id: i,
+        left: Math.random() * 100,
+        top: Math.random() * 100,
+        size: Math.random() * 40 + 20,
+        duration: Math.random() * 20 + 15,
+        delay: Math.random() * 3,
+        color: ["#00ffcc", "#00ccff", "#0099ff", "#00e6ff", "#00b3ff"][i],
+      })),
+    [],
+  )
+
+  if (shouldReduceMotion || !mounted) {
+    return (
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#111111_1px,transparent_1px),linear-gradient(to_bottom,#111111_1px,transparent_1px)] bg-[size:100px_100px] opacity-10"></div>
+      </div>
+    )
   }
 
-  const featuredProjects = projects.filter((project) => project.featured)
-
   return (
-    <div ref={ref} className="min-h-screen bg-[#0a0a0a] relative overflow-hidden">
-      {/* Enhanced Flowing Lines Background */}
-      <div className="absolute inset-0">
-        {/* Enhanced Star field */}
-        {[...Array(500)].map((_, i) => (
-          <motion.div
-            key={i}
-            animate={{
-              opacity: [0.1, 0.8, 0.1],
-              scale: [1, 1.3, 1],
-            }}
-            transition={{
-              duration: Math.random() * 4 + 2,
-              repeat: Number.POSITIVE_INFINITY,
-              delay: Math.random() * 3,
-            }}
-            className="absolute bg-white rounded-full"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              width: `${Math.random() * 2 + 0.5}px`,
-              height: `${Math.random() * 2 + 0.5}px`,
-            }}
+    <>
+      <style jsx>{`
+        @keyframes projectFloat {
+          0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+          25% { transform: translate3d(20px, -18px, 0) scale(1.12); }
+          50% { transform: translate3d(-12px, 14px, 0) scale(0.88); }
+          75% { transform: translate3d(15px, -8px, 0) scale(1.06); }
+        }
+        @keyframes slideRightProjects {
+          0% { transform: translateX(-140px); opacity: 0; }
+          18% { opacity: 1; }
+          82% { opacity: 1; }
+          100% { transform: translateX(100vw); opacity: 0; }
+        }
+        @keyframes slideDownProjects {
+          0% { transform: translateY(-140px); opacity: 0; }
+          18% { opacity: 1; }
+          82% { opacity: 1; }
+          100% { transform: translateY(100vh); opacity: 0; }
+        }
+        @keyframes dataFlow {
+          0% { transform: translate3d(-60px, -60px, 0) rotate(0deg); opacity: 0; }
+          10% { opacity: 1; }
+          90% { opacity: 1; }
+          100% { transform: translate3d(100vw, 100vh, 0) rotate(360deg); opacity: 0; }
+        }
+        @keyframes projectCodeFlow {
+          0% { transform: translate3d(-80px, -40px, 0) rotate(0deg); opacity: 0; }
+          12% { opacity: 1; }
+          88% { opacity: 1; }
+          100% { transform: translate3d(100vw, 60vh, 0) rotate(180deg); opacity: 0; }
+        }
+        @keyframes projectGearRotate {
+          0% { transform: translate3d(0, 0, 0) rotate(0deg); }
+          100% { transform: translate3d(0, 0, 0) rotate(360deg); }
+        }
+        @keyframes diagonalProjectFlow {
+          0% { transform: translate(-90px, -90px) rotate(0deg); opacity: 0; }
+          15% { opacity: 1; }
+          85% { opacity: 1; }
+          100% { transform: translate(calc(100vw + 90px), calc(100vh + 90px)) rotate(270deg); opacity: 0; }
+        }
+        @keyframes zigzagProjectFlow {
+          0% { transform: translate(-60px, 20vh) rotate(0deg); opacity: 0; }
+          10% { opacity: 1; }
+          25% { transform: translate(25vw, 10vh) rotate(90deg); }
+          50% { transform: translate(50vw, 30vh) rotate(180deg); }
+          75% { transform: translate(75vw, 15vh) rotate(270deg); }
+          90% { opacity: 1; }
+          100% { transform: translate(calc(100vw + 60px), 25vh) rotate(360deg); opacity: 0; }
+        }
+        .flow-line-h-projects {
+          animation: slideRightProjects 8.5s linear infinite;
+        }
+        .flow-line-v-projects {
+          animation: slideDownProjects 10.5s linear infinite;
+        }
+        .flow-diagonal-projects {
+          animation: diagonalProjectFlow 13s linear infinite;
+        }
+        .flow-zigzag-projects {
+          animation: zigzagProjectFlow 16s linear infinite;
+        }
+      `}</style>
+
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Ultra Enhanced Star field */}
+        <div className="absolute inset-0" style={{ contain: "layout style paint" }}>
+          {stars.map((star) => (
+            <ProjectStar key={star.id} star={star} />
+          ))}
+        </div>
+
+        {/* Ultra Enhanced Floating Orbs */}
+        <div className="absolute inset-0">
+          {orbs.map((orb) => (
+            <ProjectOrb key={orb.id} orb={orb} />
+          ))}
+        </div>
+
+        {/* Enhanced Data Particles */}
+        <div className="absolute inset-0">
+          {dataParticles.map((particle) => (
+            <DataParticle key={particle.id} particle={particle} />
+          ))}
+        </div>
+
+        {/* Project Code Particles */}
+        <div className="absolute inset-0">
+          {projectCodeParticles.map((particle) => (
+            <ProjectCodeParticle key={particle.id} particle={particle} />
+          ))}
+        </div>
+
+        {/* Project Gears */}
+        <div className="absolute inset-0">
+          {projectGears.map((gear) => (
+            <ProjectGear key={gear.id} gear={gear} />
+          ))}
+        </div>
+
+        {/* MUCH MORE Enhanced flowing lines with CSS animations */}
+        <div className="absolute inset-0 opacity-55">
+          {/* MORE Horizontal flowing lines */}
+          <div
+            className="absolute h-0.5 w-30 bg-gradient-to-r from-transparent via-[#00ffcc] to-transparent flow-line-h-projects"
+            style={{ top: "12%", animationDelay: "0s" }}
           />
-        ))}
-
-        {/* Projects Page Flowing Lines System */}
-        <svg className="absolute inset-0 w-full h-full opacity-60">
-          <defs>
-            {/* Enhanced Flowing Gradients */}
-            <linearGradient id="projectsFlow1" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="transparent" />
-              <stop offset="30%" stopColor="#00ffcc">
-                <animate
-                  attributeName="stop-color"
-                  values="#00ffcc;#00e6ff;#0099ff;#00ccff;#00ffcc"
-                  dur="2s"
-                  repeatCount="indefinite"
-                />
-              </stop>
-              <stop offset="70%" stopColor="#00ccff">
-                <animate
-                  attributeName="stop-color"
-                  values="#00ccff;#0099ff;#00ffcc;#00e6ff;#00ccff"
-                  dur="2s"
-                  repeatCount="indefinite"
-                />
-              </stop>
-              <stop offset="100%" stopColor="transparent" />
-              <animateTransform
-                attributeName="gradientTransform"
-                type="translate"
-                values="-100 0;100 0;-100 0"
-                dur="3s"
-                repeatCount="indefinite"
-              />
-            </linearGradient>
-
-            <linearGradient id="projectsFlow2" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="transparent" />
-              <stop offset="30%" stopColor="#0099ff">
-                <animate
-                  attributeName="stop-color"
-                  values="#0099ff;#00ffcc;#00e6ff;#00ccff;#0099ff"
-                  dur="2.5s"
-                  repeatCount="indefinite"
-                />
-              </stop>
-              <stop offset="70%" stopColor="#00e6ff">
-                <animate
-                  attributeName="stop-color"
-                  values="#00e6ff;#00ccff;#0099ff;#00ffcc;#00e6ff"
-                  dur="2.5s"
-                  repeatCount="indefinite"
-                />
-              </stop>
-              <stop offset="100%" stopColor="transparent" />
-              <animateTransform
-                attributeName="gradientTransform"
-                type="translate"
-                values="-100 0;100 0;-100 0"
-                dur="4s"
-                repeatCount="indefinite"
-              />
-            </linearGradient>
-
-            <linearGradient id="projectsFlow3" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="transparent" />
-              <stop offset="30%" stopColor="#00ccff">
-                <animate
-                  attributeName="stop-color"
-                  values="#00ccff;#0099ff;#00ffcc;#00e6ff;#00ccff"
-                  dur="3s"
-                  repeatCount="indefinite"
-                />
-              </stop>
-              <stop offset="70%" stopColor="#00ffcc">
-                <animate
-                  attributeName="stop-color"
-                  values="#00ffcc;#00e6ff;#0099ff;#00ccff;#00ffcc"
-                  dur="3s"
-                  repeatCount="indefinite"
-                />
-              </stop>
-              <stop offset="100%" stopColor="transparent" />
-              <animateTransform
-                attributeName="gradientTransform"
-                type="translate"
-                values="0 -100;0 100;0 -100"
-                dur="3.5s"
-                repeatCount="indefinite"
-              />
-            </linearGradient>
-
-            <filter id="projectsGlow">
-              <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-              <feMerge>
-                <feMergeNode in="coloredBlur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-
-            <filter id="strongGlow">
-              <feGaussianBlur stdDeviation="5" result="coloredBlur" />
-              <feMerge>
-                <feMergeNode in="coloredBlur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-          </defs>
-
-          {/* Main Horizontal Flowing Lines */}
-          <motion.line
-            x1="0"
-            y1="120"
-            x2="1920"
-            y2="120"
-            stroke="url(#projectsFlow1)"
-            strokeWidth="3"
-            filter="url(#projectsGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 2, ease: "easeInOut" }}
+          <div
+            className="absolute h-0.5 w-34 bg-gradient-to-r from-transparent via-[#00ccff] to-transparent flow-line-h-projects"
+            style={{ top: "18%", animationDelay: "1s" }}
           />
-
-          <motion.line
-            x1="0"
-            y1="350"
-            x2="1920"
-            y2="350"
-            stroke="url(#projectsFlow2)"
-            strokeWidth="2.5"
-            filter="url(#projectsGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 2.5, delay: 0.5, ease: "easeInOut" }}
+          <div
+            className="absolute h-0.5 w-26 bg-gradient-to-r from-transparent via-[#0099ff] to-transparent flow-line-h-projects"
+            style={{ top: "24%", animationDelay: "2s" }}
           />
-
-          <motion.line
-            x1="0"
-            y1="580"
-            x2="1920"
-            y2="580"
-            stroke="url(#projectsFlow1)"
-            strokeWidth="2.8"
-            filter="url(#projectsGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 3, delay: 1, ease: "easeInOut" }}
+          <div
+            className="absolute h-0.5 w-38 bg-gradient-to-r from-transparent via-[#00e6ff] to-transparent flow-line-h-projects"
+            style={{ top: "30%", animationDelay: "3s" }}
+          />
+          <div
+            className="absolute h-0.5 w-32 bg-gradient-to-r from-transparent via-[#00b3ff] to-transparent flow-line-h-projects"
+            style={{ top: "36%", animationDelay: "4s" }}
+          />
+          <div
+            className="absolute h-0.5 w-28 bg-gradient-to-r from-transparent via-[#00d9ff] to-transparent flow-line-h-projects"
+            style={{ top: "42%", animationDelay: "5s" }}
+          />
+          <div
+            className="absolute h-0.5 w-36 bg-gradient-to-r from-transparent via-[#00f0ff] to-transparent flow-line-h-projects"
+            style={{ top: "48%", animationDelay: "6s" }}
+          />
+          <div
+            className="absolute h-0.5 w-30 bg-gradient-to-r from-transparent via-[#00c7ff] to-transparent flow-line-h-projects"
+            style={{ top: "54%", animationDelay: "7s" }}
+          />
+          <div
+            className="absolute h-0.5 w-34 bg-gradient-to-r from-transparent via-[#00a3ff] to-transparent flow-line-h-projects"
+            style={{ top: "60%", animationDelay: "1.5s" }}
+          />
+          <div
+            className="absolute h-0.5 w-32 bg-gradient-to-r from-transparent via-[#00ffcc] to-transparent flow-line-h-projects"
+            style={{ top: "66%", animationDelay: "2.5s" }}
+          />
+          <div
+            className="absolute h-0.5 w-28 bg-gradient-to-r from-transparent via-[#00ccff] to-transparent flow-line-h-projects"
+            style={{ top: "72%", animationDelay: "3.5s" }}
+          />
+          <div
+            className="absolute h-0.5 w-36 bg-gradient-to-r from-transparent via-[#0099ff] to-transparent flow-line-h-projects"
+            style={{ top: "78%", animationDelay: "4.5s" }}
+          />
+          <div
+            className="absolute h-0.5 w-30 bg-gradient-to-r from-transparent via-[#00e6ff] to-transparent flow-line-h-projects"
+            style={{ top: "84%", animationDelay: "5.5s" }}
+          />
+          <div
+            className="absolute h-0.5 w-34 bg-gradient-to-r from-transparent via-[#00b3ff] to-transparent flow-line-h-projects"
+            style={{ top: "90%", animationDelay: "6.5s" }}
           />
 
-          <motion.line
-            x1="0"
-            y1="810"
-            x2="1920"
-            y2="810"
-            stroke="url(#projectsFlow2)"
-            strokeWidth="2.2"
-            filter="url(#projectsGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 3.5, delay: 1.5, ease: "easeInOut" }}
+          {/* MORE Vertical flowing lines */}
+          <div
+            className="absolute w-0.5 h-30 bg-gradient-to-b from-transparent via-[#00ffcc] to-transparent flow-line-v-projects"
+            style={{ left: "8%", animationDelay: "0.5s" }}
+          />
+          <div
+            className="absolute w-0.5 h-34 bg-gradient-to-b from-transparent via-[#00ccff] to-transparent flow-line-v-projects"
+            style={{ left: "14%", animationDelay: "1.5s" }}
+          />
+          <div
+            className="absolute w-0.5 h-26 bg-gradient-to-b from-transparent via-[#0099ff] to-transparent flow-line-v-projects"
+            style={{ left: "20%", animationDelay: "2.5s" }}
+          />
+          <div
+            className="absolute w-0.5 h-38 bg-gradient-to-b from-transparent via-[#00e6ff] to-transparent flow-line-v-projects"
+            style={{ left: "26%", animationDelay: "3.5s" }}
+          />
+          <div
+            className="absolute w-0.5 h-32 bg-gradient-to-b from-transparent via-[#00b3ff] to-transparent flow-line-v-projects"
+            style={{ left: "32%", animationDelay: "4.5s" }}
+          />
+          <div
+            className="absolute w-0.5 h-28 bg-gradient-to-b from-transparent via-[#00d9ff] to-transparent flow-line-v-projects"
+            style={{ left: "38%", animationDelay: "5.5s" }}
+          />
+          <div
+            className="absolute w-0.5 h-36 bg-gradient-to-b from-transparent via-[#00f0ff] to-transparent flow-line-v-projects"
+            style={{ left: "44%", animationDelay: "6.5s" }}
+          />
+          <div
+            className="absolute w-0.5 h-30 bg-gradient-to-b from-transparent via-[#00c7ff] to-transparent flow-line-v-projects"
+            style={{ left: "50%", animationDelay: "7.5s" }}
+          />
+          <div
+            className="absolute w-0.5 h-34 bg-gradient-to-b from-transparent via-[#00a3ff] to-transparent flow-line-v-projects"
+            style={{ left: "56%", animationDelay: "1s" }}
+          />
+          <div
+            className="absolute w-0.5 h-32 bg-gradient-to-b from-transparent via-[#00ffcc] to-transparent flow-line-v-projects"
+            style={{ left: "62%", animationDelay: "2s" }}
+          />
+          <div
+            className="absolute w-0.5 h-28 bg-gradient-to-b from-transparent via-[#00ccff] to-transparent flow-line-v-projects"
+            style={{ left: "68%", animationDelay: "3s" }}
+          />
+          <div
+            className="absolute w-0.5 h-36 bg-gradient-to-b from-transparent via-[#0099ff] to-transparent flow-line-v-projects"
+            style={{ left: "74%", animationDelay: "4s" }}
+          />
+          <div
+            className="absolute w-0.5 h-30 bg-gradient-to-b from-transparent via-[#00e6ff] to-transparent flow-line-v-projects"
+            style={{ left: "80%", animationDelay: "5s" }}
+          />
+          <div
+            className="absolute w-0.5 h-34 bg-gradient-to-b from-transparent via-[#00b3ff] to-transparent flow-line-v-projects"
+            style={{ left: "86%", animationDelay: "6s" }}
+          />
+          <div
+            className="absolute w-0.5 h-32 bg-gradient-to-b from-transparent via-[#00d9ff] to-transparent flow-line-v-projects"
+            style={{ left: "92%", animationDelay: "7s" }}
           />
 
-          <motion.line
-            x1="0"
-            y1="1040"
-            x2="1920"
-            y2="1040"
-            stroke="url(#projectsFlow1)"
-            strokeWidth="2.6"
-            filter="url(#projectsGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 4, delay: 2, ease: "easeInOut" }}
+          {/* Enhanced Diagonal flowing lines */}
+          <div
+            className="absolute w-0.5 h-26 bg-gradient-to-b from-transparent via-[#00ffcc] to-transparent flow-diagonal-projects"
+            style={{ animationDelay: "1s" }}
+          />
+          <div
+            className="absolute w-0.5 h-22 bg-gradient-to-b from-transparent via-[#00ccff] to-transparent flow-diagonal-projects"
+            style={{ animationDelay: "3s" }}
+          />
+          <div
+            className="absolute w-0.5 h-28 bg-gradient-to-b from-transparent via-[#0099ff] to-transparent flow-diagonal-projects"
+            style={{ animationDelay: "5s" }}
+          />
+          <div
+            className="absolute w-0.5 h-24 bg-gradient-to-b from-transparent via-[#00e6ff] to-transparent flow-diagonal-projects"
+            style={{ animationDelay: "7s" }}
+          />
+          <div
+            className="absolute w-0.5 h-30 bg-gradient-to-b from-transparent via-[#00b3ff] to-transparent flow-diagonal-projects"
+            style={{ animationDelay: "9s" }}
           />
 
-          <motion.line
-            x1="0"
-            y1="1270"
-            x2="1920"
-            y2="1270"
-            stroke="url(#projectsFlow2)"
-            strokeWidth="2.4"
-            filter="url(#projectsGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 4.5, delay: 2.5, ease: "easeInOut" }}
+          {/* NEW Zigzag flowing lines for project complexity */}
+          <div
+            className="absolute h-0.5 w-20 bg-gradient-to-r from-transparent via-[#00ffcc] to-transparent flow-zigzag-projects"
+            style={{ animationDelay: "2s" }}
           />
-
-          {/* Vertical Flowing Lines */}
-          <motion.line
-            x1="200"
-            y1="0"
-            x2="200"
-            y2="1500"
-            stroke="url(#projectsFlow3)"
-            strokeWidth="2.5"
-            filter="url(#projectsGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 2, delay: 2, ease: "easeInOut" }}
+          <div
+            className="absolute h-0.5 w-24 bg-gradient-to-r from-transparent via-[#00ccff] to-transparent flow-zigzag-projects"
+            style={{ animationDelay: "6s" }}
           />
-
-          <motion.line
-            x1="480"
-            y1="0"
-            x2="480"
-            y2="1500"
-            stroke="url(#projectsFlow3)"
-            strokeWidth="2.8"
-            filter="url(#projectsGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 2.5, delay: 2.5, ease: "easeInOut" }}
+          <div
+            className="absolute h-0.5 w-22 bg-gradient-to-r from-transparent via-[#0099ff] to-transparent flow-zigzag-projects"
+            style={{ animationDelay: "10s" }}
           />
-
-          <motion.line
-            x1="760"
-            y1="0"
-            x2="760"
-            y2="1500"
-            stroke="url(#projectsFlow3)"
-            strokeWidth="2.3"
-            filter="url(#projectsGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 3, delay: 3, ease: "easeInOut" }}
+          <div
+            className="absolute h-0.5 w-26 bg-gradient-to-r from-transparent via-[#00e6ff] to-transparent flow-zigzag-projects"
+            style={{ animationDelay: "14s" }}
           />
+        </div>
 
-          <motion.line
-            x1="1040"
-            y1="0"
-            x2="1040"
-            y2="1500"
-            stroke="url(#projectsFlow3)"
-            strokeWidth="2.6"
-            filter="url(#projectsGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 3.5, delay: 3.5, ease: "easeInOut" }}
+        {/* MUCH MORE Enhanced circuit nodes */}
+        <div className="absolute inset-0 opacity-75">
+          <div
+            className="absolute w-2 h-2 bg-[#00ffcc] rounded-full shadow-lg shadow-[#00ffcc]/68 animate-pulse"
+            style={{ top: "12%", left: "8%" }}
           />
-
-          <motion.line
-            x1="1320"
-            y1="0"
-            x2="1320"
-            y2="1500"
-            stroke="url(#projectsFlow3)"
-            strokeWidth="2.4"
-            filter="url(#projectsGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 4, delay: 4, ease: "easeInOut" }}
+          <div
+            className="absolute w-2 h-2 bg-[#00ccff] rounded-full shadow-lg shadow-[#00ccff]/68 animate-pulse"
+            style={{ top: "18%", left: "14%", animationDelay: "0.3s" }}
           />
-
-          <motion.line
-            x1="1600"
-            y1="0"
-            x2="1600"
-            y2="1500"
-            stroke="url(#projectsFlow3)"
-            strokeWidth="2.7"
-            filter="url(#projectsGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 4.5, delay: 4.5, ease: "easeInOut" }}
+          <div
+            className="absolute w-2 h-2 bg-[#0099ff] rounded-full shadow-lg shadow-[#0099ff]/68 animate-pulse"
+            style={{ top: "24%", left: "20%", animationDelay: "0.6s" }}
           />
-
-          {/* Enhanced Circuit Nodes */}
-          <motion.circle
-            cx="200"
-            cy="120"
-            r="6"
-            fill="#00ffcc"
-            filter="url(#strongGlow)"
-            initial={{ scale: 0, opacity: 0 }}
-            animate={isInView ? { scale: 1, opacity: 1 } : {}}
-            transition={{ duration: 0.5, delay: 1 }}
-          >
-            <animate
-              attributeName="fill"
-              values="#00ffcc;#00e6ff;#0099ff;#00ccff;#00ffcc"
-              dur="2s"
-              repeatCount="indefinite"
-            />
-            <animate attributeName="r" values="6;8;6" dur="3s" repeatCount="indefinite" />
-          </motion.circle>
-
-          <motion.circle
-            cx="480"
-            cy="350"
-            r="7"
-            fill="#00ccff"
-            filter="url(#strongGlow)"
-            initial={{ scale: 0, opacity: 0 }}
-            animate={isInView ? { scale: 1, opacity: 1 } : {}}
-            transition={{ duration: 0.5, delay: 1.2 }}
-          >
-            <animate
-              attributeName="fill"
-              values="#00ccff;#0099ff;#00ffcc;#00e6ff;#00ccff"
-              dur="2.5s"
-              repeatCount="indefinite"
-            />
-            <animate attributeName="r" values="7;9;7" dur="3.5s" repeatCount="indefinite" />
-          </motion.circle>
-
-          <motion.circle
-            cx="760"
-            cy="580"
-            r="6.5"
-            fill="#0099ff"
-            filter="url(#strongGlow)"
-            initial={{ scale: 0, opacity: 0 }}
-            animate={isInView ? { scale: 1, opacity: 1 } : {}}
-            transition={{ duration: 0.5, delay: 1.4 }}
-          >
-            <animate
-              attributeName="fill"
-              values="#0099ff;#00ffcc;#00e6ff;#00ccff;#0099ff"
-              dur="3s"
-              repeatCount="indefinite"
-            />
-            <animate attributeName="r" values="6.5;8.5;6.5" dur="4s" repeatCount="indefinite" />
-          </motion.circle>
-
-          <motion.circle
-            cx="1040"
-            cy="810"
-            r="5.5"
-            fill="#00e6ff"
-            filter="url(#strongGlow)"
-            initial={{ scale: 0, opacity: 0 }}
-            animate={isInView ? { scale: 1, opacity: 1 } : {}}
-            transition={{ duration: 0.5, delay: 1.6 }}
-          >
-            <animate
-              attributeName="fill"
-              values="#00e6ff;#00ccff;#0099ff;#00ffcc;#00e6ff"
-              dur="2.8s"
-              repeatCount="indefinite"
-            />
-            <animate attributeName="r" values="5.5;7.5;5.5" dur="3.2s" repeatCount="indefinite" />
-          </motion.circle>
-
-          <motion.circle
-            cx="1320"
-            cy="1040"
-            r="6.2"
-            fill="#00ffcc"
-            filter="url(#strongGlow)"
-            initial={{ scale: 0, opacity: 0 }}
-            animate={isInView ? { scale: 1, opacity: 1 } : {}}
-            transition={{ duration: 0.5, delay: 1.8 }}
-          >
-            <animate
-              attributeName="fill"
-              values="#00ffcc;#00e6ff;#0099ff;#00ccff;#00ffcc"
-              dur="2.2s"
-              repeatCount="indefinite"
-            />
-            <animate attributeName="r" values="6.2;8.2;6.2" dur="2.8s" repeatCount="indefinite" />
-          </motion.circle>
-
-          <motion.circle
-            cx="1600"
-            cy="1270"
-            r="6.8"
-            fill="#00ccff"
-            filter="url(#strongGlow)"
-            initial={{ scale: 0, opacity: 0 }}
-            animate={isInView ? { scale: 1, opacity: 1 } : {}}
-            transition={{ duration: 0.5, delay: 2 }}
-          >
-            <animate
-              attributeName="fill"
-              values="#00ccff;#0099ff;#00ffcc;#00e6ff;#00ccff"
-              dur="2.3s"
-              repeatCount="indefinite"
-            />
-            <animate attributeName="r" values="6.8;8.8;6.8" dur="3s" repeatCount="indefinite" />
-          </motion.circle>
-
-          {/* Additional Circuit Nodes */}
-          <motion.circle
-            cx="340"
-            cy="235"
-            r="5.8"
-            fill="#00ffcc"
-            filter="url(#strongGlow)"
-            initial={{ scale: 0, opacity: 0 }}
-            animate={isInView ? { scale: 1, opacity: 1 } : {}}
-            transition={{ duration: 0.5, delay: 2.2 }}
-          >
-            <animate
-              attributeName="fill"
-              values="#00ffcc;#00e6ff;#0099ff;#00ccff;#00ffcc"
-              dur="2.2s"
-              repeatCount="indefinite"
-            />
-            <animate attributeName="r" values="5.8;7.8;5.8" dur="2.8s" repeatCount="indefinite" />
-          </motion.circle>
-
-          <motion.circle
-            cx="620"
-            cy="465"
-            r="6.2"
-            fill="#00ccff"
-            filter="url(#strongGlow)"
-            initial={{ scale: 0, opacity: 0 }}
-            animate={isInView ? { scale: 1, opacity: 1 } : {}}
-            transition={{ duration: 0.5, delay: 2.4 }}
-          >
-            <animate
-              attributeName="fill"
-              values="#00ccff;#0099ff;#00ffcc;#00e6ff;#00ccff"
-              dur="2.3s"
-              repeatCount="indefinite"
-            />
-            <animate attributeName="r" values="6.2;8.2;6.2" dur="3s" repeatCount="indefinite" />
-          </motion.circle>
-
-          <motion.circle
-            cx="900"
-            cy="695"
-            r="5.3"
-            fill="#0099ff"
-            filter="url(#strongGlow)"
-            initial={{ scale: 0, opacity: 0 }}
-            animate={isInView ? { scale: 1, opacity: 1 } : {}}
-            transition={{ duration: 0.5, delay: 2.6 }}
-          >
-            <animate
-              attributeName="fill"
-              values="#0099ff;#00ffcc;#00e6ff;#00ccff;#0099ff"
-              dur="2.7s"
-              repeatCount="indefinite"
-            />
-            <animate attributeName="r" values="5.3;7.3;5.3" dur="3.3s" repeatCount="indefinite" />
-          </motion.circle>
-
-          <motion.circle
-            cx="1180"
-            cy="925"
-            r="6.8"
-            fill="#00e6ff"
-            filter="url(#strongGlow)"
-            initial={{ scale: 0, opacity: 0 }}
-            animate={isInView ? { scale: 1, opacity: 1 } : {}}
-            transition={{ duration: 0.5, delay: 2.8 }}
-          >
-            <animate
-              attributeName="fill"
-              values="#00e6ff;#00ccff;#0099ff;#00ffcc;#00e6ff"
-              dur="2.6s"
-              repeatCount="indefinite"
-            />
-            <animate attributeName="r" values="6.8;8.8;6.8" dur="3.1s" repeatCount="indefinite" />
-          </motion.circle>
-
-          <motion.circle
-            cx="1460"
-            cy="1155"
-            r="5.5"
-            fill="#00ffcc"
-            filter="url(#strongGlow)"
-            initial={{ scale: 0, opacity: 0 }}
-            animate={isInView ? { scale: 1, opacity: 1 } : {}}
-            transition={{ duration: 0.5, delay: 3 }}
-          >
-            <animate
-              attributeName="fill"
-              values="#00ffcc;#00e6ff;#0099ff;#00ccff;#00ffcc"
-              dur="2.4s"
-              repeatCount="indefinite"
-            />
-            <animate attributeName="r" values="5.5;7.5;5.5" dur="2.9s" repeatCount="indefinite" />
-          </motion.circle>
-
-          {/* Enhanced Flowing Data Particles */}
-          <motion.circle
-            r="4"
-            fill="#00ffcc"
-            filter="url(#strongGlow)"
-            animate={{
-              cx: [0, 200, 480, 760, 1040, 1320, 1600, 1920],
-              cy: [120, 120, 350, 580, 810, 1040, 1270, 1270],
-            }}
-            transition={{
-              duration: 5,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "linear",
-            }}
-          >
-            <animate
-              attributeName="fill"
-              values="#00ffcc;#00e6ff;#0099ff;#00ccff;#00ffcc"
-              dur="2s"
-              repeatCount="indefinite"
-            />
-            <animate attributeName="r" values="4;6;4" dur="1s" repeatCount="indefinite" />
-          </motion.circle>
-
-          <motion.circle
-            r="3.5"
-            fill="#00ccff"
-            filter="url(#strongGlow)"
-            animate={{
-              cx: [1920, 1600, 1320, 1040, 760, 480, 200, 0],
-              cy: [350, 350, 580, 810, 580, 350, 120, 120],
-            }}
-            transition={{
-              duration: 6,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "linear",
-              delay: 0.5,
-            }}
-          >
-            <animate
-              attributeName="fill"
-              values="#00ccff;#0099ff;#00ffcc;#00e6ff;#00ccff"
-              dur="2.5s"
-              repeatCount="indefinite"
-            />
-            <animate attributeName="r" values="3.5;5.5;3.5" dur="1.2s" repeatCount="indefinite" />
-          </motion.circle>
-
-          <motion.circle
-            r="5"
-            fill="#0099ff"
-            filter="url(#strongGlow)"
-            animate={{
-              cx: [200, 200, 340, 480, 480, 620, 760, 760, 900, 1040, 1040, 1180, 1320, 1320, 1460, 1600],
-              cy: [0, 120, 235, 350, 350, 465, 580, 580, 695, 810, 810, 925, 1040, 1040, 1155, 1270],
-            }}
-            transition={{
-              duration: 7,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "linear",
-              delay: 1,
-            }}
-          >
-            <animate
-              attributeName="fill"
-              values="#0099ff;#00ffcc;#00e6ff;#00ccff;#0099ff"
-              dur="3s"
-              repeatCount="indefinite"
-            />
-            <animate attributeName="r" values="5;7;5" dur="1.5s" repeatCount="indefinite" />
-          </motion.circle>
-
-          {/* Circuit Patterns with Flow */}
-          <motion.rect
-            x="180"
-            y="100"
-            width="40"
-            height="40"
-            fill="none"
-            stroke="#00ffcc"
-            strokeWidth="2"
-            filter="url(#projectsGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 1, delay: 1.5 }}
-          >
-            <animate
-              attributeName="stroke"
-              values="#00ffcc;#00e6ff;#0099ff;#00ccff;#00ffcc"
-              dur="3s"
-              repeatCount="indefinite"
-            />
-          </motion.rect>
-
-          <motion.rect
-            x="460"
-            y="330"
-            width="40"
-            height="40"
-            fill="none"
-            stroke="#00ccff"
-            strokeWidth="2"
-            filter="url(#projectsGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 1, delay: 1.7 }}
-          >
-            <animate
-              attributeName="stroke"
-              values="#00ccff;#0099ff;#00ffcc;#00e6ff;#00ccff"
-              dur="3.5s"
-              repeatCount="indefinite"
-            />
-          </motion.rect>
-
-          <motion.rect
-            x="740"
-            y="560"
-            width="40"
-            height="40"
-            fill="none"
-            stroke="#0099ff"
-            strokeWidth="2"
-            filter="url(#projectsGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 1, delay: 1.9 }}
-          >
-            <animate
-              attributeName="stroke"
-              values="#0099ff;#00ffcc;#00e6ff;#00ccff;#0099ff"
-              dur="4s"
-              repeatCount="indefinite"
-            />
-          </motion.rect>
-
-          <motion.rect
-            x="1020"
-            y="790"
-            width="40"
-            height="40"
-            fill="none"
-            stroke="#00e6ff"
-            strokeWidth="2"
-            filter="url(#projectsGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 1, delay: 2.1 }}
-          >
-            <animate
-              attributeName="stroke"
-              values="#00e6ff;#00ccff;#0099ff;#00ffcc;#00e6ff"
-              dur="2.8s"
-              repeatCount="indefinite"
-            />
-          </motion.rect>
-
-          <motion.rect
-            x="1300"
-            y="1020"
-            width="40"
-            height="40"
-            fill="none"
-            stroke="#00ffcc"
-            strokeWidth="2"
-            filter="url(#projectsGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 1, delay: 2.3 }}
-          >
-            <animate
-              attributeName="stroke"
-              values="#00ffcc;#00e6ff;#0099ff;#00ccff;#00ffcc"
-              dur="2.2s"
-              repeatCount="indefinite"
-            />
-          </motion.rect>
-
-          <motion.rect
-            x="1580"
-            y="1250"
-            width="40"
-            height="40"
-            fill="none"
-            stroke="#00ccff"
-            strokeWidth="2"
-            filter="url(#projectsGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 1, delay: 2.5 }}
-          >
-            <animate
-              attributeName="stroke"
-              values="#00ccff;#0099ff;#00ffcc;#00e6ff;#00ccff"
-              dur="2.3s"
-              repeatCount="indefinite"
-            />
-          </motion.rect>
-
-          {/* Additional Circuit Patterns */}
-          <motion.rect
-            x="320"
-            y="215"
-            width="35"
-            height="35"
-            fill="none"
-            stroke="#00ffcc"
-            strokeWidth="2"
-            filter="url(#projectsGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 1, delay: 2.7 }}
-          >
-            <animate
-              attributeName="stroke"
-              values="#00ffcc;#00e6ff;#0099ff;#00ccff;#00ffcc"
-              dur="2.2s"
-              repeatCount="indefinite"
-            />
-          </motion.rect>
-
-          <motion.rect
-            x="600"
-            y="445"
-            width="45"
-            height="45"
-            fill="none"
-            stroke="#00ccff"
-            strokeWidth="2"
-            filter="url(#projectsGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 1, delay: 2.9 }}
-          >
-            <animate
-              attributeName="stroke"
-              values="#00ccff;#0099ff;#00ffcc;#00e6ff;#00ccff"
-              dur="2.3s"
-              repeatCount="indefinite"
-            />
-          </motion.rect>
-
-          <motion.rect
-            x="880"
-            y="675"
-            width="38"
-            height="38"
-            fill="none"
-            stroke="#0099ff"
-            strokeWidth="2"
-            filter="url(#projectsGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 1, delay: 3.1 }}
-          >
-            <animate
-              attributeName="stroke"
-              values="#0099ff;#00ffcc;#00e6ff;#00ccff;#0099ff"
-              dur="2.7s"
-              repeatCount="indefinite"
-            />
-          </motion.rect>
-
-          <motion.rect
-            x="1160"
-            y="905"
-            width="42"
-            height="42"
-            fill="none"
-            stroke="#00e6ff"
-            strokeWidth="2"
-            filter="url(#projectsGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 1, delay: 3.3 }}
-          >
-            <animate
-              attributeName="stroke"
-              values="#00e6ff;#00ccff;#0099ff;#00ffcc;#00e6ff"
-              dur="2.6s"
-              repeatCount="indefinite"
-            />
-          </motion.rect>
-
-          <motion.rect
-            x="1440"
-            y="1135"
-            width="40"
-            height="40"
-            fill="none"
-            stroke="#00ffcc"
-            strokeWidth="2"
-            filter="url(#projectsGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 1, delay: 3.5 }}
-          >
-            <animate
-              attributeName="stroke"
-              values="#00ffcc;#00e6ff;#0099ff;#00ccff;#00ffcc"
-              dur="2.4s"
-              repeatCount="indefinite"
-            />
-          </motion.rect>
-
-          {/* Additional Flowing Connection Lines */}
-          <motion.line
-            x1="220"
-            y1="120"
-            x2="460"
-            y2="350"
-            stroke="url(#projectsFlow1)"
-            strokeWidth="1.5"
-            filter="url(#projectsGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 2, delay: 3.7 }}
+          <div
+            className="absolute w-2 h-2 bg-[#00e6ff] rounded-full shadow-lg shadow-[#00e6ff]/68 animate-pulse"
+            style={{ top: "30%", left: "26%", animationDelay: "0.9s" }}
           />
-
-          <motion.line
-            x1="500"
-            y1="350"
-            x2="740"
-            y2="580"
-            stroke="url(#projectsFlow2)"
-            strokeWidth="1.5"
-            filter="url(#projectsGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 2, delay: 3.9 }}
+          <div
+            className="absolute w-2 h-2 bg-[#00b3ff] rounded-full shadow-lg shadow-[#00b3ff]/68 animate-pulse"
+            style={{ top: "36%", left: "32%", animationDelay: "1.2s" }}
           />
-
-          <motion.line
-            x1="780"
-            y1="580"
-            x2="1020"
-            y2="810"
-            stroke="url(#projectsFlow1)"
-            strokeWidth="1.5"
-            filter="url(#projectsGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 2, delay: 4.1 }}
+          <div
+            className="absolute w-2 h-2 bg-[#00d9ff] rounded-full shadow-lg shadow-[#00d9ff]/68 animate-pulse"
+            style={{ top: "42%", left: "38%", animationDelay: "1.5s" }}
           />
-
-          <motion.line
-            x1="1060"
-            y1="810"
-            x2="1300"
-            y2="1040"
-            stroke="url(#projectsFlow2)"
-            strokeWidth="1.5"
-            filter="url(#projectsGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 2, delay: 4.3 }}
+          <div
+            className="absolute w-2 h-2 bg-[#00f0ff] rounded-full shadow-lg shadow-[#00f0ff]/68 animate-pulse"
+            style={{ top: "48%", left: "44%", animationDelay: "1.8s" }}
           />
-
-          <motion.line
-            x1="1340"
-            y1="1040"
-            x2="1580"
-            y2="1270"
-            stroke="url(#projectsFlow1)"
-            strokeWidth="1.5"
-            filter="url(#projectsGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 2, delay: 4.5 }}
+          <div
+            className="absolute w-2 h-2 bg-[#00c7ff] rounded-full shadow-lg shadow-[#00c7ff]/68 animate-pulse"
+            style={{ top: "54%", left: "50%", animationDelay: "2.1s" }}
           />
-
-          <motion.line
-            x1="340"
-            y1="235"
-            x2="600"
-            y2="465"
-            stroke="url(#projectsFlow1)"
-            strokeWidth="1.5"
-            filter="url(#projectsGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 2, delay: 4.7 }}
+          <div
+            className="absolute w-2 h-2 bg-[#00a3ff] rounded-full shadow-lg shadow-[#00a3ff]/68 animate-pulse"
+            style={{ top: "60%", left: "56%", animationDelay: "2.4s" }}
           />
-
-          <motion.line
-            x1="640"
-            y1="465"
-            x2="880"
-            y2="695"
-            stroke="url(#projectsFlow2)"
-            strokeWidth="1.5"
-            filter="url(#projectsGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 2, delay: 4.9 }}
+          <div
+            className="absolute w-2 h-2 bg-[#00ffcc] rounded-full shadow-lg shadow-[#00ffcc]/68 animate-pulse"
+            style={{ top: "66%", left: "62%", animationDelay: "2.7s" }}
           />
-
-          <motion.line
-            x1="920"
-            y1="695"
-            x2="1160"
-            y2="925"
-            stroke="url(#projectsFlow1)"
-            strokeWidth="1.5"
-            filter="url(#projectsGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 2, delay: 5.1 }}
+          <div
+            className="absolute w-2 h-2 bg-[#00ccff] rounded-full shadow-lg shadow-[#00ccff]/68 animate-pulse"
+            style={{ top: "72%", left: "68%", animationDelay: "3s" }}
           />
-
-          <motion.line
-            x1="1200"
-            y1="925"
-            x2="1440"
-            y2="1155"
-            stroke="url(#projectsFlow2)"
-            strokeWidth="1.5"
-            filter="url(#projectsGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 2, delay: 5.3 }}
+          <div
+            className="absolute w-2 h-2 bg-[#0099ff] rounded-full shadow-lg shadow-[#0099ff]/68 animate-pulse"
+            style={{ top: "78%", left: "74%", animationDelay: "3.3s" }}
           />
-        </svg>
+          <div
+            className="absolute w-2 h-2 bg-[#00e6ff] rounded-full shadow-lg shadow-[#00e6ff]/68 animate-pulse"
+            style={{ top: "84%", left: "80%", animationDelay: "3.6s" }}
+          />
+          <div
+            className="absolute w-2 h-2 bg-[#00b3ff] rounded-full shadow-lg shadow-[#00b3ff]/68 animate-pulse"
+            style={{ top: "90%", left: "86%", animationDelay: "3.9s" }}
+          />
+        </div>
 
-        {/* Enhanced Nebula Effects */}
-        <motion.div
-          animate={{
-            scale: [1, 1.1, 1],
-            opacity: [0.03, 0.08, 0.03],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-          }}
-          className="absolute top-20 left-20 w-96 h-96 bg-[#00ffcc]/10 rounded-full blur-3xl"
-        />
-
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.03, 0.08, 0.03],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-            delay: 5,
-          }}
-          className="absolute bottom-20 right-20 w-80 h-80 bg-[#00ccff]/10 rounded-full blur-3xl"
-        />
-
-        <motion.div
-          animate={{
-            scale: [1, 1.15, 1],
-            opacity: [0.02, 0.06, 0.02],
-          }}
-          transition={{
-            duration: 30,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-            delay: 10,
-          }}
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#0099ff]/8 rounded-full blur-3xl"
-        />
+        {/* MUCH MORE Enhanced nebula effects */}
+        <div className="absolute top-6 left-6 w-[430px] h-[430px] bg-[#00ffcc]/6 rounded-full blur-3xl pointer-events-none opacity-65" />
+        <div className="absolute bottom-6 right-6 w-[410px] h-[410px] bg-[#00ccff]/6 rounded-full blur-3xl pointer-events-none opacity-65" />
+        <div className="absolute top-1/3 right-1/4 w-[370px] h-[370px] bg-[#0099ff]/4 rounded-full blur-3xl pointer-events-none opacity-55" />
+        <div className="absolute bottom-1/3 left-1/4 w-[420px] h-[420px] bg-[#00e6ff]/5 rounded-full blur-3xl pointer-events-none opacity-60" />
+        <div className="absolute top-2/3 left-1/6 w-[390px] h-[390px] bg-[#00b3ff]/4 rounded-full blur-3xl pointer-events-none opacity-52" />
+        <div className="absolute bottom-2/3 right-1/6 w-[440px] h-[440px] bg-[#00d9ff]/5 rounded-full blur-3xl pointer-events-none opacity-58" />
 
         {/* Grid pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#111111_1px,transparent_1px),linear-gradient(to_bottom,#111111_1px,transparent_1px)] bg-[size:100px_100px] opacity-10"></div>
       </div>
+    </>
+  )
+})
+
+UltraOptimizedProjectsBackground.displayName = "UltraOptimizedProjectsBackground"
+
+// Optimized Project Card Component
+const ProjectCard = memo(({ project, index, isInView }: { project: any; index: number; isInView: boolean }) => (
+  <motion.div
+    key={project.id}
+    initial={{ opacity: 0, y: 20 }}
+    animate={isInView ? { opacity: 1, y: 0 } : {}}
+    transition={{ duration: 0.4, delay: index * 0.1 }}
+    whileHover={{
+      scale: 1.02,
+      y: -2,
+    }}
+    className="group"
+    style={{ willChange: "transform" }}
+  >
+    <Card className="bg-[#111111] border border-[#222222] shadow-xl h-full overflow-hidden relative backdrop-blur-sm group-hover:border-[#00ffcc]/30 transition-all duration-300">
+      <div className="absolute inset-0 bg-gradient-to-br from-[#00ffcc]/3 via-transparent to-[#00ccff]/3 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+      <div className="relative">
+        <img
+          src={project.image || "/placeholder.svg"}
+          alt={project.title}
+          className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/60 via-transparent to-transparent" />
+
+        <div className="absolute top-3 left-3">
+          <motion.div
+            className="p-2 rounded-xl border"
+            style={{
+              backgroundColor: `${project.color}20`,
+              borderColor: `${project.color}30`,
+            }}
+            whileHover={{ rotate: 5, scale: 1.05 }}
+            transition={{ duration: 0.2 }}
+          >
+            <project.icon className="h-4 w-4" style={{ color: project.color }} />
+          </motion.div>
+        </div>
+        <div className="absolute top-3 right-3">
+          <Badge variant="outline" className="bg-[#111111]/80 backdrop-blur-sm border-[#333333] text-[#cccccc]">
+            {project.category}
+          </Badge>
+        </div>
+      </div>
+
+      <CardHeader className="pb-3">
+        <CardTitle className="text-lg text-white group-hover:text-[#00ffcc] transition-colors">
+          {project.title}
+        </CardTitle>
+      </CardHeader>
+
+      <CardContent className="space-y-4 relative z-10">
+        <p className="text-[#999999] text-sm leading-relaxed line-clamp-3">{project.description}</p>
+
+        <div className="flex flex-wrap gap-1">
+          {project.technologies.slice(0, 3).map((tech: string, techIndex: number) => (
+            <motion.div
+              key={techIndex}
+              whileHover={{ scale: 1.03 }}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.2, delay: index * 0.1 + techIndex * 0.02 }}
+            >
+              <Badge
+                variant="secondary"
+                className="text-xs font-medium bg-[#00ffcc]/10 text-[#00ffcc] border border-[#00ffcc]/30"
+              >
+                {tech}
+              </Badge>
+            </motion.div>
+          ))}
+          {project.technologies.length > 3 && (
+            <Badge
+              variant="secondary"
+              className="text-xs font-medium bg-[#00ffcc]/10 text-[#00ffcc] border border-[#00ffcc]/30"
+            >
+              +{project.technologies.length - 3}
+            </Badge>
+          )}
+        </div>
+
+        <div className="flex gap-2 pt-2">
+          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="flex-1">
+            <Button
+              asChild
+              size="sm"
+              className="w-full text-xs bg-[#00ffcc] hover:bg-[#00e6b8] text-[#0a0a0a] font-medium shadow-lg shadow-[#00ffcc]/25"
+            >
+              <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                <ExternalLink className="h-3 w-3 mr-1" />
+                Demo
+              </Link>
+            </Button>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="flex-1">
+            <Button
+              asChild
+              variant="outline"
+              size="sm"
+              className="w-full text-xs border-[#333333] text-[#cccccc] hover:text-white hover:border-[#00ffcc] hover:shadow-lg hover:shadow-[#00ffcc]/20"
+            >
+              <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                <Github className="h-3 w-3 mr-1" />
+                Code
+              </Link>
+            </Button>
+          </motion.div>
+        </div>
+      </CardContent>
+    </Card>
+  </motion.div>
+))
+
+ProjectCard.displayName = "ProjectCard"
+
+export default function ProjectsPage() {
+  const [selectedCategory, setSelectedCategory] = useState("All")
+  const ref = useRef<HTMLDivElement>(null)
+  const isInView = useInView(ref, { once: true, margin: "-50px" })
+
+  const filteredProjects = useMemo(() => {
+    if (selectedCategory === "All") {
+      return projects
+    }
+    return projects.filter((project) => project.category === selectedCategory)
+  }, [selectedCategory])
+
+  const featuredProjects = useMemo(() => projects.filter((project) => project.featured), [])
+
+  const handleCategoryChange = useCallback((category: string) => {
+    setSelectedCategory(category)
+  }, [])
+
+  return (
+    <div ref={ref} className="min-h-screen bg-[#0a0a0a] relative overflow-hidden">
+      <UltraOptimizedProjectsBackground />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
         <motion.div
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
           className="space-y-20"
         >
           {/* Header */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.6 }}
             className="text-center space-y-6"
           >
             <motion.h1
               className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold"
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 1, delay: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
             >
               <span className="text-white">My </span>
               <motion.span
@@ -1150,9 +838,9 @@ export default function ProjectsPage() {
             </motion.h1>
             <motion.p
               className="text-lg sm:text-xl text-[#cccccc] max-w-4xl mx-auto leading-relaxed"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
             >
               A showcase of my work spanning full-stack applications, AI solutions, and open-source packages that
               demonstrate my passion for creating innovative digital experiences.
@@ -1161,15 +849,15 @@ export default function ProjectsPage() {
 
           {/* Featured Projects */}
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
           >
             <div className="flex items-center gap-4 mb-8">
               <motion.div
                 className="p-3 rounded-xl bg-[#00ffcc]/20 border border-[#00ffcc]/30"
                 whileHover={{ rotate: 5, scale: 1.05 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.2 }}
               >
                 <Star className="h-8 w-8 text-[#00ffcc]" />
               </motion.div>
@@ -1179,24 +867,25 @@ export default function ProjectsPage() {
               {featuredProjects.map((project, index) => (
                 <motion.div
                   key={project.id}
-                  initial={{ opacity: 0, y: 50 }}
+                  initial={{ opacity: 0, y: 30 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.8, delay: 0.4 + index * 0.1 }}
+                  transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
                   whileHover={{
                     scale: 1.02,
-                    y: -5,
-                    boxShadow: `0 20px 40px ${project.color}20`,
+                    y: -3,
                   }}
                   className="group"
+                  style={{ willChange: "transform" }}
                 >
-                  <Card className="bg-[#111111] border border-[#222222] shadow-xl h-full overflow-hidden relative backdrop-blur-sm group-hover:border-[#00ffcc]/30 transition-all duration-500">
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#00ffcc]/5 via-transparent to-[#00ccff]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <Card className="bg-[#111111] border border-[#222222] shadow-xl h-full overflow-hidden relative backdrop-blur-sm group-hover:border-[#00ffcc]/30 transition-all duration-300">
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#00ffcc]/3 via-transparent to-[#00ccff]/3 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                     <div className="relative">
                       <img
                         src={project.image || "/placeholder.svg"}
                         alt={project.title}
-                        className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                        loading="lazy"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/80 via-transparent to-transparent" />
 
@@ -1211,7 +900,7 @@ export default function ProjectsPage() {
                             borderColor: `${project.color}30`,
                           }}
                           whileHover={{ rotate: 5, scale: 1.05 }}
-                          transition={{ duration: 0.3 }}
+                          transition={{ duration: 0.2 }}
                         >
                           <project.icon className="h-5 w-5" style={{ color: project.color }} />
                         </motion.div>
@@ -1236,13 +925,13 @@ export default function ProjectsPage() {
                       <p className="text-[#999999] text-sm leading-relaxed">{project.description}</p>
 
                       <div className="flex flex-wrap gap-2">
-                        {project.technologies.map((tech, techIndex) => (
+                        {project.technologies.map((tech: string, techIndex: number) => (
                           <motion.div
                             key={techIndex}
-                            initial={{ opacity: 0, scale: 0.8 }}
+                            initial={{ opacity: 0, scale: 0.9 }}
                             animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                            transition={{ duration: 0.3, delay: 0.6 + index * 0.1 + techIndex * 0.05 }}
-                            whileHover={{ scale: 1.05 }}
+                            transition={{ duration: 0.2, delay: 0.6 + index * 0.1 + techIndex * 0.02 }}
+                            whileHover={{ scale: 1.03 }}
                           >
                             <Badge
                               variant="secondary"
@@ -1290,15 +979,15 @@ export default function ProjectsPage() {
 
           {/* Filter Section */}
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
           >
             <div className="flex items-center gap-4 mb-8">
               <motion.div
                 className="p-3 rounded-xl bg-[#00ccff]/20 border border-[#00ccff]/30"
                 whileHover={{ rotate: 5, scale: 1.05 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.2 }}
               >
                 <Filter className="h-6 w-6 text-[#00ccff]" />
               </motion.div>
@@ -1308,11 +997,11 @@ export default function ProjectsPage() {
               {categories.map((category, index) => (
                 <motion.div
                   key={category}
-                  initial={{ opacity: 0, scale: 0.8 }}
+                  initial={{ opacity: 0, scale: 0.9 }}
                   animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ duration: 0.3, delay: 0.8 + index * 0.1 }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  transition={{ duration: 0.2, delay: 0.8 + index * 0.1 }}
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
                 >
                   <Button
                     variant={selectedCategory === category ? "default" : "outline"}
@@ -1337,145 +1026,34 @@ export default function ProjectsPage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.3 }}
               className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
             >
               {filteredProjects.map((project, index) => (
-                <motion.div
-                  key={project.id}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  whileHover={{
-                    scale: 1.02,
-                    y: -3,
-                    boxShadow: `0 15px 30px ${project.color}15`,
-                  }}
-                  className="group"
-                >
-                  <Card className="bg-[#111111] border border-[#222222] shadow-xl h-full overflow-hidden relative backdrop-blur-sm group-hover:border-[#00ffcc]/30 transition-all duration-500">
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#00ffcc]/5 via-transparent to-[#00ccff]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                    <div className="relative">
-                      <img
-                        src={project.image || "/placeholder.svg"}
-                        alt={project.title}
-                        className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/60 via-transparent to-transparent" />
-
-                      <div className="absolute top-3 left-3">
-                        <motion.div
-                          className="p-2 rounded-xl border"
-                          style={{
-                            backgroundColor: `${project.color}20`,
-                            borderColor: `${project.color}30`,
-                          }}
-                          whileHover={{ rotate: 5, scale: 1.05 }}
-                          transition={{ duration: 0.3 }}
-                        >
-                          <project.icon className="h-4 w-4" style={{ color: project.color }} />
-                        </motion.div>
-                      </div>
-                      <div className="absolute top-3 right-3">
-                        <Badge
-                          variant="outline"
-                          className="bg-[#111111]/80 backdrop-blur-sm border-[#333333] text-[#cccccc]"
-                        >
-                          {project.category}
-                        </Badge>
-                      </div>
-                    </div>
-
-                    <CardHeader className="pb-3">
-                      <CardTitle className="text-lg text-white group-hover:text-[#00ffcc] transition-colors">
-                        {project.title}
-                      </CardTitle>
-                    </CardHeader>
-
-                    <CardContent className="space-y-4 relative z-10">
-                      <p className="text-[#999999] text-sm leading-relaxed line-clamp-3">{project.description}</p>
-
-                      <div className="flex flex-wrap gap-1">
-                        {project.technologies.slice(0, 3).map((tech, techIndex) => (
-                          <motion.div
-                            key={techIndex}
-                            whileHover={{ scale: 1.05 }}
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.3, delay: index * 0.1 + techIndex * 0.05 }}
-                          >
-                            <Badge
-                              variant="secondary"
-                              className="text-xs font-medium bg-[#00ffcc]/10 text-[#00ffcc] border border-[#00ffcc]/30"
-                            >
-                              {tech}
-                            </Badge>
-                          </motion.div>
-                        ))}
-                        {project.technologies.length > 3 && (
-                          <Badge
-                            variant="secondary"
-                            className="text-xs font-medium bg-[#00ffcc]/10 text-[#00ffcc] border border-[#00ffcc]/30"
-                          >
-                            +{project.technologies.length - 3}
-                          </Badge>
-                        )}
-                      </div>
-
-                      <div className="flex gap-2 pt-2">
-                        <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="flex-1">
-                          <Button
-                            asChild
-                            size="sm"
-                            className="w-full text-xs bg-[#00ffcc] hover:bg-[#00e6b8] text-[#0a0a0a] font-medium shadow-lg shadow-[#00ffcc]/25"
-                          >
-                            <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                              <ExternalLink className="h-3 w-3 mr-1" />
-                              Demo
-                            </Link>
-                          </Button>
-                        </motion.div>
-                        <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="flex-1">
-                          <Button
-                            asChild
-                            variant="outline"
-                            size="sm"
-                            className="w-full text-xs border-[#333333] text-[#cccccc] hover:text-white hover:border-[#00ffcc] hover:shadow-lg hover:shadow-[#00ffcc]/20"
-                          >
-                            <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                              <Github className="h-3 w-3 mr-1" />
-                              Code
-                            </Link>
-                          </Button>
-                        </motion.div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
+                <ProjectCard key={project.id} project={project} index={index} isInView={isInView} />
               ))}
             </motion.div>
           </AnimatePresence>
 
           {/* Patent Section */}
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 1 }}
+            transition={{ duration: 0.5, delay: 1 }}
             whileHover={{
-              scale: 1.02,
-              boxShadow: "0 25px 50px rgba(0, 255, 204, 0.1)",
+              scale: 1.01,
             }}
+            style={{ willChange: "transform" }}
           >
-            <Card className="bg-[#111111] border border-[#222222] shadow-2xl overflow-hidden relative backdrop-blur-sm hover:border-[#00ffcc]/30 transition-all duration-500">
-              <div className="absolute inset-0 bg-gradient-to-br from-[#00ffcc]/5 via-transparent to-[#00ccff]/5 opacity-0 hover:opacity-100 transition-opacity duration-500" />
+            <Card className="bg-[#111111] border border-[#222222] shadow-2xl overflow-hidden relative backdrop-blur-sm hover:border-[#00ffcc]/30 transition-all duration-300">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#00ffcc]/3 via-transparent to-[#00ccff]/3 opacity-0 hover:opacity-100 transition-opacity duration-300" />
 
               <CardContent className="p-8 relative z-10">
                 <div className="flex items-start gap-4">
                   <motion.div
                     className="p-3 rounded-xl bg-[#00ffcc]/20 border border-[#00ffcc]/30"
                     whileHover={{ rotate: 5, scale: 1.05 }}
-                    transition={{ duration: 0.3 }}
+                    transition={{ duration: 0.2 }}
                   >
                     <Award className="h-8 w-8 text-[#00ffcc]" />
                   </motion.div>
@@ -1488,14 +1066,14 @@ export default function ProjectsPage() {
                       medication autonomously. Enables remote monitoring and timely interventions via a mobile app.
                     </p>
                     <a
-  href="https://www.linkedin.com/posts/hridayesh-srivastava-9575901bb_smart-bandage-patent-activity-7302186969986482176-AfFi?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAADMqSlMBfQ0Njd3-07q7Vlv7XlAvxroEJ_g"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="inline-flex items-center gap-2 mt-5 px-4 py-2 rounded-lg bg-[#00ffcc]/10 border border-[#00ffcc]/30 text-[#00ffcc] font-semibold hover:bg-[#00ffcc]/20 transition"
->
-  Check here
-  <ExternalLink className="w-5 h-5" />
-</a>
+                      href="https://www.linkedin.com/posts/hridayesh-srivastava-9575901bb_smart-bandage-patent-activity-7302186969986482176-AfFi?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAADMqSlMBfQ0Njd3-07q7Vlv7XlAvxroEJ_g"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 mt-5 px-4 py-2 rounded-lg bg-[#00ffcc]/10 border border-[#00ffcc]/30 text-[#00ffcc] font-semibold hover:bg-[#00ffcc]/20 transition"
+                    >
+                      Check here
+                      <ExternalLink className="w-5 h-5" />
+                    </a>
                   </div>
                 </div>
               </CardContent>
@@ -1504,22 +1082,22 @@ export default function ProjectsPage() {
 
           {/* CTA Section */}
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 1.2 }}
+            transition={{ duration: 0.5, delay: 1.2 }}
             whileHover={{
-              scale: 1.02,
-              boxShadow: "0 25px 50px rgba(0, 255, 204, 0.1)",
+              scale: 1.01,
             }}
+            style={{ willChange: "transform" }}
           >
-            <Card className="bg-[#111111] border border-[#222222] shadow-2xl overflow-hidden relative backdrop-blur-sm hover:border-[#00ffcc]/30 transition-all duration-500">
-              <div className="absolute inset-0 bg-gradient-to-br from-[#00ffcc]/5 via-transparent to-[#00ccff]/5 opacity-0 hover:opacity-100 transition-opacity duration-500" />
+            <Card className="bg-[#111111] border border-[#222222] shadow-2xl overflow-hidden relative backdrop-blur-sm hover:border-[#00ffcc]/30 transition-all duration-300">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#00ffcc]/3 via-transparent to-[#00ccff]/3 opacity-0 hover:opacity-100 transition-opacity duration-300" />
 
               <CardContent className="p-8 sm:p-12 relative z-10 text-center space-y-6">
                 <motion.div
                   className="p-4 rounded-xl bg-[#00ffcc]/10 border border-[#00ffcc]/30 w-fit mx-auto"
                   whileHover={{ rotate: 5, scale: 1.05 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.2 }}
                 >
                   <Zap className="h-10 w-10 text-[#00ffcc]" />
                 </motion.div>
@@ -1549,9 +1127,9 @@ export default function ProjectsPage() {
 
           {/* Project Stats */}
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 1.4 }}
+            transition={{ duration: 0.5, delay: 1.4 }}
           >
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {[
@@ -1562,21 +1140,21 @@ export default function ProjectsPage() {
               ].map((stat, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, scale: 0.8 }}
+                  initial={{ opacity: 0, scale: 0.9 }}
                   animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ duration: 0.6, delay: 1.6 + index * 0.1 }}
+                  transition={{ duration: 0.4, delay: 1.6 + index * 0.1 }}
                   whileHover={{
-                    scale: 1.05,
-                    y: -5,
-                    boxShadow: `0 15px 30px ${stat.color}20`,
+                    scale: 1.02,
+                    y: -3,
                   }}
                   className="group"
+                  style={{ willChange: "transform" }}
                 >
-                  <Card className="bg-[#111111] border border-[#222222] shadow-xl overflow-hidden relative backdrop-blur-sm group-hover:border-[#00ffcc]/30 transition-all duration-500 text-center">
+                  <Card className="bg-[#111111] border border-[#222222] shadow-xl overflow-hidden relative backdrop-blur-sm group-hover:border-[#00ffcc]/30 transition-all duration-300 text-center">
                     <div
-                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                       style={{
-                        background: `linear-gradient(135deg, ${stat.color}05 0%, transparent 50%, ${stat.color}05 100%)`,
+                        background: `linear-gradient(135deg, ${stat.color}03 0%, transparent 50%, ${stat.color}03 100%)`,
                       }}
                     />
 
@@ -1587,8 +1165,8 @@ export default function ProjectsPage() {
                           backgroundColor: `${stat.color}20`,
                           borderColor: `${stat.color}30`,
                         }}
-                        whileHover={{ rotate: 360, scale: 1.1 }}
-                        transition={{ duration: 0.6 }}
+                        whileHover={{ rotate: 180, scale: 1.1 }}
+                        transition={{ duration: 0.3 }}
                       >
                         <stat.icon className="h-6 w-6" style={{ color: stat.color }} />
                       </motion.div>

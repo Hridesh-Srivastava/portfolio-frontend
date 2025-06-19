@@ -22,7 +22,7 @@ import {
   Monitor,
 } from "lucide-react"
 import Link from "next/link"
-import { useRef, useMemo, memo } from "react"
+import { useRef, useMemo, memo, useEffect, useState } from "react"
 
 const skills = {
   languages: ["JavaScript ES6+", "HTML5", "CSS3", "TypeScript"],
@@ -144,631 +144,625 @@ const skillCategories = [
   },
 ]
 
-// Optimized Star Component with memoization
-const StarComponent = memo(({ star }: { star: any }) => (
-  <motion.div
-    key={star.id}
-    animate={{
-      opacity: [0.1, 0.8, 0.1],
-      scale: [1, 1.3, 1],
-    }}
-    transition={{
-      duration: star.duration,
-      repeat: Number.POSITIVE_INFINITY,
-      delay: star.delay,
-      ease: "easeInOut",
-    }}
-    className="absolute bg-white rounded-full"
+// Ultra Enhanced Star Component for About (Much More Rich)
+const AboutStar = memo(({ star }: { star: any }) => (
+  <div
+    className="absolute bg-white rounded-full pointer-events-none animate-pulse"
     style={{
       left: `${star.left}%`,
       top: `${star.top}%`,
       width: `${star.size}px`,
       height: `${star.size}px`,
-      willChange: "transform, opacity",
-      transform: "translate3d(0, 0, 0)", // Hardware acceleration
+      animationDuration: `${star.duration}s`,
+      animationDelay: `${star.delay}s`,
+      transform: "translate3d(0, 0, 0)",
+      willChange: "opacity",
+      opacity: star.opacity,
     }}
   />
 ))
 
-StarComponent.displayName = "StarComponent"
+AboutStar.displayName = "AboutStar"
 
-// Optimized Background Component with better performance
-const EnhancedBackground = memo(() => {
+// Ultra Enhanced Floating Orb for About
+const AboutOrb = memo(({ orb }: { orb: any }) => (
+  <div
+    className="absolute rounded-full pointer-events-none opacity-43"
+    style={{
+      left: `${orb.left}%`,
+      top: `${orb.top}%`,
+      width: `${orb.size}px`,
+      height: `${orb.size}px`,
+      background: `radial-gradient(circle, ${orb.color}60 0%, ${orb.color}28 38%, transparent 78%)`,
+      animation: `aboutFloat ${orb.duration}s ease-in-out infinite`,
+      animationDelay: `${orb.delay}s`,
+      transform: "translate3d(0, 0, 0)",
+      willChange: "transform",
+      filter: "blur(1px)",
+    }}
+  />
+))
+
+AboutOrb.displayName = "AboutOrb"
+
+// Enhanced Knowledge Particle Component for About theme
+const KnowledgeParticle = memo(({ particle }: { particle: any }) => (
+  <div
+    className="absolute rounded-full pointer-events-none"
+    style={{
+      width: `${particle.size}px`,
+      height: `${particle.size}px`,
+      background: particle.color,
+      boxShadow: `0 0 ${particle.size * 2.8}px ${particle.color}`,
+      animation: `knowledgeFlow ${particle.duration}s linear infinite`,
+      animationDelay: `${particle.delay}s`,
+      transform: "translate3d(0, 0, 0)",
+      willChange: "transform",
+    }}
+  />
+))
+
+KnowledgeParticle.displayName = "KnowledgeParticle"
+
+// Education Particle Component for About theme
+const EducationParticle = memo(({ particle }: { particle: any }) => (
+  <div
+    className="absolute pointer-events-none"
+    style={{
+      width: `${particle.size}px`,
+      height: `${particle.size}px`,
+      background: particle.color,
+      borderRadius: particle.type === "square" ? "3px" : "50%",
+      boxShadow: `0 0 ${particle.size * 2.2}px ${particle.color}`,
+      animation: `educationFlow ${particle.duration}s linear infinite`,
+      animationDelay: `${particle.delay}s`,
+      transform: "translate3d(0, 0, 0)",
+      willChange: "transform",
+    }}
+  />
+))
+
+EducationParticle.displayName = "EducationParticle"
+
+// Education Book Component for learning theme
+const EducationBook = memo(({ book }: { book: any }) => (
+  <div
+    className="absolute pointer-events-none border-2 rounded-sm"
+    style={{
+      left: `${book.left}%`,
+      top: `${book.top}%`,
+      width: `${book.size}px`,
+      height: `${book.size * 0.7}px`,
+      borderColor: book.color,
+      animation: `educationBookFloat ${book.duration}s ease-in-out infinite`,
+      animationDelay: `${book.delay}s`,
+      transform: "translate3d(0, 0, 0)",
+      willChange: "transform",
+      opacity: 0.7,
+    }}
+  >
+    <div className="absolute inset-1 border rounded-sm" style={{ borderColor: book.color, opacity: 0.6 }} />
+    <div
+      className="absolute top-1/2 left-1/2 w-0.5 h-0.5 rounded-full transform -translate-x-1/2 -translate-y-1/2"
+      style={{ backgroundColor: book.color }}
+    />
+  </div>
+))
+
+EducationBook.displayName = "EducationBook"
+
+// Learning Wave Component for knowledge theme
+const LearningWave = memo(({ wave }: { wave: any }) => (
+  <div
+    className="absolute rounded-full pointer-events-none border-2"
+    style={{
+      left: `${wave.left}%`,
+      top: `${wave.top}%`,
+      width: `${wave.size}px`,
+      height: `${wave.size}px`,
+      borderColor: wave.color,
+      animation: `learningWave ${wave.duration}s ease-out infinite`,
+      animationDelay: `${wave.delay}s`,
+      transform: "translate3d(0, 0, 0)",
+      willChange: "transform, opacity",
+    }}
+  />
+))
+
+LearningWave.displayName = "LearningWave"
+
+// Ultra optimized rich background for About with MUCH MORE elements
+const UltraOptimizedAboutBackground = memo(() => {
   const shouldReduceMotion = useReducedMotion()
+  const [mounted, setMounted] = useState(false)
 
-  // Memoized stars generation
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  // MUCH MORE stars for about page (significantly increased)
   const stars = useMemo(
     () =>
-      [...Array(400)].map((_, i) => ({
+      [...Array(145)].map((_, i) => ({
         id: i,
         left: Math.random() * 100,
         top: Math.random() * 100,
         size: Math.random() * 2 + 0.5,
-        duration: Math.random() * 4 + 2,
-        delay: Math.random() * 3,
+        duration: Math.random() * 3 + 2,
+        delay: Math.random() * 2,
+        opacity: Math.random() * 0.9 + 0.35,
       })),
     [],
   )
 
-  // Memoized animation variants
-  const nebulaVariants = useMemo(
-    () => ({
-      animate: shouldReduceMotion
-        ? {}
-        : {
-            scale: [1, 1.1, 1],
-            opacity: [0.03, 0.08, 0.03],
-          },
-    }),
-    [shouldReduceMotion],
+  // MORE orbs for much richer look
+  const orbs = useMemo(
+    () =>
+      [...Array(8)].map((_, i) => ({
+        id: i,
+        left: Math.random() * 100,
+        top: Math.random() * 100,
+        size: Math.random() * 88 + 58,
+        duration: Math.random() * 21 + 15,
+        delay: Math.random() * 4,
+        color: ["#00ffcc", "#00ccff", "#0099ff", "#00e6ff", "#00b3ff", "#00d9ff", "#00f0ff", "#00c7ff"][i],
+      })),
+    [],
   )
 
-  return (
-    <div className="absolute inset-0" style={{ willChange: "transform" }}>
-      {/* Enhanced Star field with performance optimization */}
-      <div className="absolute inset-0" style={{ contain: "layout style paint" }}>
-        {stars.map((star) => (
-          <StarComponent key={star.id} star={star} />
-        ))}
+  // MORE knowledge particles for learning theme
+  const knowledgeParticles = useMemo(
+    () =>
+      [...Array(10)].map((_, i) => ({
+        id: i,
+        size: Math.random() * 4.8 + 2,
+        duration: Math.random() * 15 + 11,
+        delay: Math.random() * 4,
+        color: ["#00ffcc", "#00ccff", "#0099ff", "#00e6ff", "#00b3ff"][Math.floor(Math.random() * 5)],
+      })),
+    [],
+  )
+
+  // Education particles for learning theme
+  const educationParticles = useMemo(
+    () =>
+      [...Array(6)].map((_, i) => ({
+        id: i,
+        size: Math.random() * 3.5 + 1.8,
+        duration: Math.random() * 17 + 13,
+        delay: Math.random() * 5,
+        type: Math.random() > 0.6 ? "circle" : "square",
+        color: ["#00ffcc", "#00ccff", "#0099ff"][Math.floor(Math.random() * 3)],
+      })),
+    [],
+  )
+
+  // Education books for learning theme
+  const educationBooks = useMemo(
+    () =>
+      [...Array(5)].map((_, i) => ({
+        id: i,
+        left: Math.random() * 100,
+        top: Math.random() * 100,
+        size: Math.random() * 35 + 18,
+        duration: Math.random() * 22 + 16,
+        delay: Math.random() * 3,
+        color: ["#00ffcc", "#00ccff", "#0099ff", "#00e6ff", "#00b3ff"][i],
+      })),
+    [],
+  )
+
+  // Learning waves for knowledge expansion theme
+  const learningWaves = useMemo(
+    () =>
+      [...Array(6)].map((_, i) => ({
+        id: i,
+        left: Math.random() * 100,
+        top: Math.random() * 100,
+        size: Math.random() * 70 + 35,
+        duration: Math.random() * 7 + 5,
+        delay: Math.random() * 3,
+        color: ["#00ffcc", "#00ccff", "#0099ff", "#00e6ff", "#00b3ff", "#00d9ff"][i],
+      })),
+    [],
+  )
+
+  if (shouldReduceMotion || !mounted) {
+    return (
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#111111_1px,transparent_1px),linear-gradient(to_bottom,#111111_1px,transparent_1px)] bg-[size:100px_100px] opacity-10"></div>
       </div>
+    )
+  }
 
-      {/* About Page Flowing Lines System - Optimized */}
-      <svg className="absolute inset-0 w-full h-full opacity-60" style={{ willChange: "transform" }}>
-        <defs>
-          {/* Enhanced Flowing Gradients */}
-          <linearGradient id="aboutFlowMain1" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="transparent" />
-            <stop offset="30%" stopColor="#00ffcc">
-              <animate
-                attributeName="stop-color"
-                values="#00ffcc;#00e6ff;#0099ff;#00ccff;#00ffcc"
-                dur="2s"
-                repeatCount="indefinite"
-              />
-            </stop>
-            <stop offset="70%" stopColor="#00ccff">
-              <animate
-                attributeName="stop-color"
-                values="#00ccff;#0099ff;#00ffcc;#00e6ff;#00ccff"
-                dur="2s"
-                repeatCount="indefinite"
-              />
-            </stop>
-            <stop offset="100%" stopColor="transparent" />
-            <animateTransform
-              attributeName="gradientTransform"
-              type="translate"
-              values="-100 0;100 0;-100 0"
-              dur="3s"
-              repeatCount="indefinite"
-            />
-          </linearGradient>
+  return (
+    <>
+      <style jsx>{`
+        @keyframes aboutFloat {
+          0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+          25% { transform: translate3d(22px, -18px, 0) scale(1.15); }
+          50% { transform: translate3d(-14px, 16px, 0) scale(0.85); }
+          75% { transform: translate3d(12px, -10px, 0) scale(1.08); }
+        }
+        @keyframes slideRightAbout {
+          0% { transform: translateX(-135px); opacity: 0; }
+          16% { opacity: 1; }
+          84% { opacity: 1; }
+          100% { transform: translateX(100vw); opacity: 0; }
+        }
+        @keyframes slideDownAbout {
+          0% { transform: translateY(-135px); opacity: 0; }
+          16% { opacity: 1; }
+          84% { opacity: 1; }
+          100% { transform: translateY(100vh); opacity: 0; }
+        }
+        @keyframes knowledgeFlow {
+          0% { transform: translate3d(-65px, -65px, 0) rotate(0deg); opacity: 0; }
+          12% { opacity: 1; }
+          88% { opacity: 1; }
+          100% { transform: translate3d(100vw, 100vh, 0) rotate(360deg); opacity: 0; }
+        }
+        @keyframes educationFlow {
+          0% { transform: translate3d(-75px, -45px, 0) rotate(0deg); opacity: 0; }
+          14% { opacity: 1; }
+          86% { opacity: 1; }
+          100% { transform: translate3d(100vw, 65vh, 0) rotate(180deg); opacity: 0; }
+        }
+        @keyframes educationBookFloat {
+          0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+          33% { transform: translate3d(18px, -12px, 0) rotate(5deg) scale(1.1); }
+          66% { transform: translate3d(-10px, 14px, 0) rotate(-3deg) scale(0.9); }
+        }
+        @keyframes learningWave {
+          0% { transform: scale(0) rotate(0deg); opacity: 1; }
+          50% { opacity: 0.7; }
+          100% { transform: scale(2.5) rotate(180deg); opacity: 0; }
+        }
+        @keyframes diagonalAboutFlow {
+          0% { transform: translate(-95px, -95px) rotate(0deg); opacity: 0; }
+          14% { opacity: 1; }
+          86% { opacity: 1; }
+          100% { transform: translate(calc(100vw + 95px), calc(100vh + 95px)) rotate(270deg); opacity: 0; }
+        }
+        @keyframes spiralAboutFlow {
+          0% { transform: translate(-70px, 30vh) rotate(0deg); opacity: 0; }
+          12% { opacity: 1; }
+          25% { transform: translate(20vw, 15vh) rotate(90deg); }
+          50% { transform: translate(50vw, 35vh) rotate(180deg); }
+          75% { transform: translate(80vw, 20vh) rotate(270deg); }
+          88% { opacity: 1; }
+          100% { transform: translate(calc(100vw + 70px), 30vh) rotate(360deg); opacity: 0; }
+        }
+        @keyframes waveAboutFlow {
+          0% { transform: translate(-60px, 40vh) rotate(0deg); opacity: 0; }
+          10% { opacity: 1; }
+          20% { transform: translate(20vw, 25vh) rotate(45deg); }
+          40% { transform: translate(40vw, 45vh) rotate(90deg); }
+          60% { transform: translate(60vw, 20vh) rotate(135deg); }
+          80% { transform: translate(80vw, 40vh) rotate(180deg); }
+          90% { opacity: 1; }
+          100% { transform: translate(calc(100vw + 60px), 35vh) rotate(225deg); opacity: 0; }
+        }
+        .flow-line-h-about {
+          animation: slideRightAbout 9s linear infinite;
+        }
+        .flow-line-v-about {
+          animation: slideDownAbout 11s linear infinite;
+        }
+        .flow-diagonal-about {
+          animation: diagonalAboutFlow 14s linear infinite;
+        }
+        .flow-spiral-about {
+          animation: spiralAboutFlow 18s linear infinite;
+        }
+        .flow-wave-about {
+          animation: waveAboutFlow 15s linear infinite;
+        }
+      `}</style>
 
-          <linearGradient id="aboutFlowMain2" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="transparent" />
-            <stop offset="30%" stopColor="#0099ff">
-              <animate
-                attributeName="stop-color"
-                values="#0099ff;#00ffcc;#00e6ff;#00ccff;#0099ff"
-                dur="2.5s"
-                repeatCount="indefinite"
-              />
-            </stop>
-            <stop offset="70%" stopColor="#00e6ff">
-              <animate
-                attributeName="stop-color"
-                values="#00e6ff;#00ccff;#0099ff;#00ffcc;#00e6ff"
-                dur="2.5s"
-                repeatCount="indefinite"
-              />
-            </stop>
-            <stop offset="100%" stopColor="transparent" />
-            <animateTransform
-              attributeName="gradientTransform"
-              type="translate"
-              values="-100 0;100 0;-100 0"
-              dur="4s"
-              repeatCount="indefinite"
-            />
-          </linearGradient>
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Ultra Enhanced Star field */}
+        <div className="absolute inset-0" style={{ contain: "layout style paint" }}>
+          {stars.map((star) => (
+            <AboutStar key={star.id} star={star} />
+          ))}
+        </div>
 
-          <linearGradient id="aboutFlowVertical" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="transparent" />
-            <stop offset="30%" stopColor="#00ccff">
-              <animate
-                attributeName="stop-color"
-                values="#00ccff;#0099ff;#00ffcc;#00e6ff;#00ccff"
-                dur="3s"
-                repeatCount="indefinite"
-              />
-            </stop>
-            <stop offset="70%" stopColor="#00ffcc">
-              <animate
-                attributeName="stop-color"
-                values="#00ffcc;#00e6ff;#0099ff;#00ccff;#00ffcc"
-                dur="3s"
-                repeatCount="indefinite"
-              />
-            </stop>
-            <stop offset="100%" stopColor="transparent" />
-            <animateTransform
-              attributeName="gradientTransform"
-              type="translate"
-              values="0 -100;0 100;0 -100"
-              dur="3.5s"
-              repeatCount="indefinite"
-            />
-          </linearGradient>
+        {/* Ultra Enhanced Floating Orbs */}
+        <div className="absolute inset-0">
+          {orbs.map((orb) => (
+            <AboutOrb key={orb.id} orb={orb} />
+          ))}
+        </div>
 
-          <filter id="aboutGlow">
-            <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-            <feMerge>
-              <feMergeNode in="coloredBlur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
+        {/* Enhanced Knowledge Particles */}
+        <div className="absolute inset-0">
+          {knowledgeParticles.map((particle) => (
+            <KnowledgeParticle key={particle.id} particle={particle} />
+          ))}
+        </div>
 
-          <filter id="strongGlow">
-            <feGaussianBlur stdDeviation="5" result="coloredBlur" />
-            <feMerge>
-              <feMergeNode in="coloredBlur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-        </defs>
+        {/* Education Particles */}
+        <div className="absolute inset-0">
+          {educationParticles.map((particle) => (
+            <EducationParticle key={particle.id} particle={particle} />
+          ))}
+        </div>
 
-        {/* Main Horizontal Flowing Lines */}
-        <motion.line
-          x1="0"
-          y1="150"
-          x2="1920"
-          y2="150"
-          stroke="url(#aboutFlowMain1)"
-          strokeWidth="3"
-          filter="url(#aboutGlow)"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: 1, opacity: 1 }}
-          transition={{ duration: 2, ease: "easeInOut" }}
-          style={{ willChange: "transform" }}
-        />
+        {/* Education Books */}
+        <div className="absolute inset-0">
+          {educationBooks.map((book) => (
+            <EducationBook key={book.id} book={book} />
+          ))}
+        </div>
 
-        <motion.line
-          x1="0"
-          y1="400"
-          x2="1920"
-          y2="400"
-          stroke="url(#aboutFlowMain2)"
-          strokeWidth="2.5"
-          filter="url(#aboutGlow)"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: 1, opacity: 1 }}
-          transition={{ duration: 2.5, delay: 0.5, ease: "easeInOut" }}
-          style={{ willChange: "transform" }}
-        />
+        {/* Learning Waves */}
+        <div className="absolute inset-0">
+          {learningWaves.map((wave) => (
+            <LearningWave key={wave.id} wave={wave} />
+          ))}
+        </div>
 
-        <motion.line
-          x1="0"
-          y1="650"
-          x2="1920"
-          y2="650"
-          stroke="url(#aboutFlowMain1)"
-          strokeWidth="2.8"
-          filter="url(#aboutGlow)"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: 1, opacity: 1 }}
-          transition={{ duration: 3, delay: 1, ease: "easeInOut" }}
-          style={{ willChange: "transform" }}
-        />
-
-        <motion.line
-          x1="0"
-          y1="900"
-          x2="1920"
-          y2="900"
-          stroke="url(#aboutFlowMain2)"
-          strokeWidth="2.2"
-          filter="url(#aboutGlow)"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: 1, opacity: 1 }}
-          transition={{ duration: 3.5, delay: 1.5, ease: "easeInOut" }}
-          style={{ willChange: "transform" }}
-        />
-
-        {/* Vertical Flowing Lines */}
-        <motion.line
-          x1="200"
-          y1="0"
-          x2="200"
-          y2="1200"
-          stroke="url(#aboutFlowVertical)"
-          strokeWidth="2.5"
-          filter="url(#aboutGlow)"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: 1, opacity: 1 }}
-          transition={{ duration: 2, delay: 2, ease: "easeInOut" }}
-          style={{ willChange: "transform" }}
-        />
-
-        <motion.line
-          x1="500"
-          y1="0"
-          x2="500"
-          y2="1200"
-          stroke="url(#aboutFlowVertical)"
-          strokeWidth="2.8"
-          filter="url(#aboutGlow)"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: 1, opacity: 1 }}
-          transition={{ duration: 2.5, delay: 2.5, ease: "easeInOut" }}
-          style={{ willChange: "transform" }}
-        />
-
-        <motion.line
-          x1="1000"
-          y1="0"
-          x2="1000"
-          y2="1200"
-          stroke="url(#aboutFlowVertical)"
-          strokeWidth="2.3"
-          filter="url(#aboutGlow)"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: 1, opacity: 1 }}
-          transition={{ duration: 3, delay: 3, ease: "easeInOut" }}
-          style={{ willChange: "transform" }}
-        />
-
-        <motion.line
-          x1="1400"
-          y1="0"
-          x2="1400"
-          y2="1200"
-          stroke="url(#aboutFlowVertical)"
-          strokeWidth="2.6"
-          filter="url(#aboutGlow)"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: 1, opacity: 1 }}
-          transition={{ duration: 3.5, delay: 3.5, ease: "easeInOut" }}
-          style={{ willChange: "transform" }}
-        />
-
-        {/* Enhanced Circuit Nodes */}
-        <motion.circle
-          cx="200"
-          cy="150"
-          r="6"
-          fill="#00ffcc"
-          filter="url(#strongGlow)"
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5, delay: 4 }}
-          style={{ willChange: "transform" }}
-        >
-          <animate
-            attributeName="fill"
-            values="#00ffcc;#00e6ff;#0099ff;#00ccff;#00ffcc"
-            dur="2s"
-            repeatCount="indefinite"
+        {/* MUCH MORE Enhanced flowing lines with CSS animations */}
+        <div className="absolute inset-0 opacity-54">
+          {/* MORE Horizontal flowing lines */}
+          <div
+            className="absolute h-0.5 w-28 bg-gradient-to-r from-transparent via-[#00ffcc] to-transparent flow-line-h-about"
+            style={{ top: "10%", animationDelay: "0s" }}
           />
-          <animate attributeName="r" values="6;8;6" dur="3s" repeatCount="indefinite" />
-        </motion.circle>
-
-        <motion.circle
-          cx="500"
-          cy="400"
-          r="7"
-          fill="#00ccff"
-          filter="url(#strongGlow)"
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5, delay: 4.2 }}
-          style={{ willChange: "transform" }}
-        >
-          <animate
-            attributeName="fill"
-            values="#00ccff;#0099ff;#00ffcc;#00e6ff;#00ccff"
-            dur="2.5s"
-            repeatCount="indefinite"
+          <div
+            className="absolute h-0.5 w-32 bg-gradient-to-r from-transparent via-[#00ccff] to-transparent flow-line-h-about"
+            style={{ top: "16%", animationDelay: "1s" }}
           />
-          <animate attributeName="r" values="7;9;7" dur="3.5s" repeatCount="indefinite" />
-        </motion.circle>
-
-        <motion.circle
-          cx="1000"
-          cy="650"
-          r="6.5"
-          fill="#0099ff"
-          filter="url(#strongGlow)"
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5, delay: 4.4 }}
-          style={{ willChange: "transform" }}
-        >
-          <animate
-            attributeName="fill"
-            values="#0099ff;#00ffcc;#00e6ff;#00ccff;#0099ff"
-            dur="3s"
-            repeatCount="indefinite"
+          <div
+            className="absolute h-0.5 w-24 bg-gradient-to-r from-transparent via-[#0099ff] to-transparent flow-line-h-about"
+            style={{ top: "22%", animationDelay: "2s" }}
           />
-          <animate attributeName="r" values="6.5;8.5;6.5" dur="4s" repeatCount="indefinite" />
-        </motion.circle>
-
-        <motion.circle
-          cx="1400"
-          cy="900"
-          r="5.5"
-          fill="#00e6ff"
-          filter="url(#strongGlow)"
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5, delay: 4.6 }}
-          style={{ willChange: "transform" }}
-        >
-          <animate
-            attributeName="fill"
-            values="#00e6ff;#00ccff;#0099ff;#00ffcc;#00e6ff"
-            dur="2.8s"
-            repeatCount="indefinite"
+          <div
+            className="absolute h-0.5 w-36 bg-gradient-to-r from-transparent via-[#00e6ff] to-transparent flow-line-h-about"
+            style={{ top: "28%", animationDelay: "3s" }}
           />
-          <animate attributeName="r" values="5.5;7.5;5.5" dur="3.2s" repeatCount="indefinite" />
-        </motion.circle>
-
-        {/* Enhanced Flowing Data Particles */}
-        <motion.circle
-          r="4"
-          fill="#00ffcc"
-          filter="url(#strongGlow)"
-          animate={{
-            cx: [0, 200, 500, 1000, 1400, 1920],
-            cy: [150, 150, 400, 650, 900, 900],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "linear",
-          }}
-          style={{ willChange: "transform" }}
-        >
-          <animate
-            attributeName="fill"
-            values="#00ffcc;#00e6ff;#0099ff;#00ccff;#00ffcc"
-            dur="2s"
-            repeatCount="indefinite"
+          <div
+            className="absolute h-0.5 w-30 bg-gradient-to-r from-transparent via-[#00b3ff] to-transparent flow-line-h-about"
+            style={{ top: "34%", animationDelay: "4s" }}
           />
-          <animate attributeName="r" values="4;6;4" dur="1s" repeatCount="indefinite" />
-        </motion.circle>
-
-        <motion.circle
-          r="3.5"
-          fill="#00ccff"
-          filter="url(#strongGlow)"
-          animate={{
-            cx: [1920, 1400, 1000, 500, 200, 0],
-            cy: [400, 400, 650, 400, 150, 150],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "linear",
-            delay: 2,
-          }}
-          style={{ willChange: "transform" }}
-        >
-          <animate
-            attributeName="fill"
-            values="#00ccff;#0099ff;#00ffcc;#00e6ff;#00ccff"
-            dur="2.5s"
-            repeatCount="indefinite"
+          <div
+            className="absolute h-0.5 w-26 bg-gradient-to-r from-transparent via-[#00d9ff] to-transparent flow-line-h-about"
+            style={{ top: "40%", animationDelay: "5s" }}
           />
-          <animate attributeName="r" values="3.5;5.5;3.5" dur="1.2s" repeatCount="indefinite" />
-        </motion.circle>
-
-        <motion.circle
-          r="5"
-          fill="#0099ff"
-          filter="url(#strongGlow)"
-          animate={{
-            cx: [200, 200, 500, 500, 1000, 1000, 1400, 1400],
-            cy: [0, 150, 150, 400, 400, 650, 650, 900],
-          }}
-          transition={{
-            duration: 12,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "linear",
-            delay: 4,
-          }}
-          style={{ willChange: "transform" }}
-        >
-          <animate
-            attributeName="fill"
-            values="#0099ff;#00ffcc;#00e6ff;#00ccff;#0099ff"
-            dur="3s"
-            repeatCount="indefinite"
+          <div
+            className="absolute h-0.5 w-34 bg-gradient-to-r from-transparent via-[#00f0ff] to-transparent flow-line-h-about"
+            style={{ top: "46%", animationDelay: "6s" }}
           />
-          <animate attributeName="r" values="5;7;5" dur="1.5s" repeatCount="indefinite" />
-        </motion.circle>
-
-        {/* Circuit Patterns with Enhanced Flow */}
-        <motion.rect
-          x="180"
-          y="130"
-          width="40"
-          height="40"
-          fill="none"
-          stroke="#00ffcc"
-          strokeWidth="2"
-          filter="url(#aboutGlow)"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: 1, opacity: 1 }}
-          transition={{ duration: 1, delay: 5 }}
-          style={{ willChange: "transform" }}
-        >
-          <animate
-            attributeName="stroke"
-            values="#00ffcc;#00e6ff;#0099ff;#00ccff;#00ffcc"
-            dur="3s"
-            repeatCount="indefinite"
+          <div
+            className="absolute h-0.5 w-28 bg-gradient-to-r from-transparent via-[#00c7ff] to-transparent flow-line-h-about"
+            style={{ top: "52%", animationDelay: "7s" }}
           />
-        </motion.rect>
-
-        <motion.rect
-          x="480"
-          y="380"
-          width="40"
-          height="40"
-          fill="none"
-          stroke="#00ccff"
-          strokeWidth="2"
-          filter="url(#aboutGlow)"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: 1, opacity: 1 }}
-          transition={{ duration: 1, delay: 5.2 }}
-          style={{ willChange: "transform" }}
-        >
-          <animate
-            attributeName="stroke"
-            values="#00ccff;#0099ff;#00ffcc;#00e6ff;#00ccff"
-            dur="3.5s"
-            repeatCount="indefinite"
+          <div
+            className="absolute h-0.5 w-32 bg-gradient-to-r from-transparent via-[#00ffcc] to-transparent flow-line-h-about"
+            style={{ top: "58%", animationDelay: "1.5s" }}
           />
-        </motion.rect>
-
-        <motion.rect
-          x="980"
-          y="630"
-          width="40"
-          height="40"
-          fill="none"
-          stroke="#0099ff"
-          strokeWidth="2"
-          filter="url(#aboutGlow)"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: 1, opacity: 1 }}
-          transition={{ duration: 1, delay: 5.4 }}
-          style={{ willChange: "transform" }}
-        >
-          <animate
-            attributeName="stroke"
-            values="#0099ff;#00ffcc;#00e6ff;#00ccff;#0099ff"
-            dur="4s"
-            repeatCount="indefinite"
+          <div
+            className="absolute h-0.5 w-30 bg-gradient-to-r from-transparent via-[#00ccff] to-transparent flow-line-h-about"
+            style={{ top: "64%", animationDelay: "2.5s" }}
           />
-        </motion.rect>
+          <div
+            className="absolute h-0.5 w-28 bg-gradient-to-r from-transparent via-[#0099ff] to-transparent flow-line-h-about"
+            style={{ top: "70%", animationDelay: "3.5s" }}
+          />
+          <div
+            className="absolute h-0.5 w-34 bg-gradient-to-r from-transparent via-[#00e6ff] to-transparent flow-line-h-about"
+            style={{ top: "76%", animationDelay: "4.5s" }}
+          />
+          <div
+            className="absolute h-0.5 w-26 bg-gradient-to-r from-transparent via-[#00b3ff] to-transparent flow-line-h-about"
+            style={{ top: "82%", animationDelay: "5.5s" }}
+          />
+          <div
+            className="absolute h-0.5 w-32 bg-gradient-to-r from-transparent via-[#00d9ff] to-transparent flow-line-h-about"
+            style={{ top: "88%", animationDelay: "6.5s" }}
+          />
 
-        {/* Additional Flowing Connection Lines */}
-        <motion.line
-          x1="220"
-          y1="150"
-          x2="480"
-          y2="400"
-          stroke="url(#aboutFlowMain1)"
-          strokeWidth="1.5"
-          filter="url(#aboutGlow)"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: 1, opacity: 1 }}
-          transition={{ duration: 2, delay: 6 }}
-          style={{ willChange: "transform" }}
-        />
+          {/* MORE Vertical flowing lines */}
+          <div
+            className="absolute w-0.5 h-28 bg-gradient-to-b from-transparent via-[#00ffcc] to-transparent flow-line-v-about"
+            style={{ left: "7%", animationDelay: "0.5s" }}
+          />
+          <div
+            className="absolute w-0.5 h-32 bg-gradient-to-b from-transparent via-[#00ccff] to-transparent flow-line-v-about"
+            style={{ left: "14%", animationDelay: "1.5s" }}
+          />
+          <div
+            className="absolute w-0.5 h-24 bg-gradient-to-b from-transparent via-[#0099ff] to-transparent flow-line-v-about"
+            style={{ left: "21%", animationDelay: "2.5s" }}
+          />
+          <div
+            className="absolute w-0.5 h-36 bg-gradient-to-b from-transparent via-[#00e6ff] to-transparent flow-line-v-about"
+            style={{ left: "28%", animationDelay: "3.5s" }}
+          />
+          <div
+            className="absolute w-0.5 h-30 bg-gradient-to-b from-transparent via-[#00b3ff] to-transparent flow-line-v-about"
+            style={{ left: "35%", animationDelay: "4.5s" }}
+          />
+          <div
+            className="absolute w-0.5 h-26 bg-gradient-to-b from-transparent via-[#00d9ff] to-transparent flow-line-v-about"
+            style={{ left: "42%", animationDelay: "5.5s" }}
+          />
+          <div
+            className="absolute w-0.5 h-34 bg-gradient-to-b from-transparent via-[#00f0ff] to-transparent flow-line-v-about"
+            style={{ left: "49%", animationDelay: "6.5s" }}
+          />
+          <div
+            className="absolute w-0.5 h-28 bg-gradient-to-b from-transparent via-[#00c7ff] to-transparent flow-line-v-about"
+            style={{ left: "56%", animationDelay: "7.5s" }}
+          />
+          <div
+            className="absolute w-0.5 h-32 bg-gradient-to-b from-transparent via-[#00ffcc] to-transparent flow-line-v-about"
+            style={{ left: "63%", animationDelay: "1s" }}
+          />
+          <div
+            className="absolute w-0.5 h-30 bg-gradient-to-b from-transparent via-[#00ccff] to-transparent flow-line-v-about"
+            style={{ left: "70%", animationDelay: "2s" }}
+          />
+          <div
+            className="absolute w-0.5 h-28 bg-gradient-to-b from-transparent via-[#0099ff] to-transparent flow-line-v-about"
+            style={{ left: "77%", animationDelay: "3s" }}
+          />
+          <div
+            className="absolute w-0.5 h-34 bg-gradient-to-b from-transparent via-[#00e6ff] to-transparent flow-line-v-about"
+            style={{ left: "84%", animationDelay: "4s" }}
+          />
+          <div
+            className="absolute w-0.5 h-26 bg-gradient-to-b from-transparent via-[#00b3ff] to-transparent flow-line-v-about"
+            style={{ left: "91%", animationDelay: "5s" }}
+          />
 
-        <motion.line
-          x1="520"
-          y1="400"
-          x2="980"
-          y2="650"
-          stroke="url(#aboutFlowMain2)"
-          strokeWidth="1.5"
-          filter="url(#aboutGlow)"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: 1, opacity: 1 }}
-          transition={{ duration: 2, delay: 6.5 }}
-          style={{ willChange: "transform" }}
-        />
+          {/* Enhanced Diagonal flowing lines */}
+          <div
+            className="absolute w-0.5 h-28 bg-gradient-to-b from-transparent via-[#00ffcc] to-transparent flow-diagonal-about"
+            style={{ animationDelay: "1s" }}
+          />
+          <div
+            className="absolute w-0.5 h-24 bg-gradient-to-b from-transparent via-[#00ccff] to-transparent flow-diagonal-about"
+            style={{ animationDelay: "3s" }}
+          />
+          <div
+            className="absolute w-0.5 h-30 bg-gradient-to-b from-transparent via-[#0099ff] to-transparent flow-diagonal-about"
+            style={{ animationDelay: "5s" }}
+          />
+          <div
+            className="absolute w-0.5 h-26 bg-gradient-to-b from-transparent via-[#00e6ff] to-transparent flow-diagonal-about"
+            style={{ animationDelay: "7s" }}
+          />
+          <div
+            className="absolute w-0.5 h-32 bg-gradient-to-b from-transparent via-[#00b3ff] to-transparent flow-diagonal-about"
+            style={{ animationDelay: "9s" }}
+          />
 
-        <motion.line
-          x1="1020"
-          y1="650"
-          x2="1380"
-          y2="900"
-          stroke="url(#aboutFlowMain1)"
-          strokeWidth="1.5"
-          filter="url(#aboutGlow)"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: 1, opacity: 1 }}
-          transition={{ duration: 2, delay: 7 }}
-          style={{ willChange: "transform" }}
-        />
-      </svg>
+          {/* NEW Spiral flowing lines for learning growth */}
+          <div
+            className="absolute h-0.5 w-22 bg-gradient-to-r from-transparent via-[#00ffcc] to-transparent flow-spiral-about"
+            style={{ animationDelay: "2s" }}
+          />
+          <div
+            className="absolute h-0.5 w-26 bg-gradient-to-r from-transparent via-[#00ccff] to-transparent flow-spiral-about"
+            style={{ animationDelay: "8s" }}
+          />
+          <div
+            className="absolute h-0.5 w-24 bg-gradient-to-r from-transparent via-[#0099ff] to-transparent flow-spiral-about"
+            style={{ animationDelay: "14s" }}
+          />
 
-      {/* Enhanced Nebula Effects with performance optimization */}
-      <motion.div
-        variants={nebulaVariants}
-        animate="animate"
-        transition={{
-          duration: 20,
-          repeat: Number.POSITIVE_INFINITY,
-          ease: "easeInOut",
-        }}
-        className="absolute top-20 left-20 w-96 h-96 bg-[#00ffcc]/10 rounded-full blur-3xl"
-        style={{ willChange: "transform" }}
-      />
+          {/* NEW Wave flowing lines for knowledge waves */}
+          <div
+            className="absolute h-0.5 w-20 bg-gradient-to-r from-transparent via-[#00e6ff] to-transparent flow-wave-about"
+            style={{ animationDelay: "3s" }}
+          />
+          <div
+            className="absolute h-0.5 w-24 bg-gradient-to-r from-transparent via-[#00b3ff] to-transparent flow-wave-about"
+            style={{ animationDelay: "9s" }}
+          />
+          <div
+            className="absolute h-0.5 w-22 bg-gradient-to-r from-transparent via-[#00d9ff] to-transparent flow-wave-about"
+            style={{ animationDelay: "15s" }}
+          />
+        </div>
 
-      <motion.div
-        variants={nebulaVariants}
-        animate="animate"
-        transition={{
-          duration: 25,
-          repeat: Number.POSITIVE_INFINITY,
-          ease: "easeInOut",
-          delay: 5,
-        }}
-        className="absolute bottom-20 right-20 w-80 h-80 bg-[#00ccff]/10 rounded-full blur-3xl"
-        style={{ willChange: "transform" }}
-      />
+        {/* MUCH MORE Enhanced circuit nodes */}
+        <div className="absolute inset-0 opacity-74">
+          <div
+            className="absolute w-2 h-2 bg-[#00ffcc] rounded-full shadow-lg shadow-[#00ffcc]/70 animate-pulse"
+            style={{ top: "10%", left: "7%" }}
+          />
+          <div
+            className="absolute w-2 h-2 bg-[#00ccff] rounded-full shadow-lg shadow-[#00ccff]/70 animate-pulse"
+            style={{ top: "16%", left: "14%", animationDelay: "0.3s" }}
+          />
+          <div
+            className="absolute w-2 h-2 bg-[#0099ff] rounded-full shadow-lg shadow-[#0099ff]/70 animate-pulse"
+            style={{ top: "22%", left: "21%", animationDelay: "0.6s" }}
+          />
+          <div
+            className="absolute w-2 h-2 bg-[#00e6ff] rounded-full shadow-lg shadow-[#00e6ff]/70 animate-pulse"
+            style={{ top: "28%", left: "28%", animationDelay: "0.9s" }}
+          />
+          <div
+            className="absolute w-2 h-2 bg-[#00b3ff] rounded-full shadow-lg shadow-[#00b3ff]/70 animate-pulse"
+            style={{ top: "34%", left: "35%", animationDelay: "1.2s" }}
+          />
+          <div
+            className="absolute w-2 h-2 bg-[#00d9ff] rounded-full shadow-lg shadow-[#00d9ff]/70 animate-pulse"
+            style={{ top: "40%", left: "42%", animationDelay: "1.5s" }}
+          />
+          <div
+            className="absolute w-2 h-2 bg-[#00f0ff] rounded-full shadow-lg shadow-[#00f0ff]/70 animate-pulse"
+            style={{ top: "46%", left: "49%", animationDelay: "1.8s" }}
+          />
+          <div
+            className="absolute w-2 h-2 bg-[#00c7ff] rounded-full shadow-lg shadow-[#00c7ff]/70 animate-pulse"
+            style={{ top: "52%", left: "56%", animationDelay: "2.1s" }}
+          />
+          <div
+            className="absolute w-2 h-2 bg-[#00ffcc] rounded-full shadow-lg shadow-[#00ffcc]/70 animate-pulse"
+            style={{ top: "58%", left: "63%", animationDelay: "2.4s" }}
+          />
+          <div
+            className="absolute w-2 h-2 bg-[#00ccff] rounded-full shadow-lg shadow-[#00ccff]/70 animate-pulse"
+            style={{ top: "64%", left: "70%", animationDelay: "2.7s" }}
+          />
+          <div
+            className="absolute w-2 h-2 bg-[#0099ff] rounded-full shadow-lg shadow-[#0099ff]/70 animate-pulse"
+            style={{ top: "70%", left: "77%", animationDelay: "3s" }}
+          />
+          <div
+            className="absolute w-2 h-2 bg-[#00e6ff] rounded-full shadow-lg shadow-[#00e6ff]/70 animate-pulse"
+            style={{ top: "76%", left: "84%", animationDelay: "3.3s" }}
+          />
+          <div
+            className="absolute w-2 h-2 bg-[#00b3ff] rounded-full shadow-lg shadow-[#00b3ff]/70 animate-pulse"
+            style={{ top: "82%", left: "91%", animationDelay: "3.6s" }}
+          />
+        </div>
 
-      <motion.div
-        variants={nebulaVariants}
-        animate="animate"
-        transition={{
-          duration: 30,
-          repeat: Number.POSITIVE_INFINITY,
-          ease: "easeInOut",
-          delay: 10,
-        }}
-        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#0099ff]/8 rounded-full blur-3xl"
-        style={{ willChange: "transform" }}
-      />
+        {/* MUCH MORE Enhanced nebula effects */}
+        <div className="absolute top-5 left-5 w-[440px] h-[440px] bg-[#00ffcc]/6 rounded-full blur-3xl pointer-events-none opacity-66" />
+        <div className="absolute bottom-5 right-5 w-[420px] h-[420px] bg-[#00ccff]/6 rounded-full blur-3xl pointer-events-none opacity-66" />
+        <div className="absolute top-1/3 right-1/4 w-[380px] h-[380px] bg-[#0099ff]/4 rounded-full blur-3xl pointer-events-none opacity-56" />
+        <div className="absolute bottom-1/3 left-1/4 w-[460px] h-[460px] bg-[#00e6ff]/5 rounded-full blur-3xl pointer-events-none opacity-61" />
+        <div className="absolute top-2/3 left-1/6 w-[400px] h-[400px] bg-[#00b3ff]/4 rounded-full blur-3xl pointer-events-none opacity-53" />
+        <div className="absolute bottom-2/3 right-1/6 w-[450px] h-[450px] bg-[#00d9ff]/5 rounded-full blur-3xl pointer-events-none opacity-59" />
 
-      {/* Grid pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#111111_1px,transparent_1px),linear-gradient(to_bottom,#111111_1px,transparent_1px)] bg-[size:100px_100px] opacity-10"></div>
-    </div>
+        {/* Grid pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#111111_1px,transparent_1px),linear-gradient(to_bottom,#111111_1px,transparent_1px)] bg-[size:100px_100px] opacity-10"></div>
+      </div>
+    </>
   )
 })
 
-EnhancedBackground.displayName = "EnhancedBackground"
+UltraOptimizedAboutBackground.displayName = "UltraOptimizedAboutBackground"
 
-// Memoized Education Card Component
+// Optimized Education Card Component
 const EducationCard = memo(({ edu, index, isInView }: { edu: any; index: number; isInView: boolean }) => (
   <motion.div
-    initial={{ opacity: 0, x: -50 }}
+    initial={{ opacity: 0, x: -30 }}
     animate={isInView ? { opacity: 1, x: 0 } : {}}
-    transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
+    transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
     whileHover={{
       scale: 1.02,
-      x: 5,
-      boxShadow: "0 20px 40px rgba(0, 204, 255, 0.1)",
+      x: 3,
     }}
     className="group w-full"
     style={{ willChange: "transform" }}
   >
-    <Card className="bg-[#111111] border border-[#222222] shadow-xl overflow-hidden relative backdrop-blur-sm group-hover:border-[#00ccff]/30 transition-all duration-500 w-full">
-      <div className="absolute inset-0 bg-gradient-to-br from-[#00ccff]/5 via-transparent to-[#0099ff]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+    <Card className="bg-[#111111] border border-[#222222] shadow-xl overflow-hidden relative backdrop-blur-sm group-hover:border-[#00ccff]/30 transition-all duration-300 w-full">
+      <div className="absolute inset-0 bg-gradient-to-br from-[#00ccff]/3 via-transparent to-[#0099ff]/3 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
       <CardContent className="p-4 sm:p-6 relative z-10">
         <div className="flex items-start gap-3 sm:gap-4">
           <motion.div
             className="p-2 sm:p-3 rounded-full bg-[#00ccff]/20 group-hover:bg-[#00ccff]/30 transition-colors border border-[#00ccff]/30 flex-shrink-0"
-            whileHover={{ rotate: 360, scale: 1.1 }}
-            transition={{ duration: 0.6 }}
-            style={{ willChange: "transform" }}
+            whileHover={{ rotate: 180, scale: 1.05 }}
+            transition={{ duration: 0.3 }}
           >
             <edu.icon className="h-5 w-5 sm:h-6 sm:w-6 text-[#00ccff]" />
           </motion.div>
@@ -807,25 +801,24 @@ const EducationCard = memo(({ edu, index, isInView }: { edu: any; index: number;
 
 EducationCard.displayName = "EducationCard"
 
-// Memoized Skill Category Component
+// Optimized Skill Category Component
 const SkillCategory = memo(({ category, index, isInView }: { category: any; index: number; isInView: boolean }) => (
   <motion.div
-    initial={{ opacity: 0, y: 30 }}
+    initial={{ opacity: 0, y: 20 }}
     animate={isInView ? { opacity: 1, y: 0 } : {}}
-    transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
+    transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
     whileHover={{
-      scale: 1.05,
-      y: -5,
-      boxShadow: `0 20px 40px ${category.color}20`,
+      scale: 1.02,
+      y: -2,
     }}
     className="group w-full"
     style={{ willChange: "transform" }}
   >
-    <Card className="bg-[#111111] border border-[#222222] shadow-xl h-full overflow-hidden relative backdrop-blur-sm group-hover:border-[#00ffcc]/30 transition-all duration-500 w-full">
+    <Card className="bg-[#111111] border border-[#222222] shadow-xl h-full overflow-hidden relative backdrop-blur-sm group-hover:border-[#00ffcc]/30 transition-all duration-300 w-full">
       <div
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
         style={{
-          background: `linear-gradient(135deg, ${category.color}05 0%, transparent 50%, ${category.color}05 100%)`,
+          background: `linear-gradient(135deg, ${category.color}03 0%, transparent 50%, ${category.color}03 100%)`,
         }}
       />
 
@@ -838,8 +831,7 @@ const SkillCategory = memo(({ category, index, isInView }: { category: any; inde
               borderColor: `${category.color}30`,
             }}
             whileHover={{ rotate: 5, scale: 1.05 }}
-            transition={{ duration: 0.3 }}
-            style={{ willChange: "transform" }}
+            transition={{ duration: 0.2 }}
           >
             <category.icon className="h-5 w-5 sm:h-6 sm:w-6" style={{ color: category.color }} />
           </motion.div>
@@ -851,11 +843,10 @@ const SkillCategory = memo(({ category, index, isInView }: { category: any; inde
           {category.skills.map((skill: string, skillIndex: number) => (
             <motion.div
               key={skillIndex}
-              initial={{ opacity: 0, scale: 0.8 }}
+              initial={{ opacity: 0, scale: 0.9 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.3, delay: 0.8 + index * 0.1 + skillIndex * 0.05 }}
-              whileHover={{ scale: 1.05 }}
-              style={{ willChange: "transform" }}
+              transition={{ duration: 0.2, delay: 0.5 + index * 0.1 + skillIndex * 0.02 }}
+              whileHover={{ scale: 1.03 }}
             >
               <Badge
                 variant="outline"
@@ -873,30 +864,28 @@ const SkillCategory = memo(({ category, index, isInView }: { category: any; inde
 
 SkillCategory.displayName = "SkillCategory"
 
-// Memoized Certification Card Component
+// Optimized Certification Card Component
 const CertificationCard = memo(({ cert, index, isInView }: { cert: any; index: number; isInView: boolean }) => (
   <motion.div
-    initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+    initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
     animate={isInView ? { opacity: 1, x: 0 } : {}}
-    transition={{ duration: 0.6, delay: 1 + index * 0.1 }}
+    transition={{ duration: 0.4, delay: 0.7 + index * 0.1 }}
     whileHover={{
-      scale: 1.02,
-      y: -3,
-      boxShadow: "0 15px 30px rgba(0, 230, 255, 0.1)",
+      scale: 1.01,
+      y: -2,
     }}
     className="group w-full"
     style={{ willChange: "transform" }}
   >
-    <Card className="bg-[#111111] border border-[#222222] shadow-xl overflow-hidden relative backdrop-blur-sm group-hover:border-[#00e6ff]/30 transition-all duration-500 cursor-pointer w-full">
-      <div className="absolute inset-0 bg-gradient-to-br from-[#00e6ff]/5 via-transparent to-[#00ccff]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+    <Card className="bg-[#111111] border border-[#222222] shadow-xl overflow-hidden relative backdrop-blur-sm group-hover:border-[#00e6ff]/30 transition-all duration-300 cursor-pointer w-full">
+      <div className="absolute inset-0 bg-gradient-to-br from-[#00e6ff]/3 via-transparent to-[#00ccff]/3 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
       <CardContent className="p-4 sm:p-6 relative z-10">
         <div className="flex items-start gap-3 sm:gap-4">
           <motion.div
             className="p-2 sm:p-3 rounded-xl bg-[#00e6ff]/20 border border-[#00e6ff]/30 group-hover:bg-[#00e6ff]/30 transition-colors flex-shrink-0"
-            whileHover={{ rotate: 360, scale: 1.1 }}
-            transition={{ duration: 0.6 }}
-            style={{ willChange: "transform" }}
+            whileHover={{ rotate: 180, scale: 1.05 }}
+            transition={{ duration: 0.3 }}
           >
             <cert.icon className="h-5 w-5 sm:h-6 sm:w-6 text-[#00e6ff]" />
           </motion.div>
@@ -935,26 +924,24 @@ CertificationCard.displayName = "CertificationCard"
 
 export default function AboutPage() {
   const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const isInView = useInView(ref, { once: true, margin: "-50px" })
 
-  // Memoized animation variants for better performance
   const containerVariants = useMemo(
     () => ({
       hidden: { opacity: 0 },
-      visible: { opacity: 1, transition: { duration: 0.8 } },
+      visible: { opacity: 1, transition: { duration: 0.6 } },
     }),
     [],
   )
 
   const headerVariants = useMemo(
     () => ({
-      hidden: { opacity: 0, y: 30 },
-      visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+      hidden: { opacity: 0, y: 20 },
+      visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
     }),
     [],
   )
 
-  // Memoized stats data
   const statsData = useMemo(
     () => [
       { value: "4+", label: "Projects Completed", icon: Cpu, color: "#00ffcc" },
@@ -966,7 +953,7 @@ export default function AboutPage() {
 
   return (
     <div ref={ref} className="min-h-screen bg-[#0a0a0a] relative overflow-hidden">
-      <EnhancedBackground />
+      <UltraOptimizedAboutBackground />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-20 relative z-10 max-w-7xl">
         <motion.div
@@ -975,14 +962,14 @@ export default function AboutPage() {
           animate={isInView ? "visible" : "hidden"}
           className="space-y-12 sm:space-y-16 lg:space-y-20"
         >
-          {/* Enhanced Header */}
+          {/* Header */}
           <motion.div variants={headerVariants} className="text-center space-y-4 sm:space-y-6 px-4">
             <motion.h1
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight"
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 1, delay: 0.2 }}
-              style={{ lineHeight: "1.1", willChange: "transform" }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              style={{ lineHeight: "1.1" }}
             >
               <span className="text-white">About </span>
               <motion.span
@@ -995,44 +982,41 @@ export default function AboutPage() {
                   ],
                 }}
                 transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY }}
-                style={{ willChange: "filter" }}
               >
                 Me
               </motion.span>
             </motion.h1>
             <motion.p
               className="text-base sm:text-lg md:text-xl text-[#cccccc] max-w-4xl mx-auto leading-relaxed px-4 mt-6"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
             >
               Passionate full-stack developer with hands-on experience in building dynamic applications using MERN,
               Next.js, and RESTful APIs. Transforming ideas into digital reality with cutting-edge technology.
             </motion.p>
           </motion.div>
 
-          {/* Enhanced Summary Section */}
+          {/* Summary Section */}
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
             whileHover={{
-              scale: 1.02,
-              boxShadow: "0 25px 50px rgba(0, 255, 204, 0.1)",
+              scale: 1.01,
             }}
             className="w-full"
             style={{ willChange: "transform" }}
           >
-            <Card className="bg-[#111111] border border-[#222222] shadow-2xl overflow-hidden relative backdrop-blur-sm hover:border-[#00ffcc]/30 transition-all duration-500 w-full">
-              <div className="absolute inset-0 bg-gradient-to-br from-[#00ffcc]/5 via-transparent to-[#00ccff]/5 opacity-0 hover:opacity-100 transition-opacity duration-500" />
+            <Card className="bg-[#111111] border border-[#222222] shadow-2xl overflow-hidden relative backdrop-blur-sm hover:border-[#00ffcc]/30 transition-all duration-300 w-full">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#00ffcc]/3 via-transparent to-[#00ccff]/3 opacity-0 hover:opacity-100 transition-opacity duration-300" />
 
               <CardContent className="p-6 sm:p-8 relative z-10">
                 <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6 flex-wrap">
                   <motion.div
                     className="p-2 sm:p-3 rounded-xl bg-[#00ffcc]/20 border border-[#00ffcc]/30 flex-shrink-0"
                     whileHover={{ rotate: 5, scale: 1.05 }}
-                    transition={{ duration: 0.3 }}
-                    style={{ willChange: "transform" }}
+                    transition={{ duration: 0.2 }}
                   >
                     <Brain className="h-6 w-6 sm:h-8 sm:w-8 text-[#00ffcc]" />
                   </motion.div>
@@ -1048,19 +1032,18 @@ export default function AboutPage() {
             </Card>
           </motion.div>
 
-          {/* Enhanced Education Section */}
+          {/* Education Section */}
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
             className="w-full"
           >
             <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8 px-4 flex-wrap">
               <motion.div
                 className="p-2 sm:p-3 rounded-xl bg-[#00ccff]/20 border border-[#00ccff]/30 flex-shrink-0"
                 whileHover={{ rotate: 5, scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-                style={{ willChange: "transform" }}
+                transition={{ duration: 0.2 }}
               >
                 <GraduationCap className="h-6 w-6 sm:h-8 sm:w-8 text-[#00ccff]" />
               </motion.div>
@@ -1073,19 +1056,18 @@ export default function AboutPage() {
             </div>
           </motion.div>
 
-          {/* Enhanced Skills Section */}
+          {/* Skills Section */}
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
             className="w-full"
           >
             <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8 px-4 flex-wrap">
               <motion.div
                 className="p-2 sm:p-3 rounded-xl bg-[#0099ff]/20 border border-[#0099ff]/30 flex-shrink-0"
                 whileHover={{ rotate: 5, scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-                style={{ willChange: "transform" }}
+                transition={{ duration: 0.2 }}
               >
                 <Code className="h-6 w-6 sm:h-8 sm:w-8 text-[#0099ff]" />
               </motion.div>
@@ -1098,19 +1080,18 @@ export default function AboutPage() {
             </div>
           </motion.div>
 
-          {/* Enhanced Certifications Section */}
+          {/* Certifications Section */}
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.8 }}
+            transition={{ duration: 0.5, delay: 0.8 }}
             className="w-full"
           >
             <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8 px-4 flex-wrap">
               <motion.div
                 className="p-2 sm:p-3 rounded-xl bg-[#00e6ff]/20 border border-[#00e6ff]/30 flex-shrink-0"
                 whileHover={{ rotate: 5, scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-                style={{ willChange: "transform" }}
+                transition={{ duration: 0.2 }}
               >
                 <Award className="h-6 w-6 sm:h-8 sm:w-8 text-[#00e6ff]" />
               </motion.div>
@@ -1123,14 +1104,13 @@ export default function AboutPage() {
             </div>
           </motion.div>
 
-          {/* Enhanced Position of Responsibility - FIXED RESPONSIVENESS */}
+          {/* Position of Responsibility */}
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 1 }}
+            transition={{ duration: 0.5, delay: 1 }}
             whileHover={{
-              scale: 1.02,
-              boxShadow: "0 25px 50px rgba(0, 255, 204, 0.1)",
+              scale: 1.01,
             }}
             className="w-full"
             style={{ willChange: "transform" }}
@@ -1139,8 +1119,7 @@ export default function AboutPage() {
               <motion.div
                 className="p-2 sm:p-3 rounded-xl bg-[#00ffcc]/20 border border-[#00ffcc]/30 flex-shrink-0"
                 whileHover={{ rotate: 5, scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-                style={{ willChange: "transform" }}
+                transition={{ duration: 0.2 }}
               >
                 <Target className="h-6 w-6 sm:h-8 sm:w-8 text-[#00ffcc]" />
               </motion.div>
@@ -1148,16 +1127,15 @@ export default function AboutPage() {
                 Position of Responsibility
               </h2>
             </div>
-            <Card className="bg-[#111111] border border-[#222222] shadow-2xl overflow-hidden relative backdrop-blur-sm hover:border-[#00ffcc]/30 transition-all duration-500 w-full">
-              <div className="absolute inset-0 bg-gradient-to-br from-[#00ffcc]/5 via-transparent to-[#00e6ff]/5 opacity-0 hover:opacity-100 transition-opacity duration-500" />
+            <Card className="bg-[#111111] border border-[#222222] shadow-2xl overflow-hidden relative backdrop-blur-sm hover:border-[#00ffcc]/30 transition-all duration-300 w-full">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#00ffcc]/3 via-transparent to-[#00e6ff]/3 opacity-0 hover:opacity-100 transition-opacity duration-300" />
 
               <CardContent className="p-4 sm:p-6 lg:p-8 relative z-10">
                 <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
                   <motion.div
                     className="p-3 sm:p-4 rounded-xl bg-[#00ffcc]/20 border border-[#00ffcc]/30 flex-shrink-0"
                     whileHover={{ rotate: 5, scale: 1.05 }}
-                    transition={{ duration: 0.3 }}
-                    style={{ willChange: "transform" }}
+                    transition={{ duration: 0.2 }}
                   >
                     <Lightbulb className="h-6 w-6 sm:h-8 sm:w-8 text-[#00ffcc]" />
                   </motion.div>
@@ -1188,33 +1166,32 @@ export default function AboutPage() {
             </Card>
           </motion.div>
 
-          {/* Enhanced Stats Section */}
+          {/* Stats Section */}
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 1.2 }}
+            transition={{ duration: 0.5, delay: 1.2 }}
             className="w-full"
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {statsData.map((stat, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, scale: 0.8 }}
+                  initial={{ opacity: 0, scale: 0.9 }}
                   animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ duration: 0.6, delay: 1.4 + index * 0.1 }}
+                  transition={{ duration: 0.4, delay: 1.4 + index * 0.1 }}
                   whileHover={{
-                    scale: 1.05,
-                    y: -5,
-                    boxShadow: `0 15px 30px ${stat.color}20`,
+                    scale: 1.02,
+                    y: -3,
                   }}
                   className="group w-full"
                   style={{ willChange: "transform" }}
                 >
-                  <Card className="bg-[#111111] border border-[#222222] shadow-xl overflow-hidden relative backdrop-blur-sm group-hover:border-[#00ffcc]/30 transition-all duration-500 text-center w-full">
+                  <Card className="bg-[#111111] border border-[#222222] shadow-xl overflow-hidden relative backdrop-blur-sm group-hover:border-[#00ffcc]/30 transition-all duration-300 text-center w-full">
                     <div
-                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                       style={{
-                        background: `linear-gradient(135deg, ${stat.color}05 0%, transparent 50%, ${stat.color}05 100%)`,
+                        background: `linear-gradient(135deg, ${stat.color}03 0%, transparent 50%, ${stat.color}03 100%)`,
                       }}
                     />
 
@@ -1225,9 +1202,8 @@ export default function AboutPage() {
                           backgroundColor: `${stat.color}20`,
                           borderColor: `${stat.color}30`,
                         }}
-                        whileHover={{ rotate: 360, scale: 1.1 }}
-                        transition={{ duration: 0.6 }}
-                        style={{ willChange: "transform" }}
+                        whileHover={{ rotate: 180, scale: 1.1 }}
+                        transition={{ duration: 0.3 }}
                       >
                         <stat.icon className="h-5 w-5 sm:h-6 sm:w-6" style={{ color: stat.color }} />
                       </motion.div>

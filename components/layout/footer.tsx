@@ -1,10 +1,10 @@
-"use client";
+"use client"
 
-import { motion } from "framer-motion";
-import { Mail, ArrowUp, MapPin, Phone, MailPlus } from "lucide-react";
-import Link from "next/link";
-import { memo, useCallback, useMemo } from "react";
-import Image from "next/image";
+import { motion } from "framer-motion"
+import { ArrowUp, MapPin, Phone, MailPlus } from "lucide-react"
+import Link from "next/link"
+import { memo, useCallback, useMemo } from "react"
+import Image from "next/image"
 
 const VercelIcon = memo(({ className }: { className?: string }) => (
   <svg
@@ -16,50 +16,29 @@ const VercelIcon = memo(({ className }: { className?: string }) => (
     className={className}
     strokeLinejoin="round"
   >
-    <path
-      fillRule="evenodd"
-      clipRule="evenodd"
-      d="M8 1L16 15H0L8 1Z"
-      fill="currentColor"
-    />
+    <path fillRule="evenodd" clipRule="evenodd" d="M8 1L16 15H0L8 1Z" fill="currentColor" />
   </svg>
-));
+))
+
 const NpmIcon = memo(({ className }: { className?: string }) => (
-  <Image
-    src="/icons/npm.svg"
-    alt="npm"
-    width={20}
-    height={20}
-    className={className}
-  />
-));
+  <Image src="/icons/npm.svg" alt="npm" width={20} height={20} className={className} />
+))
 
 const XIcon = memo(({ className }: { className?: string }) => (
   <svg viewBox="0 0 24 24" className={className} fill="currentColor">
     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
   </svg>
-));
+))
 
 const GitHubIcon = memo(({ className }: { className?: string }) => (
-  <Image
-    src="/icons/github.svg"
-    alt="GitHub"
-    width={22}
-    height={22}
-    className={className}
-  />
-));
+  <Image src="/icons/github.svg" alt="GitHub" width={22} height={22} className={className} />
+))
 
 const LinkedInIcon = memo(({ className }: { className?: string }) => (
-  <Image
-    src="/icons/linkedin.svg"
-    alt="LinkedIn"
-    width={20}
-    height={20}
-    className={className}
-  />
-));
+  <Image src="/icons/linkedin.svg" alt="LinkedIn" width={20} height={20} className={className} />
+))
 
+// Memoized social links for performance
 const socialLinks = [
   {
     href: "https://github.com/Hridesh-Srivastava",
@@ -96,7 +75,7 @@ const socialLinks = [
     hoverColor: "hover:text-gray-400",
     bgHover: "hover:bg-gray-900/20",
   },
-];
+]
 
 const quickLinks = [
   { href: "/", label: "Home" },
@@ -104,992 +83,207 @@ const quickLinks = [
   { href: "/projects", label: "Projects" },
   { href: "/services", label: "Services" },
   { href: "/contact", label: "Contact" },
-];
+]
 
-export function Footer() {
-  const currentYear = useCallback(() => new Date().getFullYear(), []);
+// Ultra-optimized footer background with enhanced visuals but maximum performance
+const UltraOptimizedFooterBackground = memo(() => {
+  // Memoized stars generation for performance
+  const stars = useMemo(
+    () =>
+      [...Array(35)].map((_, i) => ({
+        id: i,
+        left: Math.random() * 100,
+        top: Math.random() * 100,
+        size: Math.random() * 1.5 + 0.5,
+        duration: 2 + Math.random() * 2,
+        delay: Math.random() * 2,
+      })),
+    [],
+  )
+
+  return (
+    <div className="absolute inset-0">
+      {/* Optimized stars with CSS animations */}
+      <div className="absolute inset-0" style={{ contain: "layout style paint" }}>
+        {stars.map((star) => (
+          <div
+            key={star.id}
+            className="absolute bg-white rounded-full"
+            style={{
+              left: `${star.left}%`,
+              top: `${star.top}%`,
+              width: `${star.size}px`,
+              height: `${star.size}px`,
+              animation: `twinkle ${star.duration}s ease-in-out infinite`,
+              animationDelay: `${star.delay}s`,
+              willChange: "opacity, transform",
+            }}
+          />
+        ))}
+      </div>
+
+      {/* CSS-only animations for maximum performance */}
+      <div className="absolute inset-0">
+        <style jsx>{`
+          @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.2); }
+          }
+          @keyframes footerShootingOrbit1 {
+            0% { transform: translateX(-100px) translateY(0px); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateX(180px) translateY(-50px); opacity: 0; }
+          }
+          @keyframes footerShootingOrbit2 {
+            0% { transform: translateX(-80px) translateY(20px); opacity: 0; }
+            15% { opacity: 0.8; }
+            85% { opacity: 0.8; }
+            100% { transform: translateX(160px) translateY(-30px); opacity: 0; }
+          }
+          @keyframes footerFlowH {
+            0% { transform: translateX(-100px); opacity: 0; }
+            50% { opacity: 0.4; }
+            100% { transform: translateX(100px); opacity: 0; }
+          }
+          @keyframes footerFlowV {
+            0% { transform: translateY(-100px); opacity: 0; }
+            50% { opacity: 0.3; }
+            100% { transform: translateY(100px); opacity: 0; }
+          }
+          .footer-shooting-orbit-1 {
+            animation: footerShootingOrbit1 8s ease-in-out infinite;
+          }
+          .footer-shooting-orbit-2 {
+            animation: footerShootingOrbit2 9s ease-in-out infinite;
+          }
+          .footer-flow-h {
+            animation: footerFlowH 8s ease-in-out infinite;
+          }
+          .footer-flow-v {
+            animation: footerFlowV 9s ease-in-out infinite;
+          }
+        `}</style>
+
+        {/* Enhanced shooting orbits */}
+        <div className="absolute top-6 left-0 w-3.5 h-3.5 bg-[#00ffcc] rounded-full footer-shooting-orbit-1 shadow-lg shadow-[#00ffcc]/60" />
+        <div
+          className="absolute top-12 left-0 w-3 h-3 bg-[#00ccff] rounded-full footer-shooting-orbit-2 shadow-lg shadow-[#00ccff]/60"
+          style={{ animationDelay: "2s" }}
+        />
+        <div
+          className="absolute bottom-8 left-0 w-2.5 h-2.5 bg-[#0099ff] rounded-full footer-shooting-orbit-1 shadow-lg shadow-[#0099ff]/60"
+          style={{ animationDelay: "1s" }}
+        />
+
+        {/* Enhanced flowing lines */}
+        <div className="absolute top-20 left-0 w-40 h-0.5 bg-gradient-to-r from-transparent via-[#00ffcc] to-transparent footer-flow-h" />
+        <div
+          className="absolute top-40 left-0 w-36 h-0.5 bg-gradient-to-r from-transparent via-[#00ccff] to-transparent footer-flow-h"
+          style={{ animationDelay: "1s" }}
+        />
+        <div
+          className="absolute bottom-20 left-0 w-38 h-0.5 bg-gradient-to-r from-transparent via-[#0099ff] to-transparent footer-flow-h"
+          style={{ animationDelay: "2s" }}
+        />
+
+        {/* Enhanced vertical flowing lines */}
+        <div className="absolute top-0 left-20 w-0.5 h-40 bg-gradient-to-b from-transparent via-[#00ffcc] to-transparent footer-flow-v" />
+        <div
+          className="absolute top-0 right-20 w-0.5 h-36 bg-gradient-to-b from-transparent via-[#00ccff] to-transparent footer-flow-v"
+          style={{ animationDelay: "1.5s" }}
+        />
+        <div
+          className="absolute top-0 left-1/2 w-0.5 h-38 bg-gradient-to-b from-transparent via-[#0099ff] to-transparent footer-flow-v"
+          style={{ animationDelay: "3s" }}
+        />
+      </div>
+
+      {/* Enhanced geometric elements */}
+      <div className="absolute inset-0">
+        <div
+          className="absolute w-3 h-3 border border-[#00ffcc]/35 rotate-45"
+          style={{
+            top: "25%",
+            left: "20%",
+            animation: "twinkle 3s ease-in-out infinite",
+          }}
+        />
+        <div
+          className="absolute w-2.5 h-2.5 bg-[#00ccff]/40 rounded-full"
+          style={{
+            top: "60%",
+            right: "25%",
+            animation: "twinkle 4s ease-in-out infinite",
+            animationDelay: "1s",
+          }}
+        />
+        <div
+          className="absolute w-4 h-0.5 bg-gradient-to-r from-[#00ffcc] to-transparent"
+          style={{
+            top: "40%",
+            left: "75%",
+            animation: "twinkle 2s ease-in-out infinite",
+            animationDelay: "0.5s",
+          }}
+        />
+        <div
+          className="absolute w-2 h-2 border border-[#0099ff]/30 rounded-full"
+          style={{
+            bottom: "40%",
+            left: "30%",
+            animation: "twinkle 2.5s ease-in-out infinite",
+            animationDelay: "1.5s",
+          }}
+        />
+      </div>
+
+      {/* Enhanced nebula effects */}
+      <div className="absolute top-10 left-10 w-80 h-80 bg-[#00ffcc]/5 rounded-full blur-3xl animate-pulse" />
+      <div
+        className="absolute bottom-10 right-10 w-72 h-72 bg-[#00ccff]/5 rounded-full blur-3xl animate-pulse"
+        style={{ animationDelay: "2s" }}
+      />
+
+      {/* Background gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0f0f0f] via-[#0f0f0f] to-[#0a0a0a]" />
+
+      {/* Grid pattern */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#111111_1px,transparent_1px),linear-gradient(to_bottom,#111111_1px,transparent_1px)] bg-[size:100px_100px] opacity-6"></div>
+    </div>
+  )
+})
+
+UltraOptimizedFooterBackground.displayName = "UltraOptimizedFooterBackground"
+
+export const Footer = memo(() => {
+  const currentYear = useCallback(() => new Date().getFullYear(), [])
 
   const scrollToTop = useCallback(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }, [])
 
-  const starField = useMemo(() => {
-    return [...Array(200)].map((_, i) => (
-      <motion.div
-        key={`star-${i}`}
-        animate={{
-          opacity: [0.1, 0.7, 0.1],
-          scale: [1, 1.2, 1],
-        }}
-        transition={{
-          duration: Math.random() * 3 + 2,
-          repeat: Number.POSITIVE_INFINITY,
-          delay: Math.random() * 2,
-        }}
-        className="absolute bg-white rounded-full will-change-transform"
-        style={{
-          left: `${Math.random() * 100}%`,
-          top: `${Math.random() * 100}%`,
-          width: `${Math.random() * 1.5 + 0.5}px`,
-          height: `${Math.random() * 1.5 + 0.5}px`,
-        }}
-      />
-    ));
-  }, []);
+  // Memoized animation variants for better performance
+  const containerVariants = useMemo(
+    () => ({
+      hidden: { opacity: 0, y: 20 },
+      visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+    }),
+    [],
+  )
 
   return (
     <footer className="relative bg-[#0f0f0f] border-t border-[#222222] overflow-hidden">
-      <div className="absolute inset-0">
-        {starField}
-
-        <svg className="absolute inset-0 w-full h-full opacity-60">
-          <defs>
-            <linearGradient id="footerFlow1" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="transparent" />
-              <stop offset="30%" stopColor="#00ffcc">
-                <animate
-                  attributeName="stop-color"
-                  values="#00ffcc;#00e6ff;#0099ff;#00ccff;#00ffcc"
-                  dur="3s"
-                  repeatCount="indefinite"
-                />
-              </stop>
-              <stop offset="70%" stopColor="#00ccff">
-                <animate
-                  attributeName="stop-color"
-                  values="#00ccff;#0099ff;#00ffcc;#00e6ff;#00ccff"
-                  dur="3s"
-                  repeatCount="indefinite"
-                />
-              </stop>
-              <stop offset="100%" stopColor="transparent" />
-              <animateTransform
-                attributeName="gradientTransform"
-                type="translate"
-                values="-100 0;100 0;-100 0"
-                dur="4s"
-                repeatCount="indefinite"
-              />
-            </linearGradient>
-
-            <linearGradient id="footerFlow2" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="transparent" />
-              <stop offset="30%" stopColor="#0099ff">
-                <animate
-                  attributeName="stop-color"
-                  values="#0099ff;#00ffcc;#00e6ff;#00ccff;#0099ff"
-                  dur="3.5s"
-                  repeatCount="indefinite"
-                />
-              </stop>
-              <stop offset="70%" stopColor="#00e6ff">
-                <animate
-                  attributeName="stop-color"
-                  values="#00e6ff;#00ccff;#0099ff;#00ffcc;#00e6ff"
-                  dur="3.5s"
-                  repeatCount="indefinite"
-                />
-              </stop>
-              <stop offset="100%" stopColor="transparent" />
-              <animateTransform
-                attributeName="gradientTransform"
-                type="translate"
-                values="-100 0;100 0;-100 0"
-                dur="5s"
-                repeatCount="indefinite"
-              />
-            </linearGradient>
-
-            <linearGradient id="footerFlow3" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="transparent" />
-              <stop offset="30%" stopColor="#00ccff">
-                <animate
-                  attributeName="stop-color"
-                  values="#00ccff;#0099ff;#00ffcc;#00e6ff;#00ccff"
-                  dur="4s"
-                  repeatCount="indefinite"
-                />
-              </stop>
-              <stop offset="70%" stopColor="#00ffcc">
-                <animate
-                  attributeName="stop-color"
-                  values="#00ffcc;#00e6ff;#0099ff;#00ccff;#00ffcc"
-                  dur="4s"
-                  repeatCount="indefinite"
-                />
-              </stop>
-              <stop offset="100%" stopColor="transparent" />
-              <animateTransform
-                attributeName="gradientTransform"
-                type="translate"
-                values="0 -100;0 100;0 -100"
-                dur="4.5s"
-                repeatCount="indefinite"
-              />
-            </linearGradient>
-
-            <filter id="footerGlow">
-              <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-              <feMerge>
-                <feMergeNode in="coloredBlur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-
-            <filter id="strongGlow">
-              <feGaussianBlur stdDeviation="5" result="coloredBlur" />
-              <feMerge>
-                <feMergeNode in="coloredBlur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-          </defs>
-
-          {/* Main Horizontal Flowing Lines */}
-          <motion.line
-            x1="0"
-            y1="80"
-            x2="1920"
-            y2="80"
-            stroke="url(#footerFlow1)"
-            strokeWidth="2.8"
-            filter="url(#footerGlow)"
-            animate={{
-              y1: [80, 100, 80],
-              y2: [80, 100, 80],
-            }}
-            transition={{
-              duration: 6,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-            }}
-          />
-
-          <motion.line
-            x1="0"
-            y1="200"
-            x2="1920"
-            y2="200"
-            stroke="url(#footerFlow2)"
-            strokeWidth="2.5"
-            filter="url(#footerGlow)"
-            animate={{
-              y1: [200, 220, 200],
-              y2: [200, 220, 200],
-            }}
-            transition={{
-              duration: 7,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-              delay: 1,
-            }}
-          />
-
-          <motion.line
-            x1="0"
-            y1="320"
-            x2="1920"
-            y2="320"
-            stroke="url(#footerFlow1)"
-            strokeWidth="3"
-            filter="url(#footerGlow)"
-            animate={{
-              y1: [320, 340, 320],
-              y2: [320, 340, 320],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-              delay: 2,
-            }}
-          />
-
-          {/* Vertical Flowing Lines */}
-          <motion.line
-            x1="250"
-            y1="0"
-            x2="250"
-            y2="400"
-            stroke="url(#footerFlow3)"
-            strokeWidth="2.6"
-            filter="url(#footerGlow)"
-            animate={{
-              x1: [250, 270, 250],
-              x2: [250, 270, 250],
-            }}
-            transition={{
-              duration: 6,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-              delay: 0.5,
-            }}
-          />
-
-          <motion.line
-            x1="600"
-            y1="0"
-            x2="600"
-            y2="400"
-            stroke="url(#footerFlow3)"
-            strokeWidth="2.8"
-            filter="url(#footerGlow)"
-            animate={{
-              x1: [600, 620, 600],
-              x2: [600, 620, 600],
-            }}
-            transition={{
-              duration: 7,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-              delay: 1.5,
-            }}
-          />
-
-          <motion.line
-            x1="1000"
-            y1="0"
-            x2="1000"
-            y2="400"
-            stroke="url(#footerFlow3)"
-            strokeWidth="2.4"
-            filter="url(#footerGlow)"
-            animate={{
-              x1: [1000, 1020, 1000],
-              x2: [1000, 1020, 1000],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-              delay: 2.5,
-            }}
-          />
-
-          <motion.line
-            x1="1400"
-            y1="0"
-            x2="1400"
-            y2="400"
-            stroke="url(#footerFlow3)"
-            strokeWidth="2.7"
-            filter="url(#footerGlow)"
-            animate={{
-              x1: [1400, 1420, 1400],
-              x2: [1400, 1420, 1400],
-            }}
-            transition={{
-              duration: 9,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-              delay: 3.5,
-            }}
-          />
-
-          {/* Enhanced Circuit Nodes - Increased quantity and faster animations */}
-          <motion.circle
-            cx="250"
-            cy="80"
-            r="6"
-            fill="#00ffcc"
-            filter="url(#strongGlow)"
-            animate={{
-              r: [6, 8, 6],
-              cx: [250, 270, 250],
-              cy: [80, 100, 80],
-            }}
-            transition={{
-              duration: 6,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-            }}
-          >
-            <animate
-              attributeName="fill"
-              values="#00ffcc;#00e6ff;#0099ff;#00ccff;#00ffcc"
-              dur="3s"
-              repeatCount="indefinite"
-            />
-          </motion.circle>
-
-          <motion.circle
-            cx="600"
-            cy="200"
-            r="7"
-            fill="#00ccff"
-            filter="url(#strongGlow)"
-            animate={{
-              r: [7, 9, 7],
-              cx: [600, 620, 600],
-              cy: [200, 220, 200],
-            }}
-            transition={{
-              duration: 7,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-              delay: 1,
-            }}
-          >
-            <animate
-              attributeName="fill"
-              values="#00ccff;#0099ff;#00ffcc;#00e6ff;#00ccff"
-              dur="3.5s"
-              repeatCount="indefinite"
-            />
-          </motion.circle>
-
-          <motion.circle
-            cx="1000"
-            cy="320"
-            r="6.5"
-            fill="#0099ff"
-            filter="url(#strongGlow)"
-            animate={{
-              r: [6.5, 8.5, 6.5],
-              cx: [1000, 1020, 1000],
-              cy: [320, 340, 320],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-              delay: 2,
-            }}
-          >
-            <animate
-              attributeName="fill"
-              values="#0099ff;#00ffcc;#00e6ff;#00ccff;#0099ff"
-              dur="4s"
-              repeatCount="indefinite"
-            />
-          </motion.circle>
-
-          <motion.circle
-            cx="1400"
-            cy="280"
-            r="5.8"
-            fill="#00e6ff"
-            filter="url(#strongGlow)"
-            animate={{
-              r: [5.8, 7.8, 5.8],
-              cx: [1400, 1420, 1400],
-              cy: [280, 300, 280],
-            }}
-            transition={{
-              duration: 9,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-              delay: 3,
-            }}
-          >
-            <animate
-              attributeName="fill"
-              values="#00e6ff;#00ccff;#0099ff;#00ffcc;#00e6ff"
-              dur="3.2s"
-              repeatCount="indefinite"
-            />
-          </motion.circle>
-
-          {/* Additional Circuit Nodes */}
-          <motion.circle
-            cx="450"
-            cy="150"
-            r="5.5"
-            fill="#00ffcc"
-            filter="url(#strongGlow)"
-            animate={{
-              r: [5.5, 7.5, 5.5],
-              cx: [450, 470, 450],
-              cy: [150, 170, 150],
-            }}
-            transition={{
-              duration: 6.5,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-              delay: 0.8,
-            }}
-          >
-            <animate
-              attributeName="fill"
-              values="#00ffcc;#00e6ff;#0099ff;#00ccff;#00ffcc"
-              dur="2.8s"
-              repeatCount="indefinite"
-            />
-          </motion.circle>
-
-          <motion.circle
-            cx="800"
-            cy="120"
-            r="6.2"
-            fill="#00ccff"
-            filter="url(#strongGlow)"
-            animate={{
-              r: [6.2, 8.2, 6.2],
-              cx: [800, 820, 800],
-              cy: [120, 140, 120],
-            }}
-            transition={{
-              duration: 7.5,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-              delay: 1.8,
-            }}
-          >
-            <animate
-              attributeName="fill"
-              values="#00ccff;#0099ff;#00ffcc;#00e6ff;#00ccff"
-              dur="3.3s"
-              repeatCount="indefinite"
-            />
-          </motion.circle>
-
-          <motion.circle
-            cx="1200"
-            cy="180"
-            r="5.3"
-            fill="#0099ff"
-            filter="url(#strongGlow)"
-            animate={{
-              r: [5.3, 7.3, 5.3],
-              cx: [1200, 1220, 1200],
-              cy: [180, 200, 180],
-            }}
-            transition={{
-              duration: 8.5,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-              delay: 2.8,
-            }}
-          >
-            <animate
-              attributeName="fill"
-              values="#0099ff;#00ffcc;#00e6ff;#00ccff;#0099ff"
-              dur="3.7s"
-              repeatCount="indefinite"
-            />
-          </motion.circle>
-
-          <motion.circle
-            cx="350"
-            cy="280"
-            r="6.8"
-            fill="#00e6ff"
-            filter="url(#strongGlow)"
-            animate={{
-              r: [6.8, 8.8, 6.8],
-              cx: [350, 370, 350],
-              cy: [280, 300, 280],
-            }}
-            transition={{
-              duration: 6.8,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-              delay: 3.8,
-            }}
-          >
-            <animate
-              attributeName="fill"
-              values="#00e6ff;#00ccff;#0099ff;#00ffcc;#00e6ff"
-              dur="2.9s"
-              repeatCount="indefinite"
-            />
-          </motion.circle>
-
-          {/* Enhanced Flowing Data Particles - Faster and more particles */}
-          <motion.circle
-            r="4.5"
-            fill="#00ffcc"
-            filter="url(#strongGlow)"
-            animate={{
-              cx: [0, 250, 600, 1000, 1400, 1920],
-              cy: [80, 80, 200, 320, 280, 280],
-            }}
-            transition={{
-              duration: 5,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "linear",
-            }}
-          >
-            <animate
-              attributeName="fill"
-              values="#00ffcc;#00e6ff;#0099ff;#00ccff;#00ffcc"
-              dur="2.5s"
-              repeatCount="indefinite"
-            />
-            <animate
-              attributeName="r"
-              values="4.5;6.5;4.5"
-              dur="1.2s"
-              repeatCount="indefinite"
-            />
-          </motion.circle>
-
-          <motion.circle
-            r="4"
-            fill="#00ccff"
-            filter="url(#strongGlow)"
-            animate={{
-              cx: [1920, 1400, 1000, 600, 250, 0],
-              cy: [200, 200, 320, 200, 80, 80],
-            }}
-            transition={{
-              duration: 6,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "linear",
-              delay: 0.5,
-            }}
-          >
-            <animate
-              attributeName="fill"
-              values="#00ccff;#0099ff;#00ffcc;#00e6ff;#00ccff"
-              dur="3s"
-              repeatCount="indefinite"
-            />
-            <animate
-              attributeName="r"
-              values="4;6;4"
-              dur="1.4s"
-              repeatCount="indefinite"
-            />
-          </motion.circle>
-
-          <motion.circle
-            r="3.8"
-            fill="#0099ff"
-            filter="url(#strongGlow)"
-            animate={{
-              cx: [0, 450, 800, 1200, 1920],
-              cy: [150, 150, 120, 180, 180],
-            }}
-            transition={{
-              duration: 5.5,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "linear",
-              delay: 1,
-            }}
-          >
-            <animate
-              attributeName="fill"
-              values="#0099ff;#00ffcc;#00e6ff;#00ccff;#0099ff"
-              dur="3.2s"
-              repeatCount="indefinite"
-            />
-            <animate
-              attributeName="r"
-              values="3.8;5.8;3.8"
-              dur="1.3s"
-              repeatCount="indefinite"
-            />
-          </motion.circle>
-
-          <motion.circle
-            r="4.2"
-            fill="#00e6ff"
-            filter="url(#strongGlow)"
-            animate={{
-              cx: [1920, 1200, 800, 450, 350, 0],
-              cy: [120, 120, 180, 150, 280, 280],
-            }}
-            transition={{
-              duration: 6.5,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "linear",
-              delay: 1.5,
-            }}
-          >
-            <animate
-              attributeName="fill"
-              values="#00e6ff;#00ccff;#0099ff;#00ffcc;#00e6ff"
-              dur="2.7s"
-              repeatCount="indefinite"
-            />
-            <animate
-              attributeName="r"
-              values="4.2;6.2;4.2"
-              dur="1.5s"
-              repeatCount="indefinite"
-            />
-          </motion.circle>
-
-          {/* Circuit Patterns with Enhanced Flow - More patterns and faster animations */}
-          <motion.rect
-            x="230"
-            y="60"
-            width="40"
-            height="40"
-            fill="none"
-            stroke="#00ffcc"
-            strokeWidth="2.5"
-            filter="url(#footerGlow)"
-            animate={{
-              x: [230, 250, 230],
-              y: [60, 80, 60],
-            }}
-            transition={{
-              duration: 6,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-            }}
-          >
-            <animate
-              attributeName="stroke"
-              values="#00ffcc;#00e6ff;#0099ff;#00ccff;#00ffcc"
-              dur="3s"
-              repeatCount="indefinite"
-            />
-          </motion.rect>
-
-          <motion.rect
-            x="580"
-            y="180"
-            width="40"
-            height="40"
-            fill="none"
-            stroke="#00ccff"
-            strokeWidth="2.5"
-            filter="url(#footerGlow)"
-            animate={{
-              x: [580, 600, 580],
-              y: [180, 200, 180],
-            }}
-            transition={{
-              duration: 7,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-              delay: 1,
-            }}
-          >
-            <animate
-              attributeName="stroke"
-              values="#00ccff;#0099ff;#00ffcc;#00e6ff;#00ccff"
-              dur="3.5s"
-              repeatCount="indefinite"
-            />
-          </motion.rect>
-
-          <motion.rect
-            x="980"
-            y="300"
-            width="40"
-            height="40"
-            fill="none"
-            stroke="#0099ff"
-            strokeWidth="2.5"
-            filter="url(#footerGlow)"
-            animate={{
-              x: [980, 1000, 980],
-              y: [300, 320, 300],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-              delay: 2,
-            }}
-          >
-            <animate
-              attributeName="stroke"
-              values="#0099ff;#00ffcc;#00e6ff;#00ccff;#0099ff"
-              dur="4s"
-              repeatCount="indefinite"
-            />
-          </motion.rect>
-
-          <motion.rect
-            x="1380"
-            y="260"
-            width="40"
-            height="40"
-            fill="none"
-            stroke="#00e6ff"
-            strokeWidth="2.5"
-            filter="url(#footerGlow)"
-            animate={{
-              x: [1380, 1400, 1380],
-              y: [260, 280, 260],
-            }}
-            transition={{
-              duration: 9,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-              delay: 3,
-            }}
-          >
-            <animate
-              attributeName="stroke"
-              values="#00e6ff;#00ccff;#0099ff;#00ffcc;#00e6ff"
-              dur="3.2s"
-              repeatCount="indefinite"
-            />
-          </motion.rect>
-
-          {/* Additional Circuit Patterns */}
-          <motion.rect
-            x="430"
-            y="130"
-            width="35"
-            height="35"
-            fill="none"
-            stroke="#00ffcc"
-            strokeWidth="2"
-            filter="url(#footerGlow)"
-            animate={{
-              x: [430, 450, 430],
-              y: [130, 150, 130],
-            }}
-            transition={{
-              duration: 6.5,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-              delay: 0.8,
-            }}
-          >
-            <animate
-              attributeName="stroke"
-              values="#00ffcc;#00e6ff;#0099ff;#00ccff;#00ffcc"
-              dur="2.8s"
-              repeatCount="indefinite"
-            />
-          </motion.rect>
-
-          <motion.rect
-            x="780"
-            y="100"
-            width="45"
-            height="45"
-            fill="none"
-            stroke="#00ccff"
-            strokeWidth="2"
-            filter="url(#footerGlow)"
-            animate={{
-              x: [780, 800, 780],
-              y: [100, 120, 100],
-            }}
-            transition={{
-              duration: 7.5,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-              delay: 1.8,
-            }}
-          >
-            <animate
-              attributeName="stroke"
-              values="#00ccff;#0099ff;#00ffcc;#00e6ff;#00ccff"
-              dur="3.3s"
-              repeatCount="indefinite"
-            />
-          </motion.rect>
-
-          <motion.rect
-            x="1180"
-            y="160"
-            width="38"
-            height="38"
-            fill="none"
-            stroke="#0099ff"
-            strokeWidth="2"
-            filter="url(#footerGlow)"
-            animate={{
-              x: [1180, 1200, 1180],
-              y: [160, 180, 160],
-            }}
-            transition={{
-              duration: 8.5,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-              delay: 2.8,
-            }}
-          >
-            <animate
-              attributeName="stroke"
-              values="#0099ff;#00ffcc;#00e6ff;#00ccff;#0099ff"
-              dur="3.7s"
-              repeatCount="indefinite"
-            />
-          </motion.rect>
-
-          <motion.rect
-            x="330"
-            y="260"
-            width="42"
-            height="42"
-            fill="none"
-            stroke="#00e6ff"
-            strokeWidth="2"
-            filter="url(#footerGlow)"
-            animate={{
-              x: [330, 350, 330],
-              y: [260, 280, 260],
-            }}
-            transition={{
-              duration: 6.8,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-              delay: 3.8,
-            }}
-          >
-            <animate
-              attributeName="stroke"
-              values="#00e6ff;#00ccff;#0099ff;#00ffcc;#00e6ff"
-              dur="2.9s"
-              repeatCount="indefinite"
-            />
-          </motion.rect>
-
-          {/* Enhanced Flowing Connection Lines */}
-          <motion.line
-            x1="270"
-            y1="80"
-            x2="580"
-            y2="200"
-            stroke="url(#footerFlow1)"
-            strokeWidth="1.8"
-            filter="url(#footerGlow)"
-            animate={{
-              x1: [270, 290, 270],
-              y1: [80, 100, 80],
-              x2: [580, 600, 580],
-              y2: [200, 220, 200],
-            }}
-            transition={{
-              duration: 6,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-            }}
-          />
-
-          <motion.line
-            x1="620"
-            y1="200"
-            x2="980"
-            y2="320"
-            stroke="url(#footerFlow2)"
-            strokeWidth="1.8"
-            filter="url(#footerGlow)"
-            animate={{
-              x1: [620, 640, 620],
-              y1: [200, 220, 200],
-              x2: [980, 1000, 980],
-              y2: [320, 340, 320],
-            }}
-            transition={{
-              duration: 7,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-              delay: 1,
-            }}
-          />
-
-          <motion.line
-            x1="1020"
-            y1="320"
-            x2="1380"
-            y2="280"
-            stroke="url(#footerFlow1)"
-            strokeWidth="1.8"
-            filter="url(#footerGlow)"
-            animate={{
-              x1: [1020, 1040, 1020],
-              y1: [320, 340, 320],
-              x2: [1380, 1400, 1380],
-              y2: [280, 300, 280],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-              delay: 2,
-            }}
-          />
-
-          <motion.line
-            x1="450"
-            y1="150"
-            x2="780"
-            y2="120"
-            stroke="url(#footerFlow2)"
-            strokeWidth="1.5"
-            filter="url(#footerGlow)"
-            animate={{
-              x1: [450, 470, 450],
-              y1: [150, 170, 150],
-              x2: [780, 800, 780],
-              y2: [120, 140, 120],
-            }}
-            transition={{
-              duration: 6.5,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-              delay: 0.8,
-            }}
-          />
-
-          <motion.line
-            x1="820"
-            y1="120"
-            x2="1180"
-            y2="180"
-            stroke="url(#footerFlow1)"
-            strokeWidth="1.5"
-            filter="url(#footerGlow)"
-            animate={{
-              x1: [820, 840, 820],
-              y1: [120, 140, 120],
-              x2: [1180, 1200, 1180],
-              y2: [180, 200, 180],
-            }}
-            transition={{
-              duration: 7.5,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-              delay: 1.8,
-            }}
-          />
-        </svg>
-
-        {/* Enhanced Nebula Effects */}
-        <motion.div
-          animate={{
-            scale: [1, 1.1, 1],
-            opacity: [0.02, 0.06, 0.02],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-          }}
-          className="absolute top-10 left-10 w-80 h-80 bg-[#00ffcc]/8 rounded-full blur-3xl will-change-transform"
-        />
-
-        <motion.div
-          animate={{
-            scale: [1, 1.15, 1],
-            opacity: [0.02, 0.06, 0.02],
-          }}
-          transition={{
-            duration: 18,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-            delay: 3,
-          }}
-          className="absolute bottom-10 right-10 w-72 h-72 bg-[#00ccff]/8 rounded-full blur-3xl will-change-transform"
-        />
-
-        {/* Background gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0f0f0f] via-[#0f0f0f] to-[#0a0a0a]" />
-
-        {/* Grid pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#111111_1px,transparent_1px),linear-gradient(to_bottom,#111111_1px,transparent_1px)] bg-[size:100px_100px] opacity-8"></div>
-      </div>
+      <UltraOptimizedFooterBackground />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="py-16">
           <div className="grid lg:grid-cols-4 gap-12">
-            {/* Brand section */}
+            {/* Enhanced Brand section */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              initial="hidden"
+              whileInView="visible"
+              variants={containerVariants}
               viewport={{ once: true }}
               className="lg:col-span-2 space-y-6"
             >
@@ -1098,49 +292,28 @@ export function Footer() {
                   className="w-12 h-12 rounded-full bg-[#111111] border border-[#333333] flex items-center justify-center relative overflow-hidden"
                   whileHover={{ rotate: 360, scale: 1.05 }}
                   transition={{ duration: 0.8 }}
+                  style={{ willChange: "transform" }}
                 >
-                  <span className="text-white font-bold text-lg relative z-10">
-                    H
-                  </span>
-
-                  {/* Orbital ring */}
+                  <span className="text-white font-bold text-lg relative z-10">H</span>
+                  {/* Enhanced orbital ring */}
                   <motion.div
-                    animate={{ rotate: [0, 360] }}
-                    transition={{
-                      duration: 8,
-                      repeat: Number.POSITIVE_INFINITY,
-                      ease: "linear",
-                    }}
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
                     className="absolute inset-0 border border-[#00ffcc]/30 rounded-full"
+                    style={{ willChange: "transform" }}
                   />
-
-                  {/* Energy pulse */}
-                  <motion.div
-                    animate={{
-                      scale: [1, 1.2, 1],
-                      opacity: [0.2, 0, 0.2],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Number.POSITIVE_INFINITY,
-                    }}
-                    className="absolute inset-0 bg-[#00ffcc]/10 rounded-full"
-                  />
+                  {/* Pulsing core */}
+                  <div className="absolute inset-0 bg-[#00ffcc]/10 rounded-full animate-pulse" />
                 </motion.div>
                 <div>
-                  <h3 className="text-xl font-bold text-white">
-                    Hridayesh Srivastava
-                  </h3>
-                  <p className="text-sm text-[#999999]">
-                    Full-Stack Web Developer
-                  </p>
+                  <h3 className="text-xl font-bold text-white">Hridayesh Srivastava</h3>
+                  <p className="text-sm text-[#999999]">Full-Stack Web Developer</p>
                 </div>
               </div>
 
               <p className="text-[#cccccc] leading-relaxed max-w-md">
-                Passionate about creating innovative digital solutions that make
-                a difference. Let's build something extraordinary together and
-                transform ideas into reality.
+                Passionate about creating innovative digital solutions that make a difference. Let's build something
+                extraordinary together and transform ideas into reality.
               </p>
 
               <div className="flex items-center space-x-4">
@@ -1152,6 +325,7 @@ export function Footer() {
                     transition={{ duration: 0.4, delay: index * 0.1 }}
                     viewport={{ once: true }}
                     whileHover={{ scale: 1.1, y: -2 }}
+                    style={{ willChange: "transform" }}
                   >
                     <Link
                       href={social.href}
@@ -1162,21 +336,32 @@ export function Footer() {
                     >
                       <social.icon className="h-5 w-5 relative z-10" />
                       <div className="absolute inset-0 bg-gradient-to-br from-[#00ffcc]/5 via-transparent to-[#00ccff]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      {/* Enhanced hover effect */}
+                      <div className="absolute inset-0 bg-[#00ffcc]/5 rounded-xl opacity-0 group-hover:opacity-100 animate-pulse" />
                     </Link>
                   </motion.div>
                 ))}
               </div>
             </motion.div>
 
-            {/* Quick links */}
+            {/* Enhanced Quick links */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              initial="hidden"
+              whileInView="visible"
+              variants={containerVariants}
               viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
               className="space-y-6"
             >
-              <h4 className="text-lg font-semibold text-white">Quick Links</h4>
+              <h4 className="text-lg font-semibold text-white flex items-center gap-2">
+                Quick Links
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+                  className="w-1 h-1 bg-[#00ffcc] rounded-full"
+                  style={{ willChange: "transform" }}
+                />
+              </h4>
               <nav className="space-y-3">
                 {quickLinks.map((link, index) => (
                   <motion.div
@@ -1186,6 +371,7 @@ export function Footer() {
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.3, delay: index * 0.1 }}
                     viewport={{ once: true }}
+                    style={{ willChange: "transform" }}
                   >
                     <Link
                       href={link.href}
@@ -1196,56 +382,94 @@ export function Footer() {
                         className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#00ffcc] group-hover:w-full"
                         transition={{ duration: 0.3 }}
                       />
+                      {/* Enhanced hover indicator */}
+                      <div className="absolute -right-2 top-1/2 transform -translate-y-1/2 w-1 h-1 bg-[#00ffcc] rounded-full opacity-0 group-hover:opacity-100 animate-pulse" />
                     </Link>
                   </motion.div>
                 ))}
               </nav>
             </motion.div>
 
-            {/* Contact info */}
+            {/* Enhanced Contact info - FIXED EMAIL LINE BREAK */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              initial="hidden"
+              whileInView="visible"
+              variants={containerVariants}
               viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
               className="space-y-6"
             >
-              <h4 className="text-lg font-semibold text-white">Get In Touch</h4>
+              <h4 className="text-lg font-semibold text-white flex items-center gap-2">
+                Get In Touch
+                <motion.div
+                  animate={{
+                    scale: [1, 1.3, 1],
+                    opacity: [0.5, 1, 0.5],
+                  }}
+                  transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
+                  className="w-1.5 h-1.5 bg-[#00ffcc] rounded-full"
+                  style={{ willChange: "transform, opacity" }}
+                />
+              </h4>
               <div className="space-y-4">
                 <motion.div
-                  className="flex items-center space-x-3 text-[#999999]"
+                  className="flex items-center space-x-3 text-[#999999] group"
                   whileHover={{ x: 5 }}
+                  style={{ willChange: "transform" }}
                 >
-                  <MapPin className="w-5 h-5 text-[#00ffcc]" />
-                  <span>Dehradun, India</span>
+                  <motion.div
+                    whileHover={{ rotate: 5, scale: 1.1 }}
+                    transition={{ duration: 0.3 }}
+                    style={{ willChange: "transform" }}
+                  >
+                    <MapPin className="w-5 h-5 text-[#00ffcc] flex-shrink-0" />
+                  </motion.div>
+                  <span className="group-hover:text-white transition-colors">Dehradun, India</span>
                 </motion.div>
                 <motion.div
-                  className="flex items-center space-x-3 text-[#999999]"
+                  className="flex items-center space-x-3 text-[#999999] group"
                   whileHover={{ x: 5 }}
+                  style={{ willChange: "transform" }}
                 >
-                  <Phone className="w-5 h-5 text-[#00ccff]" />
-                  <a href="tel:+919634883306">+919634883306</a>
+                  <motion.div
+                    whileHover={{ rotate: 5, scale: 1.1 }}
+                    transition={{ duration: 0.3 }}
+                    style={{ willChange: "transform" }}
+                  >
+                    <Phone className="w-5 h-5 text-[#00ccff] flex-shrink-0" />
+                  </motion.div>
+                  <a href="tel:+919634883306" className="group-hover:text-white transition-colors">
+                    +919634883306
+                  </a>
                 </motion.div>
+                {/* FIXED EMAIL - Using whitespace-nowrap and proper text handling */}
                 <motion.div
-                  className="flex items-center space-x-3 text-[#999999]"
+                  className="flex items-start space-x-3 text-[#999999] group"
                   whileHover={{ x: 5 }}
+                  style={{ willChange: "transform" }}
                 >
-                  <MailPlus className="w-6 h-6 text-[#0099ff] flex-shrink-0" />
-                  <a href="mailto:hrideshsrivastavaa@outlook.com">
+                  <motion.div
+                    whileHover={{ rotate: 5, scale: 1.1 }}
+                    transition={{ duration: 0.3 }}
+                    className="mt-0.5"
+                    style={{ willChange: "transform" }}
+                  >
+                    <MailPlus className="w-5 h-5 text-[#0099ff] flex-shrink-0" />
+                  </motion.div>
+                  <a
+                    href="mailto:hrideshsrivastavaa@outlook.com"
+                    className="group-hover:text-white transition-colors text-sm leading-tight whitespace-nowrap overflow-hidden text-ellipsis max-w-[200px] sm:max-w-none sm:whitespace-normal"
+                    title="hrideshsrivastavaa@outlook.com"
+                  >
                     hrideshsrivastavaa@outlook.com
                   </a>
                 </motion.div>
               </div>
-
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              ></motion.div>
             </motion.div>
           </div>
         </div>
 
-        {/* Bottom section */}
+        {/* Enhanced Bottom section */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -1255,9 +479,16 @@ export function Footer() {
         >
           <div className="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
             <div className="flex items-center space-x-2 text-sm text-[#999999]">
-              <span>
-                © {currentYear()} Hridayesh Srivastava. All Rights Reserved.
-              </span>
+              <span>© {currentYear()} Hridayesh Srivastava. All Rights Reserved.</span>
+              <motion.div
+                animate={{
+                  scale: [1, 1.2, 1],
+                  opacity: [0.3, 0.6, 0.3],
+                }}
+                transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY }}
+                className="w-1 h-1 bg-[#00ffcc] rounded-full"
+                style={{ willChange: "transform, opacity" }}
+              />
             </div>
 
             <motion.button
@@ -1266,13 +497,20 @@ export function Footer() {
               whileTap={{ scale: 0.9 }}
               className="p-3 bg-[#1a1a1a] rounded-xl hover:bg-[#222222] transition-all duration-300 group relative overflow-hidden border border-[#333333] hover:border-[#00ffcc]/30"
               aria-label="Scroll to top"
+              style={{ willChange: "transform" }}
             >
               <ArrowUp className="w-5 h-5 text-[#999999] group-hover:text-white relative z-10" />
               <div className="absolute inset-0 bg-gradient-to-br from-[#00ffcc]/5 via-transparent to-[#00ccff]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              {/* Enhanced scroll indicator */}
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 animate-pulse">
+                <div className="w-1 h-1 bg-[#00ffcc] rounded-full" />
+              </div>
             </motion.button>
           </div>
         </motion.div>
       </div>
     </footer>
-  );
-}
+  )
+})
+
+Footer.displayName = "Footer"

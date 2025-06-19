@@ -2,8 +2,8 @@
 
 import type React from "react"
 
-import { useState, useEffect, useRef } from "react"
-import { motion, useInView } from "framer-motion"
+import { useState, useEffect, useRef, useMemo, memo } from "react"
+import { motion, useInView, useReducedMotion } from "framer-motion"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -28,13 +28,14 @@ import {
   Globe,
 } from "lucide-react"
 import Link from "next/link"
-import { memo } from "react";
 
 const XIcon = memo(({ className }: { className?: string }) => (
   <svg viewBox="0 0 24 24" className={className} fill="#d1d5db">
     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
   </svg>
-));
+))
+
+XIcon.displayName = "XIcon"
 
 const contactInfo = [
   {
@@ -84,6 +85,514 @@ const socialLinks = [
   },
 ]
 
+// Ultra Enhanced Star Component for Contact (Most Rich)
+const ContactStar = memo(({ star }: { star: any }) => (
+  <div
+    className="absolute bg-white rounded-full pointer-events-none animate-pulse"
+    style={{
+      left: `${star.left}%`,
+      top: `${star.top}%`,
+      width: `${star.size}px`,
+      height: `${star.size}px`,
+      animationDuration: `${star.duration}s`,
+      animationDelay: `${star.delay}s`,
+      transform: "translate3d(0, 0, 0)",
+      willChange: "opacity",
+      opacity: star.opacity,
+    }}
+  />
+))
+
+ContactStar.displayName = "ContactStar"
+
+// Ultra Enhanced Floating Orb for Contact
+const ContactOrb = memo(({ orb }: { orb: any }) => (
+  <div
+    className="absolute rounded-full pointer-events-none opacity-45"
+    style={{
+      left: `${orb.left}%`,
+      top: `${orb.top}%`,
+      width: `${orb.size}px`,
+      height: `${orb.size}px`,
+      background: `radial-gradient(circle, ${orb.color}65 0%, ${orb.color}30 35%, transparent 75%)`,
+      animation: `contactFloat ${orb.duration}s ease-in-out infinite`,
+      animationDelay: `${orb.delay}s`,
+      transform: "translate3d(0, 0, 0)",
+      willChange: "transform",
+      filter: "blur(1px)",
+    }}
+  />
+))
+
+ContactOrb.displayName = "ContactOrb"
+
+// Communication Particle Component for Contact theme
+const CommunicationParticle = memo(({ particle }: { particle: any }) => (
+  <div
+    className="absolute rounded-full pointer-events-none"
+    style={{
+      width: `${particle.size}px`,
+      height: `${particle.size}px`,
+      background: particle.color,
+      boxShadow: `0 0 ${particle.size * 3}px ${particle.color}`,
+      animation: `communicationFlow ${particle.duration}s linear infinite`,
+      animationDelay: `${particle.delay}s`,
+      transform: "translate3d(0, 0, 0)",
+      willChange: "transform",
+    }}
+  />
+))
+
+CommunicationParticle.displayName = "CommunicationParticle"
+
+// Message Wave Component for Contact theme
+const MessageWave = memo(({ wave }: { wave: any }) => (
+  <div
+    className="absolute rounded-full pointer-events-none border-2"
+    style={{
+      left: `${wave.left}%`,
+      top: `${wave.top}%`,
+      width: `${wave.size}px`,
+      height: `${wave.size}px`,
+      borderColor: wave.color,
+      animation: `messageWave ${wave.duration}s ease-out infinite`,
+      animationDelay: `${wave.delay}s`,
+      transform: "translate3d(0, 0, 0)",
+      willChange: "transform, opacity",
+    }}
+  />
+))
+
+MessageWave.displayName = "MessageWave"
+
+// Ultra optimized rich background for Contact with MOST elements
+const UltraOptimizedContactBackground = memo(() => {
+  const shouldReduceMotion = useReducedMotion()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  // MOST stars for contact page (richest look ever)
+  const stars = useMemo(
+    () =>
+      [...Array(180)].map((_, i) => ({
+        id: i,
+        left: Math.random() * 100,
+        top: Math.random() * 100,
+        size: Math.random() * 2.2 + 0.5,
+        duration: Math.random() * 3 + 2,
+        delay: Math.random() * 2,
+        opacity: Math.random() * 0.9 + 0.4,
+      })),
+    [],
+  )
+
+  // MOST orbs for ultimate richness
+  const orbs = useMemo(
+    () =>
+      [...Array(10)].map((_, i) => ({
+        id: i,
+        left: Math.random() * 100,
+        top: Math.random() * 100,
+        size: Math.random() * 100 + 60,
+        duration: Math.random() * 22 + 15,
+        delay: Math.random() * 5,
+        color: [
+          "#00ffcc",
+          "#00ccff",
+          "#0099ff",
+          "#00e6ff",
+          "#00b3ff",
+          "#00d9ff",
+          "#00f0ff",
+          "#00c7ff",
+          "#00a3ff",
+          "#00ffaa",
+        ][i],
+      })),
+    [],
+  )
+
+  // MOST communication particles for contact theme
+  const communicationParticles = useMemo(
+    () =>
+      [...Array(15)].map((_, i) => ({
+        id: i,
+        size: Math.random() * 5 + 2,
+        duration: Math.random() * 16 + 12,
+        delay: Math.random() * 5,
+        color: ["#00ffcc", "#00ccff", "#0099ff", "#00e6ff", "#00b3ff", "#00d9ff"][Math.floor(Math.random() * 6)],
+      })),
+    [],
+  )
+
+  // Message waves for communication theme
+  const messageWaves = useMemo(
+    () =>
+      [...Array(8)].map((_, i) => ({
+        id: i,
+        left: Math.random() * 100,
+        top: Math.random() * 100,
+        size: Math.random() * 80 + 40,
+        duration: Math.random() * 6 + 4,
+        delay: Math.random() * 3,
+        color: ["#00ffcc", "#00ccff", "#0099ff", "#00e6ff"][Math.floor(Math.random() * 4)],
+      })),
+    [],
+  )
+
+  if (shouldReduceMotion || !mounted) {
+    return (
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#111111_1px,transparent_1px),linear-gradient(to_bottom,#111111_1px,transparent_1px)] bg-[size:100px_100px] opacity-10"></div>
+      </div>
+    )
+  }
+
+  return (
+    <>
+      <style jsx>{`
+        @keyframes contactFloat {
+          0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+          20% { transform: translate3d(25px, -20px, 0) scale(1.15); }
+          40% { transform: translate3d(-15px, 15px, 0) scale(0.85); }
+          60% { transform: translate3d(20px, -10px, 0) scale(1.1); }
+          80% { transform: translate3d(-10px, 20px, 0) scale(0.9); }
+        }
+        @keyframes slideRightContact {
+          0% { transform: translateX(-150px); opacity: 0; }
+          15% { opacity: 1; }
+          85% { opacity: 1; }
+          100% { transform: translateX(100vw); opacity: 0; }
+        }
+        @keyframes slideDownContact {
+          0% { transform: translateY(-150px); opacity: 0; }
+          15% { opacity: 1; }
+          85% { opacity: 1; }
+          100% { transform: translateY(100vh); opacity: 0; }
+        }
+        @keyframes communicationFlow {
+          0% { transform: translate3d(-70px, -70px, 0) rotate(0deg); opacity: 0; }
+          8% { opacity: 1; }
+          92% { opacity: 1; }
+          100% { transform: translate3d(100vw, 100vh, 0) rotate(360deg); opacity: 0; }
+        }
+        @keyframes messageWave {
+          0% { transform: scale(0) rotate(0deg); opacity: 1; }
+          50% { opacity: 0.6; }
+          100% { transform: scale(3) rotate(180deg); opacity: 0; }
+        }
+        @keyframes diagonalContactFlow {
+          0% { transform: translate(-100px, -100px) rotate(0deg); opacity: 0; }
+          12% { opacity: 1; }
+          88% { opacity: 1; }
+          100% { transform: translate(calc(100vw + 100px), calc(100vh + 100px)) rotate(270deg); opacity: 0; }
+        }
+        @keyframes pulseContactFlow {
+          0% { transform: translate(-80px, 50vh) scale(1); opacity: 0; }
+          10% { opacity: 1; }
+          50% { transform: translate(50vw, 50vh) scale(1.5); opacity: 0.8; }
+          90% { opacity: 1; }
+          100% { transform: translate(calc(100vw + 80px), 50vh) scale(1); opacity: 0; }
+        }
+        .flow-line-h-contact {
+          animation: slideRightContact 9s linear infinite;
+        }
+        .flow-line-v-contact {
+          animation: slideDownContact 11s linear infinite;
+        }
+        .flow-diagonal-contact {
+          animation: diagonalContactFlow 14s linear infinite;
+        }
+        .flow-pulse-contact {
+          animation: pulseContactFlow 18s linear infinite;
+        }
+      `}</style>
+
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Ultra Enhanced Star field */}
+        <div className="absolute inset-0" style={{ contain: "layout style paint" }}>
+          {stars.map((star) => (
+            <ContactStar key={star.id} star={star} />
+          ))}
+        </div>
+
+        {/* Ultra Enhanced Floating Orbs */}
+        <div className="absolute inset-0">
+          {orbs.map((orb) => (
+            <ContactOrb key={orb.id} orb={orb} />
+          ))}
+        </div>
+
+        {/* Communication Particles */}
+        <div className="absolute inset-0">
+          {communicationParticles.map((particle) => (
+            <CommunicationParticle key={particle.id} particle={particle} />
+          ))}
+        </div>
+
+        {/* Message Waves */}
+        <div className="absolute inset-0">
+          {messageWaves.map((wave) => (
+            <MessageWave key={wave.id} wave={wave} />
+          ))}
+        </div>
+
+        {/* MOST Enhanced flowing lines with CSS animations */}
+        <div className="absolute inset-0 opacity-58">
+          {/* MOST Horizontal flowing lines */}
+          <div
+            className="absolute h-0.5 w-32 bg-gradient-to-r from-transparent via-[#00ffcc] to-transparent flow-line-h-contact"
+            style={{ top: "8%", animationDelay: "0s" }}
+          />
+          <div
+            className="absolute h-0.5 w-36 bg-gradient-to-r from-transparent via-[#00ccff] to-transparent flow-line-h-contact"
+            style={{ top: "15%", animationDelay: "1s" }}
+          />
+          <div
+            className="absolute h-0.5 w-28 bg-gradient-to-r from-transparent via-[#0099ff] to-transparent flow-line-h-contact"
+            style={{ top: "22%", animationDelay: "2s" }}
+          />
+          <div
+            className="absolute h-0.5 w-40 bg-gradient-to-r from-transparent via-[#00e6ff] to-transparent flow-line-h-contact"
+            style={{ top: "29%", animationDelay: "3s" }}
+          />
+          <div
+            className="absolute h-0.5 w-34 bg-gradient-to-r from-transparent via-[#00b3ff] to-transparent flow-line-h-contact"
+            style={{ top: "36%", animationDelay: "4s" }}
+          />
+          <div
+            className="absolute h-0.5 w-30 bg-gradient-to-r from-transparent via-[#00d9ff] to-transparent flow-line-h-contact"
+            style={{ top: "43%", animationDelay: "5s" }}
+          />
+          <div
+            className="absolute h-0.5 w-38 bg-gradient-to-r from-transparent via-[#00f0ff] to-transparent flow-line-h-contact"
+            style={{ top: "50%", animationDelay: "6s" }}
+          />
+          <div
+            className="absolute h-0.5 w-32 bg-gradient-to-r from-transparent via-[#00c7ff] to-transparent flow-line-h-contact"
+            style={{ top: "57%", animationDelay: "7s" }}
+          />
+          <div
+            className="absolute h-0.5 w-36 bg-gradient-to-r from-transparent via-[#00a3ff] to-transparent flow-line-h-contact"
+            style={{ top: "64%", animationDelay: "8s" }}
+          />
+          <div
+            className="absolute h-0.5 w-34 bg-gradient-to-r from-transparent via-[#00ffaa] to-transparent flow-line-h-contact"
+            style={{ top: "71%", animationDelay: "1.5s" }}
+          />
+          <div
+            className="absolute h-0.5 w-30 bg-gradient-to-r from-transparent via-[#00ffcc] to-transparent flow-line-h-contact"
+            style={{ top: "78%", animationDelay: "2.5s" }}
+          />
+          <div
+            className="absolute h-0.5 w-32 bg-gradient-to-r from-transparent via-[#00ccff] to-transparent flow-line-h-contact"
+            style={{ top: "85%", animationDelay: "3.5s" }}
+          />
+          <div
+            className="absolute h-0.5 w-28 bg-gradient-to-r from-transparent via-[#0099ff] to-transparent flow-line-h-contact"
+            style={{ top: "92%", animationDelay: "4.5s" }}
+          />
+
+          {/* MOST Vertical flowing lines */}
+          <div
+            className="absolute w-0.5 h-32 bg-gradient-to-b from-transparent via-[#00ffcc] to-transparent flow-line-v-contact"
+            style={{ left: "6%", animationDelay: "0.5s" }}
+          />
+          <div
+            className="absolute w-0.5 h-36 bg-gradient-to-b from-transparent via-[#00ccff] to-transparent flow-line-v-contact"
+            style={{ left: "12%", animationDelay: "1.5s" }}
+          />
+          <div
+            className="absolute w-0.5 h-28 bg-gradient-to-b from-transparent via-[#0099ff] to-transparent flow-line-v-contact"
+            style={{ left: "18%", animationDelay: "2.5s" }}
+          />
+          <div
+            className="absolute w-0.5 h-40 bg-gradient-to-b from-transparent via-[#00e6ff] to-transparent flow-line-v-contact"
+            style={{ left: "24%", animationDelay: "3.5s" }}
+          />
+          <div
+            className="absolute w-0.5 h-34 bg-gradient-to-b from-transparent via-[#00b3ff] to-transparent flow-line-v-contact"
+            style={{ left: "30%", animationDelay: "4.5s" }}
+          />
+          <div
+            className="absolute w-0.5 h-30 bg-gradient-to-b from-transparent via-[#00d9ff] to-transparent flow-line-v-contact"
+            style={{ left: "36%", animationDelay: "5.5s" }}
+          />
+          <div
+            className="absolute w-0.5 h-38 bg-gradient-to-b from-transparent via-[#00f0ff] to-transparent flow-line-v-contact"
+            style={{ left: "42%", animationDelay: "6.5s" }}
+          />
+          <div
+            className="absolute w-0.5 h-32 bg-gradient-to-b from-transparent via-[#00c7ff] to-transparent flow-line-v-contact"
+            style={{ left: "48%", animationDelay: "7.5s" }}
+          />
+          <div
+            className="absolute w-0.5 h-36 bg-gradient-to-b from-transparent via-[#00a3ff] to-transparent flow-line-v-contact"
+            style={{ left: "54%", animationDelay: "8.5s" }}
+          />
+          <div
+            className="absolute w-0.5 h-34 bg-gradient-to-b from-transparent via-[#00ffaa] to-transparent flow-line-v-contact"
+            style={{ left: "60%", animationDelay: "2s" }}
+          />
+          <div
+            className="absolute w-0.5 h-30 bg-gradient-to-b from-transparent via-[#00ffcc] to-transparent flow-line-v-contact"
+            style={{ left: "66%", animationDelay: "3s" }}
+          />
+          <div
+            className="absolute w-0.5 h-32 bg-gradient-to-b from-transparent via-[#00ccff] to-transparent flow-line-v-contact"
+            style={{ left: "72%", animationDelay: "4s" }}
+          />
+          <div
+            className="absolute w-0.5 h-28 bg-gradient-to-b from-transparent via-[#0099ff] to-transparent flow-line-v-contact"
+            style={{ left: "78%", animationDelay: "5s" }}
+          />
+          <div
+            className="absolute w-0.5 h-36 bg-gradient-to-b from-transparent via-[#00e6ff] to-transparent flow-line-v-contact"
+            style={{ left: "84%", animationDelay: "6s" }}
+          />
+          <div
+            className="absolute w-0.5 h-34 bg-gradient-to-b from-transparent via-[#00b3ff] to-transparent flow-line-v-contact"
+            style={{ left: "90%", animationDelay: "7s" }}
+          />
+          <div
+            className="absolute w-0.5 h-32 bg-gradient-to-b from-transparent via-[#00d9ff] to-transparent flow-line-v-contact"
+            style={{ left: "96%", animationDelay: "8s" }}
+          />
+
+          {/* Enhanced Diagonal flowing lines */}
+          <div
+            className="absolute w-0.5 h-28 bg-gradient-to-b from-transparent via-[#00ffcc] to-transparent flow-diagonal-contact"
+            style={{ animationDelay: "1s" }}
+          />
+          <div
+            className="absolute w-0.5 h-24 bg-gradient-to-b from-transparent via-[#00ccff] to-transparent flow-diagonal-contact"
+            style={{ animationDelay: "3s" }}
+          />
+          <div
+            className="absolute w-0.5 h-30 bg-gradient-to-b from-transparent via-[#0099ff] to-transparent flow-diagonal-contact"
+            style={{ animationDelay: "5s" }}
+          />
+          <div
+            className="absolute w-0.5 h-26 bg-gradient-to-b from-transparent via-[#00e6ff] to-transparent flow-diagonal-contact"
+            style={{ animationDelay: "7s" }}
+          />
+          <div
+            className="absolute w-0.5 h-32 bg-gradient-to-b from-transparent via-[#00b3ff] to-transparent flow-diagonal-contact"
+            style={{ animationDelay: "9s" }}
+          />
+          <div
+            className="absolute w-0.5 h-28 bg-gradient-to-b from-transparent via-[#00d9ff] to-transparent flow-diagonal-contact"
+            style={{ animationDelay: "11s" }}
+          />
+
+          {/* Pulse flowing lines for communication theme */}
+          <div
+            className="absolute h-0.5 w-24 bg-gradient-to-r from-transparent via-[#00ffcc] to-transparent flow-pulse-contact"
+            style={{ animationDelay: "2s" }}
+          />
+          <div
+            className="absolute h-0.5 w-28 bg-gradient-to-r from-transparent via-[#00ccff] to-transparent flow-pulse-contact"
+            style={{ animationDelay: "6s" }}
+          />
+          <div
+            className="absolute h-0.5 w-26 bg-gradient-to-r from-transparent via-[#0099ff] to-transparent flow-pulse-contact"
+            style={{ animationDelay: "10s" }}
+          />
+          <div
+            className="absolute h-0.5 w-30 bg-gradient-to-r from-transparent via-[#00e6ff] to-transparent flow-pulse-contact"
+            style={{ animationDelay: "14s" }}
+          />
+        </div>
+
+        {/* MOST Enhanced circuit nodes */}
+        <div className="absolute inset-0 opacity-78">
+          <div
+            className="absolute w-2 h-2 bg-[#00ffcc] rounded-full shadow-lg shadow-[#00ffcc]/70 animate-pulse"
+            style={{ top: "8%", left: "6%" }}
+          />
+          <div
+            className="absolute w-2 h-2 bg-[#00ccff] rounded-full shadow-lg shadow-[#00ccff]/70 animate-pulse"
+            style={{ top: "15%", left: "12%", animationDelay: "0.2s" }}
+          />
+          <div
+            className="absolute w-2 h-2 bg-[#0099ff] rounded-full shadow-lg shadow-[#0099ff]/70 animate-pulse"
+            style={{ top: "22%", left: "18%", animationDelay: "0.4s" }}
+          />
+          <div
+            className="absolute w-2 h-2 bg-[#00e6ff] rounded-full shadow-lg shadow-[#00e6ff]/70 animate-pulse"
+            style={{ top: "29%", left: "24%", animationDelay: "0.6s" }}
+          />
+          <div
+            className="absolute w-2 h-2 bg-[#00b3ff] rounded-full shadow-lg shadow-[#00b3ff]/70 animate-pulse"
+            style={{ top: "36%", left: "30%", animationDelay: "0.8s" }}
+          />
+          <div
+            className="absolute w-2 h-2 bg-[#00d9ff] rounded-full shadow-lg shadow-[#00d9ff]/70 animate-pulse"
+            style={{ top: "43%", left: "36%", animationDelay: "1s" }}
+          />
+          <div
+            className="absolute w-2 h-2 bg-[#00f0ff] rounded-full shadow-lg shadow-[#00f0ff]/70 animate-pulse"
+            style={{ top: "50%", left: "42%", animationDelay: "1.2s" }}
+          />
+          <div
+            className="absolute w-2 h-2 bg-[#00c7ff] rounded-full shadow-lg shadow-[#00c7ff]/70 animate-pulse"
+            style={{ top: "57%", left: "48%", animationDelay: "1.4s" }}
+          />
+          <div
+            className="absolute w-2 h-2 bg-[#00a3ff] rounded-full shadow-lg shadow-[#00a3ff]/70 animate-pulse"
+            style={{ top: "64%", left: "54%", animationDelay: "1.6s" }}
+          />
+          <div
+            className="absolute w-2 h-2 bg-[#00ffaa] rounded-full shadow-lg shadow-[#00ffaa]/70 animate-pulse"
+            style={{ top: "71%", left: "60%", animationDelay: "1.8s" }}
+          />
+          <div
+            className="absolute w-2 h-2 bg-[#00ffcc] rounded-full shadow-lg shadow-[#00ffcc]/70 animate-pulse"
+            style={{ top: "78%", left: "66%", animationDelay: "2s" }}
+          />
+          <div
+            className="absolute w-2 h-2 bg-[#00ccff] rounded-full shadow-lg shadow-[#00ccff]/70 animate-pulse"
+            style={{ top: "85%", left: "72%", animationDelay: "2.2s" }}
+          />
+          <div
+            className="absolute w-2 h-2 bg-[#0099ff] rounded-full shadow-lg shadow-[#0099ff]/70 animate-pulse"
+            style={{ top: "92%", left: "78%", animationDelay: "2.4s" }}
+          />
+          <div
+            className="absolute w-2 h-2 bg-[#00e6ff] rounded-full shadow-lg shadow-[#00e6ff]/70 animate-pulse"
+            style={{ top: "15%", left: "84%", animationDelay: "2.6s" }}
+          />
+          <div
+            className="absolute w-2 h-2 bg-[#00b3ff] rounded-full shadow-lg shadow-[#00b3ff]/70 animate-pulse"
+            style={{ top: "29%", left: "90%", animationDelay: "2.8s" }}
+          />
+          <div
+            className="absolute w-2 h-2 bg-[#00d9ff] rounded-full shadow-lg shadow-[#00d9ff]/70 animate-pulse"
+            style={{ top: "43%", left: "96%", animationDelay: "3s" }}
+          />
+        </div>
+
+        {/* MOST Enhanced nebula effects */}
+        <div className="absolute top-5 left-5 w-[450px] h-[450px] bg-[#00ffcc]/7 rounded-full blur-3xl pointer-events-none opacity-68" />
+        <div className="absolute bottom-5 right-5 w-[420px] h-[420px] bg-[#00ccff]/7 rounded-full blur-3xl pointer-events-none opacity-68" />
+        <div className="absolute top-1/4 right-1/3 w-[380px] h-[380px] bg-[#0099ff]/5 rounded-full blur-3xl pointer-events-none opacity-58" />
+        <div className="absolute bottom-1/4 left-1/3 w-[440px] h-[440px] bg-[#00e6ff]/6 rounded-full blur-3xl pointer-events-none opacity-63" />
+        <div className="absolute top-2/3 left-1/6 w-[400px] h-[400px] bg-[#00b3ff]/4 rounded-full blur-3xl pointer-events-none opacity-53" />
+        <div className="absolute bottom-2/3 right-1/6 w-[460px] h-[460px] bg-[#00d9ff]/5 rounded-full blur-3xl pointer-events-none opacity-60" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#00f0ff]/3 rounded-full blur-3xl pointer-events-none opacity-45" />
+
+        {/* Grid pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#111111_1px,transparent_1px),linear-gradient(to_bottom,#111111_1px,transparent_1px)] bg-[size:100px_100px] opacity-10"></div>
+      </div>
+    </>
+  )
+})
+
+UltraOptimizedContactBackground.displayName = "UltraOptimizedContactBackground"
+
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: "",
@@ -100,7 +609,7 @@ export default function ContactPage() {
   const [connectionStatus, setConnectionStatus] = useState<"checking" | "connected" | "disconnected">("checking")
 
   const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const isInView = useInView(ref, { once: true, margin: "-50px" })
 
   // Get API URL from environment or use default
   const apiUrl =
@@ -214,710 +723,7 @@ export default function ContactPage() {
 
   return (
     <div ref={ref} className="min-h-screen bg-[#0a0a0a] relative overflow-hidden">
-      {/* Enhanced Flowing Lines Background */}
-      <div className="absolute inset-0">
-        {/* Enhanced Star field */}
-        {[...Array(400)].map((_, i) => (
-          <motion.div
-            key={i}
-            animate={{
-              opacity: [0.1, 0.8, 0.1],
-              scale: [1, 1.3, 1],
-            }}
-            transition={{
-              duration: Math.random() * 4 + 2,
-              repeat: Number.POSITIVE_INFINITY,
-              delay: Math.random() * 3,
-            }}
-            className="absolute bg-white rounded-full"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              width: `${Math.random() * 2 + 0.5}px`,
-              height: `${Math.random() * 2 + 0.5}px`,
-            }}
-          />
-        ))}
-
-        {/* Contact Page Flowing Lines System */}
-        <svg className="absolute inset-0 w-full h-full opacity-60">
-          <defs>
-            {/* Enhanced Flowing Gradients */}
-            <linearGradient id="contactFlow1" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="transparent" />
-              <stop offset="30%" stopColor="#00ffcc">
-                <animate
-                  attributeName="stop-color"
-                  values="#00ffcc;#00e6ff;#0099ff;#00ccff;#00ffcc"
-                  dur="2s"
-                  repeatCount="indefinite"
-                />
-              </stop>
-              <stop offset="70%" stopColor="#00ccff">
-                <animate
-                  attributeName="stop-color"
-                  values="#00ccff;#0099ff;#00ffcc;#00e6ff;#00ccff"
-                  dur="2s"
-                  repeatCount="indefinite"
-                />
-              </stop>
-              <stop offset="100%" stopColor="transparent" />
-              <animateTransform
-                attributeName="gradientTransform"
-                type="translate"
-                values="-100 0;100 0;-100 0"
-                dur="3s"
-                repeatCount="indefinite"
-              />
-            </linearGradient>
-
-            <linearGradient id="contactFlow2" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="transparent" />
-              <stop offset="30%" stopColor="#0099ff">
-                <animate
-                  attributeName="stop-color"
-                  values="#0099ff;#00ffcc;#00e6ff;#00ccff;#0099ff"
-                  dur="2.5s"
-                  repeatCount="indefinite"
-                />
-              </stop>
-              <stop offset="70%" stopColor="#00e6ff">
-                <animate
-                  attributeName="stop-color"
-                  values="#00e6ff;#00ccff;#0099ff;#00ffcc;#00e6ff"
-                  dur="2.5s"
-                  repeatCount="indefinite"
-                />
-              </stop>
-              <stop offset="100%" stopColor="transparent" />
-              <animateTransform
-                attributeName="gradientTransform"
-                type="translate"
-                values="-100 0;100 0;-100 0"
-                dur="4s"
-                repeatCount="indefinite"
-              />
-            </linearGradient>
-
-            <linearGradient id="contactFlow3" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="transparent" />
-              <stop offset="30%" stopColor="#00ccff">
-                <animate
-                  attributeName="stop-color"
-                  values="#00ccff;#0099ff;#00ffcc;#00e6ff;#00ccff"
-                  dur="3s"
-                  repeatCount="indefinite"
-                />
-              </stop>
-              <stop offset="70%" stopColor="#00ffcc">
-                <animate
-                  attributeName="stop-color"
-                  values="#00ffcc;#00e6ff;#0099ff;#00ccff;#00ffcc"
-                  dur="3s"
-                  repeatCount="indefinite"
-                />
-              </stop>
-              <stop offset="100%" stopColor="transparent" />
-              <animateTransform
-                attributeName="gradientTransform"
-                type="translate"
-                values="0 -100;0 100;0 -100"
-                dur="3.5s"
-                repeatCount="indefinite"
-              />
-            </linearGradient>
-
-            <filter id="contactGlow">
-              <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-              <feMerge>
-                <feMergeNode in="coloredBlur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-
-            <filter id="strongGlow">
-              <feGaussianBlur stdDeviation="5" result="coloredBlur" />
-              <feMerge>
-                <feMergeNode in="coloredBlur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-          </defs>
-
-          {/* Main Horizontal Flowing Lines */}
-          <motion.line
-            x1="0"
-            y1="150"
-            x2="1920"
-            y2="150"
-            stroke="url(#contactFlow1)"
-            strokeWidth="3"
-            filter="url(#contactGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 2, ease: "easeInOut" }}
-          />
-
-          <motion.line
-            x1="0"
-            y1="400"
-            x2="1920"
-            y2="400"
-            stroke="url(#contactFlow2)"
-            strokeWidth="2.5"
-            filter="url(#contactGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 2.5, delay: 0.5, ease: "easeInOut" }}
-          />
-
-          <motion.line
-            x1="0"
-            y1="650"
-            x2="1920"
-            y2="650"
-            stroke="url(#contactFlow1)"
-            strokeWidth="2.8"
-            filter="url(#contactGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 3, delay: 1, ease: "easeInOut" }}
-          />
-
-          <motion.line
-            x1="0"
-            y1="900"
-            x2="1920"
-            y2="900"
-            stroke="url(#contactFlow2)"
-            strokeWidth="2.2"
-            filter="url(#contactGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 3.5, delay: 1.5, ease: "easeInOut" }}
-          />
-
-          {/* Vertical Flowing Lines */}
-          <motion.line
-            x1="300"
-            y1="0"
-            x2="300"
-            y2="1200"
-            stroke="url(#contactFlow3)"
-            strokeWidth="2.5"
-            filter="url(#contactGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 2, delay: 2, ease: "easeInOut" }}
-          />
-
-          <motion.line
-            x1="600"
-            y1="0"
-            x2="600"
-            y2="1200"
-            stroke="url(#contactFlow3)"
-            strokeWidth="2.8"
-            filter="url(#contactGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 2.5, delay: 2.5, ease: "easeInOut" }}
-          />
-
-          <motion.line
-            x1="960"
-            y1="0"
-            x2="960"
-            y2="1200"
-            stroke="url(#contactFlow3)"
-            strokeWidth="2.3"
-            filter="url(#contactGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 3, delay: 3, ease: "easeInOut" }}
-          />
-
-          <motion.line
-            x1="1320"
-            y1="0"
-            x2="1320"
-            y2="1200"
-            stroke="url(#contactFlow3)"
-            strokeWidth="2.6"
-            filter="url(#contactGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 3.5, delay: 3.5, ease: "easeInOut" }}
-          />
-
-          {/* Enhanced Circuit Nodes */}
-          <motion.circle
-            cx="300"
-            cy="150"
-            r="6"
-            fill="#00ffcc"
-            filter="url(#strongGlow)"
-            initial={{ scale: 0, opacity: 0 }}
-            animate={isInView ? { scale: 1, opacity: 1 } : {}}
-            transition={{ duration: 0.5, delay: 1 }}
-          >
-            <animate
-              attributeName="fill"
-              values="#00ffcc;#00e6ff;#0099ff;#00ccff;#00ffcc"
-              dur="2s"
-              repeatCount="indefinite"
-            />
-            <animate attributeName="r" values="6;8;6" dur="3s" repeatCount="indefinite" />
-          </motion.circle>
-
-          <motion.circle
-            cx="600"
-            cy="400"
-            r="7"
-            fill="#00ccff"
-            filter="url(#strongGlow)"
-            initial={{ scale: 0, opacity: 0 }}
-            animate={isInView ? { scale: 1, opacity: 1 } : {}}
-            transition={{ duration: 0.5, delay: 1.2 }}
-          >
-            <animate
-              attributeName="fill"
-              values="#00ccff;#0099ff;#00ffcc;#00e6ff;#00ccff"
-              dur="2.5s"
-              repeatCount="indefinite"
-            />
-            <animate attributeName="r" values="7;9;7" dur="3.5s" repeatCount="indefinite" />
-          </motion.circle>
-
-          <motion.circle
-            cx="960"
-            cy="650"
-            r="6.5"
-            fill="#0099ff"
-            filter="url(#strongGlow)"
-            initial={{ scale: 0, opacity: 0 }}
-            animate={isInView ? { scale: 1, opacity: 1 } : {}}
-            transition={{ duration: 0.5, delay: 1.4 }}
-          >
-            <animate
-              attributeName="fill"
-              values="#0099ff;#00ffcc;#00e6ff;#00ccff;#0099ff"
-              dur="3s"
-              repeatCount="indefinite"
-            />
-            <animate attributeName="r" values="6.5;8.5;6.5" dur="4s" repeatCount="indefinite" />
-          </motion.circle>
-
-          <motion.circle
-            cx="1320"
-            cy="900"
-            r="5.5"
-            fill="#00e6ff"
-            filter="url(#strongGlow)"
-            initial={{ scale: 0, opacity: 0 }}
-            animate={isInView ? { scale: 1, opacity: 1 } : {}}
-            transition={{ duration: 0.5, delay: 1.6 }}
-          >
-            <animate
-              attributeName="fill"
-              values="#00e6ff;#00ccff;#0099ff;#00ffcc;#00e6ff"
-              dur="2.8s"
-              repeatCount="indefinite"
-            />
-            <animate attributeName="r" values="5.5;7.5;5.5" dur="3.2s" repeatCount="indefinite" />
-          </motion.circle>
-
-          {/* Additional Circuit Nodes */}
-          <motion.circle
-            cx="450"
-            cy="275"
-            r="5.8"
-            fill="#00ffcc"
-            filter="url(#strongGlow)"
-            initial={{ scale: 0, opacity: 0 }}
-            animate={isInView ? { scale: 1, opacity: 1 } : {}}
-            transition={{ duration: 0.5, delay: 1.8 }}
-          >
-            <animate
-              attributeName="fill"
-              values="#00ffcc;#00e6ff;#0099ff;#00ccff;#00ffcc"
-              dur="2.2s"
-              repeatCount="indefinite"
-            />
-            <animate attributeName="r" values="5.8;7.8;5.8" dur="2.8s" repeatCount="indefinite" />
-          </motion.circle>
-
-          <motion.circle
-            cx="780"
-            cy="525"
-            r="6.2"
-            fill="#00ccff"
-            filter="url(#strongGlow)"
-            initial={{ scale: 0, opacity: 0 }}
-            animate={isInView ? { scale: 1, opacity: 1 } : {}}
-            transition={{ duration: 0.5, delay: 2 }}
-          >
-            <animate
-              attributeName="fill"
-              values="#00ccff;#0099ff;#00ffcc;#00e6ff;#00ccff"
-              dur="2.3s"
-              repeatCount="indefinite"
-            />
-            <animate attributeName="r" values="6.2;8.2;6.2" dur="3s" repeatCount="indefinite" />
-          </motion.circle>
-
-          <motion.circle
-            cx="1140"
-            cy="775"
-            r="5.3"
-            fill="#0099ff"
-            filter="url(#strongGlow)"
-            initial={{ scale: 0, opacity: 0 }}
-            animate={isInView ? { scale: 1, opacity: 1 } : {}}
-            transition={{ duration: 0.5, delay: 2.2 }}
-          >
-            <animate
-              attributeName="fill"
-              values="#0099ff;#00ffcc;#00e6ff;#00ccff;#0099ff"
-              dur="2.7s"
-              repeatCount="indefinite"
-            />
-            <animate attributeName="r" values="5.3;7.3;5.3" dur="3.3s" repeatCount="indefinite" />
-          </motion.circle>
-
-          {/* Enhanced Flowing Data Particles */}
-          <motion.circle
-            r="4"
-            fill="#00ffcc"
-            filter="url(#strongGlow)"
-            animate={{
-              cx: [0, 300, 600, 960, 1320, 1920],
-              cy: [150, 150, 400, 650, 900, 900],
-            }}
-            transition={{
-              duration: 5,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "linear",
-            }}
-          >
-            <animate
-              attributeName="fill"
-              values="#00ffcc;#00e6ff;#0099ff;#00ccff;#00ffcc"
-              dur="2s"
-              repeatCount="indefinite"
-            />
-            <animate attributeName="r" values="4;6;4" dur="1s" repeatCount="indefinite" />
-          </motion.circle>
-
-          <motion.circle
-            r="3.5"
-            fill="#00ccff"
-            filter="url(#strongGlow)"
-            animate={{
-              cx: [1920, 1320, 960, 600, 300, 0],
-              cy: [400, 400, 650, 400, 150, 150],
-            }}
-            transition={{
-              duration: 6,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "linear",
-              delay: 0.5,
-            }}
-          >
-            <animate
-              attributeName="fill"
-              values="#00ccff;#0099ff;#00ffcc;#00e6ff;#00ccff"
-              dur="2.5s"
-              repeatCount="indefinite"
-            />
-            <animate attributeName="r" values="3.5;5.5;3.5" dur="1.2s" repeatCount="indefinite" />
-          </motion.circle>
-
-          <motion.circle
-            r="5"
-            fill="#0099ff"
-            filter="url(#strongGlow)"
-            animate={{
-              cx: [300, 300, 450, 600, 600, 780, 960, 960, 1140, 1320],
-              cy: [0, 150, 275, 400, 400, 525, 650, 650, 775, 900],
-            }}
-            transition={{
-              duration: 7,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "linear",
-              delay: 1,
-            }}
-          >
-            <animate
-              attributeName="fill"
-              values="#0099ff;#00ffcc;#00e6ff;#00ccff;#0099ff"
-              dur="3s"
-              repeatCount="indefinite"
-            />
-            <animate attributeName="r" values="5;7;5" dur="1.5s" repeatCount="indefinite" />
-          </motion.circle>
-
-          {/* Circuit Patterns with Flow */}
-          <motion.rect
-            x="280"
-            y="130"
-            width="40"
-            height="40"
-            fill="none"
-            stroke="#00ffcc"
-            strokeWidth="2"
-            filter="url(#contactGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 1, delay: 1.5 }}
-          >
-            <animate
-              attributeName="stroke"
-              values="#00ffcc;#00e6ff;#0099ff;#00ccff;#00ffcc"
-              dur="3s"
-              repeatCount="indefinite"
-            />
-          </motion.rect>
-
-          <motion.rect
-            x="580"
-            y="380"
-            width="40"
-            height="40"
-            fill="none"
-            stroke="#00ccff"
-            strokeWidth="2"
-            filter="url(#contactGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 1, delay: 1.7 }}
-          >
-            <animate
-              attributeName="stroke"
-              values="#00ccff;#0099ff;#00ffcc;#00e6ff;#00ccff"
-              dur="3.5s"
-              repeatCount="indefinite"
-            />
-          </motion.rect>
-
-          <motion.rect
-            x="940"
-            y="630"
-            width="40"
-            height="40"
-            fill="none"
-            stroke="#0099ff"
-            strokeWidth="2"
-            filter="url(#contactGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 1, delay: 1.9 }}
-          >
-            <animate
-              attributeName="stroke"
-              values="#0099ff;#00ffcc;#00e6ff;#00ccff;#0099ff"
-              dur="4s"
-              repeatCount="indefinite"
-            />
-          </motion.rect>
-
-          <motion.rect
-            x="1300"
-            y="880"
-            width="40"
-            height="40"
-            fill="none"
-            stroke="#00e6ff"
-            strokeWidth="2"
-            filter="url(#contactGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 1, delay: 2.1 }}
-          >
-            <animate
-              attributeName="stroke"
-              values="#00e6ff;#00ccff;#0099ff;#00ffcc;#00e6ff"
-              dur="2.8s"
-              repeatCount="indefinite"
-            />
-          </motion.rect>
-
-          {/* Additional Circuit Patterns */}
-          <motion.rect
-            x="430"
-            y="255"
-            width="35"
-            height="35"
-            fill="none"
-            stroke="#00ffcc"
-            strokeWidth="2"
-            filter="url(#contactGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 1, delay: 2.3 }}
-          >
-            <animate
-              attributeName="stroke"
-              values="#00ffcc;#00e6ff;#0099ff;#00ccff;#00ffcc"
-              dur="2.2s"
-              repeatCount="indefinite"
-            />
-          </motion.rect>
-
-          <motion.rect
-            x="760"
-            y="505"
-            width="45"
-            height="45"
-            fill="none"
-            stroke="#00ccff"
-            strokeWidth="2"
-            filter="url(#contactGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 1, delay: 2.5 }}
-          >
-            <animate
-              attributeName="stroke"
-              values="#00ccff;#0099ff;#00ffcc;#00e6ff;#00ccff"
-              dur="2.3s"
-              repeatCount="indefinite"
-            />
-          </motion.rect>
-
-          <motion.rect
-            x="1120"
-            y="755"
-            width="38"
-            height="38"
-            fill="none"
-            stroke="#0099ff"
-            strokeWidth="2"
-            filter="url(#contactGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 1, delay: 2.7 }}
-          >
-            <animate
-              attributeName="stroke"
-              values="#0099ff;#00ffcc;#00e6ff;#00ccff;#0099ff"
-              dur="2.7s"
-              repeatCount="indefinite"
-            />
-          </motion.rect>
-
-          {/* Additional Flowing Connection Lines */}
-          <motion.line
-            x1="320"
-            y1="150"
-            x2="580"
-            y2="400"
-            stroke="url(#contactFlow1)"
-            strokeWidth="1.5"
-            filter="url(#contactGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 2, delay: 2.9 }}
-          />
-
-          <motion.line
-            x1="620"
-            y1="400"
-            x2="940"
-            y2="650"
-            stroke="url(#contactFlow2)"
-            strokeWidth="1.5"
-            filter="url(#contactGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 2, delay: 3.1 }}
-          />
-
-          <motion.line
-            x1="980"
-            y1="650"
-            x2="1300"
-            y2="900"
-            stroke="url(#contactFlow1)"
-            strokeWidth="1.5"
-            filter="url(#contactGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 2, delay: 3.3 }}
-          />
-
-          <motion.line
-            x1="450"
-            y1="275"
-            x2="760"
-            y2="525"
-            stroke="url(#contactFlow1)"
-            strokeWidth="1.5"
-            filter="url(#contactGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 2, delay: 3.5 }}
-          />
-
-          <motion.line
-            x1="800"
-            y1="525"
-            x2="1120"
-            y2="775"
-            stroke="url(#contactFlow2)"
-            strokeWidth="1.5"
-            filter="url(#contactGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 2, delay: 3.7 }}
-          />
-        </svg>
-
-        {/* Enhanced Nebula Effects */}
-        <motion.div
-          animate={{
-            scale: [1, 1.1, 1],
-            opacity: [0.03, 0.08, 0.03],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-          }}
-          className="absolute top-20 left-20 w-96 h-96 bg-[#00ffcc]/10 rounded-full blur-3xl"
-        />
-
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.03, 0.08, 0.03],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-            delay: 5,
-          }}
-          className="absolute bottom-20 right-20 w-80 h-80 bg-[#00ccff]/10 rounded-full blur-3xl"
-        />
-
-        <motion.div
-          animate={{
-            scale: [1, 1.15, 1],
-            opacity: [0.02, 0.06, 0.02],
-          }}
-          transition={{
-            duration: 30,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-            delay: 10,
-          }}
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#0099ff]/8 rounded-full blur-3xl"
-        />
-
-        {/* Grid pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#111111_1px,transparent_1px),linear-gradient(to_bottom,#111111_1px,transparent_1px)] bg-[size:100px_100px] opacity-10"></div>
-      </div>
+      <UltraOptimizedContactBackground />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-20 relative z-10 max-w-7xl">
         <motion.div

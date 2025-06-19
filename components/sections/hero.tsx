@@ -5,9 +5,242 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight, ArrowUpRightFromSquare, Code2, Database, Globe, Zap } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
-import { useRef, useCallback, useMemo } from "react"
+import { useRef, memo } from "react"
 
-export function HeroSection() {
+// Enhanced but optimized hero background with more stars and shooting orbits
+const EnhancedOptimizedHeroBackground = memo(() => {
+  return (
+    <div className="absolute inset-0">
+      {/* More stars but optimized - 35 stars for richness */}
+      <div className="absolute inset-0">
+        {[...Array(35)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute bg-white rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              width: `${Math.random() * 2 + 0.5}px`,
+              height: `${Math.random() * 2 + 0.5}px`,
+              animation: `twinkle ${2 + Math.random() * 3}s ease-in-out infinite`,
+              animationDelay: `${Math.random() * 3}s`,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* CSS-only shooting orbits and flowing lines - super lightweight */}
+      <div className="absolute inset-0">
+        <style jsx>{`
+          @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 0.9; transform: scale(1.3); }
+          }
+          @keyframes shootingOrbit1 {
+            0% { transform: translateX(-120px) translateY(0px); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateX(220px) translateY(-60px); opacity: 0; }
+          }
+          @keyframes shootingOrbit2 {
+            0% { transform: translateX(-100px) translateY(30px); opacity: 0; }
+            15% { opacity: 0.8; }
+            85% { opacity: 0.8; }
+            100% { transform: translateX(200px) translateY(-40px); opacity: 0; }
+          }
+          @keyframes shootingOrbit3 {
+            0% { transform: translateX(-80px) translateY(-20px); opacity: 0; }
+            20% { opacity: 0.6; }
+            80% { opacity: 0.6; }
+            100% { transform: translateX(180px) translateY(50px); opacity: 0; }
+          }
+          @keyframes heroFlowH {
+            0% { transform: translateX(-100px); opacity: 0; }
+            50% { opacity: 0.5; }
+            100% { transform: translateX(100px); opacity: 0; }
+          }
+          @keyframes heroFlowV {
+            0% { transform: translateY(-100px); opacity: 0; }
+            50% { opacity: 0.4; }
+            100% { transform: translateY(100px); opacity: 0; }
+          }
+          .shooting-orbit-1 {
+            animation: shootingOrbit1 5s ease-in-out infinite;
+          }
+          .shooting-orbit-2 {
+            animation: shootingOrbit2 6s ease-in-out infinite;
+          }
+          .shooting-orbit-3 {
+            animation: shootingOrbit3 7s ease-in-out infinite;
+          }
+          .hero-flow-h {
+            animation: heroFlowH 4s ease-in-out infinite;
+          }
+          .hero-flow-v {
+            animation: heroFlowV 5s ease-in-out infinite;
+          }
+        `}</style>
+
+        {/* Enhanced shooting orbits */}
+        <div className="absolute top-8 left-0 w-4 h-4 bg-[#00ffcc] rounded-full shooting-orbit-1 shadow-lg shadow-[#00ffcc]/60" />
+        <div
+          className="absolute top-16 left-0 w-3 h-3 bg-[#00ccff] rounded-full shooting-orbit-2 shadow-lg shadow-[#00ccff]/60"
+          style={{ animationDelay: "2s" }}
+        />
+        <div
+          className="absolute top-24 left-0 w-3.5 h-3.5 bg-[#0099ff] rounded-full shooting-orbit-3 shadow-lg shadow-[#0099ff]/60"
+          style={{ animationDelay: "1s" }}
+        />
+        <div
+          className="absolute bottom-12 left-0 w-3 h-3 bg-[#00e6ff] rounded-full shooting-orbit-1 shadow-lg shadow-[#00e6ff]/60"
+          style={{ animationDelay: "3s" }}
+        />
+        <div
+          className="absolute bottom-20 left-0 w-2.5 h-2.5 bg-[#00ffcc] rounded-full shooting-orbit-2 shadow-lg shadow-[#00ffcc]/60"
+          style={{ animationDelay: "4s" }}
+        />
+
+        {/* Enhanced flowing lines */}
+        <div className="absolute top-32 left-0 w-48 h-0.5 bg-gradient-to-r from-transparent via-[#00ffcc] to-transparent hero-flow-h" />
+        <div
+          className="absolute top-64 left-0 w-40 h-0.5 bg-gradient-to-r from-transparent via-[#00ccff] to-transparent hero-flow-h"
+          style={{ animationDelay: "1s" }}
+        />
+        <div
+          className="absolute bottom-32 left-0 w-44 h-0.5 bg-gradient-to-r from-transparent via-[#0099ff] to-transparent hero-flow-h"
+          style={{ animationDelay: "2s" }}
+        />
+        <div
+          className="absolute bottom-64 left-0 w-36 h-0.5 bg-gradient-to-r from-transparent via-[#00e6ff] to-transparent hero-flow-h"
+          style={{ animationDelay: "3s" }}
+        />
+
+        {/* Enhanced vertical flowing lines */}
+        <div className="absolute top-0 left-32 w-0.5 h-48 bg-gradient-to-b from-transparent via-[#00ffcc] to-transparent hero-flow-v" />
+        <div
+          className="absolute top-0 right-32 w-0.5 h-40 bg-gradient-to-b from-transparent via-[#00ccff] to-transparent hero-flow-v"
+          style={{ animationDelay: "1.5s" }}
+        />
+        <div
+          className="absolute top-0 left-1/2 w-0.5 h-44 bg-gradient-to-b from-transparent via-[#0099ff] to-transparent hero-flow-v"
+          style={{ animationDelay: "3s" }}
+        />
+        <div
+          className="absolute top-0 right-1/4 w-0.5 h-36 bg-gradient-to-b from-transparent via-[#00e6ff] to-transparent hero-flow-v"
+          style={{ animationDelay: "4.5s" }}
+        />
+      </div>
+
+      {/* Enhanced geometric elements */}
+      <div className="absolute inset-0">
+        <div
+          className="absolute w-4 h-4 border border-[#00ffcc]/40 rotate-45"
+          style={{
+            top: "20%",
+            left: "15%",
+            animation: "twinkle 3s ease-in-out infinite",
+          }}
+        />
+        <div
+          className="absolute w-3 h-3 bg-[#00ccff]/50 rounded-full"
+          style={{
+            top: "60%",
+            right: "20%",
+            animation: "twinkle 4s ease-in-out infinite",
+            animationDelay: "1s",
+          }}
+        />
+        <div
+          className="absolute w-5 h-0.5 bg-gradient-to-r from-[#00ffcc] to-transparent"
+          style={{
+            top: "40%",
+            right: "30%",
+            animation: "twinkle 2s ease-in-out infinite",
+            animationDelay: "0.5s",
+          }}
+        />
+        <div
+          className="absolute w-2 h-2 border border-[#0099ff]/35 rounded-full"
+          style={{
+            bottom: "30%",
+            left: "25%",
+            animation: "twinkle 2.5s ease-in-out infinite",
+            animationDelay: "1.5s",
+          }}
+        />
+        <div
+          className="absolute w-3 h-3 border border-[#00e6ff]/30"
+          style={{
+            top: "70%",
+            left: "70%",
+            animation: "twinkle 3.5s ease-in-out infinite",
+            animationDelay: "2s",
+          }}
+        />
+        <div
+          className="absolute w-1.5 h-1.5 bg-[#00ffcc]/60 rounded-full"
+          style={{
+            bottom: "60%",
+            right: "60%",
+            animation: "twinkle 2.8s ease-in-out infinite",
+            animationDelay: "2.5s",
+          }}
+        />
+      </div>
+
+      {/* Enhanced nebula effects */}
+      <div className="absolute top-20 left-20 w-96 h-96 bg-[#00ffcc]/6 rounded-full blur-3xl animate-pulse" />
+      <div
+        className="absolute bottom-20 right-20 w-80 h-80 bg-[#00ccff]/6 rounded-full blur-3xl animate-pulse"
+        style={{ animationDelay: "2s" }}
+      />
+      <div
+        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-[#0099ff]/4 rounded-full blur-3xl animate-pulse"
+        style={{ animationDelay: "4s" }}
+      />
+
+      {/* Grid pattern */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#111111_1px,transparent_1px),linear-gradient(to_bottom,#111111_1px,transparent_1px)] bg-[size:100px_100px] opacity-8"></div>
+    </div>
+  )
+})
+
+EnhancedOptimizedHeroBackground.displayName = "EnhancedOptimizedHeroBackground"
+
+// Memoized components
+const TechStackItem = memo(({ item, index }: { item: any; index: number }) => (
+  <motion.div
+    initial={{ opacity: 0, scale: 0.8 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 0.4, delay: 0.8 + index * 0.1 }}
+    whileHover={{ scale: 1.05, y: -2 }}
+    className="flex items-center space-x-2 px-3 py-2 bg-[#111111] rounded-full border border-[#222222] relative overflow-hidden backdrop-blur-sm"
+  >
+    <item.icon className="w-3 h-3 sm:w-4 sm:h-4 text-[#00ffcc]" />
+    <span className="text-xs sm:text-sm font-medium text-[#cccccc]">{item.text}</span>
+    <div className="absolute inset-0 bg-gradient-to-r from-[#00ffcc]/5 via-transparent to-[#00ccff]/5 opacity-0 hover:opacity-100 transition-opacity duration-300" />
+  </motion.div>
+))
+
+TechStackItem.displayName = "TechStackItem"
+
+const StatsItem = memo(({ stat, index }: { stat: any; index: number }) => (
+  <motion.div
+    initial={{ opacity: 0, scale: 0.8 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 0.4, delay: 1 + index * 0.1 }}
+    whileHover={{ scale: 1.05, y: -2 }}
+    className="space-y-1 sm:space-y-2 p-3 sm:p-4 bg-[#111111] rounded-xl border border-[#222222] relative overflow-hidden backdrop-blur-sm"
+  >
+    <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#00ffcc]">{stat.value}</div>
+    <div className="text-xs sm:text-sm text-[#999999] font-medium">{stat.label}</div>
+    <div className="absolute inset-0 bg-gradient-to-br from-[#00ffcc]/5 via-transparent to-[#00ccff]/5 opacity-0 hover:opacity-100 transition-opacity duration-300" />
+  </motion.div>
+))
+
+StatsItem.displayName = "StatsItem"
+
+export const HeroSection = memo(() => {
   const ref = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -17,485 +250,27 @@ export function HeroSection() {
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"])
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.8])
 
-  const starField = useMemo(() => {
-    return [...Array(300)].map((_, i) => (
-      <motion.div
-        key={i}
-        animate={{
-          opacity: [0.1, 0.8, 0.1],
-          scale: [1, 1.3, 1],
-        }}
-        transition={{
-          duration: Math.random() * 4 + 2,
-          repeat: Number.POSITIVE_INFINITY,
-          delay: Math.random() * 3,
-        }}
-        className="absolute bg-white rounded-full"
-        style={{
-          left: `${Math.random() * 100}%`,
-          top: `${Math.random() * 100}%`,
-          width: `${Math.random() * 2 + 0.5}px`,
-          height: `${Math.random() * 2 + 0.5}px`,
-        }}
-      />
-    ))
-  }, [])
+  const techStackItems = [
+    { icon: Code2, text: "React & Next.js" },
+    { icon: Database, text: "Node.js & MongoDB" },
+    { icon: Globe, text: "Full-Stack" },
+    { icon: Zap, text: "Performance" },
+  ]
 
-  const techStackItems = useMemo(
-    () => [
-      { icon: Code2, text: "React & Next.js" },
-      { icon: Database, text: "Node.js & MongoDB" },
-      { icon: Globe, text: "Full-Stack" },
-      { icon: Zap, text: "Performance" },
-    ],
-    [],
-  )
-
-  const statsItems = useMemo(
-    () => [
-      { value: "4+", label: "Projects" },
-      { value: "2+", label: "Years" },
-      { value: "8+", label: "Technologies" },
-    ],
-    [],
-  )
-
-  const scrollAnimation = useCallback(
-    () => ({
-      y: [0, 8, 0],
-      transition: { duration: 2, repeat: Number.POSITIVE_INFINITY },
-    }),
-    [],
-  )
-
-  const scrollDotAnimation = useCallback(
-    () => ({
-      y: [0, 12, 0],
-      transition: { duration: 2, repeat: Number.POSITIVE_INFINITY },
-    }),
-    [],
-  )
+  const statsItems = [
+    { value: "4+", label: "Projects" },
+    { value: "2+", label: "Years" },
+    { value: "8+", label: "Technologies" },
+  ]
 
   return (
     <section
       ref={ref}
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0a0a0a] pt-20 pb-16"
     >
-      {/* Enhanced Flowing Lines Background */}
+      {/* Enhanced optimized background */}
       <motion.div style={{ y, opacity }} className="absolute inset-0">
-        {/* Enhanced Star field */}
-        {starField}
-
-        {/* Flowing Lines System */}
-        <svg className="absolute inset-0 w-full h-full opacity-70">
-          <defs>
-            {/* Flowing Gradients with Animation */}
-            <linearGradient id="flowingGradient1" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="transparent" />
-              <stop offset="30%" stopColor="#00ffcc">
-                <animate
-                  attributeName="stop-color"
-                  values="#00ffcc;#00e6ff;#0099ff;#00ccff;#00ffcc"
-                  dur="2s"
-                  repeatCount="indefinite"
-                />
-              </stop>
-              <stop offset="70%" stopColor="#00ccff">
-                <animate
-                  attributeName="stop-color"
-                  values="#00ccff;#0099ff;#00ffcc;#00e6ff;#00ccff"
-                  dur="2s"
-                  repeatCount="indefinite"
-                />
-              </stop>
-              <stop offset="100%" stopColor="transparent" />
-              <animateTransform
-                attributeName="gradientTransform"
-                type="translate"
-                values="-100 0;100 0;-100 0"
-                dur="3s"
-                repeatCount="indefinite"
-              />
-            </linearGradient>
-
-            <linearGradient id="flowingGradient2" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="transparent" />
-              <stop offset="30%" stopColor="#0099ff">
-                <animate
-                  attributeName="stop-color"
-                  values="#0099ff;#00ffcc;#00e6ff;#00ccff;#0099ff"
-                  dur="2.5s"
-                  repeatCount="indefinite"
-                />
-              </stop>
-              <stop offset="70%" stopColor="#00e6ff">
-                <animate
-                  attributeName="stop-color"
-                  values="#00e6ff;#00ccff;#0099ff;#00ffcc;#00e6ff"
-                  dur="2.5s"
-                  repeatCount="indefinite"
-                />
-              </stop>
-              <stop offset="100%" stopColor="transparent" />
-              <animateTransform
-                attributeName="gradientTransform"
-                type="translate"
-                values="-100 0;100 0;-100 0"
-                dur="4s"
-                repeatCount="indefinite"
-              />
-            </linearGradient>
-
-            <linearGradient id="flowingGradient3" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="transparent" />
-              <stop offset="30%" stopColor="#00ccff">
-                <animate
-                  attributeName="stop-color"
-                  values="#00ccff;#0099ff;#00ffcc;#00e6ff;#00ccff"
-                  dur="3s"
-                  repeatCount="indefinite"
-                />
-              </stop>
-              <stop offset="70%" stopColor="#00ffcc">
-                <animate
-                  attributeName="stop-color"
-                  values="#00ffcc;#00e6ff;#0099ff;#00ccff;#00ffcc"
-                  dur="3s"
-                  repeatCount="indefinite"
-                />
-              </stop>
-              <stop offset="100%" stopColor="transparent" />
-              <animateTransform
-                attributeName="gradientTransform"
-                type="translate"
-                values="0 -100;0 100;0 -100"
-                dur="3.5s"
-                repeatCount="indefinite"
-              />
-            </linearGradient>
-
-            <filter id="flowGlow">
-              <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-              <feMerge>
-                <feMergeNode in="coloredBlur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-
-            <filter id="strongGlow">
-              <feGaussianBlur stdDeviation="5" result="coloredBlur" />
-              <feMerge>
-                <feMergeNode in="coloredBlur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-          </defs>
-
-          {/* Horizontal Flowing Lines */}
-          <motion.line
-            x1="0"
-            y1="200"
-            x2="1920"
-            y2="200"
-            stroke="url(#flowingGradient1)"
-            strokeWidth="3"
-            filter="url(#flowGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 2, ease: "easeInOut" }}
-          />
-
-          <motion.line
-            x1="0"
-            y1="400"
-            x2="1920"
-            y2="400"
-            stroke="url(#flowingGradient2)"
-            strokeWidth="2.5"
-            filter="url(#flowGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 2.5, delay: 0.5, ease: "easeInOut" }}
-          />
-
-          <motion.line
-            x1="0"
-            y1="600"
-            x2="1920"
-            y2="600"
-            stroke="url(#flowingGradient1)"
-            strokeWidth="2.8"
-            filter="url(#flowGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 3, delay: 1, ease: "easeInOut" }}
-          />
-
-          <motion.line
-            x1="0"
-            y1="800"
-            x2="1920"
-            y2="800"
-            stroke="url(#flowingGradient2)"
-            strokeWidth="2.2"
-            filter="url(#flowGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 3.5, delay: 1.5, ease: "easeInOut" }}
-          />
-
-          {/* Vertical Flowing Lines */}
-          <motion.line
-            x1="300"
-            y1="0"
-            x2="300"
-            y2="1080"
-            stroke="url(#flowingGradient3)"
-            strokeWidth="2.5"
-            filter="url(#flowGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 2, delay: 2, ease: "easeInOut" }}
-          />
-
-          <motion.line
-            x1="600"
-            y1="0"
-            x2="600"
-            y2="1080"
-            stroke="url(#flowingGradient3)"
-            strokeWidth="2.8"
-            filter="url(#flowGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 2.5, delay: 2.5, ease: "easeInOut" }}
-          />
-
-          <motion.line
-            x1="1200"
-            y1="0"
-            x2="1200"
-            y2="1080"
-            stroke="url(#flowingGradient3)"
-            strokeWidth="2.3"
-            filter="url(#flowGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 3, delay: 3, ease: "easeInOut" }}
-          />
-
-          <motion.line
-            x1="1500"
-            y1="0"
-            x2="1500"
-            y2="1080"
-            stroke="url(#flowingGradient3)"
-            strokeWidth="2.6"
-            filter="url(#flowGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 3.5, delay: 3.5, ease: "easeInOut" }}
-          />
-
-          {/* Circuit Nodes/Junctions with Pulsing */}
-          <motion.circle
-            cx="300"
-            cy="200"
-            r="6"
-            fill="#00ffcc"
-            filter="url(#strongGlow)"
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 1 }}
-          >
-            <animate
-              attributeName="fill"
-              values="#00ffcc;#00e6ff;#0099ff;#00ccff;#00ffcc"
-              dur="2s"
-              repeatCount="indefinite"
-            />
-            <animate attributeName="r" values="6;8;6" dur="3s" repeatCount="indefinite" />
-          </motion.circle>
-
-          <motion.circle
-            cx="600"
-            cy="400"
-            r="7"
-            fill="#00ccff"
-            filter="url(#strongGlow)"
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 1.2 }}
-          >
-            <animate
-              attributeName="fill"
-              values="#00ccff;#0099ff;#00ffcc;#00e6ff;#00ccff"
-              dur="2.5s"
-              repeatCount="indefinite"
-            />
-            <animate attributeName="r" values="7;9;7" dur="3.5s" repeatCount="indefinite" />
-          </motion.circle>
-
-          <motion.circle
-            cx="1200"
-            cy="600"
-            r="6.5"
-            fill="#0099ff"
-            filter="url(#strongGlow)"
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 1.4 }}
-          >
-            <animate
-              attributeName="fill"
-              values="#0099ff;#00ffcc;#00e6ff;#00ccff;#0099ff"
-              dur="3s"
-              repeatCount="indefinite"
-            />
-            <animate attributeName="r" values="6.5;8.5;6.5" dur="4s" repeatCount="indefinite" />
-          </motion.circle>
-
-          <motion.circle
-            cx="1500"
-            cy="800"
-            r="5.5"
-            fill="#00e6ff"
-            filter="url(#strongGlow)"
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 1.6 }}
-          >
-            <animate
-              attributeName="fill"
-              values="#00e6ff;#00ccff;#0099ff;#00ffcc;#00e6ff"
-              dur="2.8s"
-              repeatCount="indefinite"
-            />
-            <animate attributeName="r" values="5.5;7.5;5.5" dur="3.2s" repeatCount="indefinite" />
-          </motion.circle>
-
-          {/* Enhanced Flowing Data Particles */}
-          <motion.circle
-            r="4"
-            fill="#00ffcc"
-            filter="url(#strongGlow)"
-            animate={{
-              cx: [0, 300, 600, 1200, 1500, 1920],
-              cy: [200, 200, 400, 600, 800, 800],
-            }}
-            transition={{
-              duration: 5,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "linear",
-            }}
-          >
-            <animate
-              attributeName="fill"
-              values="#00ffcc;#00e6ff;#0099ff;#00ccff;#00ffcc"
-              dur="2s"
-              repeatCount="indefinite"
-            />
-            <animate attributeName="r" values="4;6;4" dur="1s" repeatCount="indefinite" />
-          </motion.circle>
-
-          <motion.circle
-            r="3.5"
-            fill="#00ccff"
-            filter="url(#strongGlow)"
-            animate={{
-              cx: [1920, 1500, 1200, 600, 300, 0],
-              cy: [400, 400, 600, 400, 200, 200],
-            }}
-            transition={{
-              duration: 6,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "linear",
-              delay: 0.5,
-            }}
-          >
-            <animate
-              attributeName="fill"
-              values="#00ccff;#0099ff;#00ffcc;#00e6ff;#00ccff"
-              dur="2.5s"
-              repeatCount="indefinite"
-            />
-            <animate attributeName="r" values="3.5;5.5;3.5" dur="1.2s" repeatCount="indefinite" />
-          </motion.circle>
-
-          {/* Circuit Patterns with Flow */}
-          <motion.rect
-            x="280"
-            y="180"
-            width="40"
-            height="40"
-            fill="none"
-            stroke="#00ffcc"
-            strokeWidth="2"
-            filter="url(#flowGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 1, delay: 1.5 }}
-          >
-            <animate
-              attributeName="stroke"
-              values="#00ffcc;#00e6ff;#0099ff;#00ccff;#00ffcc"
-              dur="3s"
-              repeatCount="indefinite"
-            />
-          </motion.rect>
-
-          <motion.rect
-            x="580"
-            y="380"
-            width="40"
-            height="40"
-            fill="none"
-            stroke="#00ccff"
-            strokeWidth="2"
-            filter="url(#flowGlow)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 1, delay: 1.7 }}
-          >
-            <animate
-              attributeName="stroke"
-              values="#00ccff;#0099ff;#00ffcc;#00e6ff;#00ccff"
-              dur="3.5s"
-              repeatCount="indefinite"
-            />
-          </motion.rect>
-        </svg>
-
-        {/* Enhanced Nebula Effects */}
-        <motion.div
-          animate={{
-            scale: [1, 1.1, 1],
-            opacity: [0.03, 0.08, 0.03],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-          }}
-          className="absolute top-20 left-20 w-96 h-96 bg-[#00ffcc]/10 rounded-full blur-3xl"
-        />
-
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.03, 0.08, 0.03],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-            delay: 5,
-          }}
-          className="absolute bottom-20 right-20 w-80 h-80 bg-[#00ccff]/10 rounded-full blur-3xl"
-        />
-
-        {/* Grid pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#111111_1px,transparent_1px),linear-gradient(to_bottom,#111111_1px,transparent_1px)] bg-[size:100px_100px] opacity-10"></div>
+        <EnhancedOptimizedHeroBackground />
       </motion.div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -569,22 +344,7 @@ export function HeroSection() {
                 className="flex flex-wrap gap-2 sm:gap-3"
               >
                 {techStackItems.map((item, index) => (
-                  <motion.div
-                    key={item.text}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.4, delay: 0.8 + index * 0.1 }}
-                    whileHover={{
-                      scale: 1.05,
-                      y: -2,
-                      boxShadow: "0 10px 25px rgba(0, 255, 204, 0.2)",
-                    }}
-                    className="flex items-center space-x-2 px-3 py-2 bg-[#111111] rounded-full border border-[#222222] relative overflow-hidden backdrop-blur-sm"
-                  >
-                    <item.icon className="w-3 h-3 sm:w-4 sm:h-4 text-[#00ffcc]" />
-                    <span className="text-xs sm:text-sm font-medium text-[#cccccc]">{item.text}</span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#00ffcc]/5 via-transparent to-[#00ccff]/5 opacity-0 hover:opacity-100 transition-opacity duration-300" />
-                  </motion.div>
+                  <TechStackItem key={item.text} item={item} index={index} />
                 ))}
               </motion.div>
             </div>
@@ -633,21 +393,21 @@ export function HeroSection() {
             </motion.div>
           </motion.div>
 
-          {/* Profile section - Fixed responsive design and positioning */}
+          {/* Enhanced Profile section */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.4 }}
             className="flex flex-col items-center space-y-6 lg:space-y-8 order-1 lg:order-2 px-4 sm:px-8 lg:px-0"
           >
-            {/* Profile Picture Container - Fixed sizing and spacing */}
+            {/* Enhanced Profile Picture Container */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.6 }}
               className="relative flex items-center justify-center w-full max-w-sm lg:max-w-md xl:max-w-lg"
             >
-              {/* Enhanced orbital rings - Fixed responsive positioning */}
+              {/* Enhanced orbital rings - 3 rings for more visual impact */}
               <motion.div
                 animate={{ rotate: [0, 360] }}
                 transition={{ duration: 15, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
@@ -661,7 +421,7 @@ export function HeroSection() {
               />
               <motion.div
                 animate={{ rotate: [360, 0] }}
-                transition={{ duration: 12, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+                transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
                 className="absolute inset-0 w-full h-full border border-[#00ccff]/25 rounded-full"
                 style={{
                   width: "calc(100% + 48px)",
@@ -672,7 +432,7 @@ export function HeroSection() {
               />
               <motion.div
                 animate={{ rotate: [0, 360] }}
-                transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+                transition={{ duration: 25, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
                 className="absolute inset-0 w-full h-full border border-[#0099ff]/20 rounded-full"
                 style={{
                   width: "calc(100% + 64px)",
@@ -682,7 +442,7 @@ export function HeroSection() {
                 }}
               />
 
-              {/* Profile picture - Fixed responsive sizing */}
+              {/* Profile picture */}
               <div className="w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 xl:w-96 xl:h-96 rounded-full overflow-hidden bg-gradient-to-br from-[#111111] to-[#1a1a1a] shadow-2xl border-2 border-[#00ffcc]/40 relative z-10">
                 <Image
                   src="/pfp-my.jpeg"
@@ -694,12 +454,10 @@ export function HeroSection() {
                   loading="eager"
                   sizes="(max-width: 640px) 224px, (max-width: 768px) 256px, (max-width: 1024px) 288px, (max-width: 1280px) 320px, 384px"
                 />
-
-                {/* Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/50 via-transparent to-transparent" />
               </div>
 
-              {/* Enhanced satellite elements - Fixed responsive positioning */}
+              {/* Enhanced satellite elements - 4 satellites */}
               <motion.div
                 animate={{ rotate: [0, 360] }}
                 transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
@@ -711,7 +469,7 @@ export function HeroSection() {
               />
               <motion.div
                 animate={{ rotate: [360, 0] }}
-                transition={{ duration: 6, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+                transition={{ duration: 12, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
                 className="absolute w-3 h-3 bg-[#00ccff] rounded-full shadow-lg shadow-[#00ccff]/60"
                 style={{
                   bottom: "8px",
@@ -721,14 +479,23 @@ export function HeroSection() {
               <motion.div
                 animate={{ rotate: [0, 360] }}
                 transition={{ duration: 10, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-                className="absolute w-2 h-2 bg-[#0099ff] rounded-full shadow-lg shadow-[#0099ff]/60"
+                className="absolute w-2.5 h-2.5 bg-[#0099ff] rounded-full shadow-lg shadow-[#0099ff]/60"
                 style={{
                   top: "16px",
                   right: "32px",
                 }}
               />
+              <motion.div
+                animate={{ rotate: [360, 0] }}
+                transition={{ duration: 14, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+                className="absolute w-2 h-2 bg-[#00e6ff] rounded-full shadow-lg shadow-[#00e6ff]/60"
+                style={{
+                  bottom: "16px",
+                  right: "24px",
+                }}
+              />
 
-              {/* Status badge - Fixed positioning to prevent cutoff */}
+              {/* Enhanced status badge */}
               <motion.div
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -737,7 +504,6 @@ export function HeroSection() {
                 style={{
                   bottom: "-12px",
                   right: "16px",
-                  transform: "translateX(0)",
                 }}
               >
                 <motion.div
@@ -756,7 +522,7 @@ export function HeroSection() {
               </motion.div>
             </motion.div>
 
-            {/* Stats - Fixed responsive grid */}
+            {/* Enhanced Stats */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -764,22 +530,7 @@ export function HeroSection() {
               className="grid grid-cols-3 gap-3 sm:gap-4 lg:gap-6 text-center w-full max-w-sm lg:max-w-md"
             >
               {statsItems.map((stat, index) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 1 + index * 0.1 }}
-                  whileHover={{
-                    scale: 1.05,
-                    y: -2,
-                    boxShadow: "0 10px 25px rgba(0, 255, 204, 0.15)",
-                  }}
-                  className="space-y-1 sm:space-y-2 p-3 sm:p-4 bg-[#111111] rounded-xl border border-[#222222] relative overflow-hidden backdrop-blur-sm"
-                >
-                  <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#00ffcc]">{stat.value}</div>
-                  <div className="text-xs sm:text-sm text-[#999999] font-medium">{stat.label}</div>
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#00ffcc]/5 via-transparent to-[#00ccff]/5 opacity-0 hover:opacity-100 transition-opacity duration-300" />
-                </motion.div>
+                <StatsItem key={stat.label} stat={stat} index={index} />
               ))}
             </motion.div>
 
@@ -793,18 +544,30 @@ export function HeroSection() {
               <Button
                 asChild
                 variant="outline"
-                className="border-[#333333] text-[#cccccc] hover:text-white hover:border-[#00ffcc] bg-[#111111] hover:shadow-lg hover:shadow-[#00ffcc]/20"
+                className="border-[#333333] text-[#cccccc] hover:text-white hover:border-[#00ffcc] bg-[#111111] hover:shadow-lg hover:shadow-[#00ffcc]/20 relative overflow-hidden"
               >
                 <Link href="/Hridayesh-Srivastava.pdf" target="_blank" rel="noopener noreferrer">
-                  <ArrowUpRightFromSquare className="h-4 w-4 mr-2" />
-                  View Resume
+                  <motion.div
+                    animate={{
+                      x: [-50, 50],
+                      opacity: [0, 0.2, 0],
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Number.POSITIVE_INFINITY,
+                      ease: "easeInOut",
+                    }}
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-[#00ffcc]/10 to-transparent"
+                  />
+                  <ArrowUpRightFromSquare className="h-4 w-4 mr-2 relative z-10" />
+                  <span className="relative z-10">View Resume</span>
                 </Link>
               </Button>
             </motion.div>
           </motion.div>
         </div>
 
-        {/* Scroll indicator */}
+        {/* Enhanced scroll indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -814,11 +577,13 @@ export function HeroSection() {
           <div className="flex flex-col items-center space-y-2">
             <span className="text-xs text-[#999999] font-medium">Scroll to explore</span>
             <motion.div
-              animate={scrollAnimation}
+              animate={{ y: [0, 8, 0] }}
+              transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
               className="w-6 h-10 border-2 border-[#333333] rounded-full flex justify-center relative"
             >
               <motion.div
-                animate={scrollDotAnimation}
+                animate={{ y: [0, 12, 0] }}
+                transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
                 className="w-1 h-3 bg-[#00ffcc] rounded-full mt-2 shadow-sm shadow-[#00ffcc]/50"
               />
             </motion.div>
@@ -827,4 +592,6 @@ export function HeroSection() {
       </div>
     </section>
   )
-}
+})
+
+HeroSection.displayName = "HeroSection"
