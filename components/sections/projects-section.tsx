@@ -51,11 +51,11 @@ const featuredProjects = [
   },
 ]
 
-// Ultra-optimized projects background with enhanced visuals but maximum performance
+
 const UltraOptimizedProjectsBackground = memo(() => {
   const shouldReduceMotion = useReducedMotion()
 
-  // Memoized stars generation for performance
+  
   const stars = useMemo(
     () =>
       [...Array(40)].map((_, i) => ({
@@ -79,7 +79,7 @@ const UltraOptimizedProjectsBackground = memo(() => {
 
   return (
     <div className="absolute inset-0">
-      {/* Optimized stars with CSS animations */}
+    
       <div className="absolute inset-0" style={{ contain: "layout style paint" }}>
         {stars.map((star) => (
           <div
@@ -98,7 +98,7 @@ const UltraOptimizedProjectsBackground = memo(() => {
         ))}
       </div>
 
-      {/* CSS-only animations for maximum performance */}
+     
       <div className="absolute inset-0">
         <style jsx>{`
           @keyframes twinkle {
@@ -141,7 +141,7 @@ const UltraOptimizedProjectsBackground = memo(() => {
           }
         `}</style>
 
-        {/* Enhanced shooting orbits */}
+        
         <div className="absolute top-8 left-0 w-4 h-4 bg-[#00ffcc] rounded-full projects-shooting-orbit-1 shadow-lg shadow-[#00ffcc]/60" />
         <div
           className="absolute top-16 left-0 w-3.5 h-3.5 bg-[#00ccff] rounded-full projects-shooting-orbit-2 shadow-lg shadow-[#00ccff]/60"
@@ -156,7 +156,7 @@ const UltraOptimizedProjectsBackground = memo(() => {
           style={{ animationDelay: "3s" }}
         />
 
-        {/* Enhanced flowing lines */}
+        
         <div className="absolute top-20 left-0 w-48 h-0.5 bg-gradient-to-r from-transparent via-[#00ffcc] to-transparent projects-flow-h" />
         <div
           className="absolute top-40 left-0 w-44 h-0.5 bg-gradient-to-r from-transparent via-[#00ccff] to-transparent projects-flow-h"
@@ -171,7 +171,7 @@ const UltraOptimizedProjectsBackground = memo(() => {
           style={{ animationDelay: "3s" }}
         />
 
-        {/* Enhanced vertical flowing lines */}
+       
         <div className="absolute top-0 left-20 w-0.5 h-48 bg-gradient-to-b from-transparent via-[#00ffcc] to-transparent projects-flow-v" />
         <div
           className="absolute top-0 right-20 w-0.5 h-44 bg-gradient-to-b from-transparent via-[#00ccff] to-transparent projects-flow-v"
@@ -187,7 +187,7 @@ const UltraOptimizedProjectsBackground = memo(() => {
         />
       </div>
 
-      {/* Enhanced geometric elements with CSS animations */}
+      
       <div className="absolute inset-0">
         <div
           className="absolute w-4 h-4 border border-[#00ffcc]/40 rotate-45"
@@ -244,7 +244,7 @@ const UltraOptimizedProjectsBackground = memo(() => {
         />
       </div>
 
-      {/* Enhanced nebula effects with CSS animations */}
+     
       <div className="absolute top-16 left-16 w-96 h-96 bg-[#00ffcc]/6 rounded-full blur-3xl animate-pulse" />
       <div
         className="absolute bottom-16 right-16 w-80 h-80 bg-[#00ccff]/6 rounded-full blur-3xl animate-pulse"
@@ -255,7 +255,7 @@ const UltraOptimizedProjectsBackground = memo(() => {
         style={{ animationDelay: "4s" }}
       />
 
-      {/* Grid pattern */}
+     
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#111111_1px,transparent_1px),linear-gradient(to_bottom,#111111_1px,transparent_1px)] bg-[size:100px_100px] opacity-8"></div>
     </div>
   )
@@ -263,7 +263,7 @@ const UltraOptimizedProjectsBackground = memo(() => {
 
 UltraOptimizedProjectsBackground.displayName = "UltraOptimizedProjectsBackground"
 
-// Memoized project card component with performance optimizations
+
 const ProjectCard = memo(({ project, index, isInView }: { project: any; index: number; isInView: boolean }) => (
   <motion.div
     initial={{ opacity: 0, y: 50 }}
@@ -287,7 +287,7 @@ const ProjectCard = memo(({ project, index, isInView }: { project: any; index: n
 
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/80 via-transparent to-transparent" />
 
-        {/* Enhanced category badge */}
+       
         <div className="absolute top-4 left-4">
           <motion.div
             className="p-2 rounded-xl bg-[#00ffcc]/20 backdrop-blur-sm border border-[#00ffcc]/30 relative overflow-hidden"
@@ -300,7 +300,7 @@ const ProjectCard = memo(({ project, index, isInView }: { project: any; index: n
           </motion.div>
         </div>
 
-        {/* Enhanced action buttons overlay */}
+       
         <motion.div
           initial={{ opacity: 0 }}
           whileHover={{ opacity: 1 }}
@@ -340,7 +340,7 @@ const ProjectCard = memo(({ project, index, isInView }: { project: any; index: n
       <CardContent className="space-y-4 relative z-10">
         <p className="text-[#999999] leading-relaxed">{project.description}</p>
 
-        {/* Enhanced Technologies */}
+      
         <div className="flex flex-wrap gap-2">
           {project.technologies.map((tech: string, techIndex: number) => (
             <motion.div
@@ -362,7 +362,7 @@ const ProjectCard = memo(({ project, index, isInView }: { project: any; index: n
           ))}
         </div>
 
-        {/* Enhanced Action buttons */}
+        
         <div className="flex gap-3 pt-4">
           <Button
             asChild
@@ -409,7 +409,7 @@ export const ProjectsSection = memo(() => {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
-  // Memoized animation variants for better performance
+  
   const containerVariants = useMemo(
     () => ({
       hidden: { opacity: 0 },
@@ -440,7 +440,7 @@ export const ProjectsSection = memo(() => {
           animate={isInView ? "visible" : "hidden"}
           className="space-y-16"
         >
-          {/* Enhanced Section header */}
+          
           <motion.div variants={headerVariants} className="text-center space-y-6">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold">
               <span className="text-white">Featured </span>
@@ -470,14 +470,14 @@ export const ProjectsSection = memo(() => {
             </motion.p>
           </motion.div>
 
-          {/* Enhanced Projects grid */}
+       
           <div className="grid md:grid-cols-2 gap-8">
             {featuredProjects.map((project, index) => (
               <ProjectCard key={index} project={project} index={index} isInView={isInView} />
             ))}
           </div>
 
-          {/* Enhanced View all button */}
+         
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}

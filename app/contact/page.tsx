@@ -86,7 +86,7 @@ const socialLinks = [
   },
 ]
 
-// Ultra Enhanced Star Component for Contact (Most Rich)
+
 const ContactStar = memo(({ star }: { star: any }) => (
   <div
     className="absolute bg-white rounded-full pointer-events-none animate-pulse"
@@ -106,7 +106,7 @@ const ContactStar = memo(({ star }: { star: any }) => (
 
 ContactStar.displayName = "ContactStar"
 
-// Ultra Enhanced Floating Orb for Contact
+
 const ContactOrb = memo(({ orb }: { orb: any }) => (
   <div
     className="absolute rounded-full pointer-events-none opacity-45"
@@ -127,7 +127,7 @@ const ContactOrb = memo(({ orb }: { orb: any }) => (
 
 ContactOrb.displayName = "ContactOrb"
 
-// Communication Particle Component for Contact theme
+
 const CommunicationParticle = memo(({ particle }: { particle: any }) => (
   <div
     className="absolute rounded-full pointer-events-none"
@@ -146,7 +146,7 @@ const CommunicationParticle = memo(({ particle }: { particle: any }) => (
 
 CommunicationParticle.displayName = "CommunicationParticle"
 
-// Message Wave Component for Contact theme
+
 const MessageWave = memo(({ wave }: { wave: any }) => (
   <div
     className="absolute rounded-full pointer-events-none border-2"
@@ -166,7 +166,7 @@ const MessageWave = memo(({ wave }: { wave: any }) => (
 
 MessageWave.displayName = "MessageWave"
 
-// Ultra optimized rich background for Contact with MOST elements
+
 const UltraOptimizedContactBackground = memo(() => {
   const shouldReduceMotion = useReducedMotion()
   const [mounted, setMounted] = useState(false)
@@ -175,7 +175,7 @@ const UltraOptimizedContactBackground = memo(() => {
     setMounted(true)
   }, [])
 
-  // MOST stars for contact page (richest look ever)
+
   const stars = useMemo(
     () =>
       [...Array(180)].map((_, i) => ({
@@ -190,7 +190,7 @@ const UltraOptimizedContactBackground = memo(() => {
     [],
   )
 
-  // MOST orbs for ultimate richness
+
   const orbs = useMemo(
     () =>
       [...Array(10)].map((_, i) => ({
@@ -216,7 +216,7 @@ const UltraOptimizedContactBackground = memo(() => {
     [],
   )
 
-  // MOST communication particles for contact theme
+
   const communicationParticles = useMemo(
     () =>
       [...Array(15)].map((_, i) => ({
@@ -229,7 +229,7 @@ const UltraOptimizedContactBackground = memo(() => {
     [],
   )
 
-  // Message waves for communication theme
+
   const messageWaves = useMemo(
     () =>
       [...Array(8)].map((_, i) => ({
@@ -313,37 +313,37 @@ const UltraOptimizedContactBackground = memo(() => {
       `}</style>
 
       <div className="absolute inset-0 overflow-hidden">
-        {/* Ultra Enhanced Star field */}
+     
         <div className="absolute inset-0" style={{ contain: "layout style paint" }}>
           {stars.map((star) => (
             <ContactStar key={star.id} star={star} />
           ))}
         </div>
 
-        {/* Ultra Enhanced Floating Orbs */}
+      
         <div className="absolute inset-0">
           {orbs.map((orb) => (
             <ContactOrb key={orb.id} orb={orb} />
           ))}
         </div>
 
-        {/* Communication Particles */}
+     
         <div className="absolute inset-0">
           {communicationParticles.map((particle) => (
             <CommunicationParticle key={particle.id} particle={particle} />
           ))}
         </div>
 
-        {/* Message Waves */}
+    
         <div className="absolute inset-0">
           {messageWaves.map((wave) => (
             <MessageWave key={wave.id} wave={wave} />
           ))}
         </div>
 
-        {/* MOST Enhanced flowing lines with CSS animations */}
+       
         <div className="absolute inset-0 opacity-58">
-          {/* MOST Horizontal flowing lines */}
+      
           <div
             className="absolute h-0.5 w-32 bg-gradient-to-r from-transparent via-[#00ffcc] to-transparent flow-line-h-contact"
             style={{ top: "8%", animationDelay: "0s" }}
@@ -397,7 +397,7 @@ const UltraOptimizedContactBackground = memo(() => {
             style={{ top: "92%", animationDelay: "4.5s" }}
           />
 
-          {/* MOST Vertical flowing lines */}
+       
           <div
             className="absolute w-0.5 h-32 bg-gradient-to-b from-transparent via-[#00ffcc] to-transparent flow-line-v-contact"
             style={{ left: "6%", animationDelay: "0.5s" }}
@@ -463,7 +463,7 @@ const UltraOptimizedContactBackground = memo(() => {
             style={{ left: "96%", animationDelay: "8s" }}
           />
 
-          {/* Enhanced Diagonal flowing lines */}
+       
           <div
             className="absolute w-0.5 h-28 bg-gradient-to-b from-transparent via-[#00ffcc] to-transparent flow-diagonal-contact"
             style={{ animationDelay: "1s" }}
@@ -489,7 +489,7 @@ const UltraOptimizedContactBackground = memo(() => {
             style={{ animationDelay: "11s" }}
           />
 
-          {/* Pulse flowing lines for communication theme */}
+         
           <div
             className="absolute h-0.5 w-24 bg-gradient-to-r from-transparent via-[#00ffcc] to-transparent flow-pulse-contact"
             style={{ animationDelay: "2s" }}
@@ -508,7 +508,7 @@ const UltraOptimizedContactBackground = memo(() => {
           />
         </div>
 
-        {/* MOST Enhanced circuit nodes */}
+       
         <div className="absolute inset-0 opacity-78">
           <div
             className="absolute w-2 h-2 bg-[#00ffcc] rounded-full shadow-lg shadow-[#00ffcc]/70 animate-pulse"
@@ -576,7 +576,7 @@ const UltraOptimizedContactBackground = memo(() => {
           />
         </div>
 
-        {/* MOST Enhanced nebula effects */}
+      
         <div className="absolute top-5 left-5 w-[450px] h-[450px] bg-[#00ffcc]/7 rounded-full blur-3xl pointer-events-none opacity-68" />
         <div className="absolute bottom-5 right-5 w-[420px] h-[420px] bg-[#00ccff]/7 rounded-full blur-3xl pointer-events-none opacity-68" />
         <div className="absolute top-1/4 right-1/3 w-[380px] h-[380px] bg-[#0099ff]/5 rounded-full blur-3xl pointer-events-none opacity-58" />
@@ -585,7 +585,7 @@ const UltraOptimizedContactBackground = memo(() => {
         <div className="absolute bottom-2/3 right-1/6 w-[460px] h-[460px] bg-[#00d9ff]/5 rounded-full blur-3xl pointer-events-none opacity-60" />
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#00f0ff]/3 rounded-full blur-3xl pointer-events-none opacity-45" />
 
-        {/* Grid pattern */}
+  
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#111111_1px,transparent_1px),linear-gradient(to_bottom,#111111_1px,transparent_1px)] bg-[size:100px_100px] opacity-10"></div>
       </div>
     </>
@@ -612,14 +612,14 @@ export default function ContactPage() {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: "-50px" })
 
-  // Get API URL from environment or use default
+ 
   const apiUrl =
     process.env.NEXT_PUBLIC_API_URL ||
     (typeof window !== "undefined" && window.location.hostname === "localhost"
       ? "http://localhost:8080/api"
       : "https://portfolio-backend-plum-nine.vercel.app/api")
 
-  // Check backend connection
+ 
   const checkConnection = async () => {
     try {
       console.log("🔍 Checking backend connection...")
@@ -632,14 +632,14 @@ export default function ContactPage() {
 
       if (response.ok) {
         const data = await response.json()
-        console.log(`✅ Connected to backend:`, data)
+        console.log(`Connected to backend:`, data)
         setConnectionStatus("connected")
       } else {
-        console.error(`❌ Backend connection failed with status: ${response.status}`)
+        console.error(`Backend connection failed with status: ${response.status}`)
         setConnectionStatus("disconnected")
       }
     } catch (error) {
-      console.error("❌ Connection check failed:", error)
+      console.error("Connection check failed:", error)
       setConnectionStatus("disconnected")
     }
   }
@@ -673,8 +673,8 @@ export default function ContactPage() {
     try {
       const endpoint = `${apiUrl}/contact`
 
-      console.log("🚀 Submitting to:", endpoint)
-      console.log("📋 Form data:", formData)
+      console.log("Submitting to:", endpoint)
+      console.log("Form data:", formData)
 
       const response = await fetch(endpoint, {
         method: "POST",
@@ -684,14 +684,14 @@ export default function ContactPage() {
         body: JSON.stringify(formData),
       })
 
-      console.log("📥 Response status:", response.status)
+      console.log("Response status:", response.status)
 
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}`)
       }
 
       const data = await response.json()
-      console.log("📥 Response data:", data)
+      console.log("Response data:", data)
 
       if (data.success) {
         setSubmitStatus({
@@ -712,7 +712,7 @@ export default function ContactPage() {
         })
       }
     } catch (error: any) {
-      console.error("❌ Submission error:", error)
+      console.error("Submission error:", error)
       setSubmitStatus({
         type: "error",
         message: "Unable to submit form. Please try again or contact me directly via email.",
@@ -733,7 +733,7 @@ export default function ContactPage() {
           transition={{ duration: 0.8 }}
           className="space-y-12 sm:space-y-16"
         >
-          {/* Header */}
+    
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -772,7 +772,7 @@ export default function ContactPage() {
               cutting-edge technology and innovative solutions.
             </motion.p>
 
-            {/* Connection Status */}
+         
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
@@ -824,7 +824,7 @@ export default function ContactPage() {
           </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-            {/* Contact Form */}
+        
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -942,7 +942,7 @@ export default function ContactPage() {
                       <p className="text-xs text-[#999999]">{formData.message.length}/1000 characters</p>
                     </div>
 
-                    {/* Status Message */}
+                   
                     {submitStatus.type && (
                       <motion.div
                         initial={{ opacity: 0, y: 10 }}
@@ -1004,9 +1004,9 @@ export default function ContactPage() {
               </Card>
             </motion.div>
 
-            {/* Contact Information */}
+         
             <div className="space-y-6 sm:space-y-8 w-full">
-              {/* Contact Details */}
+             
               <motion.div
                 initial={{ opacity: 0, x: 50 }}
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -1077,7 +1077,7 @@ export default function ContactPage() {
                 </Card>
               </motion.div>
 
-              {/* Location Map */}
+           
               <motion.div
                 initial={{ opacity: 0, x: 50 }}
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -1123,7 +1123,7 @@ export default function ContactPage() {
                 </Card>
               </motion.div>
 
-              {/* Social Links */}
+
               <motion.div
                 initial={{ opacity: 0, x: 50 }}
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -1195,7 +1195,7 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* Call to Action */}
+      
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}

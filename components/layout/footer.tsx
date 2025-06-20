@@ -61,7 +61,7 @@ const LinkedInIcon = memo(({ className }: { className?: string }) => (
   />
 ));
 
-// Memoized social links for performance
+
 const socialLinks = [
   {
     href: "https://github.com/Hridesh-Srivastava",
@@ -108,9 +108,9 @@ const quickLinks = [
   { href: "/contact", label: "Contact" },
 ];
 
-// Ultra-optimized footer background with enhanced visuals but maximum performance
+
 const UltraOptimizedFooterBackground = memo(() => {
-  // Memoized stars generation for performance
+
   const stars = useMemo(
     () =>
       [...Array(35)].map((_, i) => ({
@@ -126,7 +126,7 @@ const UltraOptimizedFooterBackground = memo(() => {
 
   return (
     <div className="absolute inset-0">
-      {/* Optimized stars with CSS animations */}
+      
       <div
         className="absolute inset-0"
         style={{ contain: "layout style paint" }}
@@ -148,7 +148,7 @@ const UltraOptimizedFooterBackground = memo(() => {
         ))}
       </div>
 
-      {/* CSS-only animations for maximum performance */}
+    
       <div className="absolute inset-0">
         <style jsx>{`
           @keyframes twinkle {
@@ -234,7 +234,7 @@ const UltraOptimizedFooterBackground = memo(() => {
           }
         `}</style>
 
-        {/* Enhanced shooting orbits */}
+       
         <div className="absolute top-6 left-0 w-3.5 h-3.5 bg-[#00ffcc] rounded-full footer-shooting-orbit-1 shadow-lg shadow-[#00ffcc]/60" />
         <div
           className="absolute top-12 left-0 w-3 h-3 bg-[#00ccff] rounded-full footer-shooting-orbit-2 shadow-lg shadow-[#00ccff]/60"
@@ -245,7 +245,7 @@ const UltraOptimizedFooterBackground = memo(() => {
           style={{ animationDelay: "1s" }}
         />
 
-        {/* Enhanced flowing lines */}
+        
         <div className="absolute top-20 left-0 w-40 h-0.5 bg-gradient-to-r from-transparent via-[#00ffcc] to-transparent footer-flow-h" />
         <div
           className="absolute top-40 left-0 w-36 h-0.5 bg-gradient-to-r from-transparent via-[#00ccff] to-transparent footer-flow-h"
@@ -256,7 +256,7 @@ const UltraOptimizedFooterBackground = memo(() => {
           style={{ animationDelay: "2s" }}
         />
 
-        {/* Enhanced vertical flowing lines */}
+        
         <div className="absolute top-0 left-20 w-0.5 h-40 bg-gradient-to-b from-transparent via-[#00ffcc] to-transparent footer-flow-v" />
         <div
           className="absolute top-0 right-20 w-0.5 h-36 bg-gradient-to-b from-transparent via-[#00ccff] to-transparent footer-flow-v"
@@ -268,7 +268,7 @@ const UltraOptimizedFooterBackground = memo(() => {
         />
       </div>
 
-      {/* Enhanced geometric elements */}
+      
       <div className="absolute inset-0">
         <div
           className="absolute w-3 h-3 border border-[#00ffcc]/35 rotate-45"
@@ -307,17 +307,17 @@ const UltraOptimizedFooterBackground = memo(() => {
         />
       </div>
 
-      {/* Enhanced nebula effects */}
+      
       <div className="absolute top-10 left-10 w-80 h-80 bg-[#00ffcc]/5 rounded-full blur-3xl animate-pulse" />
       <div
         className="absolute bottom-10 right-10 w-72 h-72 bg-[#00ccff]/5 rounded-full blur-3xl animate-pulse"
         style={{ animationDelay: "2s" }}
       />
 
-      {/* Background gradient */}
+      
       <div className="absolute inset-0 bg-gradient-to-b from-[#0f0f0f] via-[#0f0f0f] to-[#0a0a0a]" />
 
-      {/* Grid pattern */}
+      
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#111111_1px,transparent_1px),linear-gradient(to_bottom,#111111_1px,transparent_1px)] bg-[size:100px_100px] opacity-6"></div>
     </div>
   );
@@ -332,7 +332,7 @@ export const Footer = memo(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
-  // Memoized animation variants for better performance
+
   const containerVariants = useMemo(
     () => ({
       hidden: { opacity: 0, y: 20 },
@@ -348,7 +348,7 @@ export const Footer = memo(() => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="py-16">
           <div className="grid lg:grid-cols-4 gap-12">
-            {/* Enhanced Brand section */}
+        
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -366,7 +366,7 @@ export const Footer = memo(() => {
                   <span className="text-white font-bold text-lg relative z-10">
                     H
                   </span>
-                  {/* Enhanced orbital ring */}
+              
                   <motion.div
                     animate={{ rotate: 360 }}
                     transition={{
@@ -377,7 +377,7 @@ export const Footer = memo(() => {
                     className="absolute inset-0 border border-[#00ffcc]/30 rounded-full"
                     style={{ willChange: "transform" }}
                   />
-                  {/* Pulsing core */}
+                  
                   <div className="absolute inset-0 bg-[#00ffcc]/10 rounded-full animate-pulse" />
                 </motion.div>
                 <div>
@@ -416,7 +416,7 @@ export const Footer = memo(() => {
                     >
                       <social.icon className="h-5 w-5 relative z-10" />
                       <div className="absolute inset-0 bg-gradient-to-br from-[#00ffcc]/5 via-transparent to-[#00ccff]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      {/* Enhanced hover effect */}
+                    
                       <div className="absolute inset-0 bg-[#00ffcc]/5 rounded-xl opacity-0 group-hover:opacity-100 animate-pulse" />
                     </Link>
                   </motion.div>
@@ -424,7 +424,7 @@ export const Footer = memo(() => {
               </div>
             </motion.div>
 
-            {/* Enhanced Quick links */}
+          
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -466,7 +466,7 @@ export const Footer = memo(() => {
                         className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#00ffcc] group-hover:w-full"
                         transition={{ duration: 0.3 }}
                       />
-                      {/* Enhanced hover indicator */}
+                     
                       <div className="absolute -right-2 top-1/2 transform -translate-y-1/2 w-1 h-1 bg-[#00ffcc] rounded-full opacity-0 group-hover:opacity-100 animate-pulse" />
                     </Link>
                   </motion.div>
@@ -474,7 +474,7 @@ export const Footer = memo(() => {
               </nav>
             </motion.div>
 
-            {/* Enhanced Contact info - FIXED EMAIL LINE BREAK */}
+            
             <motion.div
               initial="hidden"
               whileInView="visible"

@@ -105,7 +105,7 @@ const services = [
   },
 ]
 
-// Ultra Enhanced Star Component for Services (Much More Rich)
+
 const ServiceStar = memo(({ star }: { star: any }) => (
   <div
     className="absolute bg-white rounded-full pointer-events-none animate-pulse"
@@ -125,7 +125,7 @@ const ServiceStar = memo(({ star }: { star: any }) => (
 
 ServiceStar.displayName = "ServiceStar"
 
-// Ultra Enhanced Floating Orb for Services
+
 const ServiceOrb = memo(({ orb }: { orb: any }) => (
   <div
     className="absolute rounded-full pointer-events-none opacity-46"
@@ -146,7 +146,7 @@ const ServiceOrb = memo(({ orb }: { orb: any }) => (
 
 ServiceOrb.displayName = "ServiceOrb"
 
-// Enhanced Service Data Particle Component
+
 const ServiceDataParticle = memo(({ particle }: { particle: any }) => (
   <div
     className="absolute rounded-full pointer-events-none"
@@ -165,7 +165,7 @@ const ServiceDataParticle = memo(({ particle }: { particle: any }) => (
 
 ServiceDataParticle.displayName = "ServiceDataParticle"
 
-// Service Business Particle Component for Services theme
+
 const ServiceBusinessParticle = memo(({ particle }: { particle: any }) => (
   <div
     className="absolute pointer-events-none"
@@ -185,7 +185,7 @@ const ServiceBusinessParticle = memo(({ particle }: { particle: any }) => (
 
 ServiceBusinessParticle.displayName = "ServiceBusinessParticle"
 
-// Service Gear Component for business/service theme
+
 const ServiceGear = memo(({ gear }: { gear: any }) => (
   <div
     className="absolute pointer-events-none border-2 rounded-full"
@@ -207,7 +207,7 @@ const ServiceGear = memo(({ gear }: { gear: any }) => (
       className="absolute top-1/2 left-1/2 w-1 h-1 rounded-full transform -translate-x-1/2 -translate-y-1/2"
       style={{ backgroundColor: gear.color }}
     />
-    {/* Gear teeth */}
+  
     <div
       className="absolute top-0 left-1/2 w-0.5 h-2 transform -translate-x-1/2 -translate-y-1"
       style={{ backgroundColor: gear.color }}
@@ -229,7 +229,7 @@ const ServiceGear = memo(({ gear }: { gear: any }) => (
 
 ServiceGear.displayName = "ServiceGear"
 
-// Service Connection Wave Component for connectivity theme
+
 const ServiceConnectionWave = memo(({ wave }: { wave: any }) => (
   <div
     className="absolute rounded-full pointer-events-none border-2"
@@ -249,7 +249,7 @@ const ServiceConnectionWave = memo(({ wave }: { wave: any }) => (
 
 ServiceConnectionWave.displayName = "ServiceConnectionWave"
 
-// Ultra optimized background with MUCH MORE elements for Services
+
 const UltraOptimizedServicesBackground = memo(() => {
   const shouldReduceMotion = useReducedMotion()
   const [mounted, setMounted] = useState(false)
@@ -258,7 +258,7 @@ const UltraOptimizedServicesBackground = memo(() => {
     setMounted(true)
   }, [])
 
-  // MUCH MORE stars for services page (significantly increased)
+  
   const stars = useMemo(
     () =>
       [...Array(155)].map((_, i) => ({
@@ -273,7 +273,7 @@ const UltraOptimizedServicesBackground = memo(() => {
     [],
   )
 
-  // MORE orbs for much richer look
+ 
   const orbs = useMemo(
     () =>
       [...Array(9)].map((_, i) => ({
@@ -288,7 +288,7 @@ const UltraOptimizedServicesBackground = memo(() => {
     [],
   )
 
-  // MORE data particles for tech feel
+ 
   const dataParticles = useMemo(
     () =>
       [...Array(12)].map((_, i) => ({
@@ -301,7 +301,7 @@ const UltraOptimizedServicesBackground = memo(() => {
     [],
   )
 
-  // Service business particles for business theme
+ 
   const serviceBusinessParticles = useMemo(
     () =>
       [...Array(6)].map((_, i) => ({
@@ -315,7 +315,7 @@ const UltraOptimizedServicesBackground = memo(() => {
     [],
   )
 
-  // Service gears for business/service theme
+  
   const serviceGears = useMemo(
     () =>
       [...Array(6)].map((_, i) => ({
@@ -330,7 +330,7 @@ const UltraOptimizedServicesBackground = memo(() => {
     [],
   )
 
-  // Service connection waves for connectivity theme
+  
   const serviceConnectionWaves = useMemo(
     () =>
       [...Array(7)].map((_, i) => ({
@@ -438,51 +438,51 @@ const UltraOptimizedServicesBackground = memo(() => {
       `}</style>
 
       <div className="absolute inset-0 overflow-hidden">
-        {/* Ultra Enhanced Star field */}
+       
         <div className="absolute inset-0" style={{ contain: "layout style paint" }}>
           {stars.map((star) => (
             <ServiceStar key={star.id} star={star} />
           ))}
         </div>
 
-        {/* Ultra Enhanced Floating Orbs */}
+       
         <div className="absolute inset-0">
           {orbs.map((orb) => (
             <ServiceOrb key={orb.id} orb={orb} />
           ))}
         </div>
 
-        {/* Enhanced Data Particles */}
+       
         <div className="absolute inset-0">
           {dataParticles.map((particle) => (
             <ServiceDataParticle key={particle.id} particle={particle} />
           ))}
         </div>
 
-        {/* Service Business Particles */}
+       
         <div className="absolute inset-0">
           {serviceBusinessParticles.map((particle) => (
             <ServiceBusinessParticle key={particle.id} particle={particle} />
           ))}
         </div>
 
-        {/* Service Gears */}
+       
         <div className="absolute inset-0">
           {serviceGears.map((gear) => (
             <ServiceGear key={gear.id} gear={gear} />
           ))}
         </div>
 
-        {/* Service Connection Waves */}
+       
         <div className="absolute inset-0">
           {serviceConnectionWaves.map((wave) => (
             <ServiceConnectionWave key={wave.id} wave={wave} />
           ))}
         </div>
 
-        {/* MUCH MORE Enhanced flowing lines with CSS animations */}
+       
         <div className="absolute inset-0 opacity-57">
-          {/* MORE Horizontal flowing lines */}
+          
           <div
             className="absolute h-0.5 w-32 bg-gradient-to-r from-transparent via-[#00ffcc] to-transparent flow-line-h-services"
             style={{ top: "8%", animationDelay: "0s" }}
@@ -544,7 +544,7 @@ const UltraOptimizedServicesBackground = memo(() => {
             style={{ top: "92%", animationDelay: "5.2s" }}
           />
 
-          {/* MORE Vertical flowing lines */}
+         
           <div
             className="absolute w-0.5 h-32 bg-gradient-to-b from-transparent via-[#00ffcc] to-transparent flow-line-v-services"
             style={{ left: "6%", animationDelay: "0.4s" }}
@@ -610,7 +610,7 @@ const UltraOptimizedServicesBackground = memo(() => {
             style={{ left: "96%", animationDelay: "6.4s" }}
           />
 
-          {/* Enhanced Diagonal flowing lines */}
+         
           <div
             className="absolute w-0.5 h-30 bg-gradient-to-b from-transparent via-[#00ffcc] to-transparent flow-diagonal-services"
             style={{ animationDelay: "1s" }}
@@ -636,7 +636,7 @@ const UltraOptimizedServicesBackground = memo(() => {
             style={{ animationDelay: "11s" }}
           />
 
-          {/* NEW Network flowing lines for service connectivity */}
+         
           <div
             className="absolute h-0.5 w-24 bg-gradient-to-r from-transparent via-[#00ffcc] to-transparent flow-network-services"
             style={{ animationDelay: "2s" }}
@@ -650,7 +650,7 @@ const UltraOptimizedServicesBackground = memo(() => {
             style={{ animationDelay: "14s" }}
           />
 
-          {/* NEW Business flowing lines for service delivery */}
+          
           <div
             className="absolute h-0.5 w-22 bg-gradient-to-r from-transparent via-[#00e6ff] to-transparent flow-business-services"
             style={{ animationDelay: "3s" }}
@@ -665,7 +665,7 @@ const UltraOptimizedServicesBackground = memo(() => {
           />
         </div>
 
-        {/* MUCH MORE Enhanced circuit nodes */}
+        
         <div className="absolute inset-0 opacity-76">
           <div
             className="absolute w-2 h-2 bg-[#00ffcc] rounded-full shadow-lg shadow-[#00ffcc]/72 animate-pulse"
@@ -729,7 +729,7 @@ const UltraOptimizedServicesBackground = memo(() => {
           />
         </div>
 
-        {/* MUCH MORE Enhanced nebula effects */}
+        
         <div className="absolute top-4 left-4 w-[460px] h-[460px] bg-[#00ffcc]/7 rounded-full blur-3xl pointer-events-none opacity-68" />
         <div className="absolute bottom-4 right-4 w-[440px] h-[440px] bg-[#00ccff]/7 rounded-full blur-3xl pointer-events-none opacity-68" />
         <div className="absolute top-1/4 right-1/3 w-[400px] h-[400px] bg-[#0099ff]/5 rounded-full blur-3xl pointer-events-none opacity-58" />
@@ -738,7 +738,7 @@ const UltraOptimizedServicesBackground = memo(() => {
         <div className="absolute bottom-2/3 right-1/6 w-[470px] h-[470px] bg-[#00d9ff]/5 rounded-full blur-3xl pointer-events-none opacity-60" />
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[520px] h-[520px] bg-[#00f0ff]/3 rounded-full blur-3xl pointer-events-none opacity-48" />
 
-        {/* Grid pattern */}
+        
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#111111_1px,transparent_1px),linear-gradient(to_bottom,#111111_1px,transparent_1px)] bg-[size:100px_100px] opacity-10"></div>
       </div>
     </>
@@ -1012,7 +1012,7 @@ export default function ServicesPage() {
             </div>
           </motion.div>
 
-          {/* CTA Section */}
+        
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -1057,7 +1057,7 @@ export default function ServicesPage() {
             </Card>
           </motion.div>
 
-          {/* Stats Section */}
+      
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}

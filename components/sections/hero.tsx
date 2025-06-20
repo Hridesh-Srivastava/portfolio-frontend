@@ -5,7 +5,101 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight, ArrowUpRightFromSquare, Code2, Database, Globe, Zap } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
-import { useRef, memo } from "react"
+import { useRef, memo, useCallback, useMemo } from "react"
+
+const VercelIcon = memo(({ className }: { className?: string }) => (
+  <svg
+    data-testid="geist-icon"
+    height="16"
+    width="16"
+    viewBox="0 0 16 16"
+    style={{ color: "currentColor" }}
+    className={className}
+    strokeLinejoin="round"
+  >
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M8 1L16 15H0L8 1Z"
+      fill="currentColor"
+    />
+  </svg>
+));
+
+const NpmIcon = memo(({ className }: { className?: string }) => (
+  <Image
+    src="/icons/npm.svg"
+    alt="npm"
+    width={20}
+    height={20}
+    className={className}
+  />
+));
+
+const XIcon = memo(({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" className={className} fill="currentColor">
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+  </svg>
+));
+
+const GitHubIcon = memo(({ className }: { className?: string }) => (
+  <Image
+    src="/icons/github.svg"
+    alt="GitHub"
+    width={22}
+    height={22}
+    className={className}
+  />
+));
+
+const LinkedInIcon = memo(({ className }: { className?: string }) => (
+  <Image
+    src="/icons/linkedin.svg"
+    alt="LinkedIn"
+    width={20}
+    height={20}
+    className={className}
+  />
+));
+
+
+const socialLinks = [
+  {
+    href: "https://github.com/Hridesh-Srivastava",
+    icon: GitHubIcon,
+    label: "GitHub",
+    hoverColor: "hover:text-gray-400",
+    bgHover: "hover:bg-gray-900/20",
+  },
+  {
+    href: "https://www.linkedin.com/in/hridayesh-srivastava-9575901bb/",
+    icon: LinkedInIcon,
+    label: "LinkedIn",
+    hoverColor: "hover:text-blue-500",
+    bgHover: "hover:bg-blue-500/10",
+  },
+  {
+    href: "https://vercel.com/hridesh-srivastavas-projects",
+    icon: VercelIcon,
+    label: "Vercel",
+    hoverColor: "hover:text-gray-300",
+    bgHover: "hover:bg-gray-800/20",
+  },
+  {
+    href: "https://www.npmjs.com/~hrideshhhh",
+    icon: NpmIcon,
+    label: "npm",
+    hoverColor: "hover:text-red-600",
+    bgHover: "hover:bg-red-600/10",
+  },
+  {
+    href: "https://x.com/Hrideshhhh",
+    icon: XIcon,
+    label: "X",
+    hoverColor: "hover:text-gray-400",
+    bgHover: "hover:bg-gray-900/20",
+  },
+];
 
 const EnhancedOptimizedHeroBackground = memo(() => {
   return (
@@ -183,7 +277,7 @@ const EnhancedOptimizedHeroBackground = memo(() => {
         />
       </div>
 
-      {/* Enhanced nebula effects */}
+     
       <div className="absolute top-20 left-20 w-96 h-96 bg-[#00ffcc]/6 rounded-full blur-3xl animate-pulse" />
       <div
         className="absolute bottom-20 right-20 w-80 h-80 bg-[#00ccff]/6 rounded-full blur-3xl animate-pulse"
@@ -194,7 +288,7 @@ const EnhancedOptimizedHeroBackground = memo(() => {
         style={{ animationDelay: "4s" }}
       />
 
-      {/* Grid pattern */}
+   
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#111111_1px,transparent_1px),linear-gradient(to_bottom,#111111_1px,transparent_1px)] bg-[size:100px_100px] opacity-8"></div>
     </div>
   )
@@ -202,7 +296,7 @@ const EnhancedOptimizedHeroBackground = memo(() => {
 
 EnhancedOptimizedHeroBackground.displayName = "EnhancedOptimizedHeroBackground"
 
-// Memoized components
+
 const TechStackItem = memo(({ item, index }: { item: any; index: number }) => (
   <motion.div
     initial={{ opacity: 0, scale: 0.8 }}
@@ -385,8 +479,36 @@ export const HeroSection = memo(() => {
                 </Button>
               </motion.div>
             </motion.div>
+            <motion.div
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6, delay: 1.4 }}
+  className="flex items-center space-x-4 mt-4"
+>
+  {socialLinks.map((social, index) => (
+    <motion.a
+      key={social.href}
+      href={social.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={social.label}
+      initial={{ opacity: 0, scale: 0 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.4, delay: 0.1 * index }}
+      whileHover={{ scale: 1.1, y: -2 }}
+      className={`p-3 bg-[#1a1a1a] rounded-xl transition-all duration-300 text-[#999999] hover:text-white group relative overflow-hidden border border-[#333333] hover:border-[#00ffcc]/30 ${social.hoverColor} ${social.bgHover}`}
+      style={{ willChange: "transform" }}
+    >
+      <social.icon className="h-5 w-5 relative z-10" />
+      <span className="sr-only">{social.label}</span>
+      <div className="absolute inset-0 bg-gradient-to-br from-[#00ffcc]/5 via-transparent to-[#00ccff]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      <div className="absolute inset-0 bg-[#00ffcc]/5 rounded-xl opacity-0 group-hover:opacity-100 animate-pulse" />
+    </motion.a>
+  ))}
+</motion.div>
           </motion.div>
-{/* ************************************************************************************************************************************** */}
+
+
  
           <motion.div
             initial={{ opacity: 0, x: 50 }}

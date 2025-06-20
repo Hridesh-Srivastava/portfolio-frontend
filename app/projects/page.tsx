@@ -125,7 +125,7 @@ const projects = [
 
 const categories = ["All", "Full-Stack", "Frontend", "AI/ML", "Package"]
 
-// Ultra Enhanced Star Component for Projects (Much More Rich)
+
 const ProjectStar = memo(({ star }: { star: any }) => (
   <div
     className="absolute bg-white rounded-full pointer-events-none animate-pulse"
@@ -145,7 +145,7 @@ const ProjectStar = memo(({ star }: { star: any }) => (
 
 ProjectStar.displayName = "ProjectStar"
 
-// Ultra Enhanced Floating Orb for Projects
+
 const ProjectOrb = memo(({ orb }: { orb: any }) => (
   <div
     className="absolute rounded-full pointer-events-none opacity-42"
@@ -166,7 +166,7 @@ const ProjectOrb = memo(({ orb }: { orb: any }) => (
 
 ProjectOrb.displayName = "ProjectOrb"
 
-// Enhanced Data Particle Component
+
 const DataParticle = memo(({ particle }: { particle: any }) => (
   <div
     className="absolute rounded-full pointer-events-none"
@@ -185,7 +185,7 @@ const DataParticle = memo(({ particle }: { particle: any }) => (
 
 DataParticle.displayName = "DataParticle"
 
-// Project Code Particle Component for Projects theme
+
 const ProjectCodeParticle = memo(({ particle }: { particle: any }) => (
   <div
     className="absolute pointer-events-none"
@@ -205,7 +205,7 @@ const ProjectCodeParticle = memo(({ particle }: { particle: any }) => (
 
 ProjectCodeParticle.displayName = "ProjectCodeParticle"
 
-// Project Gear Component for mechanical feel
+
 const ProjectGear = memo(({ gear }: { gear: any }) => (
   <div
     className="absolute pointer-events-none border-2 rounded-full"
@@ -232,7 +232,7 @@ const ProjectGear = memo(({ gear }: { gear: any }) => (
 
 ProjectGear.displayName = "ProjectGear"
 
-// Super optimized background with MUCH MORE elements for Projects
+
 const UltraOptimizedProjectsBackground = memo(() => {
   const shouldReduceMotion = useReducedMotion()
   const [mounted, setMounted] = useState(false)
@@ -241,7 +241,7 @@ const UltraOptimizedProjectsBackground = memo(() => {
     setMounted(true)
   }, [])
 
-  // MUCH MORE stars for projects page (significantly increased)
+  
   const stars = useMemo(
     () =>
       [...Array(160)].map((_, i) => ({
@@ -256,7 +256,7 @@ const UltraOptimizedProjectsBackground = memo(() => {
     [],
   )
 
-  // MORE orbs for much richer look
+ 
   const orbs = useMemo(
     () =>
       [...Array(9)].map((_, i) => ({
@@ -271,7 +271,7 @@ const UltraOptimizedProjectsBackground = memo(() => {
     [],
   )
 
-  // MORE data particles for tech feel
+  
   const dataParticles = useMemo(
     () =>
       [...Array(12)].map((_, i) => ({
@@ -284,7 +284,7 @@ const UltraOptimizedProjectsBackground = memo(() => {
     [],
   )
 
-  // Project code particles for coding theme
+  
   const projectCodeParticles = useMemo(
     () =>
       [...Array(6)].map((_, i) => ({
@@ -298,7 +298,7 @@ const UltraOptimizedProjectsBackground = memo(() => {
     [],
   )
 
-  // Project gears for mechanical/building theme
+ 
   const projectGears = useMemo(
     () =>
       [...Array(5)].map((_, i) => ({
@@ -388,44 +388,44 @@ const UltraOptimizedProjectsBackground = memo(() => {
       `}</style>
 
       <div className="absolute inset-0 overflow-hidden">
-        {/* Ultra Enhanced Star field */}
+     
         <div className="absolute inset-0" style={{ contain: "layout style paint" }}>
           {stars.map((star) => (
             <ProjectStar key={star.id} star={star} />
           ))}
         </div>
 
-        {/* Ultra Enhanced Floating Orbs */}
+       
         <div className="absolute inset-0">
           {orbs.map((orb) => (
             <ProjectOrb key={orb.id} orb={orb} />
           ))}
         </div>
 
-        {/* Enhanced Data Particles */}
+      
         <div className="absolute inset-0">
           {dataParticles.map((particle) => (
             <DataParticle key={particle.id} particle={particle} />
           ))}
         </div>
 
-        {/* Project Code Particles */}
+        
         <div className="absolute inset-0">
           {projectCodeParticles.map((particle) => (
             <ProjectCodeParticle key={particle.id} particle={particle} />
           ))}
         </div>
 
-        {/* Project Gears */}
+     
         <div className="absolute inset-0">
           {projectGears.map((gear) => (
             <ProjectGear key={gear.id} gear={gear} />
           ))}
         </div>
 
-        {/* MUCH MORE Enhanced flowing lines with CSS animations */}
+       
         <div className="absolute inset-0 opacity-55">
-          {/* MORE Horizontal flowing lines */}
+          
           <div
             className="absolute h-0.5 w-30 bg-gradient-to-r from-transparent via-[#00ffcc] to-transparent flow-line-h-projects"
             style={{ top: "12%", animationDelay: "0s" }}
@@ -483,7 +483,7 @@ const UltraOptimizedProjectsBackground = memo(() => {
             style={{ top: "90%", animationDelay: "6.5s" }}
           />
 
-          {/* MORE Vertical flowing lines */}
+        
           <div
             className="absolute w-0.5 h-30 bg-gradient-to-b from-transparent via-[#00ffcc] to-transparent flow-line-v-projects"
             style={{ left: "8%", animationDelay: "0.5s" }}
@@ -545,7 +545,7 @@ const UltraOptimizedProjectsBackground = memo(() => {
             style={{ left: "92%", animationDelay: "7s" }}
           />
 
-          {/* Enhanced Diagonal flowing lines */}
+          
           <div
             className="absolute w-0.5 h-26 bg-gradient-to-b from-transparent via-[#00ffcc] to-transparent flow-diagonal-projects"
             style={{ animationDelay: "1s" }}
@@ -567,7 +567,7 @@ const UltraOptimizedProjectsBackground = memo(() => {
             style={{ animationDelay: "9s" }}
           />
 
-          {/* NEW Zigzag flowing lines for project complexity */}
+         
           <div
             className="absolute h-0.5 w-20 bg-gradient-to-r from-transparent via-[#00ffcc] to-transparent flow-zigzag-projects"
             style={{ animationDelay: "2s" }}
@@ -586,7 +586,7 @@ const UltraOptimizedProjectsBackground = memo(() => {
           />
         </div>
 
-        {/* MUCH MORE Enhanced circuit nodes */}
+     
         <div className="absolute inset-0 opacity-75">
           <div
             className="absolute w-2 h-2 bg-[#00ffcc] rounded-full shadow-lg shadow-[#00ffcc]/68 animate-pulse"
@@ -646,7 +646,7 @@ const UltraOptimizedProjectsBackground = memo(() => {
           />
         </div>
 
-        {/* MUCH MORE Enhanced nebula effects */}
+       
         <div className="absolute top-6 left-6 w-[430px] h-[430px] bg-[#00ffcc]/6 rounded-full blur-3xl pointer-events-none opacity-65" />
         <div className="absolute bottom-6 right-6 w-[410px] h-[410px] bg-[#00ccff]/6 rounded-full blur-3xl pointer-events-none opacity-65" />
         <div className="absolute top-1/3 right-1/4 w-[370px] h-[370px] bg-[#0099ff]/4 rounded-full blur-3xl pointer-events-none opacity-55" />
@@ -654,7 +654,7 @@ const UltraOptimizedProjectsBackground = memo(() => {
         <div className="absolute top-2/3 left-1/6 w-[390px] h-[390px] bg-[#00b3ff]/4 rounded-full blur-3xl pointer-events-none opacity-52" />
         <div className="absolute bottom-2/3 right-1/6 w-[440px] h-[440px] bg-[#00d9ff]/5 rounded-full blur-3xl pointer-events-none opacity-58" />
 
-        {/* Grid pattern */}
+       
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#111111_1px,transparent_1px),linear-gradient(to_bottom,#111111_1px,transparent_1px)] bg-[size:100px_100px] opacity-10"></div>
       </div>
     </>
@@ -663,7 +663,7 @@ const UltraOptimizedProjectsBackground = memo(() => {
 
 UltraOptimizedProjectsBackground.displayName = "UltraOptimizedProjectsBackground"
 
-// Optimized Project Card Component
+
 const ProjectCard = memo(({ project, index, isInView }: { project: any; index: number; isInView: boolean }) => (
   <motion.div
     key={project.id}
@@ -808,7 +808,7 @@ export default function ProjectsPage() {
           transition={{ duration: 0.6 }}
           className="space-y-20"
         >
-          {/* Header */}
+   
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -847,7 +847,7 @@ export default function ProjectsPage() {
             </motion.p>
           </motion.div>
 
-          {/* Featured Projects */}
+   
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -977,7 +977,7 @@ export default function ProjectsPage() {
             </div>
           </motion.div>
 
-          {/* Filter Section */}
+       
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -1019,7 +1019,7 @@ export default function ProjectsPage() {
             </div>
           </motion.div>
 
-          {/* Projects Grid */}
+     
           <AnimatePresence mode="wait">
             <motion.div
               key={selectedCategory}
@@ -1035,7 +1035,7 @@ export default function ProjectsPage() {
             </motion.div>
           </AnimatePresence>
 
-          {/* Patent Section */}
+     
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -1080,7 +1080,7 @@ export default function ProjectsPage() {
             </Card>
           </motion.div>
 
-          {/* CTA Section */}
+    
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -1125,7 +1125,7 @@ export default function ProjectsPage() {
             </Card>
           </motion.div>
 
-          {/* Project Stats */}
+  
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}

@@ -44,11 +44,11 @@ const featuredProjects = [
   },
 ]
 
-// Enhanced but optimized header background with more stars and shooting orbits
+
 const EnhancedOptimizedHeaderBackground = memo(() => {
   return (
     <div className="absolute inset-0 overflow-hidden">
-      {/* More stars but still optimized - 25 stars */}
+     
       {[...Array(25)].map((_, i) => (
         <div
           key={i}
@@ -64,7 +64,7 @@ const EnhancedOptimizedHeaderBackground = memo(() => {
         />
       ))}
 
-      {/* CSS-only shooting orbits - super lightweight */}
+   
       <div className="absolute inset-0">
         <style jsx>{`
           @keyframes twinkle {
@@ -99,7 +99,7 @@ const EnhancedOptimizedHeaderBackground = memo(() => {
           }
         `}</style>
 
-        {/* Shooting orbits */}
+    
         <div className="absolute top-4 left-0 w-3 h-3 bg-[#00ffcc] rounded-full shooting-orbit-1 shadow-lg shadow-[#00ffcc]/50" />
         <div
           className="absolute top-12 left-0 w-2 h-2 bg-[#00ccff] rounded-full shooting-orbit-2 shadow-lg shadow-[#00ccff]/50"
@@ -110,7 +110,7 @@ const EnhancedOptimizedHeaderBackground = memo(() => {
           style={{ animationDelay: "1s" }}
         />
 
-        {/* Enhanced flowing lines */}
+   
         <div className="absolute top-0 left-0 w-24 h-0.5 bg-gradient-to-r from-transparent via-[#00ffcc] to-transparent header-flow" />
         <div
           className="absolute top-8 left-0 w-20 h-0.5 bg-gradient-to-r from-transparent via-[#00ccff] to-transparent header-flow"
@@ -122,7 +122,7 @@ const EnhancedOptimizedHeaderBackground = memo(() => {
         />
       </div>
 
-      {/* Enhanced geometric shapes */}
+     
       <div className="absolute inset-0">
         <div
           className="absolute w-2 h-2 border border-[#00ffcc]/40 rotate-45"
@@ -166,7 +166,7 @@ const EnhancedOptimizedHeaderBackground = memo(() => {
 
 EnhancedOptimizedHeaderBackground.displayName = "EnhancedOptimizedHeaderBackground"
 
-// Memoized components for better performance
+
 const NavItem = memo(({ item, index, isActive }: { item: any; index: number; isActive: boolean }) => (
   <motion.div
     initial={{ opacity: 0, y: -10 }}
@@ -257,7 +257,7 @@ export const Header = memo(() => {
   const [isMobileProjectsModalOpen, setIsMobileProjectsModalOpen] = useState(false)
   const pathname = usePathname()
 
-  // Optimized scroll handler with RAF throttling
+
   useEffect(() => {
     let ticking = false
     const handleScroll = () => {
@@ -304,7 +304,7 @@ export const Header = memo(() => {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex items-center justify-between h-16">
-            {/* Enhanced Logo with shooting orbit */}
+          
             <motion.div whileHover={{ scale: 1.02 }} className="flex items-center space-x-3">
               <Link href="/" className="flex items-center space-x-3 group">
                 <div className="relative">
@@ -314,7 +314,7 @@ export const Header = memo(() => {
                     transition={{ duration: 0.5 }}
                   >
                     <span className="text-white font-bold text-lg relative z-10">H</span>
-                    {/* Enhanced orbital rings */}
+                 
                     <motion.div
                       animate={{ rotate: 360 }}
                       transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
@@ -325,10 +325,10 @@ export const Header = memo(() => {
                       transition={{ duration: 12, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
                       className="absolute inset-1 border border-[#00ccff]/20 rounded-full"
                     />
-                    {/* Pulsing core */}
+                 
                     <div className="absolute inset-0 bg-[#00ffcc]/10 rounded-full animate-pulse" />
                   </motion.div>
-                  {/* Enhanced satellite dots */}
+                  
                   <motion.div
                     animate={{ rotate: 360 }}
                     transition={{ duration: 6, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
@@ -347,13 +347,13 @@ export const Header = memo(() => {
               </Link>
             </motion.div>
 
-            {/* Navigation */}
+         
             <nav className="hidden lg:flex items-center space-x-1">
               {navItems.map((item, index) => (
                 <NavItem key={item.href} item={item} index={index} isActive={isActive(item.href)} />
               ))}
 
-              {/* Enhanced Projects Info Button */}
+              
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -369,7 +369,7 @@ export const Header = memo(() => {
                     whileHover={{ scale: 1.02 }}
                     transition={{ duration: 0.2 }}
                   />
-                  {/* Enhanced pulsing indicator */}
+                  
                   <motion.div
                     animate={{
                       scale: [1, 1.3, 1],
@@ -380,7 +380,7 @@ export const Header = memo(() => {
                   />
                 </button>
 
-                {/* Enhanced Projects Dropdown */}
+              
                 <AnimatePresence>
                   {isProjectsDropdownOpen && (
                     <motion.div
@@ -390,7 +390,7 @@ export const Header = memo(() => {
                       transition={{ duration: 0.2 }}
                       className="absolute top-full right-0 mt-2 w-80 bg-[#111111] border border-[#222222] rounded-xl shadow-2xl backdrop-blur-xl overflow-hidden"
                     >
-                      {/* Enhanced dropdown background */}
+                      
                       <div className="absolute inset-0">
                         <div className="absolute top-2 left-2 w-16 h-0.5 bg-gradient-to-r from-[#00ffcc] to-transparent opacity-60 animate-pulse" />
                         <div className="absolute bottom-2 right-2 w-12 h-0.5 bg-gradient-to-l from-[#00ccff] to-transparent opacity-60 animate-pulse" />
@@ -427,7 +427,7 @@ export const Header = memo(() => {
               </motion.div>
             </nav>
 
-            {/* Enhanced Mobile menu button */}
+           
             <div className="flex items-center">
               <button
                 onClick={toggleMobileMenu}
@@ -456,7 +456,7 @@ export const Header = memo(() => {
                     </motion.div>
                   )}
                 </AnimatePresence>
-                {/* Enhanced menu indicator */}
+             
                 <motion.div
                   animate={{
                     scale: [1, 1.2, 1],
@@ -471,7 +471,7 @@ export const Header = memo(() => {
         </div>
       </motion.header>
 
-      {/* Enhanced Mobile Menu */}
+    
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
@@ -488,7 +488,7 @@ export const Header = memo(() => {
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
               className="absolute right-0 top-0 h-full w-80 bg-[#111111] border-l border-[#222222] shadow-2xl relative overflow-hidden"
             >
-              {/* Enhanced mobile menu background */}
+             
               <div className="absolute inset-0">
                 <div className="absolute top-20 left-4 w-20 h-0.5 bg-gradient-to-r from-[#00ffcc] to-transparent opacity-40 animate-pulse" />
                 <div className="absolute top-40 right-4 w-16 h-0.5 bg-gradient-to-l from-[#00ccff] to-transparent opacity-40 animate-pulse" />
@@ -530,7 +530,7 @@ export const Header = memo(() => {
                     </motion.div>
                   ))}
 
-                  {/* Mobile Featured Projects Button */}
+               
                   <motion.div
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -556,7 +556,7 @@ export const Header = memo(() => {
         )}
       </AnimatePresence>
 
-      {/* Enhanced Mobile Projects Modal */}
+   
       <AnimatePresence>
         {isMobileProjectsModalOpen && (
           <motion.div
@@ -573,7 +573,7 @@ export const Header = memo(() => {
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
               className="absolute inset-0 bg-[#111111] flex flex-col relative overflow-hidden"
             >
-              {/* Enhanced modal background */}
+              
               <div className="absolute inset-0">
                 <div className="absolute top-10 left-6 w-32 h-0.5 bg-gradient-to-r from-[#00ffcc] to-transparent opacity-30 animate-pulse" />
                 <div className="absolute top-20 right-6 w-24 h-0.5 bg-gradient-to-l from-[#00ccff] to-transparent opacity-30 animate-pulse" />
@@ -617,7 +617,7 @@ export const Header = memo(() => {
                       transition={{ duration: 0.3, delay: projectIndex * 0.1 }}
                       className="group p-3 rounded-lg bg-[#1a1a1a] border border-[#222222] hover:border-[#00ffcc]/30 transition-all duration-300 relative overflow-hidden"
                     >
-                      {/* Enhanced card background effect */}
+                      
                       <div className="absolute top-2 right-2 w-8 h-0.5 bg-gradient-to-l from-[#00ffcc] to-transparent opacity-40 animate-pulse" />
 
                       <div className="flex items-center justify-between mb-2">

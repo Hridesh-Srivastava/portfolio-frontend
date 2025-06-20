@@ -38,11 +38,11 @@ const stats = [
   { number: "1", label: "Patent Filed" },
 ]
 
-// Enhanced but optimized about background with more stars and shooting orbits
+
 const EnhancedOptimizedAboutBackground = memo(() => {
   return (
     <div className="absolute inset-0">
-      {/* More stars but optimized - 30 stars for richness */}
+      
       <div className="absolute inset-0">
         {[...Array(30)].map((_, i) => (
           <div
@@ -60,7 +60,7 @@ const EnhancedOptimizedAboutBackground = memo(() => {
         ))}
       </div>
 
-      {/* CSS-only shooting orbits and flowing lines - super lightweight */}
+      
       <div className="absolute inset-0">
         <style jsx>{`
           @keyframes twinkle {
@@ -103,7 +103,7 @@ const EnhancedOptimizedAboutBackground = memo(() => {
           }
         `}</style>
 
-        {/* Enhanced shooting orbits */}
+     
         <div className="absolute top-6 left-0 w-3.5 h-3.5 bg-[#00ffcc] rounded-full about-shooting-orbit-1 shadow-lg shadow-[#00ffcc]/60" />
         <div
           className="absolute top-12 left-0 w-3 h-3 bg-[#00ccff] rounded-full about-shooting-orbit-2 shadow-lg shadow-[#00ccff]/60"
@@ -118,7 +118,7 @@ const EnhancedOptimizedAboutBackground = memo(() => {
           style={{ animationDelay: "3s" }}
         />
 
-        {/* Enhanced horizontal flowing lines */}
+      
         <div className="absolute top-24 left-0 w-40 h-0.5 bg-gradient-to-r from-transparent via-[#00ffcc] to-transparent about-flow-h" />
         <div
           className="absolute top-48 left-0 w-36 h-0.5 bg-gradient-to-r from-transparent via-[#00ccff] to-transparent about-flow-h"
@@ -133,7 +133,7 @@ const EnhancedOptimizedAboutBackground = memo(() => {
           style={{ animationDelay: "3s" }}
         />
 
-        {/* Enhanced vertical flowing lines */}
+     
         <div className="absolute top-0 left-24 w-0.5 h-40 bg-gradient-to-b from-transparent via-[#00ffcc] to-transparent about-flow-v" />
         <div
           className="absolute top-0 right-24 w-0.5 h-36 bg-gradient-to-b from-transparent via-[#00ccff] to-transparent about-flow-v"
@@ -149,7 +149,7 @@ const EnhancedOptimizedAboutBackground = memo(() => {
         />
       </div>
 
-      {/* Enhanced geometric elements */}
+
       <div className="absolute inset-0">
         <div
           className="absolute w-3 h-3 border border-[#00ffcc]/35 rotate-45"
@@ -206,7 +206,7 @@ const EnhancedOptimizedAboutBackground = memo(() => {
         />
       </div>
 
-      {/* Enhanced nebula effects */}
+    
       <div className="absolute top-16 left-16 w-80 h-80 bg-[#00ffcc]/5 rounded-full blur-3xl animate-pulse" />
       <div
         className="absolute bottom-16 right-16 w-72 h-72 bg-[#00ccff]/5 rounded-full blur-3xl animate-pulse"
@@ -217,7 +217,7 @@ const EnhancedOptimizedAboutBackground = memo(() => {
         style={{ animationDelay: "4s" }}
       />
 
-      {/* Grid pattern */}
+     
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#111111_1px,transparent_1px),linear-gradient(to_bottom,#111111_1px,transparent_1px)] bg-[size:100px_100px] opacity-6"></div>
     </div>
   )
@@ -225,7 +225,7 @@ const EnhancedOptimizedAboutBackground = memo(() => {
 
 EnhancedOptimizedAboutBackground.displayName = "EnhancedOptimizedAboutBackground"
 
-// Memoized skill card component
+
 const SkillCard = memo(({ skill, index, isInView }: { skill: any; index: number; isInView: boolean }) => (
   <motion.div
     initial={{ opacity: 0, y: 30 }}
@@ -273,7 +273,7 @@ const SkillCard = memo(({ skill, index, isInView }: { skill: any; index: number;
 
 SkillCard.displayName = "SkillCard"
 
-// Memoized stats component
+
 const StatCard = memo(({ stat, index, isInView }: { stat: any; index: number; isInView: boolean }) => (
   <motion.div
     initial={{ opacity: 0, scale: 0.8 }}
@@ -303,7 +303,7 @@ export const AboutSection = memo(() => {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Content */}
+         
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -356,7 +356,7 @@ export const AboutSection = memo(() => {
               </motion.p>
             </div>
 
-            {/* Enhanced Stats */}
+           
             <motion.div
               className="grid grid-cols-2 md:grid-cols-4 gap-4"
               initial={{ opacity: 0, y: 30 }}
@@ -399,7 +399,7 @@ export const AboutSection = memo(() => {
             </motion.div>
           </motion.div>
 
-          {/* Enhanced Skills Grid */}
+     
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}

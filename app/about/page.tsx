@@ -144,7 +144,7 @@ const skillCategories = [
   },
 ]
 
-// Ultra Enhanced Star Component for About (Much More Rich)
+
 const AboutStar = memo(({ star }: { star: any }) => (
   <div
     className="absolute bg-white rounded-full pointer-events-none animate-pulse"
@@ -164,7 +164,7 @@ const AboutStar = memo(({ star }: { star: any }) => (
 
 AboutStar.displayName = "AboutStar"
 
-// Ultra Enhanced Floating Orb for About
+
 const AboutOrb = memo(({ orb }: { orb: any }) => (
   <div
     className="absolute rounded-full pointer-events-none opacity-43"
@@ -185,7 +185,7 @@ const AboutOrb = memo(({ orb }: { orb: any }) => (
 
 AboutOrb.displayName = "AboutOrb"
 
-// Enhanced Knowledge Particle Component for About theme
+
 const KnowledgeParticle = memo(({ particle }: { particle: any }) => (
   <div
     className="absolute rounded-full pointer-events-none"
@@ -204,7 +204,7 @@ const KnowledgeParticle = memo(({ particle }: { particle: any }) => (
 
 KnowledgeParticle.displayName = "KnowledgeParticle"
 
-// Education Particle Component for About theme
+
 const EducationParticle = memo(({ particle }: { particle: any }) => (
   <div
     className="absolute pointer-events-none"
@@ -224,7 +224,7 @@ const EducationParticle = memo(({ particle }: { particle: any }) => (
 
 EducationParticle.displayName = "EducationParticle"
 
-// Education Book Component for learning theme
+
 const EducationBook = memo(({ book }: { book: any }) => (
   <div
     className="absolute pointer-events-none border-2 rounded-sm"
@@ -251,7 +251,7 @@ const EducationBook = memo(({ book }: { book: any }) => (
 
 EducationBook.displayName = "EducationBook"
 
-// Learning Wave Component for knowledge theme
+
 const LearningWave = memo(({ wave }: { wave: any }) => (
   <div
     className="absolute rounded-full pointer-events-none border-2"
@@ -271,7 +271,7 @@ const LearningWave = memo(({ wave }: { wave: any }) => (
 
 LearningWave.displayName = "LearningWave"
 
-// Ultra optimized rich background for About with MUCH MORE elements
+
 const UltraOptimizedAboutBackground = memo(() => {
   const shouldReduceMotion = useReducedMotion()
   const [mounted, setMounted] = useState(false)
@@ -280,7 +280,7 @@ const UltraOptimizedAboutBackground = memo(() => {
     setMounted(true)
   }, [])
 
-  // MUCH MORE stars for about page (significantly increased)
+
   const stars = useMemo(
     () =>
       [...Array(145)].map((_, i) => ({
@@ -295,7 +295,7 @@ const UltraOptimizedAboutBackground = memo(() => {
     [],
   )
 
-  // MORE orbs for much richer look
+ 
   const orbs = useMemo(
     () =>
       [...Array(8)].map((_, i) => ({
@@ -310,7 +310,7 @@ const UltraOptimizedAboutBackground = memo(() => {
     [],
   )
 
-  // MORE knowledge particles for learning theme
+ 
   const knowledgeParticles = useMemo(
     () =>
       [...Array(10)].map((_, i) => ({
@@ -323,7 +323,7 @@ const UltraOptimizedAboutBackground = memo(() => {
     [],
   )
 
-  // Education particles for learning theme
+
   const educationParticles = useMemo(
     () =>
       [...Array(6)].map((_, i) => ({
@@ -337,7 +337,7 @@ const UltraOptimizedAboutBackground = memo(() => {
     [],
   )
 
-  // Education books for learning theme
+ 
   const educationBooks = useMemo(
     () =>
       [...Array(5)].map((_, i) => ({
@@ -352,7 +352,7 @@ const UltraOptimizedAboutBackground = memo(() => {
     [],
   )
 
-  // Learning waves for knowledge expansion theme
+ 
   const learningWaves = useMemo(
     () =>
       [...Array(6)].map((_, i) => ({
@@ -461,51 +461,51 @@ const UltraOptimizedAboutBackground = memo(() => {
       `}</style>
 
       <div className="absolute inset-0 overflow-hidden">
-        {/* Ultra Enhanced Star field */}
+     
         <div className="absolute inset-0" style={{ contain: "layout style paint" }}>
           {stars.map((star) => (
             <AboutStar key={star.id} star={star} />
           ))}
         </div>
 
-        {/* Ultra Enhanced Floating Orbs */}
+       
         <div className="absolute inset-0">
           {orbs.map((orb) => (
             <AboutOrb key={orb.id} orb={orb} />
           ))}
         </div>
 
-        {/* Enhanced Knowledge Particles */}
+       
         <div className="absolute inset-0">
           {knowledgeParticles.map((particle) => (
             <KnowledgeParticle key={particle.id} particle={particle} />
           ))}
         </div>
 
-        {/* Education Particles */}
+     
         <div className="absolute inset-0">
           {educationParticles.map((particle) => (
             <EducationParticle key={particle.id} particle={particle} />
           ))}
         </div>
 
-        {/* Education Books */}
+       
         <div className="absolute inset-0">
           {educationBooks.map((book) => (
             <EducationBook key={book.id} book={book} />
           ))}
         </div>
 
-        {/* Learning Waves */}
+     
         <div className="absolute inset-0">
           {learningWaves.map((wave) => (
             <LearningWave key={wave.id} wave={wave} />
           ))}
         </div>
 
-        {/* MUCH MORE Enhanced flowing lines with CSS animations */}
+        
         <div className="absolute inset-0 opacity-54">
-          {/* MORE Horizontal flowing lines */}
+         
           <div
             className="absolute h-0.5 w-28 bg-gradient-to-r from-transparent via-[#00ffcc] to-transparent flow-line-h-about"
             style={{ top: "10%", animationDelay: "0s" }}
@@ -563,7 +563,7 @@ const UltraOptimizedAboutBackground = memo(() => {
             style={{ top: "88%", animationDelay: "6.5s" }}
           />
 
-          {/* MORE Vertical flowing lines */}
+          
           <div
             className="absolute w-0.5 h-28 bg-gradient-to-b from-transparent via-[#00ffcc] to-transparent flow-line-v-about"
             style={{ left: "7%", animationDelay: "0.5s" }}
@@ -617,7 +617,7 @@ const UltraOptimizedAboutBackground = memo(() => {
             style={{ left: "91%", animationDelay: "5s" }}
           />
 
-          {/* Enhanced Diagonal flowing lines */}
+        
           <div
             className="absolute w-0.5 h-28 bg-gradient-to-b from-transparent via-[#00ffcc] to-transparent flow-diagonal-about"
             style={{ animationDelay: "1s" }}
@@ -639,7 +639,7 @@ const UltraOptimizedAboutBackground = memo(() => {
             style={{ animationDelay: "9s" }}
           />
 
-          {/* NEW Spiral flowing lines for learning growth */}
+          
           <div
             className="absolute h-0.5 w-22 bg-gradient-to-r from-transparent via-[#00ffcc] to-transparent flow-spiral-about"
             style={{ animationDelay: "2s" }}
@@ -653,7 +653,7 @@ const UltraOptimizedAboutBackground = memo(() => {
             style={{ animationDelay: "14s" }}
           />
 
-          {/* NEW Wave flowing lines for knowledge waves */}
+          
           <div
             className="absolute h-0.5 w-20 bg-gradient-to-r from-transparent via-[#00e6ff] to-transparent flow-wave-about"
             style={{ animationDelay: "3s" }}
@@ -668,7 +668,7 @@ const UltraOptimizedAboutBackground = memo(() => {
           />
         </div>
 
-        {/* MUCH MORE Enhanced circuit nodes */}
+        
         <div className="absolute inset-0 opacity-74">
           <div
             className="absolute w-2 h-2 bg-[#00ffcc] rounded-full shadow-lg shadow-[#00ffcc]/70 animate-pulse"
@@ -724,7 +724,7 @@ const UltraOptimizedAboutBackground = memo(() => {
           />
         </div>
 
-        {/* MUCH MORE Enhanced nebula effects */}
+      
         <div className="absolute top-5 left-5 w-[440px] h-[440px] bg-[#00ffcc]/6 rounded-full blur-3xl pointer-events-none opacity-66" />
         <div className="absolute bottom-5 right-5 w-[420px] h-[420px] bg-[#00ccff]/6 rounded-full blur-3xl pointer-events-none opacity-66" />
         <div className="absolute top-1/3 right-1/4 w-[380px] h-[380px] bg-[#0099ff]/4 rounded-full blur-3xl pointer-events-none opacity-56" />
@@ -732,7 +732,7 @@ const UltraOptimizedAboutBackground = memo(() => {
         <div className="absolute top-2/3 left-1/6 w-[400px] h-[400px] bg-[#00b3ff]/4 rounded-full blur-3xl pointer-events-none opacity-53" />
         <div className="absolute bottom-2/3 right-1/6 w-[450px] h-[450px] bg-[#00d9ff]/5 rounded-full blur-3xl pointer-events-none opacity-59" />
 
-        {/* Grid pattern */}
+     
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#111111_1px,transparent_1px),linear-gradient(to_bottom,#111111_1px,transparent_1px)] bg-[size:100px_100px] opacity-10"></div>
       </div>
     </>
@@ -741,7 +741,7 @@ const UltraOptimizedAboutBackground = memo(() => {
 
 UltraOptimizedAboutBackground.displayName = "UltraOptimizedAboutBackground"
 
-// Optimized Education Card Component
+
 const EducationCard = memo(({ edu, index, isInView }: { edu: any; index: number; isInView: boolean }) => (
   <motion.div
     initial={{ opacity: 0, x: -30 }}
@@ -801,7 +801,7 @@ const EducationCard = memo(({ edu, index, isInView }: { edu: any; index: number;
 
 EducationCard.displayName = "EducationCard"
 
-// Optimized Skill Category Component
+
 const SkillCategory = memo(({ category, index, isInView }: { category: any; index: number; isInView: boolean }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
@@ -864,7 +864,7 @@ const SkillCategory = memo(({ category, index, isInView }: { category: any; inde
 
 SkillCategory.displayName = "SkillCategory"
 
-// Optimized Certification Card Component
+
 const CertificationCard = memo(({ cert, index, isInView }: { cert: any; index: number; isInView: boolean }) => (
   <motion.div
     initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}

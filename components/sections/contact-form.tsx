@@ -135,7 +135,7 @@ export function ContactForm() {
           </CardHeader>
           <CardContent className="px-4 sm:px-6">
             <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
-              {/* Name and Email Row */}
+            
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <motion.div
                   initial={{ opacity: 0, x: -20 }}
@@ -183,7 +183,7 @@ export function ContactForm() {
                 </motion.div>
               </div>
 
-              {/* Phone and LinkedIn Row */}
+             
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <motion.div
                   initial={{ opacity: 0, x: -20 }}
@@ -230,7 +230,7 @@ export function ContactForm() {
                 </motion.div>
               </div>
 
-              {/* Message */}
+         
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -255,7 +255,7 @@ export function ContactForm() {
                 <p className="text-xs text-muted-foreground">{formData.message.length}/1000 characters</p>
               </motion.div>
 
-              {/* Submit Status */}
+             
               {submitStatus.type && (
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
@@ -275,7 +275,7 @@ export function ContactForm() {
                 </motion.div>
               )}
 
-              {/* Submit Button */}
+          
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -305,7 +305,7 @@ export function ContactForm() {
                 </Button>
               </motion.div>
 
-              {/* Additional Info */}
+       
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
