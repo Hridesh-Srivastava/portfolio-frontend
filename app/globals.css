@@ -89,6 +89,10 @@
     box-shadow: 0 0 50px rgba(var(--primary), 0.3);
   }
 
+  ::selection {
+  background: #12edc1;
+  color: #0a0a0a; 
+}
   .floating-animation {
     animation: floating 6s ease-in-out infinite;
   }
