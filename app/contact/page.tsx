@@ -26,6 +26,7 @@ import {
   WifiOff,
   Zap,
   Globe,
+  Navigation,
 } from "lucide-react"
 import Link from "next/link"
 
@@ -1072,6 +1073,52 @@ export default function ContactPage() {
                         </div>
                       </motion.div>
                     ))}
+                  </CardContent>
+                </Card>
+              </motion.div>
+
+              {/* Location Map */}
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                whileHover={{
+                  scale: 1.02,
+                  boxShadow: "0 20px 40px rgba(0, 230, 255, 0.1)",
+                }}
+                className="w-full"
+              >
+                <Card className="bg-[#111111] border border-[#222222] shadow-xl overflow-hidden relative backdrop-blur-sm hover:border-[#00e6ff]/30 transition-all duration-500 w-full">
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#00e6ff]/5 via-transparent to-[#00b3ff]/5 opacity-0 hover:opacity-100 transition-opacity duration-500" />
+
+                  <CardHeader className="relative z-10 px-4 sm:px-6">
+                    <CardTitle className="text-xl sm:text-2xl text-white flex items-center gap-2 sm:gap-3 flex-wrap">
+                      <motion.div
+                        className="p-2 rounded-xl bg-[#00e6ff]/20 border border-[#00e6ff]/30 flex-shrink-0"
+                        whileHover={{ rotate: 5, scale: 1.05 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <Navigation className="h-5 w-5 sm:h-6 sm:w-6 text-[#00e6ff]" />
+                      </motion.div>
+                      <span>Find Me Here</span>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="relative z-10 px-4 sm:px-6 pb-4 sm:pb-6">
+                    <div className="relative w-full h-64 sm:h-80 rounded-lg overflow-hidden border border-[#333333] hover:border-[#00e6ff]/50 transition-colors duration-300">
+                      <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d99729.41206046149!2d77.93473275408252!3d30.32555080639766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390929c356c888af%3A0x4c3562c032518799!2sDehradun%2C%20Uttarakhand!5e1!3m2!1sen!2sin!4v1750430015684!5m2!1sen!2sin"
+                        width="100%"
+                        height="100%"
+                        style={{ border: 0 }}
+                        allowFullScreen
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                        className="w-full h-full rounded-lg"
+                        title="Dehradun, Uttarakhand Location"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/20 via-transparent to-transparent pointer-events-none" />
+                    </div>
+                   
                   </CardContent>
                 </Card>
               </motion.div>

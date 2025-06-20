@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { ArrowUp, MapPin, Phone, MailPlus } from "lucide-react"
-import Link from "next/link"
-import { memo, useCallback, useMemo } from "react"
-import Image from "next/image"
+import { motion } from "framer-motion";
+import { ArrowUp, MapPin, Phone, MailPlus } from "lucide-react";
+import Link from "next/link";
+import { memo, useCallback, useMemo } from "react";
+import Image from "next/image";
 
 const VercelIcon = memo(({ className }: { className?: string }) => (
   <svg
@@ -16,27 +16,50 @@ const VercelIcon = memo(({ className }: { className?: string }) => (
     className={className}
     strokeLinejoin="round"
   >
-    <path fillRule="evenodd" clipRule="evenodd" d="M8 1L16 15H0L8 1Z" fill="currentColor" />
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M8 1L16 15H0L8 1Z"
+      fill="currentColor"
+    />
   </svg>
-))
+));
 
 const NpmIcon = memo(({ className }: { className?: string }) => (
-  <Image src="/icons/npm.svg" alt="npm" width={20} height={20} className={className} />
-))
+  <Image
+    src="/icons/npm.svg"
+    alt="npm"
+    width={20}
+    height={20}
+    className={className}
+  />
+));
 
 const XIcon = memo(({ className }: { className?: string }) => (
   <svg viewBox="0 0 24 24" className={className} fill="currentColor">
     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
   </svg>
-))
+));
 
 const GitHubIcon = memo(({ className }: { className?: string }) => (
-  <Image src="/icons/github.svg" alt="GitHub" width={22} height={22} className={className} />
-))
+  <Image
+    src="/icons/github.svg"
+    alt="GitHub"
+    width={22}
+    height={22}
+    className={className}
+  />
+));
 
 const LinkedInIcon = memo(({ className }: { className?: string }) => (
-  <Image src="/icons/linkedin.svg" alt="LinkedIn" width={20} height={20} className={className} />
-))
+  <Image
+    src="/icons/linkedin.svg"
+    alt="LinkedIn"
+    width={20}
+    height={20}
+    className={className}
+  />
+));
 
 // Memoized social links for performance
 const socialLinks = [
@@ -75,7 +98,7 @@ const socialLinks = [
     hoverColor: "hover:text-gray-400",
     bgHover: "hover:bg-gray-900/20",
   },
-]
+];
 
 const quickLinks = [
   { href: "/", label: "Home" },
@@ -83,7 +106,7 @@ const quickLinks = [
   { href: "/projects", label: "Projects" },
   { href: "/services", label: "Services" },
   { href: "/contact", label: "Contact" },
-]
+];
 
 // Ultra-optimized footer background with enhanced visuals but maximum performance
 const UltraOptimizedFooterBackground = memo(() => {
@@ -98,13 +121,16 @@ const UltraOptimizedFooterBackground = memo(() => {
         duration: 2 + Math.random() * 2,
         delay: Math.random() * 2,
       })),
-    [],
-  )
+    []
+  );
 
   return (
     <div className="absolute inset-0">
       {/* Optimized stars with CSS animations */}
-      <div className="absolute inset-0" style={{ contain: "layout style paint" }}>
+      <div
+        className="absolute inset-0"
+        style={{ contain: "layout style paint" }}
+      >
         {stars.map((star) => (
           <div
             key={star.id}
@@ -126,30 +152,73 @@ const UltraOptimizedFooterBackground = memo(() => {
       <div className="absolute inset-0">
         <style jsx>{`
           @keyframes twinkle {
-            0%, 100% { opacity: 0.2; transform: scale(1); }
-            50% { opacity: 0.7; transform: scale(1.2); }
+            0%,
+            100% {
+              opacity: 0.2;
+              transform: scale(1);
+            }
+            50% {
+              opacity: 0.7;
+              transform: scale(1.2);
+            }
           }
           @keyframes footerShootingOrbit1 {
-            0% { transform: translateX(-100px) translateY(0px); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateX(180px) translateY(-50px); opacity: 0; }
+            0% {
+              transform: translateX(-100px) translateY(0px);
+              opacity: 0;
+            }
+            10% {
+              opacity: 1;
+            }
+            90% {
+              opacity: 1;
+            }
+            100% {
+              transform: translateX(180px) translateY(-50px);
+              opacity: 0;
+            }
           }
           @keyframes footerShootingOrbit2 {
-            0% { transform: translateX(-80px) translateY(20px); opacity: 0; }
-            15% { opacity: 0.8; }
-            85% { opacity: 0.8; }
-            100% { transform: translateX(160px) translateY(-30px); opacity: 0; }
+            0% {
+              transform: translateX(-80px) translateY(20px);
+              opacity: 0;
+            }
+            15% {
+              opacity: 0.8;
+            }
+            85% {
+              opacity: 0.8;
+            }
+            100% {
+              transform: translateX(160px) translateY(-30px);
+              opacity: 0;
+            }
           }
           @keyframes footerFlowH {
-            0% { transform: translateX(-100px); opacity: 0; }
-            50% { opacity: 0.4; }
-            100% { transform: translateX(100px); opacity: 0; }
+            0% {
+              transform: translateX(-100px);
+              opacity: 0;
+            }
+            50% {
+              opacity: 0.4;
+            }
+            100% {
+              transform: translateX(100px);
+              opacity: 0;
+            }
           }
           @keyframes footerFlowV {
-            0% { transform: translateY(-100px); opacity: 0; }
-            50% { opacity: 0.3; }
-            100% { transform: translateY(100px); opacity: 0; }
+            0% {
+              transform: translateY(-100px);
+              opacity: 0;
+            }
+            50% {
+              opacity: 0.3;
+            }
+            100% {
+              transform: translateY(100px);
+              opacity: 0;
+            }
           }
           .footer-shooting-orbit-1 {
             animation: footerShootingOrbit1 8s ease-in-out infinite;
@@ -251,17 +320,17 @@ const UltraOptimizedFooterBackground = memo(() => {
       {/* Grid pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#111111_1px,transparent_1px),linear-gradient(to_bottom,#111111_1px,transparent_1px)] bg-[size:100px_100px] opacity-6"></div>
     </div>
-  )
-})
+  );
+});
 
-UltraOptimizedFooterBackground.displayName = "UltraOptimizedFooterBackground"
+UltraOptimizedFooterBackground.displayName = "UltraOptimizedFooterBackground";
 
 export const Footer = memo(() => {
-  const currentYear = useCallback(() => new Date().getFullYear(), [])
+  const currentYear = useCallback(() => new Date().getFullYear(), []);
 
   const scrollToTop = useCallback(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" })
-  }, [])
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
   // Memoized animation variants for better performance
   const containerVariants = useMemo(
@@ -269,8 +338,8 @@ export const Footer = memo(() => {
       hidden: { opacity: 0, y: 20 },
       visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
     }),
-    [],
-  )
+    []
+  );
 
   return (
     <footer className="relative bg-[#0f0f0f] border-t border-[#222222] overflow-hidden">
@@ -294,11 +363,17 @@ export const Footer = memo(() => {
                   transition={{ duration: 0.8 }}
                   style={{ willChange: "transform" }}
                 >
-                  <span className="text-white font-bold text-lg relative z-10">H</span>
+                  <span className="text-white font-bold text-lg relative z-10">
+                    H
+                  </span>
                   {/* Enhanced orbital ring */}
                   <motion.div
                     animate={{ rotate: 360 }}
-                    transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+                    transition={{
+                      duration: 8,
+                      repeat: Number.POSITIVE_INFINITY,
+                      ease: "linear",
+                    }}
                     className="absolute inset-0 border border-[#00ffcc]/30 rounded-full"
                     style={{ willChange: "transform" }}
                   />
@@ -306,14 +381,19 @@ export const Footer = memo(() => {
                   <div className="absolute inset-0 bg-[#00ffcc]/10 rounded-full animate-pulse" />
                 </motion.div>
                 <div>
-                  <h3 className="text-xl font-bold text-white">Hridayesh Srivastava</h3>
-                  <p className="text-sm text-[#999999]">Full-Stack Web Developer</p>
+                  <h3 className="text-xl font-bold text-white">
+                    Hridayesh Srivastava
+                  </h3>
+                  <p className="text-sm text-[#999999]">
+                    Full-Stack Web Developer
+                  </p>
                 </div>
               </div>
 
               <p className="text-[#cccccc] leading-relaxed max-w-md">
-                Passionate about creating innovative digital solutions that make a difference. Let's build something
-                extraordinary together and transform ideas into reality.
+                Passionate about creating innovative digital solutions that make
+                a difference. Let's build something extraordinary together and
+                transform ideas into reality.
               </p>
 
               <div className="flex items-center space-x-4">
@@ -357,7 +437,11 @@ export const Footer = memo(() => {
                 Quick Links
                 <motion.div
                   animate={{ rotate: 360 }}
-                  transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+                  transition={{
+                    duration: 4,
+                    repeat: Number.POSITIVE_INFINITY,
+                    ease: "linear",
+                  }}
                   className="w-1 h-1 bg-[#00ffcc] rounded-full"
                   style={{ willChange: "transform" }}
                 />
@@ -424,7 +508,14 @@ export const Footer = memo(() => {
                   >
                     <MapPin className="w-5 h-5 text-[#00ffcc] flex-shrink-0" />
                   </motion.div>
-                  <span className="group-hover:text-white transition-colors">Dehradun, India</span>
+                  <a
+                    href="https://maps.app.goo.gl/BqSR1hi12SW4K5jC7"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group-hover:text-white transition-colors"
+                  >
+                    Dehradun, India
+                  </a>
                 </motion.div>
                 <motion.div
                   className="flex items-center space-x-3 text-[#999999] group"
@@ -438,11 +529,14 @@ export const Footer = memo(() => {
                   >
                     <Phone className="w-5 h-5 text-[#00ccff] flex-shrink-0" />
                   </motion.div>
-                  <a href="tel:+919634883306" className="group-hover:text-white transition-colors">
+                  <a
+                    href="tel:+919634883306"
+                    className="group-hover:text-white transition-colors"
+                  >
                     +919634883306
                   </a>
                 </motion.div>
-                {/* FIXED EMAIL - Using whitespace-nowrap and proper text handling */}
+
                 <motion.div
                   className="flex items-start space-x-3 text-[#999999] group"
                   whileHover={{ x: 5 }}
@@ -469,7 +563,6 @@ export const Footer = memo(() => {
           </div>
         </div>
 
-        {/* Enhanced Bottom section */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -479,7 +572,9 @@ export const Footer = memo(() => {
         >
           <div className="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
             <div className="flex items-center space-x-2 text-sm text-[#999999]">
-              <span>© {currentYear()} Hridayesh Srivastava. All Rights Reserved.</span>
+              <span>
+                © {currentYear()} Hridayesh Srivastava. All Rights Reserved.
+              </span>
               <motion.div
                 animate={{
                   scale: [1, 1.2, 1],
@@ -501,7 +596,7 @@ export const Footer = memo(() => {
             >
               <ArrowUp className="w-5 h-5 text-[#999999] group-hover:text-white relative z-10" />
               <div className="absolute inset-0 bg-gradient-to-br from-[#00ffcc]/5 via-transparent to-[#00ccff]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              {/* Enhanced scroll indicator */}
+
               <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 animate-pulse">
                 <div className="w-1 h-1 bg-[#00ffcc] rounded-full" />
               </div>
@@ -510,7 +605,7 @@ export const Footer = memo(() => {
         </motion.div>
       </div>
     </footer>
-  )
-})
+  );
+});
 
-Footer.displayName = "Footer"
+Footer.displayName = "Footer";

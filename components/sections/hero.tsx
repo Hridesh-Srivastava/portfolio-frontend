@@ -7,11 +7,10 @@ import Link from "next/link"
 import Image from "next/image"
 import { useRef, memo } from "react"
 
-// Enhanced but optimized hero background with more stars and shooting orbits
 const EnhancedOptimizedHeroBackground = memo(() => {
   return (
     <div className="absolute inset-0">
-      {/* More stars but optimized - 35 stars for richness */}
+
       <div className="absolute inset-0">
         {[...Array(35)].map((_, i) => (
           <div
@@ -29,7 +28,6 @@ const EnhancedOptimizedHeroBackground = memo(() => {
         ))}
       </div>
 
-      {/* CSS-only shooting orbits and flowing lines - super lightweight */}
       <div className="absolute inset-0">
         <style jsx>{`
           @keyframes twinkle {
@@ -81,7 +79,7 @@ const EnhancedOptimizedHeroBackground = memo(() => {
           }
         `}</style>
 
-        {/* Enhanced shooting orbits */}
+
         <div className="absolute top-8 left-0 w-4 h-4 bg-[#00ffcc] rounded-full shooting-orbit-1 shadow-lg shadow-[#00ffcc]/60" />
         <div
           className="absolute top-16 left-0 w-3 h-3 bg-[#00ccff] rounded-full shooting-orbit-2 shadow-lg shadow-[#00ccff]/60"
@@ -100,7 +98,6 @@ const EnhancedOptimizedHeroBackground = memo(() => {
           style={{ animationDelay: "4s" }}
         />
 
-        {/* Enhanced flowing lines */}
         <div className="absolute top-32 left-0 w-48 h-0.5 bg-gradient-to-r from-transparent via-[#00ffcc] to-transparent hero-flow-h" />
         <div
           className="absolute top-64 left-0 w-40 h-0.5 bg-gradient-to-r from-transparent via-[#00ccff] to-transparent hero-flow-h"
@@ -115,7 +112,6 @@ const EnhancedOptimizedHeroBackground = memo(() => {
           style={{ animationDelay: "3s" }}
         />
 
-        {/* Enhanced vertical flowing lines */}
         <div className="absolute top-0 left-32 w-0.5 h-48 bg-gradient-to-b from-transparent via-[#00ffcc] to-transparent hero-flow-v" />
         <div
           className="absolute top-0 right-32 w-0.5 h-40 bg-gradient-to-b from-transparent via-[#00ccff] to-transparent hero-flow-v"
@@ -131,7 +127,6 @@ const EnhancedOptimizedHeroBackground = memo(() => {
         />
       </div>
 
-      {/* Enhanced geometric elements */}
       <div className="absolute inset-0">
         <div
           className="absolute w-4 h-4 border border-[#00ffcc]/40 rotate-45"
@@ -268,7 +263,6 @@ export const HeroSection = memo(() => {
       ref={ref}
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0a0a0a] pt-20 pb-16"
     >
-      {/* Enhanced optimized background */}
       <motion.div style={{ y, opacity }} className="absolute inset-0">
         <EnhancedOptimizedHeroBackground />
       </motion.div>
@@ -392,22 +386,22 @@ export const HeroSection = memo(() => {
               </motion.div>
             </motion.div>
           </motion.div>
-
-          {/* Enhanced Profile section */}
+{/* ************************************************************************************************************************************** */}
+ 
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.4 }}
             className="flex flex-col items-center space-y-6 lg:space-y-8 order-1 lg:order-2 px-4 sm:px-8 lg:px-0"
           >
-            {/* Enhanced Profile Picture Container */}
+      
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.6 }}
               className="relative flex items-center justify-center w-full max-w-sm lg:max-w-md xl:max-w-lg"
             >
-              {/* Enhanced orbital rings - 3 rings for more visual impact */}
+
               <motion.div
                 animate={{ rotate: [0, 360] }}
                 transition={{ duration: 15, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
@@ -442,7 +436,7 @@ export const HeroSection = memo(() => {
                 }}
               />
 
-              {/* Profile picture */}
+
               <div className="w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 xl:w-96 xl:h-96 rounded-full overflow-hidden bg-gradient-to-br from-[#111111] to-[#1a1a1a] shadow-2xl border-2 border-[#00ffcc]/40 relative z-10">
                 <Image
                   src="/pfp-my.jpeg"
@@ -457,7 +451,7 @@ export const HeroSection = memo(() => {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/50 via-transparent to-transparent" />
               </div>
 
-              {/* Enhanced satellite elements - 4 satellites */}
+
               <motion.div
                 animate={{ rotate: [0, 360] }}
                 transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
@@ -495,7 +489,7 @@ export const HeroSection = memo(() => {
                 }}
               />
 
-              {/* Enhanced status badge */}
+
               <motion.div
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -522,7 +516,7 @@ export const HeroSection = memo(() => {
               </motion.div>
             </motion.div>
 
-            {/* Enhanced Stats */}
+     
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -567,7 +561,7 @@ export const HeroSection = memo(() => {
           </motion.div>
         </div>
 
-        {/* Enhanced scroll indicator */}
+ 
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
