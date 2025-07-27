@@ -35,7 +35,7 @@ const education = [
   {
     degree: "BCA",
     institution: "Swami Rama Himalayan University",
-    cgpa: "8.89/10",
+    cgpa: "8.84/10",
     year: "2023-26",
     icon: GraduationCap,
     status: "Current",
@@ -43,7 +43,7 @@ const education = [
   {
     degree: "Senior Secondary",
     institution: "OSN (ISC)",
-    cgpa: "80%",
+    cgpa: "78%",
     year: "2023",
     icon: GraduationCap,
     status: "Completed",
@@ -51,7 +51,7 @@ const education = [
   {
     degree: "Secondary",
     institution: "OSN (ICSE)",
-    cgpa: "90.2%",
+    cgpa: "90%",
     year: "2021",
     icon: GraduationCap,
     status: "Completed",
