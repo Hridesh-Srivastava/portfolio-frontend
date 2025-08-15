@@ -6,25 +6,6 @@ import Link from "next/link";
 import { memo, useCallback, useMemo } from "react";
 import Image from "next/image";
 
-const VercelIcon = memo(({ className }: { className?: string }) => (
-  <svg
-    data-testid="geist-icon"
-    height="16"
-    width="16"
-    viewBox="0 0 16 16"
-    style={{ color: "currentColor" }}
-    className={className}
-    strokeLinejoin="round"
-  >
-    <path
-      fillRule="evenodd"
-      clipRule="evenodd"
-      d="M8 1L16 15H0L8 1Z"
-      fill="currentColor"
-    />
-  </svg>
-));
-
 const NpmIcon = memo(({ className }: { className?: string }) => (
   <Image
     src="/icons/npm.svg"
@@ -34,12 +15,14 @@ const NpmIcon = memo(({ className }: { className?: string }) => (
     className={className}
   />
 ));
+NpmIcon.displayName = "NpmIcon";
 
 const XIcon = memo(({ className }: { className?: string }) => (
   <svg viewBox="0 0 24 24" className={className} fill="currentColor">
     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
   </svg>
 ));
+XIcon.displayName = "XIcon";
 
 const GitHubIcon = memo(({ className }: { className?: string }) => (
   <Image
@@ -50,6 +33,7 @@ const GitHubIcon = memo(({ className }: { className?: string }) => (
     className={className}
   />
 ));
+GitHubIcon.displayName = "GitHubIcon";
 
 const LinkedInIcon = memo(({ className }: { className?: string }) => (
   <Image
@@ -60,6 +44,7 @@ const LinkedInIcon = memo(({ className }: { className?: string }) => (
     className={className}
   />
 ));
+LinkedInIcon.displayName = "LinkedInIcon";
 
 
 const socialLinks = [
@@ -76,13 +61,6 @@ const socialLinks = [
     label: "LinkedIn",
     hoverColor: "hover:text-blue-500",
     bgHover: "hover:bg-blue-500/10",
-  },
-  {
-    href: "https://vercel.com/hridesh-srivastavas-projects",
-    icon: VercelIcon,
-    label: "Vercel",
-    hoverColor: "hover:text-gray-300",
-    bgHover: "hover:bg-gray-800/20",
   },
   {
     href: "https://www.npmjs.com/~hrideshhhh",
@@ -392,7 +370,7 @@ export const Footer = memo(() => {
 
               <p className="text-[#cccccc] leading-relaxed max-w-md">
                 Passionate about creating innovative digital solutions that make
-                a difference. Let's build something extraordinary together and
+                a difference. Let&apos;s build something extraordinary together and
                 transform ideas into reality.
               </p>
 

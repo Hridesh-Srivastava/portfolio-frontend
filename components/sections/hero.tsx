@@ -7,24 +7,6 @@ import Link from "next/link"
 import Image from "next/image"
 import { useRef, memo, useCallback, useMemo } from "react"
 
-const VercelIcon = memo(({ className }: { className?: string }) => (
-  <svg
-    data-testid="geist-icon"
-    height="16"
-    width="16"
-    viewBox="0 0 16 16"
-    style={{ color: "currentColor" }}
-    className={className}
-    strokeLinejoin="round"
-  >
-    <path
-      fillRule="evenodd"
-      clipRule="evenodd"
-      d="M8 1L16 15H0L8 1Z"
-      fill="currentColor"
-    />
-  </svg>
-));
 
 const NpmIcon = memo(({ className }: { className?: string }) => (
   <Image
@@ -77,13 +59,6 @@ const socialLinks = [
     label: "LinkedIn",
     hoverColor: "hover:text-blue-500",
     bgHover: "hover:bg-blue-500/10",
-  },
-  {
-    href: "https://vercel.com/hridesh-srivastavas-projects",
-    icon: VercelIcon,
-    label: "Vercel",
-    hoverColor: "hover:text-gray-300",
-    bgHover: "hover:bg-gray-800/20",
   },
   {
     href: "https://www.npmjs.com/~hrideshhhh",
