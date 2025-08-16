@@ -12,7 +12,7 @@ const featuredProjects = [
   {
     title: "Alumni Data System",
     description:
-      "Comprehensive alumni management system built with Next.js and RESTful APIs for efficient data management and networking.",
+      "I developed a comprehensive alumni portal for SST, SRHU to strengthen the connection between alumni and current students while fostering long-term engagement. The platform is designed with a clean and user-friendly interface.",
     image: "/alumni-data.png?height=200&width=300",
     technologies: ["React", "Tailwind CSS", "Next.js","Shadcn ui", "Node.js", "Express", "MongoDB", "RESTful APIs"],
     icon: Users,
@@ -22,7 +22,7 @@ const featuredProjects = [
   {
     title: "Oddiant TechLabs",
     description:
-      "Intelligent quiz application with automatic submission and performance tracking using MERN stack and machine learning.",
+      "A clean corporate website for Oddiant Techlabs that showcases their core offerings—IT consulting, HR consulting, recruitment & staffing, Assessment Portal and personality development—with clear CTAs, trust metrics, and lead-capture to drive enquiries.",
     image: "/oddiant-img.png?height=200&width=300",
     technologies: ["React", "Node.js", "MongoDB", "Next.js","Shadcn ui", "RESTful APIs","Tailwind CSS"],
     icon: Brain,
