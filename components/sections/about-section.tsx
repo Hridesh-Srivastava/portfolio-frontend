@@ -391,7 +391,6 @@ export const AboutSection = memo(() => {
                     }}
                     className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
                   />
-                  <Brain className="mr-2 h-5 w-5 relative z-10" />
                   <span className="relative z-10">Learn More About Me</span>
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform relative z-10" />
                 </Link>
