@@ -20,13 +20,17 @@ import {
   Zap,
   Cpu,
   Monitor,
+  Laptop,
+  Terminal,
+  Flag,
+  Briefcase
 } from "lucide-react"
 import Link from "next/link"
 import { useRef, useMemo, memo, useEffect, useState } from "react"
 
 const skills = {
   languages: ["JavaScript ES6+", "HTML5", "CSS3", "TypeScript"],
-  frameworks: ["React", "Next.js", "TailwindCSS", "Express.js", "EJS"],
+  frameworks: ["React", "Next.js", "TailwindCSS", "Express", "EJS"],
   tools: ["Git", "GitHub", "VS Code", "Node.js", "MongoDB", "PostgreSQL", "Postman", "Rest APIs", "Vercel"],
   soft: ["Attention to Detail", "Teamwork", "Analytical Thinking", "Problem Solving", "Communication"],
 }
@@ -35,7 +39,7 @@ const education = [
   {
     degree: "BCA",
     institution: "Swami Rama Himalayan University",
-    cgpa: "8.84/10",
+    cgpa: "8.58/10",
     year: "2023-26",
     icon: GraduationCap,
     status: "Current",
@@ -114,6 +118,27 @@ const certifications = [
     date: "May 2025",
     url: "https://www.hackerrank.com/certificates/e9ef8b65c70c",
     icon: Globe,
+  },
+  {
+    title: "CTF Technex'25",
+    provider: "Technex, IIT (BHU) Varanasi",
+    date: "April 2025",
+    url: "https://www.linkedin.com/in/hridayesh-srivastava-9575901bb/overlay/1745605838242/single-media-viewer/?profileId=ACoAADMqSlMBfQ0Njd3-07q7Vlv7XlAvxroEJ_g",
+    icon: Flag,
+  },
+  {
+    title: "Hack it out Technex'25",
+    provider: "Technex, IIT (BHU) Varanasi",
+    date: "April 2025",
+    url: "https://www.linkedin.com/in/hridayesh-srivastava-9575901bb/details/certifications/1745606047362/single-media-viewer/?profileId=ACoAADMqSlMBfQ0Njd3-07q7Vlv7XlAvxroEJ_g",
+    icon: Terminal,
+  },
+  {
+    title: "Frosthack Xpecto'25",
+    provider: "Xpecto Tech, IIT Mandi",
+    date: "April 2025",
+    url: "https://www.linkedin.com/in/hridayesh-srivastava-9575901bb/details/certifications/1745606294144/single-media-viewer/?profileId=ACoAADMqSlMBfQ0Njd3-07q7Vlv7XlAvxroEJ_g",
+    icon: Laptop,
   },
 ]
 
@@ -1054,6 +1079,96 @@ export default function AboutPage() {
                 <EducationCard key={index} edu={edu} index={index} isInView={isInView} />
               ))}
             </div>
+          </motion.div>
+
+          {/* Internship Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            whileHover={{
+              scale: 1.01,
+            }}
+            className="w-full"
+            style={{ willChange: "transform" }}
+          >
+            <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8 px-4 flex-wrap">
+              <motion.div
+                className="p-2 sm:p-3 rounded-xl bg-[#00ffaa]/20 border border-[#00ffaa]/30 flex-shrink-0"
+                whileHover={{ rotate: 5, scale: 1.05 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Briefcase className="h-6 w-6 sm:h-8 sm:w-8 text-[#00ffaa]" />
+              </motion.div>
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white">Internship</h2>
+            </div>
+            <Card className="bg-[#111111] border border-[#222222] shadow-2xl overflow-hidden relative backdrop-blur-sm hover:border-[#00ffaa]/30 transition-all duration-300 w-full">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#00ffaa]/5 via-transparent to-[#00ccff]/5 opacity-0 hover:opacity-100 transition-opacity duration-300" />
+              <CardContent className="p-4 sm:p-6 lg:p-8 relative z-10">
+                <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
+                  <motion.div
+                    className="p-3 sm:p-4 rounded-xl bg-[#00ffaa]/20 border border-[#00ffaa]/30 flex-shrink-0"
+                    whileHover={{ rotate: 5, scale: 1.05 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Briefcase className="h-6 w-6 sm:h-8 sm:w-8 text-[#00ffaa]" />
+                  </motion.div>
+                  <div className="flex-1 min-w-0 w-full">
+                    <h3 className="text-xl sm:text-2xl font-semibold text-white mb-2 hover:text-[#00ffaa] transition-colors break-words">
+                      Full Stack Web Developer Intern
+                    </h3>
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mb-4 flex-wrap">
+                      <Badge
+                        variant="secondary"
+                        className="text-xs sm:text-sm bg-[#00ffaa]/10 text-[#00ffaa] border border-[#00ffaa]/30 w-fit"
+                      >
+                        Oddiant TechLabs (Remote)
+                      </Badge>
+                      <Badge variant="outline" className="text-xs sm:text-sm border-[#666666] text-[#999999] w-fit">
+                        Jan 2025 – Jun 2025
+                      </Badge>
+                      <Badge variant="outline" className="text-xs sm:text-sm border-[#666666] text-[#999999] w-fit">
+                        6 Months
+                      </Badge>
+                    </div>
+                    <p className="text-sm sm:text-base text-[#cccccc] leading-relaxed break-words mb-6">
+                      During my 6‑month remote internship at Oddiant TechLabs I worked end‑to‑end across the MERN + Next.js
+                      stack to build and optimize production‑grade web applications. I engineered reusable, accessible UI
+                      components with Tailwind CSS, refactored API integration layers for cleaner data flow, and improved
+                      perceived performance through code‑splitting and careful state management. I collaborated closely with
+                      founders and designers in an agile rhythm (weekly deliverables & reviews), converting loosely defined
+                      feature ideas into shipped functionality, strengthening my judgment around trade‑offs, scalability, and
+                      developer experience. Beyond feature delivery I focused on maintainability—introducing naming
+                      conventions, organizing folder structure, and reviewing pull requests to uphold code quality. The role
+                      deepened my understanding of deploying and monitoring live Next.js applications while reinforcing
+                      disciplined problem solving and clear asynchronous communication. (Total stipend: ₹18,000.)
+                    </p>
+                    <div className="flex flex-col sm:flex-row gap-3 w-full">
+                      <Button
+                        asChild
+                        variant="outline"
+                        className="border-[#333333] text-[#cccccc] hover:text-white hover:border-[#00ffaa] hover:shadow-lg hover:shadow-[#00ffaa]/20 transition-all duration-300 w-full sm:w-auto"
+                      >
+                        {/* TODO: Replace # with certificate link when available */}
+                        <Link href="#" target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="h-4 w-4 mr-2" />
+                          Check Here
+                        </Link>
+                      </Button>
+                      <Button
+                        asChild
+                        className="bg-[#00ffaa]/20 border border-[#00ffaa]/30 text-[#00ffaa] hover:bg-[#00ffaa]/30 hover:text-white transition-colors w-full sm:w-auto"
+                      >
+                        <Link href="https://www.oddiant.com" target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="h-4 w-4 mr-2" />
+                          Project
+                        </Link>
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </motion.div>
 
           {/* Skills Section */}

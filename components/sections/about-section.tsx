@@ -12,22 +12,22 @@ const skills = [
   {
     icon: Globe,
     name: "Frontend Development",
-    techs: ["React", "Next.js", "TypeScript"],
+    techs: ["React", "Next.js", "Tailwind CSS" ],
   },
   {
     icon: Database,
     name: "Backend Development",
-    techs: ["Node.js", "Express", "MongoDB"],
+    techs: ["Node.js", "Express", "EJS", "MongoDB", "PostgreSQL", "REST APIs"],
   },
   {
     icon: Code,
     name: "Programming Languages",
-    techs: ["JavaScript", "HTML/CSS"],
+    techs: ["HTML/CSS", "JavaScript", "TypeScript"],
   },
   {
     icon: Smartphone,
     name: "Tools & Technologies",
-    techs: ["Git", "VS Code", "Postman"],
+    techs: ["Git", "GitHub", "VS Code", "Postman", "Vercel"],
   },
 ]
 

@@ -14,17 +14,17 @@ const featuredProjects = [
     description:
       "Comprehensive alumni management system built with Next.js and RESTful APIs for efficient data management and networking.",
     image: "/alumni-data.png?height=200&width=300",
-    technologies: ["Next.js", "MongoDB", "RESTful APIs"],
+    technologies: ["React", "Tailwind CSS", "Next.js","Node.js", "Express", "MongoDB", "RESTful APIs"],
     icon: Users,
     liveUrl: "https://hsst-alumni-frontend.vercel.app/",
     githubUrl: "https://github.com/Hridesh-Srivastava/Alumni-data-frontend",
   },
   {
-    title: "AI Quiz Application",
+    title: "Oddiant TechLabs",
     description:
       "Intelligent quiz application with automatic submission and performance tracking using MERN stack and machine learning.",
     image: "/placeholder.svg?height=200&width=300",
-    technologies: ["React", "Node.js", "MongoDB", "AI"],
+    technologies: ["React", "Node.js", "MongoDB", "Next.js","RESTful APIs","Tailwind CSS"],
     icon: Brain,
     liveUrl: "#",
     githubUrl: "#",
