@@ -1146,13 +1146,13 @@ export default function AboutPage() {
                     <div className="flex flex-col sm:flex-row gap-3 w-full">
                       <Button
                         asChild
-                        variant="outline"
-                        className="border-[#333333] text-[#cccccc] hover:text-white hover:border-[#00ffaa] hover:shadow-lg hover:shadow-[#00ffaa]/20 transition-all duration-300 w-full sm:w-auto"
+                        variant="ghost"
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#00ffaa]/10 border border-[#00ffaa]/30 text-[#00ffaa] font-semibold hover:bg-[#00ffaa]/20 transition w-full sm:w-auto"
                       >
                         {/* TODO: Replace # with certificate link when available */}
                         <Link href="#" target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="h-4 w-4 mr-2" />
-                          Check Here
+                          Check here
+                          <ExternalLink className="w-5 h-5" />
                         </Link>
                       </Button>
                       <Button
@@ -1266,15 +1266,33 @@ export default function AboutPage() {
                         Creative Cell Bootcamp, SST
                       </Badge>
                       <Badge variant="outline" className="text-xs sm:text-sm border-[#666666] text-[#999999] w-fit">
+                        Sept 2024 - Feb 2025
+                      </Badge>
+                      <Badge variant="outline" className="text-xs sm:text-sm border-[#666666] text-[#999999] w-fit">
                         6 Months
                       </Badge>
                     </div>
                     <p className="text-sm sm:text-base text-[#cccccc] leading-relaxed break-words">
-                      Served as Web Development Facilitator at Creative Cell Bootcamp, at SST, for a 6-month hands-on
-                      training program. Mentored students in modern web technologies, guided project-based learning
-                      initiatives, and helped bridge the gap between theoretical knowledge and practical implementation.
-                      Successfully trained over 50+ students in full-stack development.
+                      As a Web Development Facilitator at the Creative Cell Bootcamp, SST, I contributed to a six-month, hands-on training program
+                       centered around
+                       modern web technologies. I mentored peers in applying theoretical concepts to practical projects, guided them through 
+                       project-based learning activities, and encouraged collaborative problem-solving. Throughout this program, 
+                       I worked closely with over 30 students,
+                        helping them strengthen their foundation in full-stack development and gain confidence in building real-world applications.
                     </p>
+                    <div className="mt-6">
+                      <Button
+                        asChild
+                        variant="ghost"
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#00ffcc]/10 border border-[#00ffcc]/30 text-[#00ffcc] font-semibold hover:bg-[#00ffcc]/20 transition w-full sm:w-auto"
+                      >
+              
+                        <Link href="#" target="_blank" rel="noopener noreferrer">
+                          Check here
+                          <ExternalLink className="w-5 h-5" />
+                        </Link>
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </CardContent>

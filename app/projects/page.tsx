@@ -25,14 +25,14 @@ const projects = [
   },
   {
     id: 2,
-    title: "Quiz App",
+    title: "Oddiant TechLabs",
     description:
-      "Engineered a timed quiz application for my college HSST using MERN stack with automatic submission functionality. Implemented user authentication and database storage for tracking quiz responses and participant performance.",
-    image: "/placeholder.svg?height=300&width=500",
-    technologies: ["React", "Node.js", "Express", "MongoDB", "JWT"],
+      "A clean corporate website for Oddiant Techlabs that showcases their core offerings—IT consulting, HR consulting, recruitment & staffing, Assessment Portal and personality development—with clear CTAs, trust metrics, and lead-capture to drive enquiries.",
+    image: "/oddiant-img.png?height=300&width=500",
+    technologies: ["React", "Node.js", "MongoDB", "Next.js","Shadcn ui", "RESTful APIs","Tailwind CSS"],
     category: "Full-Stack",
-    liveUrl: "#",
-    githubUrl: "#",
+    liveUrl: "https://www.oddiant.com/",
+    githubUrl: "https://github.com/Hridesh-Srivastava/oddiant-techLabs.git",
     featured: true,
     icon: Brain,
     color: "#00ccff",
@@ -1061,9 +1061,21 @@ export default function ProjectsPage() {
                     <h3 className="text-2xl font-bold mb-2 text-white">Patent Achievement</h3>
                     <h4 className="text-lg font-semibold text-[#00ffcc] mb-3">Smart Bandage (App No. 202511011591)</h4>
                     <p className="text-[#cccccc] leading-relaxed">
-                      Patented a "Smart Bandage" integrating biosensors, AI, and automated drug delivery for real-time
-                      wound monitoring. Tracks key parameters (temperature, pH, oxygen, bacteria) and delivers
-                      medication autonomously. Enables remote monitoring and timely interventions via a mobile app.
+                      I am proud to have patented the Smart Bandage with Integrated Biosensors and AI-powered Drug Delivery System, published by the Indian Patent Office. This innovation represents a significant leap in wound care management by integrating biosensors, artificial intelligence, and automated medication delivery into a single compact device.
+
+The Smart Bandage offers:
+
+Real-time Monitoring – Continuously tracks wound parameters such as temperature, pH, oxygen levels, and bacterial presence.
+
+AI-Powered Analysis – Uses embedded AI to process biosensor data in real time, enabling accurate, data-driven treatment decisions.
+
+Adaptive Drug Delivery – Automatically administers appropriate medication from built-in reservoirs, ensuring timely and precise treatment.
+
+Protective Layer – Designed with a breathable, waterproof membrane to safeguard the wound while allowing optimal gas exchange.
+
+Remote Healthcare Access – Paired with a mobile application that enables doctors and caregivers to monitor wounds remotely and intervene when necessary.
+
+This project reflects my passion for applying technology to healthcare challenges, aiming to improve patient outcomes, reduce complications, and make advanced wound treatment more accessible.
                     </p>
                     <a
                       href="https://www.linkedin.com/posts/hridayesh-srivastava-9575901bb_smart-bandage-patent-activity-7302186969986482176-AfFi?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAADMqSlMBfQ0Njd3-07q7Vlv7XlAvxroEJ_g"

@@ -29,26 +29,6 @@ const featuredProjects = [
     liveUrl: "https://www.oddiant.com/",
     githubUrl: "https://github.com/Hridesh-Srivastava/oddiant-techLabs.git",
   },
-  {
-    title: "Blink Bank Pro",
-    description:
-      "Advanced finance tracker with real-time visualizations and AI-powered insights using Next.js and Firebase.",
-    image: "/placeholder.svg?height=200&width=300",
-    technologies: ["Next.js", "Firebase", "AI", "Charts"],
-    icon: Banknote,
-    liveUrl: "#",
-    githubUrl: "#",
-  },
-  {
-    title: "Smart Analytics Dashboard",
-    description:
-      "Real-time analytics platform with interactive charts, data visualization, and performance monitoring capabilities.",
-    image: "/placeholder.svg?height=200&width=300",
-    technologies: ["React", "D3.js", "Node.js", "WebSocket"],
-    icon: Zap,
-    liveUrl: "#",
-    githubUrl: "#",
-  },
 ]
 
 
