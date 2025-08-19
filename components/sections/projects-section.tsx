@@ -13,7 +13,7 @@ const featuredProjects = [
     title: "Alumni Data System",
     description:
       "I developed a comprehensive alumni portal for SST, SRHU to strengthen the connection between alumni and current students while fostering long-term engagement. The platform is designed with a clean and user-friendly interface.",
-    image: "/alumni-data.png?height=200&width=300",
+    image: "/sst-alumni.png?height=300&width=300",
     technologies: ["React", "Tailwind CSS", "Next.js","Shadcn ui", "Node.js", "Express", "MongoDB", "RESTful APIs"],
     icon: Users,
     liveUrl: "https://hsst-alumni-frontend.vercel.app/",
@@ -23,11 +23,21 @@ const featuredProjects = [
     title: "Oddiant TechLabs",
     description:
       "A clean corporate website for Oddiant Techlabs that showcases their core offerings—IT consulting, HR consulting, recruitment & staffing, Assessment Portal and personality development—with clear CTAs, trust metrics, and lead-capture to drive enquiries.",
-    image: "/oddiant-img.png?height=200&width=300",
+    image: "/oddiant-img.png?height=300&width=300",
     technologies: ["React", "Node.js", "MongoDB", "Next.js","Shadcn ui", "RESTful APIs","Tailwind CSS"],
     icon: Brain,
     liveUrl: "https://www.oddiant.com/",
     githubUrl: "https://github.com/Hridesh-Srivastava/oddiant-techLabs.git",
+  },
+  {
+    title: "SST TechQuiz Hub",
+    description:
+      "This project is a full-stack quiz platform for SST College, helping students practice and evaluate their knowledge in computer science. It provides an interactive, responsive interface with quizzes across multiple categories and ensures smooth performance with accurate scoring.",
+    image: "/quiz.png?height=300&width=300",
+    technologies: ["React", "Node.js", "MongoDB", "RESTful APIs","Tailwind CSS"],
+    icon: Brain,
+    liveUrl: "https://frontend-quiz-tau.vercel.app/",
+    githubUrl: "https://github.com/Hridesh-Srivastava/quiz-app-frontend.git",
   },
 ]
 

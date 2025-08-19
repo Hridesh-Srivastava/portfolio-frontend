@@ -5,7 +5,7 @@ import { motion, AnimatePresence, useInView, useReducedMotion } from "framer-mot
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { ExternalLink, Github, Filter, Globe, Brain, Banknote, Users, Package, Award, Star, Zap } from "lucide-react"
+import { ExternalLink, Github, Filter, Globe, Brain, Banknote, Users, Package, Award, Star, Zap, Sprout, Pen } from "lucide-react"
 import Link from "next/link"
 
 const projects = [
@@ -14,7 +14,7 @@ const projects = [
     title: "Alumni Data System",
     description:
       "Built a comprehensive alumni management system for HSST using Next.js, Tailwind CSS, and RESTful APIs. Created a responsive database solution to efficiently store, search, and manage alumni records.",
-    image: "/alumni-data.png?height=300&width=500",
+    image: "/sst-alumni.png?height=300&width=500",
     technologies: ["Next.js", "Tailwind CSS", "RESTful APIs", "MongoDB", "Node.js"],
     category: "Full-Stack",
     liveUrl: "https://hsst-alumni-frontend.vercel.app/",
@@ -42,36 +42,79 @@ const projects = [
     title: "Blink Bank",
     description:
       "Developed a finance tracker using Next.js, Firebase, and Recharts providing real-time visualizations of spending patterns. Integrated Gemini API and Fetch AI for intelligent financial insights and natural language query capabilities.",
-    image: "/placeholder.svg?height=300&width=500",
-    technologies: ["Next.js", "Firebase", "Recharts", "Gemini API", "Fetch AI"],
-    category: "Frontend",
+    image: "/blink-bank.png?height=300&width=500",
+    technologies: ["React", "Next.js", "Firebase", "Recharts", "Gemini API","REST APIs", "Fetch AI"],
+    category: "Full-Stack",
     liveUrl: "#",
-    githubUrl: "#",
+    githubUrl: "https://github.com/Hridesh-Srivastava/finance-track.git",
     featured: false,
     icon: Banknote,
     color: "#0099ff",
   },
   {
     id: 4,
-    title: "AgroSmart AI",
+    title: "SST TechQuiz Hub",
     description:
-      "Developed an AI-powered crop recommendation system using MERN stack, Three.js, Python, and Flask that predicts optimal crops based on environmental conditions and soil parameters.",
-    image: "/placeholder.svg?height=300&width=500",
-    technologies: ["MERN", "Three.js", "Python", "Flask", "AI/ML"],
-    category: "AI/ML",
-    liveUrl: "#",
-    githubUrl: "#",
+      "This project is a full-stack quiz platform for SST College, helping students practice and evaluate their knowledge in computer science. It provides an interactive, responsive interface with quizzes across multiple categories and ensures smooth performance with accurate scoring.",
+    image: "/quiz.png?height=300&width=500",
+    technologies: ["React", "Node.js", "MongoDB", "RESTful APIs","Tailwind CSS"],
+    category: "Full-Stack",
+    liveUrl: "https://frontend-quiz-tau.vercel.app/",
+    githubUrl: "https://github.com/Hridesh-Srivastava/quiz-app-frontend.git",
     featured: true,
     icon: Globe,
     color: "#00e6ff",
   },
-  {
+    {
     id: 5,
+    title: "SmartAgro AI",
+    description:
+      "SmartAgro is an agriculture-based project leveraging AI to provide smart solutions for farmers. This project aims to enhance agricultural productivity through precision farming and sustainable practices",
+    image: "/SmartAgro.png?height=300&width=500",
+    technologies: [
+  "HTML/CSS",
+  "React",
+  "Python",
+  "Flask",
+  "scikit-learn",
+  "NumPy",
+  "SciPy",
+  "joblib",
+  "Tailwind CSS",
+  "Material UI",
+  "Three.js",
+  "RESTful APIs",
+  "Vite",
+  "Git"
+],
+  category: ["Full-Stack", "AI/ML"],
+    liveUrl: "https://agro-smart-ai.vercel.app",
+    githubUrl: "https://github.com/Hridesh-Srivastava/SmartAgro-AI.git",
+    featured: false,
+    icon: Sprout,
+    color: "#00e6ff",
+  },
+    {
+    id: 6,
+    title: "blogWise",
+    description:
+      "blogWise is a full-featured blog platform built with modern web technologies, providing a dynamic and customizable environment for creating and managing blog posts. The application leverages EJS for templating, CSS for styling, and is powered by a robust backend using Node.js, Express, and MongoDB.",
+    image: "/blogWise.png?height=300&width=500",
+    technologies: ["EJS", "CSS","Node.js", "Express", "MongoDB"],
+    category: "Full-Stack",
+    liveUrl: "https://blog-website-nu-topaz.vercel.app/",
+    githubUrl: "https://github.com/Hridesh-Srivastava/Blog-Website.git",
+    featured: false,
+    icon: Pen,
+    color: "#0099ff",
+  },
+  {
+    id: 7,
     title: "Geo Spot Finder",
     description:
       "Created a package to retrieve user geolocation (latitude/longitude) via browser, with a simple API for easy integration in location-based web apps.",
     image: "/geo-spot-finder.png?height=300&width=500",
-    technologies: ["JavaScript", "NPM", "Geolocation API"],
+    technologies: ["JavaScript", "Browser Geolocation API", "Node.js", "npm"],
     category: "Package",
     liveUrl: "https://www.npmjs.com/package/geo-spot-finder",
     githubUrl: "https://github.com/Hridesh-Srivastava/Find-Location",
@@ -80,12 +123,12 @@ const projects = [
     color: "#00ffcc",
   },
   {
-    id: 6,
+    id: 8,
     title: "Clipboard Transform",
     description:
       "Built a utility package to transform text into various formats (uppercase, lowercase, camel case) with clipboard integration for direct copying.",
     image: "/clipboard-transform.png?height=300&width=500",
-    technologies: ["JavaScript", "NPM", "Clipboard API"],
+    technologies: ["JavaScript", "Clipboard API", "Node.js", "npm"],
     category: "Package",
     liveUrl: "https://www.npmjs.com/package/clipboard-transform",
     githubUrl: "https://github.com/Hridesh-Srivastava/clipboard-text-transform",
@@ -94,12 +137,12 @@ const projects = [
     color: "#00ccff",
   },
   {
-    id: 7,
+    id: 9,
     title: "Virtual Plant Care Assistant",
     description:
       "Developed a Node.js package for plant care tracking with watering schedules, care tips, and both CLI and module interfaces for flexible integration.",
     image: "/virtual-plantcare-assistant.png?height=300&width=500",
-    technologies: ["Node.js", "CLI", "NPM"],
+    technologies: ["JavaScript", "Command-Line Interface (CLI)", "Node.js", "File System (JSON persistence)", "npm"],
     category: "Package",
     liveUrl: "https://www.npmjs.com/package/virtual-plant-care-assistant",
     githubUrl: "https://github.com/Hridesh-Srivastava/virtual-plant-care-assistant",
@@ -108,12 +151,12 @@ const projects = [
     color: "#0099ff",
   },
   {
-    id: 8,
+    id: 10,
     title: "Currency Conversion",
     description:
       "Developed an npm package for currency conversion using real-time exchange rates, with a simple API for accurate use in financial and e-commerce apps.",
     image: "/currency-conversion.png?height=300&width=500",
-    technologies: ["JavaScript", "NPM", "Exchange Rate API"],
+    technologies: ["JavaScript", "Node.js", "HTTP / API Integration", "npm"],
     category: "Package",
     liveUrl: "https://www.npmjs.com/package/currency-conversion-v1.1.2",
     githubUrl: "https://github.com/Hridesh-Srivastava/currency-conversion",
@@ -123,7 +166,7 @@ const projects = [
   },
 ]
 
-const categories = ["All", "Full-Stack", "Frontend", "AI/ML", "Package"]
+const categories = ["All", "Full-Stack", "AI/ML", "Package"]
 
 
 const ProjectStar = memo(({ star }: { star: any }) => (
@@ -785,13 +828,20 @@ export default function ProjectsPage() {
   const isInView = useInView(ref, { once: true, margin: "-50px" })
 
   const filteredProjects = useMemo(() => {
-    if (selectedCategory === "All") {
-      return projects
-    }
-    return projects.filter((project) => project.category === selectedCategory)
+    if (selectedCategory === "All") return projects
+    return projects.filter((project) => {
+      const cat = (project as any).category
+      return Array.isArray(cat) ? cat.includes(selectedCategory) : cat === selectedCategory
+    })
   }, [selectedCategory])
 
   const featuredProjects = useMemo(() => projects.filter((project) => project.featured), [])
+  const packageProjects = useMemo(() =>
+    projects.filter((p) => {
+      const cat = (p as any).category
+      return Array.isArray(cat) ? cat.includes("Package") : cat === "Package"
+    })
+  , [])
 
   const handleCategoryChange = useCallback((category: string) => {
     setSelectedCategory(category)
@@ -973,6 +1023,29 @@ export default function ProjectsPage() {
                     </CardContent>
                   </Card>
                 </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Featured npm Packages Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            <div className="flex items-center gap-4 mb-8">
+              <motion.div
+                className="p-3 rounded-xl bg-[#00e6ff]/20 border border-[#00e6ff]/30"
+                whileHover={{ rotate: 5, scale: 1.05 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Package className="h-6 w-6 text-[#00e6ff]" />
+              </motion.div>
+              <h2 className="text-2xl font-bold text-white">Featured npm Packages</h2>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {packageProjects.map((project, index) => (
+                <ProjectCard key={project.id} project={project} index={index} isInView={isInView} />
               ))}
             </div>
           </motion.div>
