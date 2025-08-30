@@ -1122,7 +1122,7 @@ export default function AboutPage() {
                         variant="secondary"
                         className="text-xs sm:text-sm bg-[#00ffaa]/10 text-[#00ffaa] border border-[#00ffaa]/30 w-fit"
                       >
-                        Oddiant TechLabs (Remote)
+                        Oddiant TechLabs (Hybrid)
                       </Badge>
                       <Badge variant="outline" className="text-xs sm:text-sm border-[#666666] text-[#999999] w-fit">
                         Jan 2025 – Jun 2025
@@ -1132,7 +1132,7 @@ export default function AboutPage() {
                       </Badge>
                     </div>
                     <p className="text-sm sm:text-base text-[#cccccc] leading-relaxed break-words mb-6">
-                      During my 6‑month remote internship at Oddiant TechLabs I worked end‑to‑end across the MERN + Next.js
+                      During my 6‑month internship at Oddiant TechLabs I worked end‑to‑end across the MERN + Next.js
                       stack to build and optimize production‑grade web applications. I engineered reusable, accessible UI
                       components with Tailwind CSS, refactored API integration layers for cleaner data flow, and improved
                       perceived performance through code‑splitting and careful state management. I collaborated closely with
@@ -1149,8 +1149,8 @@ export default function AboutPage() {
                         variant="ghost"
                         className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#00ffaa]/10 border border-[#00ffaa]/30 text-[#00ffaa] font-semibold hover:bg-[#00ffaa]/20 transition w-full sm:w-auto"
                       >
-                        {/* TODO: Replace # with certificate link when available */}
-                        <Link href="#" target="_blank" rel="noopener noreferrer">
+                        
+                        <Link href="https://drive.google.com/file/d/1PN3fVstPfdfG9ldQdXEPfni6tgvGaCeb/view?usp=drivesdk" target="_blank" rel="noopener noreferrer">
                           Check here
                           <ExternalLink className="w-5 h-5" />
                         </Link>
