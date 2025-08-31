@@ -1287,7 +1287,7 @@ export default function AboutPage() {
                         className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#00ffcc]/10 border border-[#00ffcc]/30 text-[#00ffcc] font-semibold hover:bg-[#00ffcc]/20 transition w-full sm:w-auto"
                       >
               
-                        <Link href="#" target="_blank" rel="noopener noreferrer">
+                        <Link href="/certificate-sst.jpg" target="_blank" rel="noopener noreferrer">
                           Check here
                           <ExternalLink className="w-5 h-5" />
                         </Link>
