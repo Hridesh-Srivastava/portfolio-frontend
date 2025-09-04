@@ -13,9 +13,9 @@ const projects = [
     id: 1,
     title: "Alumni Data System",
     description:
-      "Built a comprehensive alumni management system for HSST using Next.js, Tailwind CSS, and RESTful APIs. Created a responsive database solution to efficiently store, search, and manage alumni records.",
+      "Built a comprehensive alumni management system for HSST using Next.js, Tailwind CSS, OAuth 2.0 and RESTful APIs. Created a responsive database solution to efficiently store, search, and manage alumni records.",
     image: "/sst-alumni.png?height=300&width=500",
-    technologies: ["Next.js", "Tailwind CSS", "RESTful APIs", "MongoDB", "Node.js"],
+    technologies: ["React", "Tailwind CSS", "Next.js","Shadcn ui", "Node.js", "Express", "MongoDB","OAuth 2.0", "RESTful APIs"],
     category: "Full-Stack",
     liveUrl: "https://hsst-alumni-frontend.vercel.app/",
     githubUrl: "https://github.com/Hridesh-Srivastava/Alumni-data-frontend",
@@ -27,9 +27,9 @@ const projects = [
     id: 2,
     title: "Oddiant TechLabs",
     description:
-      "A clean corporate website for Oddiant Techlabs that showcases their core offerings—IT consulting, HR consulting, recruitment & staffing, Assessment Portal and personality development—with clear CTAs, trust metrics, and lead-capture to drive enquiries.",
+      "A clean corporate website for Oddiant Techlabs that showcases their core offerings—IT consulting, HR consulting, recruitment & staffing, ATS, Assessment Portal and personality development—with clear CTAs, trust metrics, and lead-capture to drive enquiries.",
     image: "/oddiant-img.png?height=300&width=500",
-    technologies: ["React", "Node.js", "MongoDB", "Next.js","Shadcn ui", "RESTful APIs","Tailwind CSS"],
+    technologies: ["React", "Node.js", "MongoDB", "Next.js","Shadcn ui", "RESTful APIs", "Gemini API", "Tailwind CSS"],
     category: "Full-Stack",
     liveUrl: "https://www.oddiant.com/",
     githubUrl: "https://github.com/Hridesh-Srivastava/oddiant-techLabs.git",

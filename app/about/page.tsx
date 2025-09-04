@@ -1134,7 +1134,7 @@ export default function AboutPage() {
                     <p className="text-sm sm:text-base text-[#cccccc] leading-relaxed break-words mb-6">
                       During my 6‑month internship at Oddiant TechLabs I worked end‑to‑end across the MERN + Next.js
                       stack to build and optimize production‑grade web applications. I engineered reusable, accessible UI
-                      components with Tailwind CSS, refactored API integration layers for cleaner data flow, and improved
+                      components with Tailwind CSS, refactored API integration layers for cleaner data flow and also Gemini API, and improved
                       perceived performance through code‑splitting and careful state management. I collaborated closely with
                       founders and designers in an agile rhythm (weekly deliverables & reviews), converting loosely defined
                       feature ideas into shipped functionality, strengthening my judgment around trade‑offs, scalability, and
